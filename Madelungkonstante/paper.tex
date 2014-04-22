@@ -35,6 +35,7 @@ E_G = \frac{1}{4 \pi \epsilon_0} \frac{e^2}{a} \sum_{j\atop i \neq j} \frac{z_i 
 Schließlich wird die Geometrie des Kristalls in der Madelung-Konstante zusammengefasst:
 
 \begin{align}
+\label{Madelungkonstante}
 \alpha = \frac{E_G}{E_P} = \sum_{j\atop i \neq j} \frac{z_i z_j}{r_{ij}/a}
 \end{align}
 TODO: noch was zum normalisierten Abstand sagen; es macht keinen Sinn das Zentralion mit i zu indizieren, da darüber niemals summiert wird
@@ -49,6 +50,8 @@ Die nächsten Nachbarn eines jeden Ions sind sechs Ionen entgegengesetzter Ladun
 \end{align}
 berechnet werden. Dabei wird das Vorzeichen so gewählt, dass dies mit der Ladung des Ion im Zentrum des Würfels übereinstimmt (Na: $+$; Cl: $-$). Diese Tatsache äußert sich auch darin, dass das Vorzeichen der Madelung-Konstante vom betrachteten Ion abhängt (generell: $\alpha_{Na} = - \alpha_{Cl}$).
 \subsubsection{erster Versuch naive Methode}
+
+Zunächst wurde die naive Implementierung analog zur mathematischen Beschreibung getestet. Dabei wurde die Madelung-Konstante für einen Würfel analog zu Gl. (\ref{Madelungkonstante}), über sukzessive Erweiterung des Würfels mit einer Hülle, berechnet. Es fällt schnell die schlechte Konvergenz auf, die sich physikalisch darin manifestiert, dass der Kristall, beim einfachen Erweitern mit einer Hülle, nicht elektrisch neutral bleibt.
 
 \begin{itemize}
 \item Vorgehen analog zur mathematischen Beschreibung
