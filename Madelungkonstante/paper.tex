@@ -15,43 +15,62 @@
 
 \section{Madelung-Konstante des NaCl-Kristalls}
 \subsection{Physikalischer Hintergrund}
-In einem Kristallgitter sind die Ionen durch elektrostatische Wechselwirkung untereinander an den Kristall gebunden.
-Uns interessiert die durchschnittliche potentielle Energie eines dieser Ionen (wird mit dem Index $i$ bezeichnet).
-Diese entsteht in erster Näherung aus der Überlagerung der Coulomb-Potentiale der Punktladungen im Kristallgefüge
-(wird mit dem Index $j$ bezeichnet). Die Ladungszahl des jeweiligen Ions sei $z$ und $r_{ij}$ ist der Abstand des
-betrachteten Ionenpaars. Wir summieren für jedes Ion des Kristalls (mit Ausnahme des $i$-Ions, da dessen Potential
-auf sich selbst keinen Einfluss hat) den Beitrag zum Potential:
+In einem Kristallgitter sind die Ionen durch elektrostatische Wechselwirkung
+untereinander an den Kristall gebunden. Uns interessiert die durchschnittliche
+potentielle Energie eines dieser Ionen (wird mit dem Index $i$ bezeichnet).
+Diese entsteht in erster Näherung aus der Überlagerung der Coulomb-Potentiale
+der Punktladungen im Kristallgefüge
+(wird mit dem Index $j$ bezeichnet). Die Ladungszahl des jeweiligen Ions sei $z$
+und $r_{ij}$ ist der Abstand des betrachteten Ionenpaars. Wir summieren für
+jedes Ion des Kristalls (mit Ausnahme des $i$-Ions, da dessen Potential auf sich
+selbst keinen Einfluss hat) den Beitrag zum Potential:
 
 \begin{align}
 \label{EPot}
-E_G = \sum_{j\atop i \neq j} \frac{1}{4 \pi \epsilon_0}  \frac{z_i e \cdot z_j e}{r_{ij}}
+E_G = \sum_{j\atop i \neq j} \frac{1}{4 \pi \epsilon_0}
+\frac{z_i e \cdot z_j e}{r_{ij}}
 \end{align}
-Erweitern der Gleichung (\ref{EPot}) mit dem Gitterabstand $a$ und Zusammenfassen des Faktors in die durchschnittliche
-Energie eines Ionenpaars $E_P$ mit Abstand $a$ ergibt:
+Erweitern der Gleichung (\ref{EPot}) mit dem Gitterabstand $a$ und
+Zusammenfassen des Faktors in die durchschnittliche Energie eines Ionenpaars
+$E_P$ mit Abstand $a$ ergibt:
 
 \begin{align}
-E_G = \frac{1}{4 \pi \epsilon_0} \frac{e^2}{a} \sum_{j\atop i \neq j} \frac{z_i z_j}{r_{ij}/a} = E_P \sum_{j\atop i \neq j} \frac{z_i z_j}{r_{ij}/a}
+E_G = \frac{1}{4 \pi \epsilon_0} \frac{e^2}{a} \sum_{j\atop i \neq j}
+\frac{z_i z_j}{r_{ij}/a} = E_P \sum_{j\atop i \neq j} \frac{z_i z_j}{r_{ij}/a}
 \end{align}
-Schließlich wird die Geometrie des Kristalls in der Madelung-Konstante zusammengefasst:
+Schließlich wird die Geometrie des Kristalls in der Madelung-Konstante
+zusammengefasst:
 
 \begin{align}
 \label{Madelungkonstante}
 \alpha = \frac{E_G}{E_P} = \sum_{j\atop i \neq j} \frac{z_i z_j}{r_{ij}/a}
 \end{align}
-TODO: noch was zum normalisierten Abstand sagen; es macht keinen Sinn das Zentralion mit i zu indizieren, da darüber niemals summiert wird
+TODO: noch was zum normalisierten Abstand sagen; es macht keinen Sinn das
+Zentralion mit i zu indizieren, da darüber niemals summiert wird
 
 \subsection{Algorithmus im 3-dimensionalen Fall}
 \subsubsection{Struktur von Natriumchlorid}
 
-Die nächsten Nachbarn eines jeden Ions sind sechs Ionen entgegengesetzter Ladung. Diese Ionen befinden sich an den Eckpunkten eines regelmäßigen Oktaeders. Dadurch kann das Vorzeichen der Ladung an der Gitterstelle $\mathbf{r} = \left( x,y,z \right)$ durch:
+Die nächsten Nachbarn eines jeden Ions sind sechs Ionen entgegengesetzter
+Ladung. Diese Ionen befinden sich an den Eckpunkten eines regelmäßigen
+Oktaeders. Dadurch kann das Vorzeichen der Ladung an der Gitterstelle
+$\mathbf{r} = \left( x,y,z \right)$ durch:
 
 \begin{align}
 \mathrm{sgn}\left(z(\mathbf{r})\right) = \pm \left( -1 \right)^{x+y+z}
 \end{align}
-berechnet werden. Dabei wird das Vorzeichen so gewählt, dass dies mit der Ladung des Ion im Zentrum des Würfels übereinstimmt (Na: $+$; Cl: $-$). Diese Tatsache äußert sich auch darin, dass das Vorzeichen der Madelung-Konstante vom betrachteten Ion abhängt (generell: $\alpha_{Na} = - \alpha_{Cl}$).
+berechnet werden. Dabei wird das Vorzeichen so gewählt, dass dies mit der Ladung
+des Ion im Zentrum des Würfels übereinstimmt (Na: $+$; Cl: $-$). Diese Tatsache
+äußert sich auch darin, dass das Vorzeichen der Madelung-Konstante vom
+betrachteten Ion abhängt (generell: $\alpha_{Na} = - \alpha_{Cl}$).
 \subsubsection{erster Versuch naive Methode}
 
-Zunächst wurde die naive Implementierung analog zur mathematischen Beschreibung getestet. Dabei wurde die Madelung-Konstante für einen Würfel analog zu Gl. (\ref{Madelungkonstante}), über sukzessive Erweiterung des Würfels um eine Schale berechnet. Es fällt schnell die schlechte Konvergenz auf, die sich physikalisch darin manifestiert, dass der Kristall, beim einfachen Erweitern mit einer Hülle, nicht elektrisch neutral bleibt.
+Zunächst wurde die naive Implementierung analog zur mathematischen Beschreibung
+getestet. Dabei wurde die Madelung-Konstante für einen Würfel analog zu
+Gl. (\ref{Madelungkonstante}), über sukzessive Erweiterung des Würfels um eine
+Schale berechnet. Es fällt schnell die schlechte Konvergenz auf, die sich
+physikalisch darin manifestiert, dass der Kristall, beim einfachen Erweitern
+mit einer Hülle, nicht elektrisch neutral bleibt.
 
 \begin{itemize}
 \item Vorgehen analog zur mathematischen Beschreibung
@@ -66,19 +85,26 @@ Zunächst wurde die naive Implementierung analog zur mathematischen Beschreibung
 \begin{itemize}
 \item ab hier wirds dann serious und unseren abgegebenen code betreffend
 \item Gewichtung der einzelnen Ladungen nach der Methode von Evjens\cite{Evjen}
-\item es wird über Elementarzellen summiert die wie üblich gewichtet werden. in der summe über einen ganzen würfel bleibt dann die gewichtung wie wir sie im programm implementiert haben. (Evjens PDF seite 7)
+\item es wird über Elementarzellen summiert die wie üblich gewichtet werden. in
+der summe über einen ganzen würfel bleibt dann die gewichtung wie wir sie im
+programm implementiert haben. (Evjens PDF seite 7)
 \end{itemize}
 
 \subsubsection{Konvergenz}
 
 \begin{itemize}
-\item erkläre physikalischen Hintergrund für die bessere Konvergenz der Evjen Methode
-\item das Potential einer neutralen Elementarzelle fällt schneller ab als das einer geladenen
+\item erkläre physikalischen Hintergrund für die bessere Konvergenz der Evjen
+Methode
+\item das Potential einer neutralen Elementarzelle fällt schneller ab als das
+einer geladenen
 \end{itemize}
 
 \subsection{Algorithmus im 2-dimensionalen Fall}
 \subsubsection{Beschreibung}
-Im zweidimensionalen Fall muss eine neue Skalierungsmethode benutzt werden. Es ist leicht zu sehen, dass um elektrische Neutralität des Quadrates zu erreichen, die Ecken mit $\frac{1}{4}$ und die Kanten mit $\frac{1}{2}$ skaliert werden müssen.
+Im zweidimensionalen Fall muss eine neue Skalierungsmethode benutzt werden.
+Es ist leicht zu sehen, dass um elektrische Neutralität des Quadrates zu
+erreichen, die Ecken mit $\frac{1}{4}$ und die Kanten mit $\frac{1}{2}$
+skaliert werden müssen.
 
 \subsubsection{Konvergenz}
 
@@ -99,7 +125,8 @@ Physical Review Letters \textbf{39},
 
 \bibitem{Sakamoto}
 Sakamoto, Y.
-\emph{Madelung Constants of Simple Crystals Expressed in Terms of Born's Basic Potentials of 15 Figures},
+\emph{Madelung Constants of Simple Crystals Expressed in Terms of Born's Basic
+Potentials of 15 Figures},
 The Journal of Chemical Physics \textbf{28},
 164 (1958)
 
