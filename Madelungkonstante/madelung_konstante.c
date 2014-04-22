@@ -34,7 +34,7 @@ double evjens_method(int n) {
   
   /* effizient der pow-Funktion diskutieren (könnte durch eine Modulo Operation eliminiert werden
      macht aber den Code unklarer */
-  for (int i = 1; i <= n; i++) {
+  for (int m = 1; m <= n; m++) {
     /* Den Rest vom letzten Durchgang aufaddieren und danach resetten */
     sum += rest;
     rest = 0;
@@ -44,22 +44,22 @@ double evjens_method(int n) {
     */
 
     /* Fläche  * 6 wegen Symmetrie (welche Fläche wird berechnet?) */
-    for (int y = -i + 1; y < i; y++) {
-      for (int x = -i + 1; x < i; x++) {
-        sum += 3 * pow(-1, x + y + i) / sqrt(x * x + y * y + i * i);
-        rest += 3 * pow(-1, x + y + i) / sqrt(x * x + y * y + i * i);
+    for (int y = -m + 1; y < m; y++) {
+      for (int x = -m + 1; x < m; x++) {
+        sum += 3 * pow(-1, x + y + m) / sqrt(x * x + y * y + m * m);
+        rest += 3 * pow(-1, x + y + m) / sqrt(x * x + y * y + m * m);
       }
     }
 
     /* Kanten * 12 wegen Symmetrie (welche Kante wird berechnet?) */
-    for (int x = -i + 1; x < i; x++) {
-      sum += 3 * pow(-1, x + i + i) / sqrt(x * x + i * i + i * i);
-      rest += 9 * pow(-1, x + i + i) / sqrt(x * x + i * i + i * i);
+    for (int x = -m + 1; x < m; x++) {
+      sum += 3 * pow(-1, x + m + m) / sqrt(x * x + m * m + m * m);
+      rest += 9 * pow(-1, x + m + m) / sqrt(x * x + m * m + m * m);
     }
 
     /* Ecken * 8 wegen Symmetrie (welche Ecke wird berechnet?)*/
-    sum += pow(-1, i + i + i) / sqrt(i * i + i * i + i * i);
-    rest += 7 * pow(-1, i + i + i) / sqrt(i * i + i * i + i * i);
+    sum += pow(-1, m + m + m) / sqrt(m * m + m * m + m * m);
+    rest += 7 * pow(-1, m + m + m) / sqrt(m * m + m * m + m * m);
   }
 
   return sum;

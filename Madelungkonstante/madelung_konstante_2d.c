@@ -22,7 +22,7 @@ double evjens_method(int n) {
   /* effizient der pow-Funktion diskutieren (könnte durch eine Modulo Operation
      eliminiert werden
      macht aber den Code unklarer */
-  for (int i = 1; i <= n; i++) {
+  for (int m = 1; m <= n; m++) {
     /* Den Rest vom letzten Durchgang aufaddieren und danach resetten */
     sum += rest;
     rest = 0;
@@ -32,14 +32,14 @@ double evjens_method(int n) {
     */
 
     /* Kante  * 4 wegen Symmetrie (welche Kante wird berechnet?) */
-    for (int x = -i + 1; x < i; x++) {
-      sum += 2 * pow(-1, x + i) / sqrt(x * x + i * i);
-      rest += 2 * pow(-1, x + i) / sqrt(x * x + i * i);
+    for (int x = -m + 1; x < m; x++) {
+      sum += 2 * pow(-1, x + m) / sqrt(x * x + m * m);
+      rest += 2 * pow(-1, x + m) / sqrt(x * x + m * m);
     }
 
     /* Ecken * 4 wegen Symmetrie (welche Ecke wird berechnet?)*/
-    sum += pow(-1, i + i) / sqrt(i * i + i * i);
-    rest += 3 * pow(-1, i + i) / sqrt(i * i + i * i);
+    sum += pow(-1, m + m) / sqrt(m * m + m * m);
+    rest += 3 * pow(-1, m + m) / sqrt(m * m + m * m);
   }
 
   return sum;
