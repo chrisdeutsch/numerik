@@ -51,7 +51,7 @@ Die nächsten Nachbarn eines jeden Ions sind sechs Ionen entgegengesetzter Ladun
 berechnet werden. Dabei wird das Vorzeichen so gewählt, dass dies mit der Ladung des Ion im Zentrum des Würfels übereinstimmt (Na: $+$; Cl: $-$). Diese Tatsache äußert sich auch darin, dass das Vorzeichen der Madelung-Konstante vom betrachteten Ion abhängt (generell: $\alpha_{Na} = - \alpha_{Cl}$).
 \subsubsection{erster Versuch naive Methode}
 
-Zunächst wurde die naive Implementierung analog zur mathematischen Beschreibung getestet. Dabei wurde die Madelung-Konstante für einen Würfel analog zu Gl. (\ref{Madelungkonstante}), über sukzessive Erweiterung des Würfels mit einer Hülle, berechnet. Es fällt schnell die schlechte Konvergenz auf, die sich physikalisch darin manifestiert, dass der Kristall, beim einfachen Erweitern mit einer Hülle, nicht elektrisch neutral bleibt.
+Zunächst wurde die naive Implementierung analog zur mathematischen Beschreibung getestet. Dabei wurde die Madelung-Konstante für einen Würfel analog zu Gl. (\ref{Madelungkonstante}), über sukzessive Erweiterung des Würfels um eine Schale berechnet. Es fällt schnell die schlechte Konvergenz auf, die sich physikalisch darin manifestiert, dass der Kristall, beim einfachen Erweitern mit einer Hülle, nicht elektrisch neutral bleibt.
 
 \begin{itemize}
 \item Vorgehen analog zur mathematischen Beschreibung
@@ -78,9 +78,7 @@ Zunächst wurde die naive Implementierung analog zur mathematischen Beschreibung
 
 \subsection{Algorithmus im 2-dimensionalen Fall}
 \subsubsection{Beschreibung}
-
-In diesem Fall wird angenommen, dass $j_3 = i_3$.
-Hier brauchen wir vermutlich eine neue Skalierungsmethode. In der Tat, Ecken $\frac{1}{4}$ Kanten $\frac{1}{2}$.
+Im zweidimensionalen Fall muss eine neue Skalierungsmethode benutzt werden. Es ist leicht zu sehen, dass um elektrische Neutralität des Quadrates zu erreichen, die Ecken mit $\frac{1}{4}$ und die Kanten mit $\frac{1}{2}$ skaliert werden müssen.
 
 \subsubsection{Konvergenz}
 
