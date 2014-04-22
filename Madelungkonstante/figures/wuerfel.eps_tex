@@ -1,6 +1,6 @@
 %% Creator: Inkscape inkscape 0.48.2, www.inkscape.org
 %% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
-%% Accompanies image file 'wuerfel.pdf' (pdf, eps, ps)
+%% Accompanies image file 'wuerfel.eps' (pdf, eps, ps)
 %%
 %% To include the image in your LaTeX document, write
 %%   \input{<filename>.pdf_tex}
@@ -49,7 +49,7 @@
   \global\let\svgscale\undefined%
   \makeatother%
   \begin{picture}(1,0.93067206)%
-    \put(0,0){\includegraphics[width=\unitlength]{wuerfel.pdf}}%
+    \put(0,0){\includegraphics[width=\unitlength]{wuerfel.eps}}%
     \put(0.89782246,0.90608707){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{1/8}}}%
     \put(0.27428095,0.90822246){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{1/8}}}%
     \put(0.95334323,0.24410814){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{1/8}}}%
@@ -76,5 +76,6 @@
     \put(0.71417658,0.30389996){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{1/4}}}%
     \put(0.60527039,0.20994164){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{1/4}}}%
     \put(0.13120802,0.16509791){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{1/4}}}%
+    \put(0.52839546,0.41067053){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{1}}}%
   \end{picture}%
 \endgroup%
