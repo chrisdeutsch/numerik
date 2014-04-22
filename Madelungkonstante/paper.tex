@@ -14,7 +14,6 @@
 \maketitle
 
 \section{Madelung-Konstante des NaCl-Kristalls}
-Hi
 \subsection{Physikalischer Hintergrund}
 In einem Kristallgitter sind die Ionen durch elektrostatische Wechselwirkung untereinander an den Kristall gebunden.
 Uns interessiert die durchschnittliche potentielle Energie eines dieser Ionen (wird mit dem Index $i$ bezeichnet).
@@ -43,16 +42,12 @@ TODO: noch was zum normalisierten Abstand sagen; es macht keinen Sinn das Zentra
 \subsection{Algorithmus im 3-dimensionalen Fall}
 \subsubsection{Struktur von Natriumchlorid}
 
-Jedes Ion ist umgeben von sechs Ionen entgegengesetzter Ladung (nearest neighbors). Diese Ionen befinden sich an den Eckpunkten eines 
-regulären Oktaeders. rinse and repeat BILD? Dadurch kann das Vorzeichen der Ladung durch:
+Die nächsten Nachbarn eines jeden Ions sind sechs Ionen entgegengesetzter Ladung. Diese Ionen befinden sich an den Eckpunkten eines regelmäßigen Oktaeders. Dadurch kann das Vorzeichen der Ladung an der Gitterstelle $\mathbf{r} = \left( x,y,z \right)$ durch:
 
 \begin{align}
-\pm \left( -1 \right)^{x+y+z}
+\frac{z}{|z|}(x,y,z) = \pm \left( -1 \right)^{x+y+z}
 \end{align}
-erklärt werden("entspricht dreidimensionalem Schachbrett"). Dabei muss das Vorzeichen passend gewählt werden jenachdem welches Ion sich im Zentrum des
-Würfels befindet. (Natrium ist positiv, Chlor ist negativ) Dadurch kommt es auch zu einem willkürlichen Vorzeichen
-der Madelung-Konstante. TODO: deutsch, grammatik!
-
+berechnet werden. Dabei wird das Vorzeichen so gewählt, dass dies mit dem Ion im Zentrum des Würfels übereinstimmt (Na: $+$; Cl: $-$). Diese Tatsache äußert sich auch darin, dass das Vorzeichen der Madelung-Konstante vom betrachteten Ion abhängt $\alpha_{Na} = - \alpha_{Cl}$.
 \subsubsection{erster Versuch naive Methode}
 
 \begin{itemize}
