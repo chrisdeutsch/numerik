@@ -37,12 +37,12 @@ int main() {
 }
 
 double madelung_3d(int n) {
-  double sum = 0;
+  double sum = 0; //wo ist der Unterschied zwischen sum und rest?
   double rest = 0;
   
   /* effizient der pow-Funktion diskutieren (könnte durch eine Modulo Operation eliminiert werden
      macht aber den Code unklarer */
-  for (int m = 1; m <= n; m++) {
+  for (int m = 1; m <= n; m++) { //Madelungkonst von Würfel mit Kantenlänge 2 + Madelungkonst von Würfel mit Kantenlänge 4 + ...?
     /* Den Rest vom letzten Durchgang aufaddieren und danach resetten */
     sum += rest;
     rest = 0;
@@ -91,7 +91,7 @@ double madelung_2d(int n) {
     */
 
     /* Kante  * 4 wegen Symmetrie (welche Kante wird berechnet?) */
-    for (int x = -m + 1; x < m; x++) {
+    for (int x = -m + 1; x < m; x++) { //War das nicht Kanten 1/2 gewichtet?
       sum += 2 * pow(-1, x + m) / sqrt(x * x + m * m);
       rest += 2 * pow(-1, x + m) / sqrt(x * x + m * m);
     }
