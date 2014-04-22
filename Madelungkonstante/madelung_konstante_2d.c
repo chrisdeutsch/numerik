@@ -1,7 +1,3 @@
-/*
-HISTORY:
-*/
-
 /* gcc -O2 -std=c99 -Wall -pedantic -o madelung madelung_konstante_2d.c -lm */
 /* Christian Bespin, Christopher Deutsch */
 

@@ -1,17 +1,5 @@
-/*
-HISTORY:
-17.04 17:56 grobe Struktur !!!!! suche namen für die funktion evjens_method
-suckt =D
-18.04 17:43 mehr struktur
-21.04 12:04 effizienterer algorithmus noch mit Angabe der Seitenlänge des Würfels (2n)
-21.04 15:31 Ein paar Kommentare hinzugefügt und Datei umbenannt
-
-*/
-
-
 /* gcc -O2 -std=c99 -Wall -pedantic -o madelung madelung_konstante.c -lm */
 /* Christian Bespin, Christopher Deutsch */
-
 
 #include <stdio.h>
 #include <math.h>
