@@ -7,6 +7,8 @@ typedef struct {
 } tuple;
 
 int main() {
-  
+  tuple n;
+  n.x= 0;
+  n.y= 0;
   return 0;
 }
