@@ -6,9 +6,8 @@ typedef struct {
   double y;
 } tuple;
 
+double *newton_coeff(tuple *stuetz, int n);
+
 int main() {
-  tuple n;
-  n.x= 0;
-  n.y= 0;
   return 0;
 }
