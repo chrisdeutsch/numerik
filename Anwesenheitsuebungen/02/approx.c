@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 typedef struct {
   double x;
@@ -9,11 +10,21 @@ typedef struct {
 double *newton_coeff(tuple *stuetz, int n);
 
 int main() {
-  tuple *s = NULL;
-  int count = 0;
+  int count = 4;
+
+  tuple *s = malloc(count * sizeof(tuple));
+  for (int i = 0; i < count; i++) {
+    s->x = i;
+    s->y = sinh(i);
+  }
+
   double *coeff = NULL;
 
   coeff = newton_coeff(s, count);
+
+  for (int i = 0; i < count; i++) {
+    printf("C%i: %f\n", i, coeff[i]);
+  }
 
   free(coeff);
   return 0;
@@ -42,14 +53,18 @@ double *newton_coeff(tuple *stuetz, int n) {
 
   // Berechnen
   for (int j = 2; j < n + 1; j++) {
-    for (int i = 0; i < n - j; i++) {
-      break;
+    for (int i = 0; i <= n - j; i++) {
+      mat[i][j] =
+          (mat[i + 1][j - 1] - mat[i][j - 1]) / (mat[i + 1][0] - mat[i][0]);
     }
   }
 
   /*
   mat[i][j] i zeilen j spalte
   */
+  for (int i = 0; i < n; i++) {
+    ret[i] = mat[0][i + 1];
+  }
 
   free(*mat);
   free(mat);
