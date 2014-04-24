@@ -88,7 +88,7 @@ Ladungen entsprechend öfter vorkämen; es berühren sich immer zwei Flächen, v
 und acht Ecken.)\\
 Wir gehen in jedem Schleifendurchlauf davon aus, dass aktuell die äußerste Schale berechnet
 wird und summieren so zunächst nur über die gewichteten Ladungen (Variable \texttt{sum}).
-Den nicht gewichteten Beitrag summieren wir in jedem Schleifendurchlauf in der Variable
+Den zur vollen Gewichtung fehlenden Beitrag summieren wir in jedem Schleifendurchlauf in der Variable
 \texttt{rest} auf. Falls die Abbruchbedingung noch nicht erfüllt ist, wird diese zur
 Gesamtsumme addiert, denn dann wurde im vorherigen Schleifendurchlauf noch nicht die
 äußerste Schale betrachtet und alle Ladungen müssen voll gewichtet werden. Diese Methode
