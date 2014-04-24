@@ -7,6 +7,7 @@
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 
 \usepackage{graphicx}
+\usepackage{caption}
 
 \author{Christian Bespin \and Christopher Deutsch}
 \title{Übungsblatt 1: Numerische Methoden der Physik}
@@ -102,13 +103,23 @@ Gesamtsumme addiert, denn dann wurde im vorherigen Schleifendurchlauf noch nicht
 wurde gewählt, um mithilfe von \texttt{rest} den mit jeder Vergrößerung des Würfels
 hinzukommenden Beitrag auswerten zu können und ein sinnvolles Abbruchkriterium zu definieren.\\
 
+\begin{minipage}[c]{0.5\textwidth}
+
+\includegraphics[width=\textwidth]{./figures/wuerfel.eps}
+\captionof{figure}{neutrale Elementarzelle nach Evjen}
+
+\end{minipage}
+\begin{minipage}[c]{0.5\textwidth}
+\includegraphics[width=\textwidth]{./figures/quadrat.eps}
+\captionof{figure}{neutrale Elementarzelle in zwei Dimensionen}
+\end{minipage}
+
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale = 0.35]{./figures/wuerfel.eps}
 	\caption{neutrale Elementarzelle nach Evjen}
 	\label{skalierungsgrafik3d}
 \end{figure}
-	
 
 \subsubsection{Konvergenz}
 
