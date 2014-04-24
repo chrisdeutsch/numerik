@@ -73,6 +73,12 @@ physikalisch darin manifestiert, dass der Kristall, beim einfachen Erweitern
 mit einer Hülle, nicht elektrisch neutral bleibt.
 
 \subsubsection{Beschreibung}
+Dieses Problem wurde von Evjen \cite{Evjen} gelöst, indem er den Kristall in 
+elektrisch neutrale Elementarzellen aufteilt, dessen Ladung wie in Abbildung
+\ref{skalierungsgrafik3d} gewichtet werden. In der Summe über alle Elementarzellen
+eines Würfels, läuft dies darauf hinaus, dass die Ecken, Kanten, Seitenflächen
+des Würfels mit $\frac{1}{8}$, $\frac{1}{4}$ bzw. $\frac{1}{2}$ gewichtet werden.
+
 Zur Berechnung legen wir den Ursprung des Koordinatensystems in den Mittelpunkt des
 Würfels und betrachten eine Ausdehnung von $-m$ bis $m$.
 Wir berechnen die Madelungkonstante sukzessiv, indem wir jeder Stirnfläche eine Lage
@@ -104,7 +110,7 @@ programm implementiert haben. (Evjens PDF seite 7)
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale = 0.4]{./figures/wuerfel.eps}
-	\caption{Skalierungsmethode}
+	\caption{Elementarzelle nach Evjen}
 	\label{skalierungsgrafik3d}
 \end{figure}
 	
