@@ -26,18 +26,18 @@ int main() {
   double mad;
 
   for (int i = 1; i < 10; i++) {
-    mad = -madelung_3d(i);
+    mad = madelung_3d(i);
     printf("Madelung-Konstante: %.12f \t n: %i \t Delta_rel: %.2E\n", mad, i,
            fabs(mad - lit) / lit);
   }
   
   for (int i = 1; i < 10; i++) {
-    mad = -madelung_3d(10 * i);
+    mad = madelung_3d(10 * i);
     printf("Madelung-Konstante: %.12f \t n: %i \t Delta_rel: %.2E\n", mad, 10 * i,
            fabs(mad - lit) / lit);
   }
   
-  printf("Madelungkonstante: %f\n", -madelung_2d(100));
+  printf("Madelungkonstante: %f\n", madelung_2d(100));
   
   return 0;
 }
@@ -60,20 +60,20 @@ double madelung_3d(int n) {
     /* Fläche  * 6 wegen Symmetrie (welche Fläche wird berechnet?) */
     for (int y = -m + 1; y < m; y++) {
       for (int x = -m + 1; x < m; x++) {
-        sum += 3 * pow(-1, x + y + m) / dist(x, y, m);
-        rest += 3 * pow(-1, x + y + m) / dist(x, y, m);
+        sum += 3 * sign_z(x, y, m) / dist(x, y, m);
+        rest += 3 * sign_z(x, y, m) / dist(x, y, m);
       }
     }
 
     /* Kanten * 12 wegen Symmetrie (welche Kante wird berechnet?) */
     for (int x = -m + 1; x < m; x++) {
-      sum += 3 * pow(-1, x + m + m) / dist(x, m, m);
-      rest += 9 * pow(-1, x + m + m) / dist(x, m, m);
+      sum += 3 * sign_z(x, m, m) / dist(x, m, m);
+      rest += 9 * sign_z(x, m, m) / dist(x, m, m);
     }
 
     /* Ecken * 8 wegen Symmetrie (welche Ecke wird berechnet?)*/
-    sum += pow(-1, m + m + m) / dist(m, m, m);
-    rest += 7 * pow(-1, m + m + m) / dist(m, m, m);
+    sum += sign_z(m, m, m) / dist(m, m, m);
+    rest += 7 * sign_z(m, m, m) / dist(m, m, m);
   }
 
   return sum;
@@ -98,13 +98,13 @@ double madelung_2d(int n) {
 
     /* Kante  * 4 wegen Symmetrie (welche Kante wird berechnet?) */
     for (int x = -m + 1; x < m; x++) { //War das nicht Kanten 1/2 gewichtet?
-      sum += 2 * pow(-1, x + m) / dist(x, m, 0);
-      rest += 2 * pow(-1, x + m) / dist(x, m, 0);
+      sum += 2 * sign_z(x, m, 0) / dist(x, m, 0);
+      rest += 2 * sign_z(x, m, 0) / dist(x, m, 0);
     }
 
     /* Ecken * 4 wegen Symmetrie (welche Ecke wird berechnet?)*/
-    sum += pow(-1, m + m) / dist(m, m, 0);
-    rest += 3 * pow(-1, m + m) / dist(m, m, 0);
+    sum += sign_z(m, m, 0) / dist(m, m, 0);
+    rest += 3 * sign_z(m, m, 0) / dist(m, m, 0);
   }
 
   return sum;
