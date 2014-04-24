@@ -55,7 +55,6 @@ Die nächsten Nachbarn eines jeden Ions sind sechs Ionen entgegengesetzter
 Ladung. Diese Ionen befinden sich an den Eckpunkten eines regelmäßigen
 Oktaeders. Dadurch kann das Vorzeichen der Ladung an der Gitterstelle
 $\mathbf{r} = \left( x,y,z \right)$ durch:
-
 \begin{align}
 \mathrm{sgn}\left(z(\mathbf{r})\right) = \pm \left( -1 \right)^{x+y+z}
 \end{align}
@@ -82,7 +81,7 @@ des Würfels mit $\frac{1}{8}$, $\frac{1}{4}$ bzw. $\frac{1}{2}$ gewichtet werde
 Zur Berechnung legen wir den Ursprung des Koordinatensystems in den Mittelpunkt des
 Würfels und betrachten eine Ausdehnung von $-m$ bis $m$.
 Wir berechnen die Madelungkonstante sukzessiv, indem wir jeder Stirnfläche eine Lage
-hinzufügen, wodurch die Kantenlänge des Würfels um $2$ zunimmt (Zeile XX). \\
+hinzufügen, wodurch die Kantenlänge des Würfels um $2$ zunimmt (Zeile XX).\\
 Die einzelnen Ladungen werden nach der Methode von
 Evjens \cite{Evjen} unterschiedlich gewichtet, wodurch, wie im nächsten Absatz genauer
 erläutert, eine gute Konvergenz des Algorithmus folgt. Dazu werden die Ladungen im
@@ -94,7 +93,7 @@ Ladungen entsprechend öfter vorkämen; es berühren sich immer zwei Flächen, v
 und acht Ecken.)\\
 Wir gehen in jedem Schleifendurchlauf davon aus, dass aktuell die äußerste Schale berechnet
 wird und summieren so zunächst nur über die gewichteten Ladungen (Variable \texttt{sum}).
-Den nicht gewichteten Beitrag summieren wir in jedem Schleifendurchlauf in der Variable
+Den zu voller Gewichtung fehlenden Anteil summieren wir in jedem Schleifendurchlauf in der Variable
 \texttt{rest} auf. Falls die Abbruchbedingung noch nicht erfüllt ist, wird diese zur
 Gesamtsumme addiert, denn dann wurde im vorherigen Schleifendurchlauf noch nicht die
 äußerste Schale betrachtet und alle Ladungen müssen voll gewichtet werden. Diese Methode
@@ -126,8 +125,7 @@ einer geladenen
 
 \begin{table}[h]
 \centering
-\begin{tabular}{|c|c|c|}
-\hline 
+\begin{tabular}{c|c|c}
 \rule[-1ex]{0pt}{2.5ex} $n$ & $\alpha$ & $\delta$ \\ 
 \hline 
 \rule[-1ex]{0pt}{2.5ex} $4$ & $1.747721109631$ & $8.96\cdot10^{-5}$ \\ 
@@ -139,7 +137,6 @@ einer geladenen
 \rule[-1ex]{0pt}{2.5ex} $50$ & $1.747564601048$ & $3.67\cdot10^{-9}$ \\ 
 \hline 
 \rule[-1ex]{0pt}{2.5ex} $100$ & $1.747564595034$ & $2.30\cdot10^{-10}$ \\ 
-\hline 
 \end{tabular} 
 \caption{Konvergenz}
 \end{table}
