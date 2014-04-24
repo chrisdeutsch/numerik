@@ -71,14 +71,15 @@ getestet. Dabei wurde die Madelung-Konstante für einen Würfel analog zu
 Gl. (\ref{Madelungkonstante}), über sukzessive Erweiterung des Würfels um eine
 Schale berechnet. Es fällt schnell die schlechte Konvergenz auf, die sich
 physikalisch darin manifestiert, dass der Kristall, beim einfachen Erweitern
-mit einer Hülle, nicht elektrisch neutral bleibt. Dieses Problem wurde von Evjen
+mit einer Schale, nicht elektrisch neutral bleibt. Dieses Problem wurde von Evjen
 \cite{Evjen} gelöst, indem er den Kristall in elektrisch neutrale Elementarzellen
 aufteilt, die einen flacheren Potentialverlauf haben als einzelne Punktladungen.
-Dazu werden die Ladung gemäß der Abbildung \ref{skalierungsgrafik3d} gewichtet,
-dabei sind die gebrochenen Ladungen durch das Überlappen der Elementarzellen motiviert
-(vgl. Abb. \ref{zellensumme} für das zweidimensionale Analogon). Die Summe über 
+Eine solche Zelle ist in Abbildung \ref{skalierungsgrafik3d} dargestellt,
+dabei sind die gebrochenen Ladungen durch das Überlappen von mehreren Elementarzellen
+motiviert (vgl. Abb. \ref{zellensumme} für das zweidimensionale Analogon). Die Summe über 
 alle Elementarzellen eines Würfels resultiert darin, dass die Ecken des Würfels
-$\frac{1}{8}$, Kanten $\frac{1}{4}$ und Seitenflächen $\frac{1}{2}$ gewichtet werden.
+$\frac{1}{8}$, Kanten $\frac{1}{4}$ und Seitenflächen $\frac{1}{2}$ gewichtet werden
+und der Innenraum voll in die Gewichtung eingeht.
 
 \begin{figure}[h]
 	\centering
@@ -106,12 +107,15 @@ erklärt.
 \subsubsection{Konvergenz}
 \label{sssec:Konvergenz}
 
-\begin{itemize}
-\item erkläre physikalischen Hintergrund für die bessere Konvergenz der Evjen
-Methode
-\item das Potential einer neutralen Elementarzelle fällt schneller ab als das
-einer geladenen
-\end{itemize}
+Wie man in der Tabelle sehen kann konvergiert die Evjen-Methode sehr schnell
+gegen den Literaturwert $\alpha_{NaCl} = 1.7475646946331822$ \cite{Sakamoto}.
+Der nach unsere Methode berechnete Wert alterniert, wie man in der Abbildung
+sehen kann stets, mit fallender Amplitude um den wahren Wert. Dies
+rechtfertigt unser Abbruchkriterium, denn der wahre Wert liegt offenbar
+näher am letzten Datenpunkt als die Differenz zum vorletzten. Das heißt
+wenn die Abbruchsbedingung eintritt, können wir uns sicher sein, dass der
+absolute Fehler des berechneten Wertes kleiner als $\epsilon$ ist.
+
 
 \begin{table}[h]
 \centering
@@ -161,7 +165,7 @@ Wie gut konvergiert der 2-dimensionale Algorithmus.
 
 \subsection{Fazit}
 
-Verwendeter Literaturwert $\alpha_{NaCl} = 1.7475646946331822$ \cite{Sakamoto} .
+Verwendeter Literaturwert  .
 
 
 \begin{thebibliography}{9}
