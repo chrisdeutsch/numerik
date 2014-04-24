@@ -99,13 +99,6 @@ Gesamtsumme addiert, denn dann wurde im vorherigen Schleifendurchlauf noch nicht
 äußerste Schale betrachtet und alle Ladungen müssen voll gewichtet werden. Diese Methode
 wurde gewählt, um mithilfe von \texttt{rest} den mit jeder Vergrößerung des Würfels
 hinzukommenden Beitrag auswerten zu können und ein sinnvolles Abbruchkriterium zu definieren.\\
-Um die Laufzeit des Programms zu verbessern wurde die Symmetrie des Würfels ausgenutzt,
-nach der ein Punkt mit konkreter Position auf einer Seitenfläche den gleichen Abstand vom Ursprung
-hat wie der gleich positionierte Punkt auf den anderen Seitenflächen. Hierbei werden die Elemente
-auf den Kanten nicht zu den Seitenflächen gezählt, so dass auch das Vorzeichen der Ladung für diese
-Elemente mit gleichem Abstand übereinstimmt. Das Argument lässt sich analog auf die Kanten und 
-Ecken übertragen. Effektiv muss also nur eine Seitenfläche, eine Kante und eine Ecke berechnet
-werden und entsprechend der Häufigkeit ihres Auftretens (6, 8 oder 12 mal) multipliziert werden.
 
 \begin{figure}[h]
 	\centering
