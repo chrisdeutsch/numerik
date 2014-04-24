@@ -62,21 +62,21 @@ berechnet werden. Dabei wird das Vorzeichen so gewählt, dass dies mit der Ladun
 des Ion im Zentrum des Würfels übereinstimmt (Na: $+$; Cl: $-$). Diese Tatsache
 äußert sich auch darin, dass das Vorzeichen der Madelung-Konstante vom
 betrachteten Ion abhängt (generell: $\alpha_{Na} = - \alpha_{Cl}$).
-\subsubsection{erster Versuch naive Methode}
+\subsubsection{Probleme der naiven Methode}
 
 Zunächst wurde die naive Implementierung analog zur mathematischen Beschreibung
 getestet. Dabei wurde die Madelung-Konstante für einen Würfel analog zu
 Gl. (\ref{Madelungkonstante}), über sukzessive Erweiterung des Würfels um eine
 Schale berechnet. Es fällt schnell die schlechte Konvergenz auf, die sich
 physikalisch darin manifestiert, dass der Kristall, beim einfachen Erweitern
-mit einer Hülle, nicht elektrisch neutral bleibt.
+mit einer Hülle, nicht elektrisch neutral bleibt. Dieses Problem wurde von Evjen
+\cite{Evjen} gelöst, indem er den Kristall in elektrisch neutrale Elementarzellen
+aufteilt, dessen Ladung wie in Abbildung \ref{skalierungsgrafik3d} gewichtet
+werden. In der Summe über alle Elementarzellen eines Würfels, läuft dies darauf
+hinaus, dass die Ecken, Kanten, Seitenflächen des Würfels mit $\frac{1}{8}$,
+$\frac{1}{4}$ bzw. $\frac{1}{2}$ gewichtet werden.
 
 \subsubsection{Beschreibung}
-Dieses Problem wurde von Evjen \cite{Evjen} gelöst, indem er den Kristall in 
-elektrisch neutrale Elementarzellen aufteilt, dessen Ladung wie in Abbildung
-\ref{skalierungsgrafik3d} gewichtet werden. In der Summe über alle Elementarzellen
-eines Würfels, läuft dies darauf hinaus, dass die Ecken, Kanten, Seitenflächen
-des Würfels mit $\frac{1}{8}$, $\frac{1}{4}$ bzw. $\frac{1}{2}$ gewichtet werden.
 
 Zur Berechnung legen wir den Ursprung des Koordinatensystems in den Mittelpunkt des
 Würfels und betrachten eine Ausdehnung von $-m$ bis $m$.
