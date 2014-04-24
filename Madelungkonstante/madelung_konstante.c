@@ -9,11 +9,13 @@
 /* Hier noch eine vernünftige Quelle */
 #define MAD_CONST_2D 1.61554
 
-/* Berechnet die Madelungkonstante für einen Würfel der Kantenlänge 2n wobei die Länge 
+/* Berechnet die Madelungkonstante für einen Würfel der Kantenlänge 2n wobei die
+   Länge
    auf den Gitterabstand normalisiert ist */
 double madelung_3d(int n);
 
-/* Berechnet die Madelungkonstante für ein Quadrat der Seitenlänge 2n wobei die Länge
+/* Berechnet die Madelungkonstante für ein Quadrat der Seitenlänge 2n wobei die
+   Länge
    auf den Gitterabstand normalisiert ist */
 double madelung_2d(int n);
 
@@ -23,7 +25,6 @@ double dist(int x, int y, int z);
 /* Vorzeichenfunktion */
 int sign_z(int x, int y, int z);
 
-
 /* Beschreibung was eigentlich in der main-Funktion berechnet wird */
 int main() {
   printf("Output:\n");
@@ -31,10 +32,12 @@ int main() {
 }
 
 double madelung_3d(int n) {
-  double sum = 0; //wo ist der Unterschied zwischen sum und rest?
+  double sum = 0; // wo ist der Unterschied zwischen sum und rest?
   double rest = 0;
-  
-  for (int m = 1; m <= n; m++) { //Madelungkonst von Würfel mit Kantenlänge 2 + Madelungkonst von Würfel mit Kantenlänge 4 + ...?
+
+  for (int m = 1; m <= n;
+       m++) { // Madelungkonst von Würfel mit Kantenlänge 2 + Madelungkonst von
+              // Würfel mit Kantenlänge 4 + ...?
     /* Den Rest vom letzten Durchgang aufaddieren und danach resetten */
     sum += rest;
     rest = 0;
@@ -70,7 +73,6 @@ double madelung_3d(int n) {
   return sum;
 }
 
-
 double madelung_2d(int n) {
   double sum = 0;
   double rest = 0;
@@ -84,14 +86,14 @@ double madelung_2d(int n) {
        sum: 4 (Sym.) * 1/2 (Evjens) = 2
        rest: 4 (Sym.) * 1/2 (Rest) = 2
     */
-    for (int x = -m + 1; x < m; x++) { //War das nicht Kanten 1/2 gewichtet?
+    for (int x = -m + 1; x < m; x++) { // War das nicht Kanten 1/2 gewichtet?
       sum += 2 * sign_z(x, m, 0) / dist(x, m, 0);
       rest += 2 * sign_z(x, m, 0) / dist(x, m, 0);
     }
 
     /* Ecken * 4 wegen Symmetrie (welche Ecke wird berechnet?)
        sum: 4 (Sym.) * 1/4 (Evjens) = 1
-       rest: 4 (Sym.) * 3/4 (Rest) = 3    
+       rest: 4 (Sym.) * 3/4 (Rest) = 3
     */
     sum += sign_z(m, m, 0) / dist(m, m, 0);
     rest += 3 * sign_z(m, m, 0) / dist(m, m, 0);
@@ -100,12 +102,12 @@ double madelung_2d(int n) {
   return sum;
 }
 
-double dist(int x, int y, int z) {
-  return sqrt(x*x + y*y + z*z);
-}
+double dist(int x, int y, int z) { return sqrt(x * x + y * y + z * z); }
 
-/* effizient der pow-Funktion diskutieren (könnte durch eine Modulo Operation eliminiert werden
+/* effizient der pow-Funktion diskutieren (könnte durch eine Modulo Operation
+   eliminiert werden
    macht aber den Code unklarer */
 int sign_z(int x, int y, int z) {
-  return -pow(-1, x + y + z);
+  /* pow(-1, x + y + z) == (x+y+z) % 2 ? -1 : 1 */
+  return -(x + y + z) % 2 ? -1 : 1;
 }
