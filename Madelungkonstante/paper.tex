@@ -74,18 +74,21 @@ mit einer Hülle, nicht elektrisch neutral bleibt.
 
 \subsubsection{Beschreibung}
 Zur Berechnung legen wir den Ursprung des Koordinatensystems in den Mittelpunkt des
-Würfels und betrachten eine Ausdehnung von -m bis m. So ist sichergestellt, dass der in
-jedem Schritt betrachtete Würfel elektrisch neutral bleibt.
-Wir berechnen die Madelungkonstante sukzessiv, indem wir die Kantenlänge des Würfels
-immer um 2 vergrößern (Zeile 38). Die einzelnen Ladungen werden nach der Methode von
+Würfels und betrachten eine Ausdehnung von $-m$ bis $m$.
+Wir berechnen die Madelungkonstante sukzessiv, indem wir jeder Stirnfläche eine Lage
+hinzufügen, wodurch die Kantenlänge des Würfels um $2$ zunimmt (Zeile XX). \\
+Die einzelnen Ladungen werden nach der Methode von
 Evjens \cite{Evjen} unterschiedlich gewichtet, wodurch, wie im nächsten Absatz genauer
 erläutert, eine gute Konvergenz des Algorithmus folgt. Dazu werden die Ladungen im
 Inneren voll gewichtet, die Ladungen auf der Würfeloberfläche jedoch nicht. Wie in
 Abbildung \ref{skalierungsgrafik3d} zu sehen gehen die Ladungen auf den Seitenflächen mit
 dem Faktor $1/2$, die an den Kanten mit dem Faktor $1/4$ und die an den Ecken mit Faktor
-$1/8$ ein. Dies ist darin begründet, dass bei Aneinanderreihung mehrerer Würfel diese
+$1/8$ ein. (Dies ist darin begründet, dass bei Aneinanderreihung mehrerer Würfel diese
 Ladungen entsprechend öfter vorkämen; es berühren sich immer zwei Flächen, vier Kanten
-und acht Ecken.
+und acht Ecken.)
+Wir gehen in jedem Schleifendurchlauf davon aus, dass aktuell die äußerste Schale berechnet
+wird und summieren so zunächst nur über die gewichteten Ladungen (Variable \texttt{sum}).
+Den nicht gewichteten Beitrag summieren wir in jedem Schleifendurchlauf in der Variable \texttt{rest} auf. Falls die Abbruchbedingung noch nicht erfüllt ist, wird diese zur Gesamtsumme addiert, denn dann wurde im vorherigen Schleifendurchlauf noch nicht die äußerste Schale betrachtet und alle Ladungen müssen voll gewichtet werden.
 
 \begin{itemize}
 \item es wird über Elementarzellen summiert die wie üblich gewichtet werden. in
