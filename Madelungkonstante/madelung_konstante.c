@@ -9,14 +9,12 @@
 /* Hier noch eine vernünftige Quelle */
 #define MAD_CONST_2D 1.61554
 
-/* Berechnet die Madelungkonstante für einen Würfel der Kantenlänge 2n wobei die
-   Länge
-   auf den Gitterabstand normalisiert ist */
+/* Berechnet die Madelungkonstante für einen Würfel; bricht ab wenn die Änderung
+ * vom vorigen Durchlauf kleiner als epsilon ist */
 double madelung_3d(double epsilon);
 
-/* Berechnet die Madelungkonstante für ein Quadrat der Seitenlänge 2n wobei die
-   Länge
-   auf den Gitterabstand normalisiert ist */
+/* Berechnet die Madelungkonstante für einen Würfel; bricht ab wenn die Änderung
+ * vom vorigen Durchlauf kleiner als epsilon ist */
 double madelung_2d(double epsilon);
 
 /* Berechnet den Betrag des Vektors (x,y,z) */
@@ -28,14 +26,16 @@ int sign_z(int x, int y, int z);
 /* Beschreibung was eigentlich in der main-Funktion berechnet wird */
 int main() {
   printf("Output:\n");
-  printf("%.12f\n",madelung_3d(1E-5));
+  printf("%.12f\n", madelung_3d(1E-10));
+  printf("%.12f\n", madelung_2d(1E-5));
   return 0;
 }
 
 double madelung_3d(double epsilon) {
   double sum = 0; // wo ist der Unterschied zwischen sum und residual?
   double residual = 0;
-  double prev = -1; //Vorheriger Schleifendurchgang: -1, da die for Schleife betreten werden soll
+  double prev = -1; // Vorheriger Schleifendurchgang: -1, da die for Schleife
+                    // betreten werden soll
 
   for (int m = 1; fabs(sum - prev) > epsilon; m++) {
     prev = sum;
@@ -77,7 +77,8 @@ double madelung_3d(double epsilon) {
 double madelung_2d(double epsilon) {
   double sum = 0;
   double residual = 0;
-  double prev = -1; //Vorheriger Schleifendurchgang: -1, da die for Schleife betreten werden soll
+  double prev = -1; // Vorheriger Schleifendurchgang: -1, da die for Schleife
+                    // betreten werden soll
 
   for (int m = 1; fabs(sum - prev) > epsilon; m++) {
     prev = sum;
