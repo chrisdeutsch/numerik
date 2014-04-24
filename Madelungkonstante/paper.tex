@@ -91,24 +91,11 @@ jeweils eines dieser Objekte den Beitrag zur Madelung-Konstante (nach Evjen gewi
 und multiplizieren mit dem entsprechenden Faktor. Dabei ist zu beachten, dass wir
 den Rest der Gewichtung zwischenspeichern müssen, da nach dem Hinzufügen der nächsten
 Schale die Ionen im Inneren des Würfels voll gewichtet werden (bei der nächsten Schale
-wird dann einfach der Rest auf die Madelung-Konstante addiert). Diese Vorgehensweise ist notwendig, da wir das Verfahren abbrechen, sobald die Differenz der Madelungkonstante
-von zwei aufeinanderfolgenden Schalen kleiner als eine Zahl $\epsilon$ wird. Die
+wird dann einfach der Rest auf die Madelung-Konstante addiert). Diese Vorgehensweise ist notwendig, da wir das Verfahren solange wiederholen, bis die Differenz der Madelungkonstante
+von zwei aufeinanderfolgenden Schalen kleiner als eine Zahl $0 < \epsilon < 1$ wird. Die
 mathematische Relevanz dieser Abbruchbedingung wird in Abschnitt \ref{sssec:Konvergenz}
 erklärt.
 
-Zur Berechnung legen wir den Ursprung des Koordinatensystems in den Mittelpunkt des
-Würfels und betrachten eine Ausdehnung von $-m$ bis $m$.
-Wir berechnen die Madelungkonstante sukzessiv, indem wir jeder Stirnfläche eine Lage
-hinzufügen, wodurch die Kantenlänge des Würfels um $2$ zunimmt (Zeile XX).\\
-Die einzelnen Ladungen werden nach der Methode von
-Evjens \cite{Evjen} unterschiedlich gewichtet, wodurch, wie im nächsten Absatz genauer
-erläutert, eine gute Konvergenz des Algorithmus folgt. Dazu werden die Ladungen im
-Inneren voll gewichtet, die Ladungen auf der Würfeloberfläche jedoch nicht. Wie in
-Abbildung \ref{skalierungsgrafik3d} zu sehen gehen die Ladungen auf den Seitenflächen mit
-dem Faktor $1/2$, die an den Kanten mit dem Faktor $1/4$ und die an den Ecken mit Faktor
-$1/8$ ein. (Dies ist darin begründet, dass bei Aneinanderreihung mehrerer Würfel diese
-Ladungen entsprechend öfter vorkämen; es berühren sich immer zwei Flächen, vier Kanten
-und acht Ecken.)\\
 Wir gehen in jedem Schleifendurchlauf davon aus, dass aktuell die äußerste Schale berechnet
 wird und summieren so zunächst nur über die gewichteten Ladungen (Variable \texttt{sum}).
 Den zu voller Gewichtung fehlenden Anteil summieren wir in jedem Schleifendurchlauf in der Variable
