@@ -12,6 +12,12 @@ double madelung_3d(int n);
    auf den Gitterabstand normalisiert ist */
 double madelung_2d(int n);
 
+/* Berechnet den Betrag des Vektors (x,y,z) */
+double dist(int x, int y, int z);
+
+/* Vorzeichenfunktion */
+int sign_z(int x, int y, int z);
+
 
 /* Beschreibung was eigentlich in der main-Funktion berechnet wird */
 int main() {
@@ -54,20 +60,20 @@ double madelung_3d(int n) {
     /* Fläche  * 6 wegen Symmetrie (welche Fläche wird berechnet?) */
     for (int y = -m + 1; y < m; y++) {
       for (int x = -m + 1; x < m; x++) {
-        sum += 3 * pow(-1, x + y + m) / sqrt(x * x + y * y + m * m);
-        rest += 3 * pow(-1, x + y + m) / sqrt(x * x + y * y + m * m);
+        sum += 3 * pow(-1, x + y + m) / dist(x, y, m);
+        rest += 3 * pow(-1, x + y + m) / dist(x, y, m);
       }
     }
 
     /* Kanten * 12 wegen Symmetrie (welche Kante wird berechnet?) */
     for (int x = -m + 1; x < m; x++) {
-      sum += 3 * pow(-1, x + m + m) / sqrt(x * x + m * m + m * m);
-      rest += 9 * pow(-1, x + m + m) / sqrt(x * x + m * m + m * m);
+      sum += 3 * pow(-1, x + m + m) / dist(x, m, m);
+      rest += 9 * pow(-1, x + m + m) / dist(x, m, m);
     }
 
     /* Ecken * 8 wegen Symmetrie (welche Ecke wird berechnet?)*/
-    sum += pow(-1, m + m + m) / sqrt(m * m + m * m + m * m);
-    rest += 7 * pow(-1, m + m + m) / sqrt(m * m + m * m + m * m);
+    sum += pow(-1, m + m + m) / dist(m, m, m);
+    rest += 7 * pow(-1, m + m + m) / dist(m, m, m);
   }
 
   return sum;
@@ -92,14 +98,22 @@ double madelung_2d(int n) {
 
     /* Kante  * 4 wegen Symmetrie (welche Kante wird berechnet?) */
     for (int x = -m + 1; x < m; x++) { //War das nicht Kanten 1/2 gewichtet?
-      sum += 2 * pow(-1, x + m) / sqrt(x * x + m * m);
-      rest += 2 * pow(-1, x + m) / sqrt(x * x + m * m);
+      sum += 2 * pow(-1, x + m) / dist(x, m, 0);
+      rest += 2 * pow(-1, x + m) / dist(x, m, 0);
     }
 
     /* Ecken * 4 wegen Symmetrie (welche Ecke wird berechnet?)*/
-    sum += pow(-1, m + m) / sqrt(m * m + m * m);
-    rest += 3 * pow(-1, m + m) / sqrt(m * m + m * m);
+    sum += pow(-1, m + m) / dist(m, m, 0);
+    rest += 3 * pow(-1, m + m) / dist(m, m, 0);
   }
 
   return sum;
+}
+
+double dist(int x, int y, int z) {
+  return sqrt(x*x + y*y + z*z);
+}
+
+int sign_z(int x, int y, int z) {
+  return -pow(-1, x + y + z);
 }
