@@ -96,15 +96,6 @@ von zwei aufeinanderfolgenden Schalen kleiner als eine Zahl $0 < \epsilon < 1$ w
 mathematische Relevanz dieser Abbruchbedingung wird in Abschnitt \ref{sssec:Konvergenz}
 erklärt.
 
-Wir gehen in jedem Schleifendurchlauf davon aus, dass aktuell die äußerste Schale berechnet
-wird und summieren so zunächst nur über die gewichteten Ladungen (Variable \texttt{sum}).
-Den zu voller Gewichtung fehlenden Anteil summieren wir in jedem Schleifendurchlauf in der Variable
-\texttt{rest} auf. Falls die Abbruchbedingung noch nicht erfüllt ist, wird diese zur
-Gesamtsumme addiert, denn dann wurde im vorherigen Schleifendurchlauf noch nicht die
-äußerste Schale betrachtet und alle Ladungen müssen voll gewichtet werden. Diese Methode
-wurde gewählt, um mithilfe von \texttt{rest} den mit jeder Vergrößerung des Würfels
-hinzukommenden Beitrag auswerten zu können und ein sinnvolles Abbruchkriterium zu definieren.\\
-
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale = 0.35]{./figures/wuerfel.eps}
