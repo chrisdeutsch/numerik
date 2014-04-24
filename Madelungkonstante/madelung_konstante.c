@@ -35,9 +35,7 @@ double madelung_3d(int n) {
   double sum = 0; // wo ist der Unterschied zwischen sum und rest?
   double rest = 0;
 
-  for (int m = 1; m <= n;
-       m++) { // Madelungkonst von Würfel mit Kantenlänge 2 + Madelungkonst von
-              // Würfel mit Kantenlänge 4 + ...?
+  for (int m = 1; m <= n; m++) {
     /* Den Rest vom letzten Durchgang aufaddieren und danach resetten */
     sum += rest;
     rest = 0;
