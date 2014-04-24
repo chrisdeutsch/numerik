@@ -12,12 +12,12 @@
 /* Berechnet die Madelungkonstante für einen Würfel der Kantenlänge 2n wobei die
    Länge
    auf den Gitterabstand normalisiert ist */
-double madelung_3d(int n);
+double madelung_3d(double epsilon);
 
 /* Berechnet die Madelungkonstante für ein Quadrat der Seitenlänge 2n wobei die
    Länge
    auf den Gitterabstand normalisiert ist */
-double madelung_2d(int n);
+double madelung_2d(double epsilon);
 
 /* Berechnet den Betrag des Vektors (x,y,z) */
 double dist(int x, int y, int z);
@@ -28,73 +28,78 @@ int sign_z(int x, int y, int z);
 /* Beschreibung was eigentlich in der main-Funktion berechnet wird */
 int main() {
   printf("Output:\n");
+  printf("%.12f\n",madelung_3d(1E-5));
   return 0;
 }
 
-double madelung_3d(int n) {
-  double sum = 0; // wo ist der Unterschied zwischen sum und rest?
-  double rest = 0;
+double madelung_3d(double epsilon) {
+  double sum = 0; // wo ist der Unterschied zwischen sum und residual?
+  double residual = 0;
+  double prev = -1; //Vorheriger Schleifendurchgang: -1, da die for Schleife betreten werden soll
 
-  for (int m = 1; m <= n; m++) {
+  for (int m = 1; fabs(sum - prev) > epsilon; m++) {
+    prev = sum;
     /* Den Rest vom letzten Durchgang aufaddieren und danach resetten */
-    sum += rest;
-    rest = 0;
+    sum += residual;
+    residual = 0;
 
     /* Fläche (welche Fläche wird berechnet?)
        sum: 6 (Sym.) * 1/2 (Evjens) = 3
-       rest: 6 (Sym.) * 1/2 (Rest) = 3
+       residual: 6 (Sym.) * 1/2 (Rest) = 3
     */
     for (int y = -m + 1; y < m; y++) {
       for (int x = -m + 1; x < m; x++) {
         sum += 3 * sign_z(x, y, m) / dist(x, y, m);
-        rest += 3 * sign_z(x, y, m) / dist(x, y, m);
+        residual += 3 * sign_z(x, y, m) / dist(x, y, m);
       }
     }
 
     /* Kanten (welche Kante wird berechnet?)
        sum: 12 (Sym.) * 1/4 (Evjens) = 3
-       rest: 12 (Sym.) * 3/4 (Rest) = 9
+       residual: 12 (Sym.) * 3/4 (Rest) = 9
     */
     for (int x = -m + 1; x < m; x++) {
       sum += 3 * sign_z(x, m, m) / dist(x, m, m);
-      rest += 9 * sign_z(x, m, m) / dist(x, m, m);
+      residual += 9 * sign_z(x, m, m) / dist(x, m, m);
     }
 
     /* Ecken (welche Ecke wird berechnet?)
        sum: 8 (Sym.) * 1/8 (Evjens) = 1
-       rest: 8 (Sym.) * 7/8 (Rest) = 7
+       residual: 8 (Sym.) * 7/8 (Rest) = 7
     */
     sum += sign_z(m, m, m) / dist(m, m, m);
-    rest += 7 * sign_z(m, m, m) / dist(m, m, m);
+    residual += 7 * sign_z(m, m, m) / dist(m, m, m);
   }
 
   return sum;
 }
 
-double madelung_2d(int n) {
+double madelung_2d(double epsilon) {
   double sum = 0;
-  double rest = 0;
+  double residual = 0;
+  double prev = -1; //Vorheriger Schleifendurchgang: -1, da die for Schleife betreten werden soll
 
-  for (int m = 1; m <= n; m++) {
+  for (int m = 1; fabs(sum - prev) > epsilon; m++) {
+    prev = sum;
     /* Den Rest vom letzten Durchgang aufaddieren und danach resetten */
-    sum += rest;
-    rest = 0;
+    sum += residual;
+    residual = 0;
 
     /* Kante (welche Kante wird berechnet?)
        sum: 4 (Sym.) * 1/2 (Evjens) = 2
-       rest: 4 (Sym.) * 1/2 (Rest) = 2
+       residual: 4 (Sym.) * 1/2 (Rest) = 2
     */
     for (int x = -m + 1; x < m; x++) { // War das nicht Kanten 1/2 gewichtet?
       sum += 2 * sign_z(x, m, 0) / dist(x, m, 0);
-      rest += 2 * sign_z(x, m, 0) / dist(x, m, 0);
+      residual += 2 * sign_z(x, m, 0) / dist(x, m, 0);
     }
 
     /* Ecken * 4 wegen Symmetrie (welche Ecke wird berechnet?)
        sum: 4 (Sym.) * 1/4 (Evjens) = 1
-       rest: 4 (Sym.) * 3/4 (Rest) = 3
+       residual: 4 (Sym.) * 3/4 (Rest) = 3
     */
     sum += sign_z(m, m, 0) / dist(m, m, 0);
-    rest += 3 * sign_z(m, m, 0) / dist(m, m, 0);
+    residual += 3 * sign_z(m, m, 0) / dist(m, m, 0);
   }
 
   return sum;
