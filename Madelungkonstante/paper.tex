@@ -72,6 +72,14 @@ Schale berechnet. Es fällt schnell die schlechte Konvergenz auf, die sich
 physikalisch darin manifestiert, dass der Kristall, beim einfachen Erweitern
 mit einer Hülle, nicht elektrisch neutral bleibt.
 
+\begin{itemize}
+\item Vorgehen analog zur mathematischen Beschreibung
+\item Symmetrie wird ignoriert (ineffizient)
+\item der betrachtete Würfel bleibt nicht neutral
+\item naiver Versuch kurz beschreiben und sagen, dass der mies ist
+\item wie ein chef
+\end{itemize}
+
 \subsubsection{Beschreibung}
 Zur Berechnung legen wir den Ursprung des Koordinatensystems in den Mittelpunkt des
 Würfels und betrachten eine Ausdehnung von $-m$ bis $m$.
@@ -85,10 +93,15 @@ Abbildung \ref{skalierungsgrafik3d} zu sehen gehen die Ladungen auf den Seitenfl
 dem Faktor $1/2$, die an den Kanten mit dem Faktor $1/4$ und die an den Ecken mit Faktor
 $1/8$ ein. (Dies ist darin begründet, dass bei Aneinanderreihung mehrerer Würfel diese
 Ladungen entsprechend öfter vorkämen; es berühren sich immer zwei Flächen, vier Kanten
-und acht Ecken.)
+und acht Ecken.)\\
 Wir gehen in jedem Schleifendurchlauf davon aus, dass aktuell die äußerste Schale berechnet
 wird und summieren so zunächst nur über die gewichteten Ladungen (Variable \texttt{sum}).
-Den nicht gewichteten Beitrag summieren wir in jedem Schleifendurchlauf in der Variable \texttt{rest} auf. Falls die Abbruchbedingung noch nicht erfüllt ist, wird diese zur Gesamtsumme addiert, denn dann wurde im vorherigen Schleifendurchlauf noch nicht die äußerste Schale betrachtet und alle Ladungen müssen voll gewichtet werden.
+Den nicht gewichteten Beitrag summieren wir in jedem Schleifendurchlauf in der Variable
+\texttt{rest} auf. Falls die Abbruchbedingung noch nicht erfüllt ist, wird diese zur
+Gesamtsumme addiert, denn dann wurde im vorherigen Schleifendurchlauf noch nicht die
+äußerste Schale betrachtet und alle Ladungen müssen voll gewichtet werden. Diese Methode
+wurde gewählt, um mithilfe von \texttt{rest} den mit jeder Vergrößerung des Würfels
+hinzukommenden Beitrag auswerten zu können und ein sinnvolles Abbruchkriterium zu definieren.
 
 \begin{itemize}
 \item es wird über Elementarzellen summiert die wie üblich gewichtet werden. in
