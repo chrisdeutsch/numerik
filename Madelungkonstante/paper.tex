@@ -118,17 +118,6 @@ Gesamtsumme addiert, denn dann wurde im vorherigen Schleifendurchlauf noch nicht
 wurde gewählt, um mithilfe von \texttt{rest} den mit jeder Vergrößerung des Würfels
 hinzukommenden Beitrag auswerten zu können und ein sinnvolles Abbruchkriterium zu definieren.\\
 
-\begin{minipage}[c]{0.5\textwidth}
-
-\includegraphics[width=\textwidth]{./figures/wuerfel.eps}
-\captionof{figure}{neutrale Elementarzelle nach Evjen}
-
-\end{minipage}
-\begin{minipage}[c]{0.5\textwidth}
-\includegraphics[width=\textwidth]{./figures/quadrat.eps}
-\captionof{figure}{neutrale Elementarzelle in zwei Dimensionen}
-\end{minipage}
-
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale = 0.35]{./figures/wuerfel.eps}
@@ -170,21 +159,24 @@ Die Methode von Evjen zur Gewichtung der Ladung ist leicht vom 3-Dimensionalen
 in das 2-Dimensionale zu übertragen, denn es ist leicht zu sehen, dass um elektrische
 Neutralität einer Elementarzelle zu erreichen, die Ecken mit $\frac{1}{4}$ und die Kanten mit
 $\frac{1}{2}$ gewichtet werden müssen (Abbildung \ref{skalierungsgrafik2d}).
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale = 0.35]{./figures/quadrat.eps}
-	\caption{neutrale Elementarzelle in zwei Dimensionen}
-	\label{skalierungsgrafik2d}
-\end{figure}
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale = 0.35]{./figures/elementarzelle.eps}
-	\caption{Elementarzellen im Gefüge}
-	\label{zellensumme}
-\end{figure}
+\\
+\\
+\begin{minipage}[c]{0.5\textwidth}
+\begin{center}
+\includegraphics[height=0.6\textwidth]{./figures/quadrat.eps}
+\captionof{figure}{neutrale Elementarzelle (2-dim.)}
+\label{skalierungsgrafik2d}
+\end{center}
+\end{minipage}
+\begin{minipage}[c]{0.5\textwidth}
+\begin{center}
+\includegraphics[height=0.6\textwidth]{./figures/elementarzelle.eps}
+\captionof{figure}{Elementarzelle im Gefüge}
+\label{zellensumme}
+\end{center}
+\end{minipage}
 	
+
 \subsubsection{Konvergenz}
 
 Wie gut konvergiert der 2-dimensionale Algorithmus.
