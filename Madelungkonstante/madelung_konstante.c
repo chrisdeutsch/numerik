@@ -4,6 +4,11 @@
 #include <stdio.h>
 #include <math.h>
 
+/* Literaturwert nach Y. Sakamoto */
+#define MAD_CONST_3D 1.7475645946331822
+/* Hier noch eine vernünftige Quelle */
+#define MAD_CONST_2D 1.6155
+
 /* Berechnet die Madelungkonstante für einen Würfel der Kantenlänge 2n wobei die Länge 
    auf den Gitterabstand normalisiert ist */
 double madelung_3d(int n);
@@ -21,24 +26,7 @@ int sign_z(int x, int y, int z);
 
 /* Beschreibung was eigentlich in der main-Funktion berechnet wird */
 int main() {
-  /* Literaturwert nach Y. Sakamoto */
-  const double lit = 1.7475645946331822;
-  double mad;
-
-  for (int i = 1; i < 10; i++) {
-    mad = madelung_3d(i);
-    printf("Madelung-Konstante: %.12f \t n: %i \t Delta_rel: %.2E\n", mad, i,
-           fabs(mad - lit) / lit);
-  }
-  
-  for (int i = 1; i < 10; i++) {
-    mad = madelung_3d(10 * i);
-    printf("Madelung-Konstante: %.12f \t n: %i \t Delta_rel: %.2E\n", mad, 10 * i,
-           fabs(mad - lit) / lit);
-  }
-  
-  printf("Madelungkonstante: %f\n", madelung_2d(100));
-  
+  printf("Output:\n");  
   return 0;
 }
 
