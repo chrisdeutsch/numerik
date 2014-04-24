@@ -34,8 +34,8 @@ int main() {
 double madelung_3d(double epsilon) {
   double sum = 0; // wo ist der Unterschied zwischen sum und residual?
   double residual = 0;
-  double prev = -1; // Vorheriger Schleifendurchgang: -1, da die for Schleife
-                    // betreten werden soll
+  double prev = 1E100; // Vorheriger Schleifendurchgang: -1, da die for Schleife
+                       // betreten werden soll
 
   for (int m = 1; fabs(sum - prev) > epsilon; m++) {
     prev = sum;
@@ -77,8 +77,7 @@ double madelung_3d(double epsilon) {
 double madelung_2d(double epsilon) {
   double sum = 0;
   double residual = 0;
-  double prev = -1; // Vorheriger Schleifendurchgang: -1, da die for Schleife
-                    // betreten werden soll
+  double prev = 1E100;
 
   for (int m = 1; fabs(sum - prev) > epsilon; m++) {
     prev = sum;
