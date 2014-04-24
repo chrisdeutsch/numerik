@@ -14,7 +14,7 @@
 double madelung_3d(double epsilon);
 
 /* Berechnet die Madelungkonstante für einen Würfel; bricht ab wenn die Änderung
- * vom vorigen Durchlauf kleiner als epsilon ist */
+ * vom vorigen Durchlauf kleiner als epsilon ist !!!!(Vermutlich keine hinreichende Bedingung)!!!! */
 double madelung_2d(double epsilon);
 
 /* Berechnet den Betrag des Vektors (x,y,z) */
@@ -90,7 +90,7 @@ double madelung_2d(double epsilon) {
        sum: 4 (Sym.) * 1/2 (Evjens) = 2
        residual: 4 (Sym.) * 1/2 (Rest) = 2
     */
-    for (int x = -m + 1; x < m; x++) { // War das nicht Kanten 1/2 gewichtet?
+    for (int x = -m + 1; x < m; x++) {
       sum += 2 * sign_z(x, m, 0) / dist(x, m, 0);
       residual += 2 * sign_z(x, m, 0) / dist(x, m, 0);
     }
