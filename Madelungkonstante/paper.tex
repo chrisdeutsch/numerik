@@ -45,8 +45,7 @@ zusammengefasst:
 \label{Madelungkonstante}
 \alpha = \frac{E_G}{E_P} = \sum_{j\atop i \neq j} \frac{z_i z_j}{r_{ij}/a}
 \end{align}
-TODO: noch was zum normalisierten Abstand sagen; es macht keinen Sinn das
-Zentralion mit i zu indizieren, da darüber niemals summiert wird
+Dabei ist $r_{ij}/a$ der mit der Gitterkonstanten normalisierte Abstand der Ionen, welcher im Folgenden ausschließlich für Längen verwendet wird.
 
 \subsection{Algorithmus im 3-dimensionalen Fall}
 \subsubsection{Struktur von Natriumchlorid}
@@ -88,7 +87,7 @@ Ladungen entsprechend öfter vorkämen; es berühren sich immer zwei Flächen, v
 und acht Ecken.)\\
 Wir gehen in jedem Schleifendurchlauf davon aus, dass aktuell die äußerste Schale berechnet
 wird und summieren so zunächst nur über die gewichteten Ladungen (Variable \texttt{sum}).
-Den zur vollen Gewichtung fehlenden Beitrag summieren wir in jedem Schleifendurchlauf in der Variable
+Den nicht gewichteten Beitrag summieren wir in jedem Schleifendurchlauf in der Variable
 \texttt{rest} auf. Falls die Abbruchbedingung noch nicht erfüllt ist, wird diese zur
 Gesamtsumme addiert, denn dann wurde im vorherigen Schleifendurchlauf noch nicht die
 äußerste Schale betrachtet und alle Ladungen müssen voll gewichtet werden. Diese Methode
