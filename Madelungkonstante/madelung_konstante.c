@@ -104,10 +104,9 @@ double madelung_2d(int n) {
 
 double dist(int x, int y, int z) { return sqrt(x * x + y * y + z * z); }
 
-/* effizient der pow-Funktion diskutieren (könnte durch eine Modulo Operation
-   eliminiert werden
-   macht aber den Code unklarer */
+/* Es gilt pow(-1, x + y + z) == (x + y + z) % 2 ? -1 : 1 
+   In Worten: Wenn der Exponent nicht gerade ist -> -1
+              sonst -> 1 */
 int sign_z(int x, int y, int z) {
-  /* pow(-1, x + y + z) == (x+y+z) % 2 ? -1 : 1 */
   return -(x + y + z) % 2 ? -1 : 1;
 }
