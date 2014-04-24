@@ -58,6 +58,7 @@ Oktaeders. Dadurch kann das Vorzeichen der Ladung an der Gitterstelle
 $\mathbf{r} = \left( x,y,z \right)$ relativ zu einer anderen Ladung durch:
 \begin{align}
 \mathrm{sgn}\left(z(\mathbf{r})\right) = \pm \left( -1 \right)^{x+y+z}
+\label{eq:vorzeichen}
 \end{align}
 berechnet werden. Dabei wird das Vorzeichen so gewählt, dass dieses mit der Ladung
 des Referenz-Ions übereinstimmt (Na: $+$; Cl: $-$). Diese Tatsache
@@ -81,7 +82,19 @@ $\frac{1}{8}$, Kanten $\frac{1}{4}$ und Seitenflächen $\frac{1}{2}$ gewichtet w
 
 \subsubsection{Beschreibung}
 
-
+Der verwendete Algorithmus beginnt mit einem Ion im Koordinatenursprung. Dieses
+erweitern wir schrittweise um eine Schale von Ionen mit den Ladungenzahlen gemäß
+Gl. (\ref{eq:vorzeichen}). Wir nutzen nun die Symmetrie des Würfels, um den Beitrag
+der so konstruierten Schale zur Madelung-Konstante zu berechnen. Dazu teilen wir die
+Schale in 8 äquivalente Ecken, 12 Kanten und 6 Seitenflächen auf, berechnen für
+jeweils eines dieser Objekte den Beitrag zur Madelung-Konstante (nach Evjen gewichtet)
+und multiplizieren mit dem entsprechenden Faktor. Dabei ist zu beachten, dass wir
+den Rest der Gewichtung zwischenspeichern müssen, da nach dem Hinzufügen der nächsten
+Schale die Ionen im Inneren des Würfels voll gewichtet werden (bei der nächsten Schale
+wird dann einfach der Rest auf die Madelung-Konstante addiert). Dieses Verfahren ist notwendig, da wir das Verfahren abbrechen, sobald die Differenz der Madelungkonstante
+von zwei aufeinanderfolgenden Schalen kleiner als eine Zahl $\epsilon$ wird. Die
+mathematische Relevanz dieser Abbruchbedingung wird in Abschnitt \ref{sssec:Konvergenz}
+erklärt.
 
 Zur Berechnung legen wir den Ursprung des Koordinatensystems in den Mittelpunkt des
 Würfels und betrachten eine Ausdehnung von $-m$ bis $m$.
@@ -124,6 +137,7 @@ hinzukommenden Beitrag auswerten zu können und ein sinnvolles Abbruchkriterium 
 \end{figure}
 
 \subsubsection{Konvergenz}
+\label{sssec:Konvergenz}
 
 \begin{itemize}
 \item erkläre physikalischen Hintergrund für die bessere Konvergenz der Evjen
