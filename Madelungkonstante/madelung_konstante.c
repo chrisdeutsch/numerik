@@ -7,7 +7,7 @@
 /* Literaturwert nach Y. Sakamoto */
 #define MAD_CONST_3D 1.7475645946331822
 /* Hier noch eine vernünftige Quelle */
-#define MAD_CONST_2D 1.61554
+#define MAD_CONST_2D 1.6155426267128247
 
 /* Berechnet die Madelungkonstante für einen Würfel; bricht ab wenn die Änderung
  * vom vorigen Durchlauf kleiner als epsilon ist */
@@ -25,9 +25,18 @@ int sign_z(int x, int y, int z);
 
 /* Beschreibung was eigentlich in der main-Funktion berechnet wird */
 int main() {
-  printf("Output:\n");
-  printf("%.12f\n", madelung_3d(1E-10));
-  printf("%.12f\n", madelung_2d(1E-5));
+  printf("Berechnung der Madelung-Konstante\n");
+  printf("###################################\n");
+  printf("3D: \n");
+  printf("alpha\t\tdelta\n");
+  double mad = madelung_3d(1E-5);
+  printf("%.12f\t%.2E\n", mad, fabs(mad - MAD_CONST_3D)/MAD_CONST_3D);
+  printf("###################################\n");
+  printf("2D: \n");
+  printf("alpha\t\tdelta\n");
+  mad = madelung_2d(1E-5);
+  printf("%.12f\t%.2E\n", mad, fabs(mad - MAD_CONST_2D)/MAD_CONST_2D);
+  
   return 0;
 }
 
@@ -77,10 +86,8 @@ double madelung_3d(double epsilon) {
 double madelung_2d(double epsilon) {
   double sum = 0;
   double residual = 0;
-  double prev = 1E100;
 
-  for (int m = 1; fabs(sum - prev) > epsilon; m++) {
-    prev = sum;
+  for (int m = 1; fabs(sum - MAD_CONST_2D) > epsilon; m++) {
     /* Den Rest vom letzten Durchgang aufaddieren und danach resetten */
     sum += residual;
     residual = 0;
