@@ -116,29 +116,40 @@ näher am letzten Datenpunkt als die Differenz zum Vorletzten. So ist garantiert
 dass bei Eintreten der Abbruchsbedingung der absolute Fehler des berechneten
 Wertes kleiner als $\epsilon$ ist.
 
-\begin{table}[h]
-\centering
+\begin{figure}
+\begin{minipage}[c]{0.5\textwidth}
+\begin{center}
+	\includegraphics[width=\textwidth]{./figures/ergebnis.eps}
+	\captionof{figure}{Konvergenz des 3D Dingens}
+	\label{plotkonvergenz3d}
+\end{center}
+\end{minipage}
+\begin{minipage}[c]{0.5\textwidth}
+	\begin{center}
 \begin{tabular}{c|c|c}
 \rule[-1ex]{0pt}{2.5ex} $n$ & $\alpha$ & $\delta$ \\ 
 \hline 
-\rule[-1ex]{0pt}{2.5ex} $4$ & $1.747721109631$ & $8.96\cdot10^{-5}$ \\ 
+\rule[-1ex]{0pt}{2.5ex} $1$ & $1.456029925630$ & $1.67\cdot10^{-1}$ \\ 
 \hline 
-\rule[-1ex]{0pt}{2.5ex} $8$ & $1.747574381726$ & $5.60\cdot10^{-6}$ \\ 
+\rule[-1ex]{0pt}{2.5ex} $2$ & $1.751769133337$ & $2.41\cdot10^{-3}$ \\ 
+\hline
+\rule[-1ex]{0pt}{2.5ex} $5$ & $1.747500502341$ & $3.67\cdot10^{-5}$ \\ 
 \hline 
-\rule[-1ex]{0pt}{2.5ex} $20$ & $1.747564845218$ & $1.42\cdot10^{-7}$ \\ 
+\rule[-1ex]{0pt}{2.5ex} $10$ & $1.747568603772$ & $2.29\cdot10^{-6}$ \\ 
 \hline 
-\rule[-1ex]{0pt}{2.5ex} $50$ & $1.747564601048$ & $3.67\cdot10^{-9}$ \\ 
+\rule[-1ex]{0pt}{2.5ex} $20$ & $1.747564845218$ & $1.43\cdot10^{-7}$ \\ 
 \hline 
+\rule[-1ex]{0pt}{2.5ex} $50$ & $1.747564601048$ & $3.67\cdot10^{-9}$ \\
+\hline
 \rule[-1ex]{0pt}{2.5ex} $100$ & $1.747564595034$ & $2.30\cdot10^{-10}$ \\ 
-\end{tabular} 
-\caption{Konvergenz}
-\end{table}
+\hline
+\rule[-1ex]{0pt}{2.5ex} $200$ & $1.747564594660$ & $1.51\cdot10^{-11}$ \\ 
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale = 1]{./figures/ergebnis.eps}
-	\caption{Konvergenz des 3D Dingens}
-	\label{plotkonvergenz3d}
+\end{tabular}
+\captionof{table}{Konvergenz}
+\end{center}
+\end{minipage}
+
 \end{figure}
 
 \subsection{Algorithmus im 2-dimensionalen Fall}
@@ -146,8 +157,7 @@ Wertes kleiner als $\epsilon$ ist.
 Um die Methode von Evjen auf den zweidimensionalen Fall zu übertragen, sieht man leicht,
 dass um elektrische Neutralität einer Elementarzelle zu erreichen, die Ecken mit $\frac{1}{4}$
 und die Kanten mit $\frac{1}{2}$ gewichtet werden müssen (Abbildung \ref{skalierungsgrafik2d}).
-\\
-\\
+
 \begin{minipage}[c]{0.5\textwidth}
 \begin{center}
 \includegraphics[height=0.65\textwidth]{./figures/quadrat.eps}
