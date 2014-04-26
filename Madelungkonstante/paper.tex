@@ -5,7 +5,7 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
-
+\usepackage{wrapfig}
 \usepackage{floatflt}
 \usepackage{graphicx}
 \usepackage{caption}
@@ -67,14 +67,15 @@ berechnet werden. Dabei wird das Vorzeichen so gewählt, dass dieses mit der Lad
 des Referenz-Ions übereinstimmt (Na: $+$; Cl: $-$). Diese Tatsache
 äußert sich auch darin, dass das Vorzeichen der Madelung-Konstante vom
 betrachteten Ion abhängt (generell: $\alpha_{Na} = - \alpha_{Cl}$).
-\subsubsection{Probleme der naiven Methode}
 
-\begin{floatingfigure}{6cm}
+\begin{wrapfigure}{l}{0.47\textwidth}
 	\centering
-	\includegraphics{./figures/wuerfel.eps}
+	\includegraphics[width=0.4\textwidth]{./figures/wuerfel.eps}
 	\caption{neutrale Elementarzelle nach Evjen}
 	\label{skalierungsgrafik3d}
-\end{floatingfigure}
+\end{wrapfigure}
+
+\subsubsection{Probleme der naiven Methode}
 
 Zunächst wurde die naive Implementierung analog zur mathematischen Beschreibung
 getestet. Dabei wurde die Madelung-Konstante für einen Würfel analog zu
