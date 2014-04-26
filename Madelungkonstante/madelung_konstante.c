@@ -141,9 +141,9 @@ double dist(int x, int y, int z) {
 }
 
 /* Umsetzung der Gleichung (4) in der beiliegenden pdf-Datei
- * aequivalent zu pow(-1, x + y + z) aber effizienter 
- * gerade Exponenten: 1
- * ungerade Exponenten: -1 */
+ * aequivalent zu -pow(-1, x + y + z) aber effizienter 
+ * gerade Exponenten: -1
+ * ungerade Exponenten: +1 */
 int sign_z(int x, int y, int z) {
   if((x + y + z) % 2 == 0)
     return -1;
