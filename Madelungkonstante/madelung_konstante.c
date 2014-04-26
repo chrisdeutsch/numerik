@@ -13,7 +13,7 @@
  * vom vorigen Durchlauf kleiner als epsilon ist */
 double madelung_3d(double epsilon);
 
-/* Berechnet die Madelungkonstante für einen (ZWEIDIMENSIONALEN?) Wuerfel; bricht ab wenn die Abweichung
+/* Berechnet die Madelungkonstante für ein Quadrat; bricht ab wenn die Abweichung
  * vom Literaturwert kleiner als epsilon ist */
 double madelung_2d(double epsilon);
 
@@ -121,9 +121,13 @@ double madelung_2d(double epsilon) {
   return mconst;
 }
 
-double dist(int x, int y, int z) { return sqrt(x * x + y * y + z * z); }
+double dist(int x, int y, int z) {
+	return sqrt(x * x + y * y + z * z);
+}
 
 /* Es gilt pow(-1, x + y + z) == (x + y + z) % 2 ? -1 : 1
    In Worten: Wenn der Exponent nicht gerade ist -> -1
               sonst -> 1 */
-int sign_z(int x, int y, int z) { return -((x + y + z) % 2 ? -1 : 1); }
+int sign_z(int x, int y, int z) {
+	return -((x + y + z) % 2 ? -1 : 1);
+}
