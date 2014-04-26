@@ -21,12 +21,11 @@ double madelung_2d(double epsilon);
  * abstand normalisiert) */
 double dist(int x, int y, int z);
 
-/* Berechnet das Vorzeichen des Ions an der Gitterstelle (x,y,z) (Es wird
- * angenommen, dass wir die Madelungkonstante fuer ein Chlorion berechnen,
- * da wir so eine positive Madelung-Konstante erhalten) */
+/* Berechnet das Ladungsvorzeichen des Ions an der Gitterstelle (x,y,z)
+ * (Wir gehen von einem Chlorion im Zentrum des Wuerfels aus) */
 int sign_z(int x, int y, int z);
 
-/* Beschreibung was eigentlich in der main-Funktion berechnet wird */
+
 int main() {
   double mad;
   
@@ -109,7 +108,8 @@ double madelung_3d(double epsilon) {
   return mconst;
 }
 
-/* alle z-Koordinaten sind hier 0, da wir einen zweidimensionalen Fall betrachten*/
+/* alle z-Koordinaten sind hier 0, da wir einen zweidimensionalen Fall
+ * betrachten */
 double madelung_2d(double epsilon) {
   /* In dieser Variable wird der Wert der Madelung-Konstante gespeichert */
   double mconst = 0;
@@ -119,7 +119,8 @@ double madelung_2d(double epsilon) {
  /* Diese Schleife zaehlt die aktuell hinzugefuegte Schale um das Zentralion.
   * Waehrend jedem Durchgang entspricht dies einem Quadrat mit Kantenlaenge 2m
   * und Mittelpunkt im Ursprung (0,0,0). Die for-Schleife wird beendet wenn die
-  * Differenz von vorigem Durchlauf zu aktuellen Durchlauf >= epsilon ist. */
+  * Differenz von berechneter Madelung-Konstante zum Literaturwert >= epsilon
+  * ist. */
   for (int m = 1; fabs(mconst - MAD_CONST_2D) > epsilon; m++) {
     /* Der Rest des letzten Durchlaufs wird aufaddiert, damit der Innenraum des
      * Quadrats voll gewichtet wird. Danach wird der Rest für den aktuellen
@@ -127,19 +128,17 @@ double madelung_2d(double epsilon) {
     mconst += residual;
     residual = 0;
 
-    /* Kante (es wird die Kante (x, m) mit x = -m + 1, ... , m - 1 berechnet)
-       mconst: 4 (Sym.) * 1/2 (Evjens) = 2
-       residual: 4 (Sym.) * 1/2 (Rest) = 2
-    */
+    /* Kanten (es wird die Kante (x, m) mit x = -m + 1, ... , m - 1 berechnet)
+     * mconst: 4 (Sym.) * 1/2 (Evjens) = 2
+     * residual: 4 (Sym.) * 1/2 (Rest) = 2 */
     for (int x = -m + 1; x < m; x++) {
       mconst += 2 * sign_z(x, m, 0) / dist(x, m, 0);
       residual += 2 * sign_z(x, m, 0) / dist(x, m, 0);
     }
 
     /* Ecken (es wird die Ecke (m, m) berechnet)
-       mconst: 4 (Sym.) * 1/4 (Evjens) = 1
-       residual: 4 (Sym.) * 3/4 (Rest) = 3
-    */
+     * mconst: 4 (Sym.) * 1/4 (Evjens) = 1
+     * residual: 4 (Sym.) * 3/4 (Rest) = 3 */
     mconst += sign_z(m, m, 0) / dist(m, m, 0);
     residual += 3 * sign_z(m, m, 0) / dist(m, m, 0);
   }

@@ -183,7 +183,7 @@ Um die Methode von Evjen auf den zweidimensionalen Fall zu übertragen, sieht ma
 dass um elektrische Neutralität einer Elementarzelle zu erreichen, die Ecken mit $\frac{1}{4}$
 und die Kanten mit $\frac{1}{2}$ gewichtet werden müssen (Abbildung \ref{skalierungsgrafik2d}).
 Die Summe über alle Elementarzellen führt analog zum 3-dimensionalen Fall dazu, dass die Ecken
-des Quadrates $\frac{1}{4}$ und die Kanten $\frac{1}{2}$ (Abbildung \ref{zellensumme}).
+des Quadrates $\frac{1}{4}$ und die Kanten $\frac{1}{2}$ gewichtet werden (Abbildung \ref{zellensumme}).
 Die Vorgehensweise ist analog zum 3-dimensionalen Fall, mit Ausnahme der Abbruchbedingung.
 Der Wert der Madelungkonstante alterniert in diesem Fall nicht um den wahren Wert (vgl. Abbildung \ref{plotkonvergenz2d}), weshalb
 wir einen direkten Vergleich mit dem Literaturwert durchführen. Die Funktion wird beendet
@@ -206,11 +206,12 @@ sobald absolute Fehler $\Delta_\alpha$ einen vorgegebenen Wert $\epsilon$ unters
 \caption{Aneinanderreihung von Elementarzellen}
 \label{zellensumme}
 \end{center}
-\end{minipage}	
+\end{minipage}
+\vspace{-10pt}
 \subsubsection{Konvergenz}
 
 Wegen $\alpha > 1$ garantiert die gewählte Abbruchbedingung (der absolute Fehler $\Delta_\alpha$ ist kleiner als $\epsilon > 0$), 
-dass der relative Fehler $\delta_\alpha < \epsilon$ ist. Der hier angenommene Literaturwert ist $\alpha = 1.6155426267128247$\footnote{\href{https://oeis.org/A088537}{A088537} \emph{Decimal expansion of Madelung's constant M2}, \textbf{The On-Line Encyclopedia of Integer Sequences}}. Tabelle \ref{tab:konvergenz2d} ist zu entnehmen, dass der Algorithmus, ähnlich wie im dreidimensionalen Fall, auch schnell konvergiert, wenn auch etwas langsamer. Dies relativiert sich dadurch, dass im Zweidimensionalen
+dass der relative Fehler $\delta_\alpha < \epsilon$ ist. Der hier verwendete Literaturwert ist $\alpha = 1.6155426267128247$\footnote{\href{https://oeis.org/A088537}{A088537} \emph{Decimal expansion of Madelung's constant M2}, \textbf{The On-Line Encyclopedia of Integer Sequences}}. Tabelle \ref{tab:konvergenz2d} ist zu entnehmen, dass der Algorithmus, ähnlich wie im dreidimensionalen Fall, auch schnell konvergiert, wenn auch etwas langsamer. Dies relativiert sich dadurch, dass im Zweidimensionalen
 nicht soviele Operationen durchgeführt werden müssen, wie im Dreidimensionalen.
 
 \vspace{-10pt}
