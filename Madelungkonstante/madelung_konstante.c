@@ -145,7 +145,7 @@ double dist(int x, int y, int z) {
  * ungerade Exponenten: -1 */
 int sign_z(int x, int y, int z) {
   if((x + y + z) % 2 == 0)
-    return 1;
-  else
     return -1;
+  else
+    return 1;
 }
