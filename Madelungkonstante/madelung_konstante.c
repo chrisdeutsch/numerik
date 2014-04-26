@@ -32,14 +32,14 @@ int main() {
   printf("Berechnung der Madelung-Konstante\n");
   printf("###################################\n");
   printf("3D: \n");
-  printf("alpha\t\tdelta\n");
+  printf("Madelung-Konstante\t\trelativer Fehler\n");
   
   mad = madelung_3d(1E-5);
   
   printf("%.12f\t%.2E\n", mad, fabs(mad - MAD_CONST_3D)/MAD_CONST_3D);
   printf("###################################\n");
   printf("2D: \n");
-  printf("alpha\t\tdelta\n");
+  printf("Madelung-Konstante\t\trelativer Fehler\n");
   
   mad = madelung_2d(1E-5);
   
