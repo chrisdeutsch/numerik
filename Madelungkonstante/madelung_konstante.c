@@ -80,8 +80,8 @@ double madelung_3d(double epsilon) {
      * der neuen Schale auf die Madelung-Konstante aufsummiert. Dabei wird stets
      * der Rest der Gewichtung in der Variable residual aufsummiert */
 
-    /* Flaeche (es wird die Flaeche (x,y,m) mit x,y = -m + 1, ... , m - 1
-     * berechnet).
+    /* Flaechen (es wird die Flaeche (x,y,m) mit x,y = -m + 1, ... , m - 1
+     * berechnet)
      * mconst: 6 (Sym.) * 1/2 (Evjens) = 3
      * residual: 6 (Sym.) * 1/2 (Rest) = 3
     */
@@ -92,7 +92,7 @@ double madelung_3d(double epsilon) {
       }
     }
 
-    /* Kanten (welche Kante wird berechnet?)
+    /* Kanten (es wird die Kante (x,m,m) mit x = -m + 1, ... , m - 1 berechnet)
        mconst: 12 (Sym.) * 1/4 (Evjens) = 3
        residual: 12 (Sym.) * 3/4 (Rest) = 9
     */
