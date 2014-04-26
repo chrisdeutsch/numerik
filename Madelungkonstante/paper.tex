@@ -141,19 +141,31 @@ erklärt.
 \hline
 \rule[1ex]{0pt}{2.5ex} Lit. & $1.747564694633$ & $ - $
 \end{tabular}
-\captionof{table}{Konvergenz}
+\captionof{table}{Anzahl der hinzugefügten Schalen $n$ gegen Madelung-Konstante $\alpha$ und relativer Fehler $\delta$}
+\label{tab:konvergenz3d}
 \end{center}
 \end{minipage}
 \end{figure}
 
-Wie man in der Tabelle sehen kann konvergiert die Evjen-Methode sehr schnell
-gegen den Literaturwert $\alpha_{NaCl} = 1.7475646946331822$ \cite{Sakamoto}.
-Der nach unserer Methode berechnete Wert alterniert, wie man der Abbildung
-entnehmen kann, stets mit fallender Amplitude um den wahren Wert. Dies
-rechtfertigt unser Abbruchkriterium, denn der wahre Wert liegt offenbar
-näher am letzten Datenpunkt als die Differenz zum Vorletzten. So ist garantiert,
-dass bei Eintreten der Abbruchsbedingung der absolute Fehler des berechneten
-Wertes kleiner als $\epsilon$ ist.
+In der Tabelle \ref{tab:konvergenz3d} wurde die Anzahl der hinzugefügten Schalen $n$
+gegen den Wert der Madelung-Konstante $\alpha$ und den relativen Fehler $\delta$ zum
+Literaturwert $\alpha_{NaCl} = 1.7475646946331822$ \cite{Sakamoto} aufgetragen.
+Wie man sieht, ist die Abweichung vom Literaturwert schon nach wenigen Iterationen
+sehr klein.
+Wie man sieht (Abbildung \ref{plotkonvergenz3d}) alterniert der berechnete Wert
+der Madelung-Konstante mit steigenden $n$ und fallendem absoluten Fehler $\Delta$ um
+den wahren Wert. Im Folgenden bezeichnet $\alpha$ den wahren Wert der Madelung-Konstante
+und $\tilde{\alpha}(n)$ die nach unserem Algorithmus berechnete Madelung-Konstante
+nach $n$-Iterationen. Der absolute Fehler ist also:
+\begin{align}
+	\Delta = | \tilde{\alpha}(n) - \alpha | < | \tilde{\alpha}(n) - \tilde{\alpha}(n-1)| < \epsilon
+\end{align}
+Dies rechtfertigt unser Abbruchkriterium, denn es ist garantiert, dass beim Eintreten der
+Abbruchsbedingung der absolute Fehler $\Delta$ kleiner als $\epsilon$ ist.
+Außerdem gilt $\alpha > 1$, sodass für den relativen Fehler $\delta$ folgt:
+\begin{align}
+	\delta = \frac{\Delta}{\alpha} < \epsilon
+\end{align}
 
 \subsection{Algorithmus im 2-dimensionalen Fall}
 \subsubsection{Beschreibung}
