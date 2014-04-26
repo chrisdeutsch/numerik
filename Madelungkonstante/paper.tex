@@ -6,7 +6,6 @@
 \usepackage{amssymb}
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 \usepackage{wrapfig}
-\usepackage{floatflt}
 \usepackage{graphicx}
 \usepackage{caption}
 \usepackage[colorlinks]{hyperref}
@@ -68,7 +67,9 @@ des Referenz-Ions übereinstimmt (Na: $+$; Cl: $-$). Diese Tatsache
 äußert sich auch darin, dass das Vorzeichen der Madelung-Konstante vom
 betrachteten Ion abhängt (generell: $\alpha_{Na} = - \alpha_{Cl}$).
 
-\begin{wrapfigure}{l}{0.47\textwidth}
+ 
+\begin{wrapfigure}{L}[0pt]{0.47\textwidth}
+	\vspace{-10pt}
 	\centering
 	\includegraphics[width=0.4\textwidth]{./figures/wuerfel.eps}
 	\caption{neutrale Elementarzelle nach Evjen}
@@ -79,8 +80,8 @@ betrachteten Ion abhängt (generell: $\alpha_{Na} = - \alpha_{Cl}$).
 
 Zunächst wurde die naive Implementierung analog zur mathematischen Beschreibung
 getestet. Dabei wurde die Madelung-Konstante für einen Würfel analog zu
-Gl. (\ref{Madelungkonstante}), über sukzessive Erweiterung des Würfels um eine
-Schale berechnet. Es fällt schnell die schlechte Konvergenz auf, die sich
+Gl. (\ref{Madelungkonstante}),über sukzessive Erweiterung des Würfels um eine
+Schale berechnet.Es fällt schnell die schlechte Konvergenz auf, die sich
 physikalisch darin manifestiert, dass der Kristall, beim einfachen Erweitern
 mit einer Schale, nicht elektrisch neutral bleibt. Dieses Problem wurde von Evjen
 \cite{Evjen} gelöst, indem er den Kristall in elektrisch neutrale Elementarzellen
