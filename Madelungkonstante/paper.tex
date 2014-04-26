@@ -160,7 +160,7 @@ und $\tilde{\alpha}(n)$ die nach unserem Algorithmus berechnete Madelung-Konstan
 nach $n$ Iterationen.
 In Tabelle \ref{tab:konvergenz3d} wurde die Anzahl der hinzugefügten Schalen $n$
 gegen den Wert der Madelung-Konstante $\tilde{\alpha}(n)$ und den relativen Fehler $\delta_\alpha$ zum
-Literaturwert $\alpha_{NaCl} = 1.7475646946331822$ \cite{Sakamoto} aufgetragen.
+Literaturwert $\alpha = 1.7475646946331822$ \cite{Sakamoto} aufgetragen.
 Wie man sieht, ist die Abweichung vom Literaturwert schon nach wenigen Iterationen
 sehr klein.
 Man sieht ebenfalls (Abbildung \ref{plotkonvergenz3d}), dass der berechnete Wert
@@ -248,11 +248,12 @@ sobald absolute Fehler $\Delta_\alpha$ einen vorgegebenen Wert $\epsilon$ unters
 \end{minipage}
 \end{figure}
 
-Die Abbruchbedingung garantiert sofort, dass der absolute Fehler $\Delta_\alpha$ kleiner
-ist als eine Grenze $\epsilon > 0$. Da auch in diesem Fall gilt, dass $\alpha > 1$ ist,
-folgt $\delta_\alpha < \epsilon$.
+Die Abbruchbedingung, dass der absolute Fehler $\Delta_\alpha$ kleiner ist als $\epsilon > 0$,
+garantiert, wegen $\alpha > 1$, dass für den relativen Fehler $\delta_\alpha < \epsilon$ gilt. Dabei wurde als Literaturwert $\alpha = 1.6155426267128247$\footnote{\href{https://oeis.org/A088537}{A088537} \emph{Decimal expansion of Madelung's constant M2}, \textbf{The On-Line Encyclopedia of Integer Sequences}}
+verwendet. Man sieht in Tabelle \ref{tab:konvergenz2d}, dass der Algorithmus auch schnell konvergiert,
+dennoch nicht so schnell wie der 3-Dimensionale. Dies relativiert sich dadurch, dass im Zweidimensionalen
+nicht soviele Operationen durchgeführt werden müssen, wie im Dreidimensionalen.
 
-$\alpha = 1.6155426267128247$ \footnote{\href{https://oeis.org/A088537}{A088537} \emph{Decimal expansion of Madelung's constant M2}, \textbf{The On-Line Encyclopedia of Integer Sequences}}.
 
 \subsection{Fazit}
 
