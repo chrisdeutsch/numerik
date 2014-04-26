@@ -205,6 +205,45 @@ sobald absolute Fehler $\Delta_\alpha$ einen vorgegebenen Wert $\epsilon$ unters
 \label{zellensumme}
 \end{center}
 \end{minipage}
+
+\begin{figure}[h]
+\begin{minipage}[c]{0.5\textwidth}
+\captionsetup{type=figure}
+\begin{center}
+\input{./figures/ergebnis2d}
+\caption{Grafische Darstellung der 2-dim. Konvergenz}
+\label{plotkonvergenz3d}
+\end{center}
+\end{minipage}
+\begin{minipage}[c]{0.5\textwidth}
+\captionsetup{type=table}
+\begin{center}
+\begin{tabular}{c|c|c}
+\rule[-1ex]{0pt}{2.5ex} $n$ & $\tilde{\alpha}(n)$ & $\delta_\alpha$ \\ 
+\hline 
+\rule[-1ex]{0pt}{2.5ex} $1$ & $1.292893218813$ & $2.00\cdot10^{-1}$ \\ 
+\hline 
+\rule[-1ex]{0pt}{2.5ex} $2$ & $1.606873866660$ & $5.37\cdot10^{-3}$ \\ 
+\hline
+\rule[-1ex]{0pt}{2.5ex} $5$ & $1.614491025405$ & $6.51\cdot10^{-4}$ \\ 
+\hline 
+\rule[-1ex]{0pt}{2.5ex} $10$ & $1.615410325066$ & $8.19\cdot10^{-5}$ \\ 
+\hline 
+\rule[-1ex]{0pt}{2.5ex} $20$ & $1.615526062566$ & $1.03\cdot10^{-5}$ \\ 
+\hline 
+\rule[-1ex]{0pt}{2.5ex} $50$ & $1.615541566141$ & $6.56\cdot10^{-7}$ \\
+\hline
+\rule[-1ex]{0pt}{2.5ex} $100$ & $1.615542494133$ & $8.21\cdot10^{-8}$ \\ 
+\hline
+\rule[-1ex]{0pt}{2.5ex} $200$ & $1.615542610140$ & $1.03\cdot10^{-8}$ \\ 
+\hline
+\rule[1ex]{0pt}{2.5ex} Lit.   & $1.615542626713$ & $ - $
+\end{tabular}
+\captionof{table}{Anzahl der hinzugefügten Schalen $n$ gegen Madelung-Konstante $\tilde{\alpha}(n)$ nach $n$ Iterationen des Algorithmus und relativer Fehler $\delta_\alpha$}
+\label{tab:konvergenz3d}
+\end{center}
+\end{minipage}
+\end{figure}
 	
 
 \subsubsection{Konvergenz}
