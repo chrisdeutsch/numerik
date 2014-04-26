@@ -122,7 +122,7 @@ erklärt.
 \captionsetup{type=table}
 \begin{center}
 \begin{tabular}{c|c|c}
-\rule[-1ex]{0pt}{2.5ex} $n$ & $\tilde{\alpha}(n)$ & $\delta$ \\ 
+\rule[-1ex]{0pt}{2.5ex} $n$ & $\tilde{\alpha}(n)$ & $\delta_\alpha$ \\ 
 \hline 
 \rule[-1ex]{0pt}{2.5ex} $1$ & $1.456029925630$ & $1.67\cdot10^{-1}$ \\ 
 \hline 
@@ -142,7 +142,7 @@ erklärt.
 \hline
 \rule[1ex]{0pt}{2.5ex} Lit. & $1.747564694633$ & $ - $
 \end{tabular}
-\captionof{table}{Anzahl der hinzugefügten Schalen $n$ gegen Madelung-Konstante $\tilde{\alpha}(n)$ nach $n$-Iterationen des Algorithmus und relativer Fehler $\delta$}
+\captionof{table}{Anzahl der hinzugefügten Schalen $n$ gegen Madelung-Konstante $\tilde{\alpha}(n)$ nach $n$-Iterationen des Algorithmus und relativer Fehler $\delta_\alpha$}
 \label{tab:konvergenz3d}
 \end{center}
 \end{minipage}
@@ -152,21 +152,21 @@ Im Folgenden bezeichnet $\alpha$ den wahren Wert der Madelung-Konstante
 und $\tilde{\alpha}(n)$ die nach unserem Algorithmus berechnete Madelung-Konstante
 nach $n$ Iterationen.
 In Tabelle \ref{tab:konvergenz3d} wurde die Anzahl der hinzugefügten Schalen $n$
-gegen den Wert der Madelung-Konstante $\tilde{\alpha}(n)$ und den relativen Fehler $\delta$ zum
+gegen den Wert der Madelung-Konstante $\tilde{\alpha}(n)$ und den relativen Fehler $\delta_\alpha$ zum
 Literaturwert $\alpha_{NaCl} = 1.7475646946331822$ \cite{Sakamoto} aufgetragen.
 Wie man sieht, ist die Abweichung vom Literaturwert schon nach wenigen Iterationen
 sehr klein.
 Wie man sieht (Abbildung \ref{plotkonvergenz3d}) alterniert der berechnete Wert
-der Madelung-Konstante mit steigenden $n$ und fallendem absoluten Fehler $\Delta$ um
+der Madelung-Konstante mit steigenden $n$ und fallendem absoluten Fehler $\Delta_\alpha$ um
 den wahren Wert.  Der absolute Fehler ist also:
 \begin{align}
-	\Delta = | \tilde{\alpha}(n) - \alpha | < | \tilde{\alpha}(n) - \tilde{\alpha}(n-1)| < \epsilon
+	\Delta_\alpha = | \tilde{\alpha}(n) - \alpha | < | \tilde{\alpha}(n) - \tilde{\alpha}(n-1)| < \epsilon
 \end{align}
 Dies rechtfertigt unser Abbruchkriterium, denn es ist garantiert, dass beim Eintreten der
-Abbruchbedingung der absolute Fehler $\Delta$ kleiner als $\epsilon$ ist.
-Außerdem gilt $\alpha > 1$, sodass für den relativen Fehler $\delta$ folgt:
+Abbruchbedingung der absolute Fehler $\Delta_\alpha$ kleiner als $\epsilon$ ist.
+Außerdem gilt $\alpha > 1$, sodass für den relativen Fehler $\delta—\alpha$ folgt:
 \begin{align}
-	\delta = \frac{\Delta}{\alpha} < \epsilon
+	\delta_\alpha = \frac{\Delta_\alpha}{\alpha} < \epsilon
 \end{align}
 
 \subsection{Algorithmus im 2-dimensionalen Fall}
