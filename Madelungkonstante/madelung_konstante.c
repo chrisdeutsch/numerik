@@ -49,15 +49,20 @@ int main() {
 }
 
 double madelung_3d(double epsilon) {
-  /* Erklaerung mconst */
+  /* In dieser Variable wird der Wert der Madelung-Konstante gespeichert */
   double mconst = 0;
-  /* Erklaerung residual */
+  /* Diese Variable speichert den Rest der Gewichtung */
   double residual = 0;
   
-  /* Erklaerung prev und dessen Startwert */
+  /* Speichert den Wert der Madelung-Konstante des vorigen Schleifendurchlaufs 
+   * damit die Aenderung seit dem Durchlauf berechnet werden kann
+   * Der Startwert wurde so gewählt, dass die for-Schleife wenigstens einmal 
+   * betreten wird */
   double prev = 1E100; 
   
-  /* Erklaerung for-Schleife */
+  /* Diese Schleife zaehlt die aktuell hinzugefuegte Schale um das Zentralion
+   * die for-Schleife wird beendet wenn die Differenz von vorigem Durchlauf zu 
+   * aktuellem Durchlauf >= epsilon ist */
   for (int m = 1; fabs(mconst - prev) > epsilon; m++) {
     /* Erklaerung */
     prev = mconst;
