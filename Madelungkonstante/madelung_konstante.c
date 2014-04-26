@@ -30,16 +30,17 @@ int sign_z(int x, int y, int z);
 int main() {
   double mad;
   
+  printf("#############################################\n");
   printf("Berechnung der Madelung-Konstante\n");
   printf("#############################################\n");
-  printf("3D: \n");
+  printf("Im dreidimensionalen Fall: (Genauigkeit: 10E-5)\n");
   printf("Madelung-Konstante\trelativer Fehler\n");
   
   mad = madelung_3d(1E-5);
   
   printf("%.12f\t\t%.2E\n", mad, fabs(mad - MAD_CONST_3D)/MAD_CONST_3D);
   printf("#############################################\n");
-  printf("2D: \n");
+  printf("Im zweidimensionalen Fall: (Genauigkeit: 10E-5) \n");
   printf("Madelung-Konstante\trelativer Fehler\n");
   
   mad = madelung_2d(1E-5);
