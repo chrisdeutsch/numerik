@@ -17,7 +17,8 @@ double madelung_3d(double epsilon);
  * Abweichung vom Literaturwert kleiner als epsilon ist */
 double madelung_2d(double epsilon);
 
-/* Abstand der Gitterstelle (x,y,z) vom Ursprung */
+/* Abstand der Gitterstelle (x,y,z) vom Ursprung (Längen sind mit dem Gitter-
+ * abstand normalisiert) */
 double dist(int x, int y, int z);
 
 /* Berechnet das Vorzeichen des Ions an der Gitterstelle (x,y,z) (Es wird
