@@ -64,11 +64,14 @@ double madelung_3d(double epsilon) {
   
   /* Diese Schleife zaehlt die aktuell hinzugefuegte Schale um das Zentralion
    * die for-Schleife wird beendet wenn die Differenz von vorigem Durchlauf zu 
-   * aktuellem Durchlauf >= epsilon ist */
+   * aktuellen Durchlauf >= epsilon ist */
   for (int m = 1; fabs(mconst - prev) > epsilon; m++) {
-    /* Erklaerung */
+    /* Hier wird der die Madelung-Konstante des letzten Schleifendurchlaufs
+     * zwischengespeichert */
     prev = mconst;
-    /* Den Rest vom letzten Durchgang aufaddieren und danach resetten */
+    /* Der Rest des letzten Durchlaufs wird aufaddiert, damit der Innenraum des
+     * Wuerfels voll gewichtet wird. Danach wird der Rest für den aktuellen
+     * Durchlauf wieder auf 0 gesetzt */
     mconst += residual;
     residual = 0;
 
