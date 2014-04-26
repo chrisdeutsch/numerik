@@ -9,11 +9,11 @@
 /* Literaturwert von OEIS */
 #define MAD_CONST_2D 1.6155426267128247
 
-/* Berechnet die Madelungkonstante für einen Würfel; bricht ab wenn die Änderung
+/* Berechnet die Madelungkonstante fuer einen Wuerfel; bricht ab wenn die Aenderung
  * vom vorigen Durchlauf kleiner als epsilon ist */
 double madelung_3d(double epsilon);
 
-/* Berechnet die Madelungkonstante für einen Würfel; bricht ab wenn die Abweichung
+/* Berechnet die Madelungkonstante für einen (ZWEIDIMENSIONALEN?) Wuerfel; bricht ab wenn die Abweichung
  * vom Literaturwert kleiner als epsilon ist */
 double madelung_2d(double epsilon);
 
@@ -21,7 +21,7 @@ double madelung_2d(double epsilon);
 double dist(int x, int y, int z);
 
 /* Berechnet das Vorzeichen des Ions an der Gitterstelle (x,y,z) (Es wird angenommen,
- * dass wir die Madelungkonstante für Natrium berechnen) */
+ * dass wir die Madelungkonstante fuer Natrium berechnen) */
 int sign_z(int x, int y, int z);
 
 /* Beschreibung was eigentlich in der main-Funktion berechnet wird */
@@ -42,23 +42,23 @@ int main() {
 }
 
 double madelung_3d(double epsilon) {
-  /* Erklärung mconst */
+  /* Erklaerung mconst */
   double mconst = 0;
-  /* Erklärung residual */
+  /* Erklaerung residual */
   double residual = 0;
   
-  /* Erklärung prev und dessen Startwert */
+  /* Erklaerung prev und dessen Startwert */
   double prev = 1E100; 
   
-  /* Erklärung for-Schleife */
+  /* Erklaerung for-Schleife */
   for (int m = 1; fabs(mconst - prev) > epsilon; m++) {
-    /* Erklärung */
+    /* Erklaerung */
     prev = mconst;
     /* Den Rest vom letzten Durchgang aufaddieren und danach resetten */
     mconst += residual;
     residual = 0;
 
-    /* Fläche (welche Fläche wird berechnet?)
+    /* Flaeche (welche Fläche wird berechnet?)
        mconst: 6 (Sym.) * 1/2 (Evjens) = 3
        residual: 6 (Sym.) * 1/2 (Rest) = 3
     */
@@ -90,9 +90,9 @@ double madelung_3d(double epsilon) {
 }
 
 double madelung_2d(double epsilon) {
-  /* Erklärung mconst */
+  /* Erklaerung mconst */
   double mconst = 0;
-  /* Erklärung residual */
+  /* Erklaerung residual */
   double residual = 0;
   
   /* Was bewirkt die for-Schleife */

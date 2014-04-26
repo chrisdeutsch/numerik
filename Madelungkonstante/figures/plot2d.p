@@ -5,7 +5,7 @@ set output 'ergebnis2d.tex'
 set title ''
 
 set xlabel 'Anzahl hinzugef\"{u}gter Schalen n'
-set xrange [0:15]
+set xrange [2:15]
 set xtics 0, 5
 set mxtics 5
 
