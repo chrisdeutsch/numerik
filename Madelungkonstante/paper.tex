@@ -4,6 +4,7 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
+\usepackage{multirow}
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 \usepackage{wrapfig}
 \usepackage{graphicx}
@@ -253,8 +254,14 @@ nicht soviele Operationen durchgeführt werden müssen, wie im Dreidimensionalen
 
 \subsection{Fazit}
 
-Verwendeter Literaturwert  .
-
+\begin{table}[h]
+\begin{tabular}{|c|c|c|c|}
+\hline
+Fall & $\epsilon$                       & $\tilde{\alpha}$ & $\delta_\alpha$    \\ \hline
+2D   & \multirow{2}{*}{$1\cdot10^{-5}$} & $1.615533039442$ & $5.93\cdot10^{-6}$ \\ \cline{1-1} \cline{3-4} 
+3D   &                                  & $1.747561856286$ & $1.57\cdot10^{-6}$ \\ \hline
+\end{tabular}
+\end{table}
 
 \begin{thebibliography}{9}
 
