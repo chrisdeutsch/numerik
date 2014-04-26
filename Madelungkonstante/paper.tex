@@ -72,7 +72,7 @@ betrachteten Ion abhängt (generell: $\alpha_{Na} = - \alpha_{Cl}$).
 
 Zunächst wurde die naive Implementierung analog zur mathematischen Beschreibung
 getestet. Dabei wurde die Madelung-Konstante für einen Würfel analog zu
-Gl. (\ref{Madelungkonstante}),über sukzessive Erweiterung des Würfels um eine
+Gleichung (\ref{Madelungkonstante}), über sukzessive Erweiterung des Würfels um eine
 Schale berechnet.Es fällt schnell die schlechte Konvergenz auf, die sich
 physikalisch darin manifestiert, dass der Kristall, beim einfachen Erweitern
 mit einer Schale, nicht elektrisch neutral bleibt.
@@ -91,7 +91,7 @@ Dieses Problem wurde von Evjen
 aufteilt, die einen flacheren Potentialverlauf haben als einzelne Punktladungen.
 Eine solche Zelle ist in Abbildung \ref{skalierungsgrafik3d} dargestellt,
 dabei sind die gebrochenen Ladungen durch das Überlappen von mehreren Elementarzellen
-motiviert (vgl. Abb. \ref{zellensumme} für das zweidimensionale Analogon). Die Summe über 
+motiviert (vgl. Abbildung \ref{zellensumme} für das zweidimensionale Analogon). Die Summe über 
 alle Elementarzellen eines Würfels resultiert darin, dass die Ecken des Würfels
 $\frac{1}{8}$, Kanten $\frac{1}{4}$ und Seitenflächen $\frac{1}{2}$ gewichtet werden
 und der Innenraum voll in die Gewichtung eingeht.
@@ -100,7 +100,7 @@ und der Innenraum voll in die Gewichtung eingeht.
 
 Der verwendete Algorithmus beginnt mit einem Ion im Koordinatenursprung. Dieses
 erweitern wir schrittweise um eine Schale von Ionen mit den Ladungenzahlen gemäß
-Gl. (\ref{eq:vorzeichen}). Wir nutzen nun die Symmetrie des Würfels, um den Beitrag
+Gleichung (\ref{eq:vorzeichen}). Wir nutzen nun die Symmetrie des Würfels, um den Beitrag
 der so konstruierten Schale zur Madelung-Konstante zu berechnen. Dazu teilen wir die
 Schale in 8 symmetrisch äquivalente Ecken, 12 Kanten und 6 Seitenflächen auf, berechnen für
 jeweils eines dieser Objekte den Beitrag zur Madelung-Konstante (nach Evjen gewichtet)
