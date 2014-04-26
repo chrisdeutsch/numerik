@@ -26,16 +26,22 @@ int sign_z(int x, int y, int z);
 
 /* Beschreibung was eigentlich in der main-Funktion berechnet wird */
 int main() {
+  double mad;
+  
   printf("Berechnung der Madelung-Konstante\n");
   printf("###################################\n");
   printf("3D: \n");
   printf("alpha\t\tdelta\n");
-  double mad = madelung_3d(1E-5);
+  
+  mad = madelung_3d(1E-5);
+  
   printf("%.12f\t%.2E\n", mad, fabs(mad - MAD_CONST_3D)/MAD_CONST_3D);
   printf("###################################\n");
   printf("2D: \n");
   printf("alpha\t\tdelta\n");
+  
   mad = madelung_2d(1E-5);
+  
   printf("%.12f\t%.2E\n", mad, fabs(mad - MAD_CONST_2D)/MAD_CONST_2D);
   
   return 0;
