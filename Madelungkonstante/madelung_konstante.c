@@ -1,3 +1,4 @@
+<<<<<<< Local Changes
 /* gcc -O2 -std=c99 -Wall -pedantic -o madelung madelung_konstante.c -lm */
 /* Christian Bespin, Christopher Deutsch */
 
@@ -31,7 +32,7 @@ int main() {
   double mad;
   
   printf("#############################################\n");
-  printf("Berechnung der Madelung-Konstante\n");
+  printf("Berechnung der Madelung-Konstante von NaCl\n");
   printf("#############################################\n");
   printf("Im dreidimensionalen Fall: (Genauigkeit: 1E-5)\n");
   printf("Madelung-Konstante\trelativer Fehler\n");
@@ -109,21 +110,25 @@ double madelung_3d(double epsilon) {
   return mconst;
 }
 
+/* alle z-Koordinaten sind hier 0, da wir einen zweidimensionalen Fall betrachten*/
 double madelung_2d(double epsilon) {
   /* In dieser Variable wird der Wert der Madelung-Konstante gespeichert */
   double mconst = 0;
   /* Diese Variable speichert den Rest der Gewichtung */
   double residual = 0;
   
-  /* Diese Schleife vergroeßert die Seitenlaenge des Quadrat 
-  	  bei jedem Durchgang um 2, bis mconst genau genug ist
-  */
+ /* Diese Schleife zaehlt die aktuell hinzugefuegte Schale um das Zentralion.
+  * Waehrend jedem Durchgang entspricht dies einem Quadrat mit Kantenlaenge 2m
+  * und Mittelpunkt im Ursprung (0,0,0). Die for-Schleife wird beendet wenn die
+  * Differenz von vorigem Durchlauf zu aktuellen Durchlauf >= epsilon ist. */
   for (int m = 1; fabs(mconst - MAD_CONST_2D) > epsilon; m++) {
-    /* Den Rest vom letzten Durchgang aufaddieren und danach resetten */
+    /* Der Rest des letzten Durchlaufs wird aufaddiert, damit der Innenraum des
+     * Quadrats voll gewichtet wird. Danach wird der Rest für den aktuellen
+     * Durchlauf wieder auf 0 gesetzt */
     mconst += residual;
     residual = 0;
 
-    /* Kante (hier Kante in x-Richtung mit y=m, z=0))
+    /* Kante (es wird die Kante (x, m) mit x = -m + 1, ... , m - 1 berechnet)
        mconst: 4 (Sym.) * 1/2 (Evjens) = 2
        residual: 4 (Sym.) * 1/2 (Rest) = 2
     */
@@ -132,7 +137,7 @@ double madelung_2d(double epsilon) {
       residual += 2 * sign_z(x, m, 0) / dist(x, m, 0);
     }
 
-    /* Ecken * 4 wegen Symmetrie (hier Ecke (m, m, 0))
+    /* Ecken (es wird die Ecke (m, m) berechnet)
        mconst: 4 (Sym.) * 1/4 (Evjens) = 1
        residual: 4 (Sym.) * 3/4 (Rest) = 3
     */
