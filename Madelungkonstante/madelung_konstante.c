@@ -90,18 +90,20 @@ double madelung_3d(double epsilon) {
 }
 
 double madelung_2d(double epsilon) {
-  /* Erklaerung mconst */
+  /* In dieser Variable wird der Wert der Madelung-Konstante gespeichert */
   double mconst = 0;
-  /* Erklaerung residual */
+  /* Diese Variable speichert den Rest der Gewichtung */
   double residual = 0;
   
-  /* Was bewirkt die for-Schleife */
+  /* Diese Schleife vergroeßert die Seitenlaenge des Quadrat 
+  	  bei jedem Durchgang um 2, bis mconst genau genug ist
+  */
   for (int m = 1; fabs(mconst - MAD_CONST_2D) > epsilon; m++) {
     /* Den Rest vom letzten Durchgang aufaddieren und danach resetten */
     mconst += residual;
     residual = 0;
 
-    /* Kante (welche Kante wird berechnet?)
+    /* Kante (hier Kante in x-Richtung mit y=m, z=0))
        mconst: 4 (Sym.) * 1/2 (Evjens) = 2
        residual: 4 (Sym.) * 1/2 (Rest) = 2
     */
@@ -110,7 +112,7 @@ double madelung_2d(double epsilon) {
       residual += 2 * sign_z(x, m, 0) / dist(x, m, 0);
     }
 
-    /* Ecken * 4 wegen Symmetrie (welche Ecke wird berechnet?)
+    /* Ecken * 4 wegen Symmetrie (hier Ecke (m, m, 0))
        mconst: 4 (Sym.) * 1/4 (Evjens) = 1
        residual: 4 (Sym.) * 3/4 (Rest) = 3
     */
@@ -123,7 +125,8 @@ double madelung_2d(double epsilon) {
 
 double dist(int x, int y, int z) { return sqrt(x * x + y * y + z * z); }
 
-/* Es gilt pow(-1, x + y + z) == (x + y + z) % 2 ? -1 : 1
+/* Es gilt pow(-1, x + y + z) == (x + y + z) % 2
    In Worten: Wenn der Exponent nicht gerade ist -> -1
-              sonst -> 1 */
+              sonst -> 1 
+*/
 int sign_z(int x, int y, int z) { return -((x + y + z) % 2 ? -1 : 1); }
