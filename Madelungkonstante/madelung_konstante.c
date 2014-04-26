@@ -20,7 +20,8 @@ double madelung_2d(double epsilon);
 /* Berechnet den Betrag des Vektors (x,y,z) */
 double dist(int x, int y, int z);
 
-/* Vorzeichenfunktion */
+/* Berechnet das Vorzeichen des Ions an der Gitterstelle (x,y,z) (Es wird angenommen,
+ * dass wir die Madelungkonstante für Natrium berechnen) */
 int sign_z(int x, int y, int z);
 
 /* Beschreibung was eigentlich in der main-Funktion berechnet wird */
@@ -41,75 +42,83 @@ int main() {
 }
 
 double madelung_3d(double epsilon) {
-  double sum = 0; // wo ist der Unterschied zwischen sum und residual?
+  /* Erklärung mconst */
+  double mconst = 0;
+  /* Erklärung residual */
   double residual = 0;
-  double prev = 1E100; // Vorheriger Schleifendurchgang: -1, da die for Schleife
-                       // betreten werden soll
-
-  for (int m = 1; fabs(sum - prev) > epsilon; m++) {
-    prev = sum;
+  
+  /* Erklärung prev und dessen Startwert */
+  double prev = 1E100; 
+  
+  /* Erklärung for-Schleife */
+  for (int m = 1; fabs(mconst - prev) > epsilon; m++) {
+    /* Erklärung */
+    prev = mconst;
     /* Den Rest vom letzten Durchgang aufaddieren und danach resetten */
-    sum += residual;
+    mconst += residual;
     residual = 0;
 
     /* Fläche (welche Fläche wird berechnet?)
-       sum: 6 (Sym.) * 1/2 (Evjens) = 3
+       mconst: 6 (Sym.) * 1/2 (Evjens) = 3
        residual: 6 (Sym.) * 1/2 (Rest) = 3
     */
     for (int y = -m + 1; y < m; y++) {
       for (int x = -m + 1; x < m; x++) {
-        sum += 3 * sign_z(x, y, m) / dist(x, y, m);
+        mconst += 3 * sign_z(x, y, m) / dist(x, y, m);
         residual += 3 * sign_z(x, y, m) / dist(x, y, m);
       }
     }
 
     /* Kanten (welche Kante wird berechnet?)
-       sum: 12 (Sym.) * 1/4 (Evjens) = 3
+       mconst: 12 (Sym.) * 1/4 (Evjens) = 3
        residual: 12 (Sym.) * 3/4 (Rest) = 9
     */
     for (int x = -m + 1; x < m; x++) {
-      sum += 3 * sign_z(x, m, m) / dist(x, m, m);
+      mconst += 3 * sign_z(x, m, m) / dist(x, m, m);
       residual += 9 * sign_z(x, m, m) / dist(x, m, m);
     }
 
     /* Ecken (welche Ecke wird berechnet?)
-       sum: 8 (Sym.) * 1/8 (Evjens) = 1
+       mconst: 8 (Sym.) * 1/8 (Evjens) = 1
        residual: 8 (Sym.) * 7/8 (Rest) = 7
     */
-    sum += sign_z(m, m, m) / dist(m, m, m);
+    mconst += sign_z(m, m, m) / dist(m, m, m);
     residual += 7 * sign_z(m, m, m) / dist(m, m, m);
   }
 
-  return sum;
+  return mconst;
 }
 
 double madelung_2d(double epsilon) {
-  double sum = 0;
+  /* Erklärung mconst */
+  double mconst = 0;
+  /* Erklärung residual */
   double residual = 0;
-
-  for (int m = 1; fabs(sum - MAD_CONST_2D) > epsilon; m++) {
+  
+  /* Was bewirkt die for-Schleife */
+  for (int m = 1; fabs(mconst - MAD_CONST_2D) > epsilon; m++) {
     /* Den Rest vom letzten Durchgang aufaddieren und danach resetten */
-    sum += residual;
+    mconst += residual;
     residual = 0;
 
     /* Kante (welche Kante wird berechnet?)
-       sum: 4 (Sym.) * 1/2 (Evjens) = 2
+       mconst: 4 (Sym.) * 1/2 (Evjens) = 2
        residual: 4 (Sym.) * 1/2 (Rest) = 2
     */
     for (int x = -m + 1; x < m; x++) {
-      sum += 2 * sign_z(x, m, 0) / dist(x, m, 0);
+      mconst += 2 * sign_z(x, m, 0) / dist(x, m, 0);
       residual += 2 * sign_z(x, m, 0) / dist(x, m, 0);
     }
 
     /* Ecken * 4 wegen Symmetrie (welche Ecke wird berechnet?)
-       sum: 4 (Sym.) * 1/4 (Evjens) = 1
+       mconst: 4 (Sym.) * 1/4 (Evjens) = 1
        residual: 4 (Sym.) * 3/4 (Rest) = 3
     */
-    sum += sign_z(m, m, 0) / dist(m, m, 0);
+    mconst += sign_z(m, m, 0) / dist(m, m, 0);
     residual += 3 * sign_z(m, m, 0) / dist(m, m, 0);
   }
 
-  return sum;
+  return mconst;
 }
 
 double dist(int x, int y, int z) { return sqrt(x * x + y * y + z * z); }
