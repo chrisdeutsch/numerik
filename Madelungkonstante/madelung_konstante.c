@@ -128,7 +128,7 @@ double madelung_2d(double epsilon) {
 }
 
 double dist(int x, int y, int z) {
-	return sqrt(x * x + y * y + z * z);
+  return sqrt(x * x + y * y + z * z);
 }
 
 /* Umsetzung der Gleichung (4) in der beiliegenden pdf-Datei
@@ -136,8 +136,8 @@ double dist(int x, int y, int z) {
  * gerade Exponenten: 1
  * ungerade Exponenten: -1 */
 int sign_z(int x, int y, int z) {
-	if((x + y + z) % 2 == 0)
-		return 1;
-	else
-		return -1;
+  if((x + y + z) % 2 == 0)
+    return 1;
+  else
+    return -1;
 }
