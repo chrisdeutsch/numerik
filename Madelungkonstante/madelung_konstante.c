@@ -125,9 +125,11 @@ double dist(int x, int y, int z) {
 	return sqrt(x * x + y * y + z * z);
 }
 
-/* Es gilt pow(-1, x + y + z) == (x + y + z) % 2 ? -1 : 1
-   In Worten: Wenn der Exponent nicht gerade ist -> -1
-              sonst -> 1 */
+/* Umsetzung der Gleichung (4) in der beiliegenden pdf-Datei
+ * äquivalent zu pow(-1, x + y + z) aber effizienter */
 int sign_z(int x, int y, int z) {
-	return -((x + y + z) % 2 ? -1 : 1);
+	if((x + y + z) % 2 == 0)
+		return 1;
+	else
+		return -1;
 }
