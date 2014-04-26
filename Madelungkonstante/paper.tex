@@ -6,6 +6,7 @@
 \usepackage{amssymb}
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 
+\usepackage{floatflt}
 \usepackage{graphicx}
 \usepackage{caption}
 \usepackage[colorlinks]{hyperref}
@@ -68,6 +69,13 @@ des Referenz-Ions übereinstimmt (Na: $+$; Cl: $-$). Diese Tatsache
 betrachteten Ion abhängt (generell: $\alpha_{Na} = - \alpha_{Cl}$).
 \subsubsection{Probleme der naiven Methode}
 
+\begin{floatingfigure}{6cm}
+	\centering
+	\includegraphics{./figures/wuerfel.eps}
+	\caption{neutrale Elementarzelle nach Evjen}
+	\label{skalierungsgrafik3d}
+\end{floatingfigure}
+
 Zunächst wurde die naive Implementierung analog zur mathematischen Beschreibung
 getestet. Dabei wurde die Madelung-Konstante für einen Würfel analog zu
 Gl. (\ref{Madelungkonstante}), über sukzessive Erweiterung des Würfels um eine
@@ -82,13 +90,6 @@ motiviert (vgl. Abb. \ref{zellensumme} für das zweidimensionale Analogon). Die 
 alle Elementarzellen eines Würfels resultiert darin, dass die Ecken des Würfels
 $\frac{1}{8}$, Kanten $\frac{1}{4}$ und Seitenflächen $\frac{1}{2}$ gewichtet werden
 und der Innenraum voll in die Gewichtung eingeht.
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale = 0.35]{./figures/wuerfel.eps}
-	\caption{neutrale Elementarzelle nach Evjen}
-	\label{skalierungsgrafik3d}
-\end{figure}
 
 \subsubsection{Beschreibung}
 
