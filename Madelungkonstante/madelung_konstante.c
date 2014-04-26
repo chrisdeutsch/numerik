@@ -17,7 +17,7 @@ double madelung_3d(double epsilon);
  * vom Literaturwert kleiner als epsilon ist */
 double madelung_2d(double epsilon);
 
-/* Berechnet den Betrag des Vektors (x,y,z) */
+/* Abstand der Gitterstelle (x,y,z) vom Ursprung */
 double dist(int x, int y, int z);
 
 /* Berechnet das Vorzeichen des Ions an der Gitterstelle (x,y,z) (Es wird angenommen,
@@ -126,7 +126,9 @@ double dist(int x, int y, int z) {
 }
 
 /* Umsetzung der Gleichung (4) in der beiliegenden pdf-Datei
- * äquivalent zu pow(-1, x + y + z) aber effizienter */
+ * äquivalent zu pow(-1, x + y + z) aber effizienter 
+ * gerade Exponenten: 1
+ * ungerade Exponenten: -1 */
 int sign_z(int x, int y, int z) {
 	if((x + y + z) % 2 == 0)
 		return 1;
