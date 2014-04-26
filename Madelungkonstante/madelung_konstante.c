@@ -22,7 +22,8 @@ double madelung_2d(double epsilon);
 double dist(int x, int y, int z);
 
 /* Berechnet das Vorzeichen des Ions an der Gitterstelle (x,y,z) (Es wird
- * angenommen, dass wir die Madelungkonstante fuer ein Natriumion berechnen) */
+ * angenommen, dass wir die Madelungkonstante fuer ein Chlorion berechnen,
+ * da wir so eine positive Madelung-Konstante erhalten) */
 int sign_z(int x, int y, int z);
 
 /* Beschreibung was eigentlich in der main-Funktion berechnet wird */
@@ -140,9 +141,9 @@ double dist(int x, int y, int z) {
 }
 
 /* Umsetzung der Gleichung (4) in der beiliegenden pdf-Datei
- * aequivalent zu pow(-1, x + y + z) aber effizienter 
- * gerade Exponenten: 1
- * ungerade Exponenten: -1 */
+ * aequivalent zu -pow(-1, x + y + z) aber effizienter 
+ * gerade Exponenten: -1
+ * ungerade Exponenten: +1 */
 int sign_z(int x, int y, int z) {
   if((x + y + z) % 2 == 0)
     return -1;
