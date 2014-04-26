@@ -83,8 +83,7 @@ double madelung_3d(double epsilon) {
     /* Flaechen (es wird die Flaeche (x,y,m) mit x,y = -m + 1, ... , m - 1
      * berechnet)
      * mconst: 6 (Sym.) * 1/2 (Evjens) = 3
-     * residual: 6 (Sym.) * 1/2 (Rest) = 3
-    */
+     * residual: 6 (Sym.) * 1/2 (Rest) = 3 */
     for (int y = -m + 1; y < m; y++) {
       for (int x = -m + 1; x < m; x++) {
         mconst += 3 * sign_z(x, y, m) / dist(x, y, m);
@@ -93,18 +92,16 @@ double madelung_3d(double epsilon) {
     }
 
     /* Kanten (es wird die Kante (x,m,m) mit x = -m + 1, ... , m - 1 berechnet)
-       mconst: 12 (Sym.) * 1/4 (Evjens) = 3
-       residual: 12 (Sym.) * 3/4 (Rest) = 9
-    */
+     * mconst: 12 (Sym.) * 1/4 (Evjens) = 3
+     * residual: 12 (Sym.) * 3/4 (Rest) = 9 */
     for (int x = -m + 1; x < m; x++) {
       mconst += 3 * sign_z(x, m, m) / dist(x, m, m);
       residual += 9 * sign_z(x, m, m) / dist(x, m, m);
     }
 
-    /* Ecken (welche Ecke wird berechnet?)
-       mconst: 8 (Sym.) * 1/8 (Evjens) = 1
-       residual: 8 (Sym.) * 7/8 (Rest) = 7
-    */
+    /* Ecken (es wird die Ecke (m,m,m) berechnet)
+     * mconst: 8 (Sym.) * 1/8 (Evjens) = 1
+     * residual: 8 (Sym.) * 7/8 (Rest) = 7 */
     mconst += sign_z(m, m, m) / dist(m, m, m);
     residual += 7 * sign_z(m, m, m) / dist(m, m, m);
   }
