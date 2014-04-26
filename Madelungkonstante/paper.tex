@@ -150,7 +150,7 @@ erklärt.
 \hline
 \rule[1ex]{0pt}{2.5ex} Lit. & $1.747564694633$ & $ - $
 \end{tabular}
-\captionof{table}{Anzahl der hinzugefügten Schalen $n$ gegen Madelung-Konstante $\tilde{\alpha}(n)$ nach $n$ Iterationen des Algorithmus und relativer Fehler $\delta_\alpha$}
+\captionof{table}{Um $\alpha$ alternierende Werte}
 \label{tab:konvergenz3d}
 \end{center}
 \end{minipage}
@@ -193,12 +193,12 @@ sobald absolute Fehler $\Delta_\alpha$ einen vorgegebenen Wert $\epsilon$ unters
 \begin{minipage}[c]{0.5\textwidth}
 \captionsetup{type=figure}
 \begin{center}
-\includegraphics[height=0.5\textwidth]{./figures/quadrat.eps}
+\includegraphics[height=0.45\textwidth]{./figures/quadrat.eps}
 \caption{neutrale Elementarzelle (2-dim.)}
 \label{skalierungsgrafik2d}
 \end{center}
 \end{minipage}
-\begin{minipage}[c]{0.5\textwidth}
+\begin{minipage}[c]{0.45\textwidth}
 \captionsetup{type=figure}
 \begin{center}
 \includegraphics[height=0.5\textwidth]{./figures/elementarzelle.eps}
@@ -206,8 +206,11 @@ sobald absolute Fehler $\Delta_\alpha$ einen vorgegebenen Wert $\epsilon$ unters
 \label{zellensumme}
 \end{center}
 \end{minipage}	
-
 \subsubsection{Konvergenz}
+
+Wegen $\alpha > 1$ garantiert die gewählte Abbruchbedingung (der absolute Fehler $\Delta_\alpha$ ist kleiner als $\epsilon > 0$), 
+dass der relative Fehler $\delta_\alpha < \epsilon$ ist. Der hier angenommene Literaturwert ist $\alpha = 1.6155426267128247$\footnote{\href{https://oeis.org/A088537}{A088537} \emph{Decimal expansion of Madelung's constant M2}, \textbf{The On-Line Encyclopedia of Integer Sequences}}. Tabelle \ref{tab:konvergenz2d} ist zu entnehmen, dass der Algorithmus, ähnlich wie im dreidimensionalen Fall, auch schnell konvergiert, wenn auch etwas langsamer. Dies relativiert sich dadurch, dass im Zweidimensionalen
+nicht soviele Operationen durchgeführt werden müssen, wie im Dreidimensionalen.
 
 \vspace{-10pt}
 \begin{figure}[h]
@@ -215,7 +218,8 @@ sobald absolute Fehler $\Delta_\alpha$ einen vorgegebenen Wert $\epsilon$ unters
 \captionsetup{type=figure}
 \begin{center}
 \input{./figures/ergebnis2d}
-\caption{Grafische Darstellung der 2-dim. Konvergenz}
+\vspace{-10pt}
+\caption{Asymptotische Annäherung gegen $\alpha$}
 \label{plotkonvergenz2d}
 \end{center}
 \end{minipage}
@@ -243,18 +247,16 @@ sobald absolute Fehler $\Delta_\alpha$ einen vorgegebenen Wert $\epsilon$ unters
 \hline
 \rule[1ex]{0pt}{2.5ex} Lit.   & $1.615542626713$ & $ - $
 \end{tabular}
-\captionof{table}{Anzahl der hinzugefügten Schalen $n$ gegen Madelung-Konstante $\tilde{\alpha}(n)$ nach $n$ Iterationen des Algorithmus und relativer Fehler $\delta_\alpha$}
+\captionof{table}{Tabellarische Darstellung der Konvergenz}
 \label{tab:konvergenz2d}
 \end{center}
 \end{minipage}
 \end{figure}
-Wegen $\alpha > 1$ garantiert die gewählte Abbruchbedingung (der absolute Fehler $\Delta_\alpha$ ist kleiner als $\epsilon > 0$), 
-dass der relative Fehler $\delta_\alpha < \epsilon$ ist. Der hier angenommene Literaturwert ist $\alpha = 1.6155426267128247$\footnote{\href{https://oeis.org/A088537}{A088537} \emph{Decimal expansion of Madelung's constant M2}, \textbf{The On-Line Encyclopedia of Integer Sequences}}. Tabelle \ref{tab:konvergenz2d} ist zu entnehmen, dass der Algorithmus, ähnlich wie im dreidimensionalen Fall, auch schnell konvergiert, wenn auch etwas langsamer. Dies relativiert sich dadurch, dass im Zweidimensionalen
-nicht soviele Operationen durchgeführt werden müssen, wie im Dreidimensionalen.
 
 \subsection{Fazit}
 
 \begin{wraptable}[5]{R}[0pt]{0.47\textwidth}
+\vspace{-15pt}
 \begin{tabular}{c|c|c|c}
 Fall & $\epsilon$                       & $\tilde{\alpha}$ & $\delta_\alpha$    \\ \hline
 2D   & \multirow{2}{*}{$1\cdot10^{-5}$} & $1.615533039442$ & $5.93\cdot10^{-6}$ \\ \cline{1-1} \cline{3-4} 
@@ -263,10 +265,7 @@ Fall & $\epsilon$                       & $\tilde{\alpha}$ & $\delta_\alpha$    
 \caption{Ausgabe unseres Programmes bei vorgegebener Genauigkeit $\epsilon$}
 \label{tab:ausgabe}
 \end{wraptable}
-
 Wie in der nebenstehenden Tabelle \ref{tab:ausgabe} zu sehen, lässt sich mit unserem Programm die Madelung-Konstante von NaCl auf die gewünschte Genauigkeit berechnen. Die Laufzeit des Programms bewegt sich dabei in einem angemessenen Rahmen.
-
-\newpage
 
 \begin{thebibliography}{9}
 
