@@ -55,15 +55,16 @@ double madelung_3d(double epsilon) {
   /* Diese Variable speichert den Rest der Gewichtung */
   double residual = 0;
   
-  /* Speichert den Wert der Madelung-Konstante des vorigen Schleifendurchlaufs 
+  /* Speichert den Wert der Madelung-Konstante des vorigen Schleifendurchlaufs
    * damit die Aenderung seit dem Durchlauf berechnet werden kann
    * Der Startwert wurde so gewählt, dass die for-Schleife wenigstens einmal 
    * betreten wird */
   double prev = 1E100; 
   
-  /* Diese Schleife zaehlt die aktuell hinzugefuegte Schale um das Zentralion
-   * die for-Schleife wird beendet wenn die Differenz von vorigem Durchlauf zu 
-   * aktuellen Durchlauf >= epsilon ist */
+  /* Diese Schleife zaehlt die aktuell hinzugefuegte Schale um das Zentralion.
+   * Waehrend jedem Durchgang entspricht dies einem Wuerfel mit Kantenlaenge 2m
+   * und Mittelpunkt im Ursprung (0,0,0). Die for-Schleife wird beendet wenn die
+   * Differenz von vorigem Durchlauf zu aktuellen Durchlauf >= epsilon ist. */
   for (int m = 1; fabs(mconst - prev) > epsilon; m++) {
     /* Hier wird der die Madelung-Konstante des letzten Schleifendurchlaufs
      * zwischengespeichert */
@@ -73,10 +74,15 @@ double madelung_3d(double epsilon) {
      * Durchlauf wieder auf 0 gesetzt */
     mconst += residual;
     residual = 0;
+    
+    /* Ab hier wird unter Symmetriebetrachtung der Beitrag der einzelnen Stuecke
+     * der neuen Schale auf die Madelung-Konstante aufsummiert. Dabei wird stets
+     * der Rest der Gewichtung in der Variable residual aufsummiert */
 
-    /* Flaeche (welche Fläche wird berechnet?)
-       mconst: 6 (Sym.) * 1/2 (Evjens) = 3
-       residual: 6 (Sym.) * 1/2 (Rest) = 3
+    /* Flaeche (es wird die Flaeche (x,y,m) mit x,y = -m + 1, ... , m - 1
+     * berechnet).
+     * mconst: 6 (Sym.) * 1/2 (Evjens) = 3
+     * residual: 6 (Sym.) * 1/2 (Rest) = 3
     */
     for (int y = -m + 1; y < m; y++) {
       for (int x = -m + 1; x < m; x++) {
