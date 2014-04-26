@@ -30,20 +30,20 @@ int main() {
   double mad;
   
   printf("Berechnung der Madelung-Konstante\n");
-  printf("###################################\n");
+  printf("#############################################\n");
   printf("3D: \n");
-  printf("Madelung-Konstante\t\trelativer Fehler\n");
+  printf("Madelung-Konstante\trelativer Fehler\n");
   
   mad = madelung_3d(1E-5);
   
-  printf("%.12f\t%.2E\n", mad, fabs(mad - MAD_CONST_3D)/MAD_CONST_3D);
-  printf("###################################\n");
+  printf("%.12f\t\t%.2E\n", mad, fabs(mad - MAD_CONST_3D)/MAD_CONST_3D);
+  printf("#############################################\n");
   printf("2D: \n");
-  printf("Madelung-Konstante\t\trelativer Fehler\n");
+  printf("Madelung-Konstante\trelativer Fehler\n");
   
   mad = madelung_2d(1E-5);
   
-  printf("%.12f\t%.2E\n", mad, fabs(mad - MAD_CONST_2D)/MAD_CONST_2D);
+  printf("%.12f\t\t%.2E\n", mad, fabs(mad - MAD_CONST_2D)/MAD_CONST_2D);
   
   return 0;
 }
