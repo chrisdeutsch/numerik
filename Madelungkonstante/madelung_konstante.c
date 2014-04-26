@@ -6,15 +6,15 @@
 
 /* Literaturwert nach Y. Sakamoto */
 #define MAD_CONST_3D 1.7475645946331822
-/* Hier noch eine vernünftige Quelle */
+/* Literaturwert von OEIS */
 #define MAD_CONST_2D 1.6155426267128247
 
 /* Berechnet die Madelungkonstante für einen Würfel; bricht ab wenn die Änderung
  * vom vorigen Durchlauf kleiner als epsilon ist */
 double madelung_3d(double epsilon);
 
-/* Berechnet die Madelungkonstante für einen Würfel; bricht ab wenn die Änderung
- * vom vorigen Durchlauf kleiner als epsilon ist !!!!(Vermutlich keine hinreichende Bedingung)!!!! */
+/* Berechnet die Madelungkonstante für einen Würfel; bricht ab wenn die Abweichung
+ * vom Literaturwert kleiner als epsilon ist */
 double madelung_2d(double epsilon);
 
 /* Berechnet den Betrag des Vektors (x,y,z) */
