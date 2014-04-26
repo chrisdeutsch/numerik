@@ -1,4 +1,4 @@
-/* gcc -O2 -std=c99 -Wall -pedantic -o madelung madelung_konstante.c -lm */
+/* gcc -Wall -pedantic -O2 -std=c99 -o madelung madelung_konstante.c -lm */
 /* Christian Bespin, Christopher Deutsch */
 
 #include <stdio.h>
