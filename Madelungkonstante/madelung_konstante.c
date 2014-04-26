@@ -9,19 +9,19 @@
 /* Literaturwert von OEIS */
 #define MAD_CONST_2D 1.6155426267128247
 
-/* Berechnet die Madelungkonstante fuer einen Wuerfel; bricht ab wenn die Aenderung
- * vom vorigen Durchlauf kleiner als epsilon ist */
+/* Berechnet die Madelungkonstante fuer einen Wuerfel; bricht ab wenn die
+ * Aenderung vom vorigen Durchlauf kleiner als epsilon ist */
 double madelung_3d(double epsilon);
 
-/* Berechnet die Madelungkonstante für ein Quadrat; bricht ab wenn die Abweichung
- * vom Literaturwert kleiner als epsilon ist */
+/* Berechnet die Madelungkonstante für ein Quadrat; bricht ab wenn die
+ * Abweichung vom Literaturwert kleiner als epsilon ist */
 double madelung_2d(double epsilon);
 
 /* Abstand der Gitterstelle (x,y,z) vom Ursprung */
 double dist(int x, int y, int z);
 
-/* Berechnet das Vorzeichen des Ions an der Gitterstelle (x,y,z) (Es wird angenommen,
- * dass wir die Madelungkonstante fuer Natrium berechnen) */
+/* Berechnet das Vorzeichen des Ions an der Gitterstelle (x,y,z) (Es wird
+ * angenommen, dass wir die Madelungkonstante fuer Natrium berechnen) */
 int sign_z(int x, int y, int z);
 
 /* Beschreibung was eigentlich in der main-Funktion berechnet wird */
