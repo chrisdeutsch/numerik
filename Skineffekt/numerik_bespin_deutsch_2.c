@@ -5,13 +5,11 @@ double ber(double x);
 double bei(double x);
 
 int main() {
-  printf("Hallo Welt\n");
-  printf("%f \n", ber(2));
   return 0;
 }
 
-double ber(double x) {
-   const double xhalf = x / 2;
+double ber_power_series(double x) {
+   const double factor = pow(x,4)/16;
 
    double sum = 1;
    double summand = 1;
@@ -20,7 +18,7 @@ double ber(double x) {
    int i = 2;
 
    while (fabs(summand) > epsilon) {
-     summand *= -xhalf * xhalf * xhalf * xhalf / ((i - 1) * (i - 1) * i * i);
+     summand *= -factor / ((i - 1) * (i - 1) * i * i);
      i += 2;
      sum += summand;
    }
@@ -28,17 +26,17 @@ double ber(double x) {
    return sum;
 }
 
-double bei(double x) {
-  const double xhalf = x / 2;
+double bei_power_series(double x) {
+  const double factor = pow(x,4)/16;
 
-  double sum = xhalf * xhalf;
-  double summand = xhalf * xhalf;
+  double sum = x*x/4;
+  double summand = sum;
 
   double epsilon = 1E-6;
+  
   int i = 3;
-
   while (fabs(summand) > epsilon) {
-    summand *= -xhalf * xhalf * xhalf * xhalf / ((i - 1) * (i - 1) * i * i);
+    summand *= -factor / ((i - 1) * (i - 1) * i * i);
     i += 2;
     sum += summand;
   }
