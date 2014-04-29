@@ -7,19 +7,41 @@ double bei(double x);
 int main() {
   printf("Hallo Welt\n");
   printf("%f \n", ber(2));
-
   return 0;
 }
 
 double ber(double x) {
-  double epsilon = 1E-6;
-  double summe = 1;
-  double a = -pow(x, 4) / 4;
+   const double xhalf = x / 2;
 
-  for (int k = 2; fabs(a) > epsilon; k++) {
-    summe += a;
-    a *= -pow(x, 4) / 16 * 1 / (pow((2 * k + 2), 2) * pow((2 * k + 1), 2));
+   double sum = 1;
+   double summand = 1;
+
+   double epsilon = 1E-6;
+   int i = 2;
+
+   while (fabs(summand) > epsilon) {
+     summand *= -xhalf * xhalf * xhalf * xhalf / ((i - 1) * (i - 1) * i * i);
+     i += 2;
+     sum += summand;
+   }
+
+   return sum;
+}
+
+double bei(double x) {
+  const double xhalf = x / 2;
+
+  double sum = xhalf * xhalf;
+  double summand = xhalf * xhalf;
+
+  double epsilon = 1E-6;
+  int i = 3;
+
+  while (fabs(summand) > epsilon) {
+    summand *= -xhalf * xhalf * xhalf * xhalf / ((i - 1) * (i - 1) * i * i);
+    i += 2;
+    sum += summand;
   }
-  
-  return summe;
+
+  return sum;
 }
