@@ -8,7 +8,7 @@ int main() {
   return 0;
 }
 
-double ber_power_series(double x) {
+double ber(double x) {
    const double factor = pow(x,4)/16;
 
    double sum = 1;
@@ -26,7 +26,7 @@ double ber_power_series(double x) {
    return sum;
 }
 
-double bei_power_series(double x) {
+double bei(double x) {
   const double factor = pow(x,4)/16;
 
   double sum = x*x/4;
