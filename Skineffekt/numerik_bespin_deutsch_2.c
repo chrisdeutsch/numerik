@@ -4,6 +4,9 @@
 double ber(double x);
 double bei(double x);
 
+double f1(double x);
+double g1(double x);
+
 int main() {
   printf("ber(100) = %.10E\n", ber(100));
   printf("bei(100) = %.10E\n", bei(100));
@@ -44,4 +47,12 @@ double bei(double x) {
   }
 
   return sum;
+}
+
+double f1(double x) {
+  
+}
+
+double g1(double x) {
+  
 }
