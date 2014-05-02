@@ -7,9 +7,14 @@ double bei(double x);
 double f1(double x);
 double g1(double x);
 
+void test(double epsilon);
+
 int main() {
+	double epsilon = 1E-5;
+	
   printf("ber(100) = %.10E\n", ber(100));
   printf("bei(100) = %.10E\n", bei(100));
+  test(epsilon);
   return 0;
 }
 
@@ -55,4 +60,17 @@ double f1(double x) {
 
 double g1(double x) {
   
+}
+
+void test(double epsilon) {
+	FILE *file = fopen("berbei_min.tsv", "r");
+	double x, ckbei, ckber;
+	
+	while(fscanf(file, "%lf \t %lE \t %lE", &x, &ckber, &ckbei) != EOF) {
+		double delta = fabs((ber(x)-ckber)/ckber);
+		if (delta<epsilon) {
+			printf("%f %lE %lE\n", delta, ckber, ber(x));
+		}
+	}
+	fclose(file);
 }
