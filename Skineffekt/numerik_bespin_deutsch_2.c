@@ -9,6 +9,9 @@ double bei(double x);
 double f1(double x);
 double g1(double x);
 
+double der_ber(double x);
+double der_bei(double x);
+
 void test(double epsilon);
 
 int main() {
@@ -21,6 +24,8 @@ int main() {
 
   printf("f(100) = %.5E\n", f1(1000));
   printf("g(100) = %.5E\n", g1(1000));
+  
+  printf("%f\n", der_ber(4));
 
   return 0;
 }
@@ -97,6 +102,30 @@ double g1(double x) {
   }
 
   return sum;
+}
+
+double der_ber(double x){
+   const double factor = pow(x, 4) / 16;
+
+   double sum = 0;
+   double summand = -x*x*x/16;
+
+   double epsilon = 1E-6;
+   int i = 2;
+
+   while (fabs(summand) > epsilon) {
+     summand *= -factor / ((i - 1) * i* (i + 1) * (i + 1)* (i + 2));
+     i += 2;
+     sum += summand;
+   }
+
+   return sum;
+	
+}
+
+double der_bei(double x){
+	
+	return 0;
 }
 
 void test(double epsilon) {
