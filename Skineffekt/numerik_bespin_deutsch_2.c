@@ -137,7 +137,7 @@ void test(double epsilon) {
 		double deltaber = fabs((ber(x)-ckber)/ckber);
 		double deltabei = fabs((bei(x)-ckbei)/ckbei);
 		if (deltaber<epsilon || deltabei<epsilon) {
-			printf("%f \t %lE \t %lE \t %lE \t %lE \t %f \t %f\n", x, ber(x), ckber, deltaber, bei(x), ckbei, deltabei);
+			printf("%f \t %lE \t %lE \t %lE \t %lE \t %f \t %lE\n", x, ber(x), ckber, deltaber, bei(x), ckbei, deltabei);
 		}
 	}
 	fclose(file);
