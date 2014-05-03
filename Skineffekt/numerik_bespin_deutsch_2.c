@@ -1,3 +1,6 @@
+/* Kompilieranweisung hier */
+/* Christian Bespin, Christopher Deutsch */
+
 #include <stdio.h>
 #include <math.h>
 
