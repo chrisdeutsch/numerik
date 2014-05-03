@@ -133,6 +133,10 @@ double der_bei(double x){
 
 void test(double epsilon) {
 	FILE *file = fopen("berbei_min.tsv", "r");
+	if (file == NULL) {
+		printf("Die Datei mit Vergleichswerten konnte nicht geladen werden.\n");
+		return;
+	}
 	double x, ckbei, ckber;
 	
 	printf("x \t \t ber(x) \t ber Lit\t delta ber \t bei(x) \t Lit bei \t delta bei\n");
