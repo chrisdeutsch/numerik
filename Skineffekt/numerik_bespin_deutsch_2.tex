@@ -29,9 +29,9 @@
 
 Man kann die Bessel-Funktionen erster Art durch ihre Potenzreihenentwicklung im Ursprung definieren:
 \begin{align}
-	J_\alpha(z) = \sum^{\infty}_{m=0} \frac{\left( -1 \right)^m}{m! \, \Gamma(m + \alpha + 1)} \left(\frac{z}{2}\right)^{2m+\alpha}
+	J_\nu(z) = \sum^{\infty}_{m=0} \frac{\left( -1 \right)^m}{m! \, \Gamma(m + \nu + 1)} \left(\frac{z}{2}\right)^{2m+\nu}
 \end{align}
-Dabei ist $\alpha \in \mathbb{R}$. Besonders interessant ist die Besselfunktion 0-ter Ordnung $\alpha = 0$.
+Dabei ist $\nu \in \mathbb{R}$. Besonders interessant ist die Besselfunktion 0-ter Ordnung $\nu = 0$.
 Mit der Identität $\Gamma(n+1) = n!$ für $n \in \mathbb{N}$ ergibt sich:
 \begin{align}
 	\label{eq:bessel0}
@@ -42,14 +42,24 @@ Mit der Identität $\Gamma(n+1) = n!$ für $n \in \mathbb{N}$ ergibt sich:
 \subsubsection{Kelvin-Funktionen}
 
 Die Kelvin-Funktionen $\mathrm{ber}_\nu(x)$ und $\mathrm{bei}_\nu(x)$ sind definiert als der Real-
-beziehungsweise Imaginärteil von $J_\nu(x e^{3 \pi i / 4}) = J_\nu(x \sqrt{-i} )$. Mit \ref{eq:bessel0}
+beziehungsweise Imaginärteil von $J_\nu(x \sqrt{-i} )$. Mit \ref{eq:bessel0}
 folgt für den Fall $\nu = 0$ umgehend die Reihendarstellung der Kelvinfunktionen:
 \begin{align}
-	\mathrm{ber}(x) &= 1 + \sum^{\infty}_{k=0} \frac{\left( -1 \right)^k}{\left( \left(2k\right)! \right)^2} \left( \frac{x}{2} \right)^{4k}\\
-	\mathrm{bei}(x) &= \sum^{\infty}_{k=0} \frac{\left( -1 \right)^k}{\left( \left(2k+1\right)! \right)^2} \left( \frac{x}{2} \right)^{4k+2}
+	\mathrm{ber}_0(x) &= \operatorname{Re}\left(J_0(x \sqrt{-i} )\right) = 1 + \sum^{\infty}_{k=1} \frac{\left( -1 \right)^k}{\left( \left(2k\right)! \right)^2} \left( \frac{x}{2} \right)^{4k}\\
+	\mathrm{bei}_0(x) &= \operatorname{Im}\left(J_0(x \sqrt{-i} )\right) = \sum^{\infty}_{k=0} \frac{\left( -1 \right)^k}{\left( \left(2k+1\right)! \right)^2} \left( \frac{x}{2} \right)^{4k+2}
 \end{align}
-TODO: alles mal nachrechnen, asymptotische Näherung
 
+In asymptotischer Näherung\footnote{Hier was zu der Näherung der asymptotischen Näherung und Quelle} ergibt sich:
+\begin{align}
+	\mathrm{ber}_0(x) &\approx \frac{e^{\frac{x}{\sqrt{2}}}}{\sqrt{2 \pi x}} \cos\left(\frac{x}{\sqrt{2}} - \frac{\pi}{8}\right)\\
+	\mathrm{bei}_0(x) &\approx \frac{e^{\frac{x}{\sqrt{2}}}}{\sqrt{2 \pi x}} \sin\left(\frac{x}{\sqrt{2}} - \frac{\pi}{8}\right)
+\end{align}
+
+Einfaches gliedweises Ableiten der Potenzreihe liefert:
+\begin{align}
+	\mathrm{ber}'_0(x) &= \sum^{\infty}_{k=1} \frac{\left( -1 \right)^k}{\left( 2k-1 \right)! \, \left( 2k \right)!} \left( \frac{x}{2} \right)^{4k-1}\\
+	\mathrm{bei}'_0(x) &= \sum^{\infty}_{k=0} \frac{\left( -1 \right)^k}{\left( 2k \right)! \, \left( 2k+1 \right)!} \left( \frac{x}{2} \right)^{4k+1}
+\end{align}
 
 \subsection{Implementierung}
 
