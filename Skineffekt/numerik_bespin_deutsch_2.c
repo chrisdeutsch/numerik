@@ -7,7 +7,7 @@
 double ber(double x);
 double bei(double x);
 
-double f1(double x);	
+double f1(double x);
 double g1(double x);
 
 double der_ber(double x);
@@ -16,8 +16,8 @@ double der_bei(double x);
 void test(double epsilon);
 
 int main() {
-	double epsilon = 1E-5;
-	
+  double epsilon = 1E-5;
+  
   printf("ber(100) = %.10E\n", ber(100));
   printf("bei(100) = %.10E\n", bei(100));
   test(epsilon);
@@ -115,29 +115,29 @@ double der_ber(double x){
    }
 
    return sum;
-	
+  
 }
 
 double der_bei(double x){
-	
-	return 0;
+  
+  return 0;
 }
 
 void test(double epsilon) {
-	FILE *file = fopen("berbei_min.tsv", "r");
-	if (file == NULL) {
-		printf("Die Datei mit Vergleichswerten konnte nicht geladen werden.\n");
-		return;
-	}
-	double x, ckbei, ckber;
-	
-	printf("x \t \t ber(x) \t ber Lit\t delta ber \t bei(x) \t Lit bei \t delta bei\n");
-	while (fscanf(file, "%lf \t %lE \t %lE", &x, &ckber, &ckbei) != EOF) {
-		double deltaber = fabs((ber(x)-ckber)/ckber);
-		double deltabei = fabs((bei(x)-ckbei)/ckbei);
-		if (deltaber<epsilon || deltabei<epsilon) {
-			printf("%f \t %lE \t %lE \t %lE \t %lE \t %f \t %lE\n", x, ber(x), ckber, deltaber, bei(x), ckbei, deltabei);
-		}
-	}
-	fclose(file);
+  FILE *file = fopen("berbei_min.tsv", "r");
+  if (file == NULL) {
+    printf("Die Datei mit Vergleichswerten konnte nicht geladen werden.\n");
+    return;
+  }
+  double x, ckbei, ckber;
+  
+  printf("x \t \t ber(x) \t ber Lit\t delta ber \t bei(x) \t Lit bei \t delta bei\n");
+  while (fscanf(file, "%lf \t %lE \t %lE", &x, &ckber, &ckbei) != EOF) {
+    double deltaber = fabs((ber(x)-ckber)/ckber);
+    double deltabei = fabs((bei(x)-ckbei)/ckbei);
+    if (deltaber<epsilon || deltabei<epsilon) {
+      printf("%f \t %lE \t %lE \t %lE \t %lE \t %f \t %lE\n", x, ber(x), ckber, deltaber, bei(x), ckbei, deltabei);
+    }
+  }
+  fclose(file);
 }
