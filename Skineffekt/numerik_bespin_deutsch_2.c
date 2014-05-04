@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <math.h>
 
-#define PI 3.14
-
 double ber(double x);
 double bei(double x);
 
@@ -17,10 +15,6 @@ int main() {
   printf("ber(100) = %.10E\n", ber(100));
   printf("bei(100) = %.10E\n", bei(100));
   test(epsilon);
-
-
-  printf("f(100) = %.5E\n", f1(1000));
-  printf("g(100) = %.5E\n", g1(1000));
 
   return 0;
 }
@@ -43,9 +37,9 @@ double ber(double x) {
 
     return sum;
   } else {
-    return exp(x / sqrt(2)) / sqrt(2 * PI * x) *
-           (f1(x) * cos(x / sqrt(2) - PI / 8) +
-            g1(x) * sin(x / sqrt(2) - PI / 8));
+    return exp(x / sqrt(2)) / sqrt(2 * M_PI * x) *
+           (f1(x) * cos(x / sqrt(2) - M_PI / 8) +
+            g1(x) * sin(x / sqrt(2) - M_PI / 8));
   }
 }
 
@@ -76,7 +70,7 @@ double f1(double x) {
   while (fabs(factor) > epsilon) {
     factor *= (2 * k - 1) * (2 * k - 1) / (8 * k * x);
 
-    sum += cos(k * PI / 4) * factor;
+    sum += cos(k * M_PI / 4) * factor;
     k++;
   }
 
@@ -92,7 +86,7 @@ double g1(double x) {
   while (fabs(factor) > epsilon) {
     factor *= (2 * k - 1) * (2 * k - 1) / (8 * k * x);
 
-    sum += sin(k * PI / 4) * factor;
+    sum += sin(k * M_PI / 4) * factor;
     k++;
   }
 
