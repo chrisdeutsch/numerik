@@ -45,15 +45,15 @@ Die Kelvin-Funktionen $\mathrm{ber}_\nu(x)$ und $\mathrm{bei}_\nu(x)$ sind defin
 beziehungsweise Imaginärteil von $J_\nu(x \sqrt{-i} )$. Mit \ref{eq:bessel0}
 folgt für den Fall $\nu = 0$ umgehend die Reihendarstellung der Kelvinfunktionen:
 \begin{align}
-	\mathrm{ber}_0(x) &= 1 + \sum^{\infty}_{k=1} \frac{\left( -1 \right)^k}{\left( \left(2k\right)! \right)^2} \left( \frac{x}{2} \right)^{4k}\\
-	\mathrm{bei}_0(x) &= \sum^{\infty}_{k=0} \frac{\left( -1 \right)^k}{\left( \left(2k+1\right)! \right)^2} \left( \frac{x}{2} \right)^{4k+2}
+	\mathrm{ber}_0(x) &= \operatorname{Re}\left(J_0(x \sqrt{-i} )\right) = 1 + \sum^{\infty}_{k=1} \frac{\left( -1 \right)^k}{\left( \left(2k\right)! \right)^2} \left( \frac{x}{2} \right)^{4k}\\
+	\mathrm{bei}_0(x) &= \operatorname{Im}\left(J_0(x \sqrt{-i} )\right) = \sum^{\infty}_{k=0} \frac{\left( -1 \right)^k}{\left( \left(2k+1\right)! \right)^2} \left( \frac{x}{2} \right)^{4k+2}
 \end{align}
 TODO: alles mal nachrechnen, asymptotische Näherung
 
-In asymptotischer Näherung ergibt sich:
+In asymptotischer Näherung\footnote{Hier was zu der Näherung der asymptotischen Näherung und Quelle} ergibt sich:
 \begin{align}
-	\mathrm{ber}_0(x) &= \frac{e^{\frac{x}{\sqrt{2}}}}{\sqrt{2 \pi x}} \cos{\frac{x}{\sqrt{2}} - \frac{\pi}{8}}\\
-	\mathrm{bei}_0(x) &= \frac{e^{\frac{x}{\sqrt{2}}}}{\sqrt{2 \pi x}} \sin{\frac{x}{\sqrt{2}} - \frac{\pi}{8}}
+	\mathrm{ber}_0(x) &\approx \frac{e^{\frac{x}{\sqrt{2}}}}{\sqrt{2 \pi x}} \cos\left(\frac{x}{\sqrt{2}} - \frac{\pi}{8}\right)\\
+	\mathrm{bei}_0(x) &\approx \frac{e^{\frac{x}{\sqrt{2}}}}{\sqrt{2 \pi x}} \sin\left(\frac{x}{\sqrt{2}} - \frac{\pi}{8}\right)
 \end{align}
 
 
