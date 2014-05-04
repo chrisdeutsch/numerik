@@ -133,9 +133,9 @@ void test(double epsilon) {
   
   printf("x \t \t ber(x) \t ber Lit\t delta ber \t bei(x) \t Lit bei \t delta bei\n");
   while (fscanf(file, "%lf \t %lE \t %lE", &x, &ckber, &ckbei) != EOF) {
-    double deltaber = fabs((ber(x)-ckber)/ckber);
-    double deltabei = fabs((bei(x)-ckbei)/ckbei);
-    if (deltaber<epsilon || deltabei<epsilon) {
+    double deltaber = fabs((ber(x) - ckber)/ckber);
+    double deltabei = fabs((bei(x) - ckbei)/ckbei);
+    if (deltaber < epsilon || deltabei < epsilon) {
       printf("%f \t %lE \t %lE \t %lE \t %lE \t %f \t %lE\n", x, ber(x), ckber, deltaber, bei(x), ckbei, deltabei);
     }
   }
