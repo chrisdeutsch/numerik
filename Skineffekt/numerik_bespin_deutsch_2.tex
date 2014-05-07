@@ -26,12 +26,12 @@
 In einem zylinderförmigen elektrischen Leiter, der hinreichend lang ist und in dem ein Wechselstrom $I(t)=I_0\cdot\text{e}^{\text{i}\omega t}$ fließt, ist die Stromdichte nicht über den ganzen Leiterquerschnitt konstant. Das im Leiter schwingende elektrische Feld genügt der Gleichung\cite{landau}:
 \begin{align}
 	\Delta\mathbf{E}=\frac{4\pi\sigma}{c^2}\cdot \frac{\partial \mathbf{E}}{\partial t}
-	\label{eqn:maxwellgleichung}
+	\label{eq:maxwellgleichung}
 \end{align}
 Legt man die z-Achse parallel zum Leiter, so reduziert sich die Gleichung auf eine Komponente von E. Da für die Stromdichte $j=\sigma E$ gilt, erhält man für $j$ (in Zylinderkoordinaten) die Besselsche Differentialgeichung
 \begin{align}
 	\frac{\mathrm{d}^2 j}{\mathrm{d}\rho^2} + \frac{1}{\rho}\frac{\mathrm{d}j}{\mathrm{d}\rho} - k^2\cdot j=0
-	\label{eqn:besseldgl} 
+	\label{eq:besseldgl} 
 \end{align}
 mit $k^2=\mathrm{i}\omega\mu\sigma$. Als Lösung\cite{kazimierczuk} erhält man eine Bessel-Funktion erster Art von nullter Ordnung, die man mit den Kelvin-Funktionen in Real- und Imaginärteil zerlegen kann:
 \begin{align}
@@ -103,7 +103,16 @@ Und den Ableitungen der Hilfsfunktionen:
 
 \subsection{Implementierung}
 
-
+Sei $S_k$ der $k$-te Summand der Reihendarstellung von \emph{ber}. Wir berechnen $S_k$ aus $S_{k-1}$ mit
+\begin{align}
+	S_k=-\frac{1}{(2k-1)^2\cdot4k^2}\frac{x^4}{16}\cdot S_{k-1}
+\end{align}.
+Analog gilt:\newline
+\begin{tabular}{c|c|c}
+\rule[1ex]{0pt}{2.5ex} \emph{bei} & \emph{ber'} & \emph{bei'} \\ 
+\hline 
+\rule[1ex]{0pt}{2.5ex} $S_k=-\frac{1}{(2k+1)^2\cdot4k^2}\frac{x^4}{16}\cdot S_{k-1}$ & $S_k=-\frac{1}{(2k-2)(2k-1)^2\cdot 2k}\frac{x^4}{16}\cdot S_{k-1}$ & $S_k=-\frac{1}{(2k+1)(2k-1) \cdot 4k^2}\frac{x^4}{16}\cdot S_{k-1}$ \\ 
+\end{tabular}
 \begin{thebibliography}{9}
 
 \bibitem{landau}
