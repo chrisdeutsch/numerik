@@ -75,15 +75,22 @@ Dann ergibt sich:
 	\mathrm{bei}'_0(x) &= \sum^{\infty}_{k=0} \frac{\left( -1 \right)^k}{\left( 2k \right)! \, \left( 2k+1 \right)!} \left( \frac{x}{2} \right)^{4k+1}
 \end{align}
 
-In asymptotischer Näherung\footnote{Hier was zu der Näherung der asymptotischen Näherung und Quelle} ergibt sich mit der Definition $\alpha = \frac{x}{\sqrt{2}}-\frac{\pi}{8}$:
+In asymptotischer Näherung\footnote{Hier was zu der Näherung der asymptotischen Näherung und Quelle} ergibt sich mit der Definition $\alpha = \frac{x}{\sqrt{2}}-\frac{\pi}{8}$ und $C(x) = e^{\frac{x}{\sqrt{2}}}/\sqrt{2 \pi x} $:
 \begin{align}
-	\mathrm{ber}_0(x) &\approx \frac{e^{\frac{x}{\sqrt{2}}}}{\sqrt{2 \pi x}} \left[f_0(x) \cos(\alpha) + g_0(x) \sin(\alpha) \right]\\
-	\mathrm{bei}_0(x) &\approx \frac{e^{\frac{x}{\sqrt{2}}}}{\sqrt{2 \pi x}} \left[f_0(x) \sin(\alpha) - g_0(x) \cos(\alpha) \right]
+	\mathrm{ber}_0(x) &\approx C(x) \left[f_0(x) \cos(\alpha) + g_0(x) \sin(\alpha) \right]\label{eq:berpotenzreiheasym}\\
+	\mathrm{bei}_0(x) &\approx C(x) \left[f_0(x) \sin(\alpha) - g_0(x) \cos(\alpha) \right]\label{eq:beipotenzreiheasym}
 \end{align}
 
 Mit den Hilfsfunktionen:
 \begin{align}
-  f_0(x) &= 1 + \sum^{\infty}_{k=1} \frac{\cos(k \pi / k)}{k! \, (8k)^k}
+  f_0(x) = 1 + \sum^{\infty}_{k=1} \frac{\cos(k \pi / k)}{k! \, (8k)^k} \prod^{k}_{l=1}(2l - 1)^2\\
+  g_0(x) = \sum^{\infty}_{k=1} \frac{\sin(k \pi / k)}{k! \, (8k)^k} \prod^{k}_{l=1}(2l - 1)^2
+\end{align}
+
+Auch dieses leiten wir wieder ab:
+\begin{align}
+	\mathrm{ber}'_0(x) &\approx C(x) \left( \frac{1}{\sqrt{2}} - \frac{1}{2x} \right) \left[f_0(x) \cos(\alpha) + g_0(x) \sin(\alpha) \right] + C(x) \left[ f'_0(x) \cos(\alpha) + g'_0(x) \sin(\alpha) - f_0(x) \sin(\alpha)/\sqrt{2} + g_0(x) \cos(\alpha)/\sqrt{2} \right] \label{eq:dberpotenzreiheasym}\\
+	\mathrm{ber}'_0(x) &\approx C(x) \left( \frac{1}{\sqrt{2}} - \frac{1}{2x} \right) \left[f_0(x) \sin(\alpha) - g_0(x) \cos(\alpha) \right] + C(x) \left[ f'_0(x) \sin(\alpha) - g'_0(x) \cos(\alpha) + f_0(x) \cos(\alpha)/\sqrt{2} + g_0(x) \sin(\alpha)/\sqrt{2} \right] \label{eq:dbeipotenzreiheasym}
 \end{align}
 
 
