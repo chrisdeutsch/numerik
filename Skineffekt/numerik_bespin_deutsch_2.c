@@ -1,6 +1,6 @@
 /* Kompilieranweisungen */
 /* Christian Bespin, Christopher Deutsch */
-/* TODO: mehrfache Sinus/Cosinusberechnung in d_ber/d_bei entfernen */
+/* TODO: Fakultätsfaktoren ausmultiplizieren */
 
 #include <stdio.h>
 #include <math.h>
@@ -113,10 +113,14 @@ double d_ber(double x) {
     /* factor abgeleitet nach x */
     double d_factor = factor * (1 / kSqrt2 - 1 / (2 * x));
     
+    /* Sinus/Cosinus-Berechnung */
+    double sin_a = sin(alpha);
+    double cos_a = cos(alpha);
+    
     /* im wesentlichen Produktregel */
-    return d_factor * (f0(x) * cos(alpha) + g0(x) * sin(alpha)) +
-           factor * (d_f0(x) * cos(alpha) + d_g0(x) * sin(alpha) -
-                     f0(x) * sin(alpha) / kSqrt2 + g0(x) * cos(alpha) / kSqrt2);
+    return d_factor * (f0(x) * cos_a + g0(x) * sin_a) +
+           factor * (d_f0(x) * cos_a + d_g0(x) * sin_a -
+                     f0(x) * sin_a / kSqrt2 + g0(x) * cos_a / kSqrt2);
   }
 }
 
@@ -143,10 +147,14 @@ double d_bei(double x) {
     /* factor abgeleitet nach x */
     double d_factor = factor * (1 / kSqrt2 - 1 / (2 * x));
     
+    /* Sinus/Cosinus-Berechnung */
+    double sin_a = sin(alpha);
+    double cos_a = cos(alpha);
+    
     /* im wesentlichen Produktregel */
-    return d_factor * (f0(x) * sin(alpha) - g0(x) * cos(alpha)) +
-           factor * (d_f0(x) * sin(alpha) - d_g0(x) * cos(alpha) +
-                     f0(x) * cos(alpha) / kSqrt2 + g0(x) * sin(alpha) / kSqrt2);
+    return d_factor * (f0(x) * sin_a - g0(x) * cos_a) +
+           factor * (d_f0(x) * sin_a - d_g0(x) * cos_a +
+                     f0(x) * cos_a / kSqrt2 + g0(x) * sin_a / kSqrt2);
   }
 }
 
