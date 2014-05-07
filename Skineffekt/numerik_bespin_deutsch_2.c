@@ -70,12 +70,12 @@ double bei(double x) {
     /* Reihendarstellung */
     double sum = x*x / 4;
     double summand = sum;
-    const double kFactor = pow(x, 4) / 16;
+    double factor = pow(x, 4) / 16;
     
     int k = 1;
     
     while (fabs(summand) > kEpsilon * fabs(sum)) {
-      summand *= -kFactor / (2*k * 2*k * (2*k + 1) * (2*k + 1));
+      summand *= -factor / (2*k * 2*k * (2*k + 1) * (2*k + 1));
       sum += summand;
       k++;
     }
@@ -95,12 +95,12 @@ double d_ber(double x) {
     /* Reihendarstellung */
     double sum = -pow(x, 3) / 16;
     double summand = sum;
-    const double kFactor = pow(x, 4) / 16;
+    double factor = pow(x, 4) / 16;
     
     int k = 2;
     
     while (fabs(summand) > kEpsilon * fabs(sum)) {
-      summand *= -kFactor / ((2*k - 2) * (2*k - 1) * (2*k - 1) * 2*k);
+      summand *= -factor / ((2*k - 2) * (2*k - 1) * (2*k - 1) * 2*k);
       sum += summand;
       k++;
     }
