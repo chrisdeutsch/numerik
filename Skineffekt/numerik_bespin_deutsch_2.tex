@@ -95,7 +95,11 @@ Auch dieses leiten wir wieder ab:
 	\mathrm{ber}'_0(x) &\approx C(x) \left( \frac{1}{\sqrt{2}} - \frac{1}{2x} \right) \left[f_0(x) \sin(\alpha) - g_0(x) \cos(\alpha) \right] \notag\\ & + C(x) \left[ f'_0(x) \sin(\alpha) - g'_0(x) \cos(\alpha) + f_0(x) \cos(\alpha)/\sqrt{2} + g_0(x) \sin(\alpha)/\sqrt{2} \right] \label{eq:dbeipotenzreiheasym}
 \end{align}
 
-
+Und den Ableitungen der Hilfsfunktionen:
+\begin{align}
+  f'_0(x) = 1 - \sum^{\infty}_{k=1} \frac{\cos(k \pi / k)}{(k-1)! \, 8^k} \frac{1}{x^{k+1}} \prod^{k}_{l=1}(2l - 1)^2\\
+  g'_0(x) = -\sum^{\infty}_{k=1} \frac{\sin(k \pi / k)}{(k-1)! \, 8^k} \frac{1}{x^{k+1}} \prod^{k}_{l=1}(2l - 1)^2
+\end{align}
 
 \subsection{Implementierung}
 
