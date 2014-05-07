@@ -11,11 +11,6 @@ double bei(double x);
 double d_ber(double x);
 double d_bei(double x);
 
-/* vergleicht die Ergebnisse der Funktion dbl func(dbl) mit den idealwerten in
-   der Datei hinter filename (Format: x-Wert f(x)-Wert). Sollte der relative
-   Fehler größer als epsilon sein meldet sich die Funktion */
-void test_func(double (*func)(double), char *filename, double epsilon);
-
 /* Die folgenden Funktionen werden für die asymptotische Näherung benötigt 
    vgl. englisches Wikipedia und Abramowitz, Stegun (der ker/kei Anteil wurde
    vernachlässigt) */
@@ -23,6 +18,11 @@ double f0(double x);
 double g0(double x);
 double d_f0(double x);
 double d_g0(double x);
+
+/* vergleicht die Ergebnisse der Funktion dbl func(dbl) mit den idealwerten in
+   der Datei hinter filename (Format: x-Wert f(x)-Wert). Sollte der relative
+   Fehler größer als epsilon sein meldet sich die Funktion */
+void test_func(double (*func)(double), char *filename, double epsilon);
 
 /* Konvergenzeinstellung */
 const double kThreshold = 10;
