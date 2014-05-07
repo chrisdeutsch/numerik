@@ -47,12 +47,12 @@ double ber(double x) {
     double summand = 1;
     const double kFactor = pow(x, 4) / 16;
     
-    int i = 2;
+    int k = 1;
     
     while (fabs(summand) > kEpsilon * fabs(sum)) {
-      summand *= -kFactor / ((i - 1) * (i - 1) * i * i);
+      summand *= -kFactor / ((2*k - 1) * (2*k - 1) * 2*k * 2*k);
       sum += summand;
-      i += 2;
+      k++;
     }
     
     return sum;
@@ -72,12 +72,12 @@ double bei(double x) {
     double summand = sum;
     const double kFactor = pow(x, 4) / 16;
     
-    int i = 3;
+    int k = 1;
     
     while (fabs(summand) > kEpsilon * fabs(sum)) {
-      summand *= -kFactor / ((i - 1) * (i - 1) * i * i);
+      summand *= -kFactor / (2*k * 2*k * (2*k + 1) * (2*k + 1));
       sum += summand;
-      i += 2;
+      k++;
     }
     
     return sum;
@@ -97,12 +97,12 @@ double d_ber(double x) {
     double summand = sum;
     const double kFactor = pow(x, 4) / 16;
     
-    int i = 4;
+    int k = 2;
     
     while (fabs(summand) > kEpsilon * fabs(sum)) {
-      summand *= -kFactor / ((i - 2) * (i - 1) * (i - 1) * i);
+      summand *= -kFactor / ((2*k - 2) * (2*k - 1) * (2*k - 1) * 2*k);
       sum += summand;
-      i += 2;
+      k++;
     }
     
     return sum;
@@ -127,12 +127,12 @@ double d_bei(double x) {
     double summand = sum;
     const double kFactor = pow(x, 4) / 16;
     
-    int i = 2;
+    int k = 1;
     
     while (fabs(summand) > kEpsilon * fabs(sum)) {
-      summand *= -kFactor / ((i - 1) * i * i * (i + 1));
+      summand *= -kFactor / ((2*k - 1) * 2*k * 2*k * (2*k + 1));
       sum += summand;
-      i += 2;
+      k++;
     }
     
     return sum;
@@ -173,7 +173,7 @@ double g0(double x) {
   int i = 1;
   
   /* factor Vergleich, da Sinus null wird */
-  while (fabs(factor) > kEpsilon * fabs(sum) || (i - 1)%4 == 0) {
+  while (fabs(factor) > kEpsilon * fabs(sum)) {
     factor *= (2*i - 1) * (2*i - 1) / (8 * i * x);
     sum += sin(i * kPi / 4) * factor;
     i++;
