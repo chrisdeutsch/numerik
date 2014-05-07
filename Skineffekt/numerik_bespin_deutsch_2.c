@@ -154,13 +154,13 @@ double f0(double x) {
   double sum = 1;
   double factor = 1;
   
-  int i = 1;
+  int k = 1;
   
   /* factor Vergleich, da Sinus null wird */
   while (fabs(factor) > kEpsilon * fabs(sum)) {
-    factor *= (2*i - 1) * (2*i - 1) / (8 * i * x);
-    sum += cos(i * kPi / 4) * factor;
-    i++;
+    factor *= (2*k - 1) * (2*k - 1) / (8 * k * x);
+    sum += cos(k * kPi / 4) * factor;
+    k++;
   }
   
   return sum;
@@ -170,13 +170,13 @@ double g0(double x) {
   double sum = 0;
   double factor = 1;
   
-  int i = 1;
+  int k = 1;
   
   /* factor Vergleich, da Sinus null wird */
   while (fabs(factor) > kEpsilon * fabs(sum)) {
-    factor *= (2*i - 1) * (2*i - 1) / (8 * i * x);
-    sum += sin(i * kPi / 4) * factor;
-    i++;
+    factor *= (2*k - 1) * (2*k - 1) / (8 * k * x);
+    sum += sin(k * kPi / 4) * factor;
+    k++;
   }
   
   return sum;
@@ -186,12 +186,12 @@ double d_f0(double x) {
   double sum = -1/(8 * x * x * kSqrt2);
   double factor = -1/(8 * x * x);
   
-  int i = 2;
+  int k = 2;
   
   while (fabs(factor) > kEpsilon * fabs(sum)) {
-    factor *= (2*i - 1) * (2*i - 1) /(8 * (i - 1) * x);
-    sum += cos(i * kPi / 4) * factor;
-    i++;
+    factor *= (2*k - 1) * (2*k - 1) /(8 * (k - 1) * x);
+    sum += cos(k * kPi / 4) * factor;
+    k++;
   }
   
   return sum;
@@ -201,12 +201,12 @@ double d_g0(double x) {
   double sum = -1/(8 * x * x * kSqrt2);
   double factor = -1/(8 * x * x);
   
-  int i = 2;
+  int k = 2;
   
   while (fabs(factor) > kEpsilon * fabs(sum)) {
-    factor *= (2*i - 1) * (2*i - 1) /(8 * (i - 1) * x);
-    sum += sin(i * kPi / 4) * factor;
-    i++;
+    factor *= (2*k - 1) * (2*k - 1) /(8 * (k - 1) * x);
+    sum += sin(k * kPi / 4) * factor;
+    k++;
   }
   
   return sum;
