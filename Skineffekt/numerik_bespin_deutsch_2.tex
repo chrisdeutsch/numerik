@@ -77,14 +77,14 @@ beziehungsweise Imaginärteil von $J_\nu(x \sqrt{-i} )$. Mit (\ref{eq:bessel0})
 folgt für den Fall $\nu = 0$ umgehend die Reihendarstellung der Kelvinfunktionen:
 \stepcounter{equation}
 \begin{align}
-	\mathrm{ber}_0(x) = 1 + \sum^{\infty}_{k=1} \frac{\left( -1 \right)^k}{\left( \left(2k\right)! \right)^2} \left( \frac{x}{2} \right)^{4k},\quad \mathrm{bei}_0(x) = \sum^{\infty}_{k=0} \frac{\left( -1 \right)^k}{\left( \left(2k+1\right)! \right)^2} \left( \frac{x}{2} \right)^{4k+2}\label{eq:beipotenzreihe} \tag{\theequation a,b}
+	\mathrm{ber}_0(x) = 1 + \sum^{\infty}_{k=1} \frac{\left( -1 \right)^k}{\left( \left(2k\right)! \right)^2} \left( \frac{x}{2} \right)^{4k}&\hspace{40pt}\mathrm{bei}_0(x) = \sum^{\infty}_{k=0} \frac{\left( -1 \right)^k}{\left( \left(2k+1\right)! \right)^2} \left( \frac{x}{2} \right)^{4k+2}\label{eq:berbeipotenzreihe} \tag{\theequation a,b}
 \end{align}
-Um die erste Ableitung zu erhalten, leiten wir (\ref{eq:beipotenzreihe}) gliedweise ab:
+Um die erste Ableitung zu erhalten, leiten wir (\ref{eq:berbeipotenzreihe}) gliedweise ab:
+\stepcounter{equation}
 \begin{align}
-	\mathrm{ber}'_0(x) &= \sum^{\infty}_{k=1} \frac{\left( -1 \right)^k}{\left( 2k-1 \right)! \, \left( 2k \right)!} \left( \frac{x}{2} \right)^{4k-1}\\
-	\mathrm{bei}'_0(x) &= \sum^{\infty}_{k=0} \frac{\left( -1 \right)^k}{\left( 2k \right)! \, \left( 2k+1 \right)!} \left( \frac{x}{2} \right)^{4k+1}
+	\mathrm{ber}'_0(x) = \sum^{\infty}_{k=1} \frac{\left( -1 \right)^k}{\left( 2k-1 \right)! \, \left( 2k \right)!} \left( \frac{x}{2} \right)^{4k-1}&\hspace{30pt}\mathrm{bei}'_0(x) = \sum^{\infty}_{k=0} \frac{\left( -1 \right)^k}{\left( 2k \right)! \, \left( 2k+1 \right)!} \left( \frac{x}{2} \right)^{4k+1} \tag{\theequation a, b}
 \end{align}
-In asymptotischer Näherung \cite{abramowitzstegun} ergibt sich mit der Definition $\alpha = \frac{x}{\sqrt{2}}-\frac{\pi}{8}$ und $C(x) = e^{\frac{x}{\sqrt{2}}}/\sqrt{2 \pi x} $:
+In asymptotischer Näherung \cite{abramowitzstegun} ergibt sich mit den Definitionen $\alpha = \frac{x}{\sqrt{2}}-\frac{\pi}{8}$ und $C(x) = e^{\frac{x}{\sqrt{2}}}/\sqrt{2 \pi x} $:
 \begin{align}
 	\mathrm{ber}_0(x) &\approx C(x) \left[f_0(x) \cos(\alpha) + g_0(x) \sin(\alpha) \right]\label{eq:berpotenzreiheasym}-\frac{\mathrm{kei}_0(x)}{\pi}\\
 	\mathrm{bei}_0(x) &\approx C(x) \left[f_0(x) \sin(\alpha) - g_0(x) \cos(\alpha) \right]\label{eq:beipotenzreiheasym}-\frac{\mathrm{ker}_0(x)}{\pi}
