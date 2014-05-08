@@ -75,11 +75,11 @@ Mit der Identität $\Gamma(n+1) = n!$ für $n \in \mathbb{N}$ ergibt sich:
 Die Kelvin-Funktionen $\mathrm{ber}_\nu(x)$ und $\mathrm{bei}_\nu(x)$ sind definiert als der Real-
 beziehungsweise Imaginärteil von $J_\nu(x \sqrt{-i} )$. Mit (\ref{eq:bessel0})
 folgt für den Fall $\nu = 0$ umgehend die Reihendarstellung der Kelvinfunktionen:
+\stepcounter{equation}
 \begin{align}
-	\mathrm{ber}_0(x) &= 1 + \sum^{\infty}_{k=1} \frac{\left( -1 \right)^k}{\left( \left(2k\right)! \right)^2} \left( \frac{x}{2} \right)^{4k} \label{eq:berpotenzreihe}\\
-	\mathrm{bei}_0(x) &= \sum^{\infty}_{k=0} \frac{\left( -1 \right)^k}{\left( \left(2k+1\right)! \right)^2} \left( \frac{x}{2} \right)^{4k+2}\label{eq:beipotenzreihe}
+	\mathrm{ber}_0(x) = 1 + \sum^{\infty}_{k=1} \frac{\left( -1 \right)^k}{\left( \left(2k\right)! \right)^2} \left( \frac{x}{2} \right)^{4k},\quad \mathrm{bei}_0(x) = \sum^{\infty}_{k=0} \frac{\left( -1 \right)^k}{\left( \left(2k+1\right)! \right)^2} \left( \frac{x}{2} \right)^{4k+2}\label{eq:beipotenzreihe} \tag{\theequation a,b}
 \end{align}
-Um die erste Ableitung zu erhalten, leiten wir (\ref{eq:berpotenzreihe}) und (\ref{eq:beipotenzreihe}) gliedweise ab:
+Um die erste Ableitung zu erhalten, leiten wir (\ref{eq:beipotenzreihe}) gliedweise ab:
 \begin{align}
 	\mathrm{ber}'_0(x) &= \sum^{\infty}_{k=1} \frac{\left( -1 \right)^k}{\left( 2k-1 \right)! \, \left( 2k \right)!} \left( \frac{x}{2} \right)^{4k-1}\\
 	\mathrm{bei}'_0(x) &= \sum^{\infty}_{k=0} \frac{\left( -1 \right)^k}{\left( 2k \right)! \, \left( 2k+1 \right)!} \left( \frac{x}{2} \right)^{4k+1}
