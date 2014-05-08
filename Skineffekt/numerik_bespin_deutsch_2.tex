@@ -23,28 +23,35 @@
 
 \subsection{Physikalischer Hintergrund}
 
-In einem zylinderförmigen elektrischen Leiter, der hinreichend lang ist und in dem ein Wechselstrom $I(t)=I_0\cdot\text{e}^{\text{i}\omega t}$ fließt, ist die Stromdichte nicht über den ganzen Leiterquerschnitt konstant. Das im Leiter schwingende elektrische Feld genügt der Gleichung\cite{landau}:
+In einem zylinderförmigen elektrischen Leiter, der hinreichend lang ist und in dem ein Wechselstrom $I(t)=I_0 e^{i \omega t}$ fließt, ist die Stromdichte nicht über den ganzen Leiterquerschnitt konstant. Das im Leiter schwingende elektrische Feld genügt mit $\dot D \approx 0$ der elektromagnetischen Wellengleichung:
 \begin{align}
-	\Delta\mathbf{E}=\frac{4\pi\sigma}{c^2}\cdot \frac{\partial \mathbf{E}}{\partial t}
+	\Delta\mathbf{E} - \frac{4\pi\sigma\mu}{c^2} \frac{\partial \mathbf{E}}{\partial t} = 0
 	\label{eq:maxwellgleichung}
 \end{align}
-Legt man die z-Achse parallel zum Leiter, so reduziert sich die Gleichung auf eine Komponente von E. Da für die Stromdichte $j=\sigma E$ gilt, erhält man für $j$ (in Zylinderkoordinaten) die Besselsche Differentialgeichung
+Wir drücken das elektrische Feld $\mathbf{E}$ durch das ohm'sche Gesetz $\mathbf{j} = \sigma \mathbf{E}$ aus und separieren die Zeitabhängigkeit der Stromdichte \cite{healdmarion} indem wir $\mathbf{j} = \mathbf{j}_0 e^{i \omega t}$ setzen.
 \begin{align}
-	\frac{\mathrm{d}^2 j}{\mathrm{d}\rho^2} + \frac{1}{\rho}\frac{\mathrm{d}j}{\mathrm{d}\rho} - k^2\cdot j=0
+	\Delta\mathbf{j}_0 + k^2 \mathbf{j}_0 = 0
+	\label{eq:maxwellgleichungJ}
+\end{align}
+Mit der Definition $k^2 = - i \frac{4 \pi \sigma \mu \omega}{c^2}$. Gehen wir in Zylinderkoordinaten über und nutzen Symmetrie aus erhalten wir:
+\begin{align}
+	\frac{\mathrm{d}^2 j_0}{\mathrm{d}\rho^2} + \frac{1}{\rho}\frac{\mathrm{d}j_0}{\mathrm{d}\rho} + k^2 j_0 = 0
 	\label{eq:besseldgl} 
 \end{align}
-mit $k^2=\mathrm{i}\omega\mu\sigma$. Als Lösung\cite{kazimierczuk} erhält man eine Bessel-Funktion erster Art von nullter Ordnung, die man mit den Kelvin-Funktionen in Real- und Imaginärteil zerlegen kann:
+Multiplikation dieser Gleichung mit $\rho^2$ und Substitution von $\xi = k \rho$ liefert die Bessel'sche Differentialgleichung:
 \begin{align}
-	j(\rho)=A J_0(k\rho)=A(\mathrm{ber}_0(k\rho)+\mathrm{i bei}_0(k\rho))
+  \xi^2 \frac{\mathrm{d}^2j_0}{\mathrm{d}\xi^2} + \xi \frac{\mathrm{d}j_0}{\mathrm{d}\xi} + \xi^2 j_0 = 0
 \end{align}
-$A$ kann aus dem Strom, der im Leiter fließt, zu 
+Als allgemeine Lösung erhält man Besselfunktionen erster Art, mit der Integrationskonstante $A$:
 \begin{align}
-A=\frac{I_0 k}{2\pi\rho_0}\frac{1}{\mathrm{bei}'_0(k\rho_0)-\mathrm{i ber}'_0(k\rho_0)}
-\end{align}bestimmt werden\cite{kazimierczuk}, woraus direkt
-\begin{align}
-	j(\rho)=A J_0(\kappa\rho)=\frac{I_0 \kappa}{2\pi\rho_0}\frac{\mathrm{ber}_0(\kappa\rho)+\mathrm{i bei}_0(\kappa\rho)}{\mathrm{bei}'_0(\kappa\rho_0)-\mathrm{i ber}'_0(\kappa\rho_0)}
+	j_0(\rho)=A J_0(k \rho) = A(\mathrm{ber}_0(\kappa \rho)+\mathrm{i bei}_0(\kappa \rho))
 \end{align}
-mit $\kappa=2\frac{\sqrt{\pi\mu\sigma\omega}}{c^2}$folgt. Die Stromdichte ist zum Rand des Leiters hin größer, wie man, mit Kenntnis über den Verlauf der Besselfunktion, herausfinden kann. Dieser Effekt wird als \emph{Skin-Effekt} bezeichnet, der hier nach erfolgreicher Implementierung der Kelvin-Funktionen an einigen Werten beispielhaft numerisch überprüft werden soll. Der Ausduck für $j$ beinhaltet komplexe Zahlen, da $j$ proportional zu $E$ ist. Da der Leiter sowohl eine Kapazität, als auch eine Induktivität hat, treten also komplexe Wechselstromwiderstände auf, die zu komplexen Komponenten in $E$ und damit $j$ führen. Sie lassen sich als \emph{Blindwerte} vorstellen, analog zu Blindwiderstand oder Blindleistung.
+wobei $\kappa$ wie auf dem Blatt definiert $\kappa = 2 \sqrt{\pi \sigma \mu \omega}/c$.
+Die Konstante $A$ kann aus dem Strom, der im Leiter fließt, bestimmt werden \cite{kazimierczuk}, woraus direkt
+\begin{align}
+	j_0(\rho) = \frac{I_0 \kappa}{2\pi\rho_0}\frac{\mathrm{ber}_0(\kappa\rho)+i \mathrm{bei}_0(\kappa\rho)}{\mathrm{bei}'_0(\kappa\rho_0)-i\mathrm{ber}'_0(\kappa\rho_0)}
+\end{align}
+folgt. Mit steigender Frequenz $\omega$ geschieht der Ladungstransport überwiegend am Rand des Leiter. Dieser Effekt wird als \emph{Skin-Effekt} bezeichnet, der hier nach erfolgreicher Implementierung der Kelvin-Funktionen an einigen Werten beispielhaft numerisch überprüft werden soll. Insbesondere ist $j_0$ eine komplexe Zahl, da dies nach dem Separationsansatz sowohl Amplituden wie ich Phaseninformation enthält.
 \subsection{Mathematischer Hintergrund}
 
 \subsubsection{Bessel-Funktionen erster Art}
@@ -116,10 +123,10 @@ Analog gilt:\newline
 \end{tabular}
 \begin{thebibliography}{9}
 
-\bibitem{landau}
-Landau, L.; Lifshitz, E.
-\emph{Electrodynamics Of Contiunous Media},
-Pergamon Press (1984)
+\bibitem{healdmarion}
+Heald and Marion Richtige namen hier
+\emph{Classical Electromagnetic Radiation},
+Verlag
 
 \bibitem{kazimierczuk}
 Kazimierczuk, M.
