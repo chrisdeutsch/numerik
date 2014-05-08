@@ -52,6 +52,8 @@ Die Konstante $A$ kann aus dem Strom, der im Leiter fließt, bestimmt werden \ci
 	j_0(\rho) = \frac{I_0 \kappa}{2\pi\rho_0}\frac{\mathrm{ber}_0(\kappa\rho)+i \mathrm{bei}_0(\kappa\rho)}{\mathrm{bei}'_0(\kappa\rho_0)-i\mathrm{ber}'_0(\kappa\rho_0)}
 \end{align}
 folgt. Mit steigender Frequenz $\omega$ geschieht der Ladungstransport überwiegend am Rand des Leiter. Dieser Effekt wird als \emph{Skin-Effekt} bezeichnet, der hier nach erfolgreicher Implementierung der Kelvin-Funktionen an einigen Werten beispielhaft numerisch überprüft werden soll. Insbesondere ist $j_0$ eine komplexe Zahl, da sie nach dem Separationsansatz sowohl Amplituden wie auch Information über die Phase enthält.
+
+
 \subsection{Mathematischer Hintergrund}
 
 \subsubsection{Bessel-Funktionen erster Art}
@@ -60,7 +62,7 @@ Man kann die Bessel-Funktionen erster Art durch ihre Potenzreihenentwicklung im 
 \begin{align}
 	J_\nu(z) = \sum^{\infty}_{m=0} \frac{\left( -1 \right)^m}{m! \, \Gamma(m + \nu + 1)} \left(\frac{z}{2}\right)^{2m+\nu}
 \end{align}
-Dabei ist $\nu \in \mathbb{R}$. Besonders interessant ist die Besselfunktion 0-ter Ordnung $\nu = 0$.
+Dabei ist $\nu \in \mathbb{R}$. Uns interessiert die Besselfunktion 0-ter Ordnung $\nu = 0$.
 Mit der Identität $\Gamma(n+1) = n!$ für $n \in \mathbb{N}$ ergibt sich:
 \begin{align}
 	\label{eq:bessel0}
@@ -73,18 +75,17 @@ Die Kelvin-Funktionen $\mathrm{ber}_\nu(x)$ und $\mathrm{bei}_\nu(x)$ sind defin
 beziehungsweise Imaginärteil von $J_\nu(x \sqrt{-i} )$. Mit \ref{eq:bessel0}
 folgt für den Fall $\nu = 0$ umgehend die Reihendarstellung der Kelvinfunktionen:
 \begin{align}
-	\mathrm{ber}_0(x) &= \operatorname{Re}\left(J_0(x \sqrt{-i} )\right) = 1 + \sum^{\infty}_{k=1} \frac{\left( -1 \right)^k}{\left( \left(2k\right)! \right)^2} \left( \frac{x}{2} \right)^{4k} \label{eq:berpotenzreihe}\\
-	\mathrm{bei}_0(x) &= \operatorname{Im}\left(J_0(x \sqrt{-i} )\right) = \sum^{\infty}_{k=0} \frac{\left( -1 \right)^k}{\left( \left(2k+1\right)! \right)^2} \left( \frac{x}{2} \right)^{4k+2}\label{eq:beipotenzreihe}
+	\mathrm{ber}_0(x) &= 1 + \sum^{\infty}_{k=1} \frac{\left( -1 \right)^k}{\left( \left(2k\right)! \right)^2} \left( \frac{x}{2} \right)^{4k} \label{eq:berpotenzreihe}\\
+	\mathrm{bei}_0(x) &= \sum^{\infty}_{k=0} \frac{\left( -1 \right)^k}{\left( \left(2k+1\right)! \right)^2} \left( \frac{x}{2} \right)^{4k+2}\label{eq:beipotenzreihe}
 \end{align}
 
-Für die Ableitung muss \ref{eq:berpotenzreihe} und \ref{eq:beipotenzreihe} nur gliedweise abgeleitet werden.
-Dann ergibt sich:
+Für die Ableitung muss (\ref{eq:berpotenzreihe}) und (\ref{eq:beipotenzreihe}) nur gliedweise abgeleitet werden:
 \begin{align}
 	\mathrm{ber}'_0(x) &= \sum^{\infty}_{k=1} \frac{\left( -1 \right)^k}{\left( 2k-1 \right)! \, \left( 2k \right)!} \left( \frac{x}{2} \right)^{4k-1}\\
 	\mathrm{bei}'_0(x) &= \sum^{\infty}_{k=0} \frac{\left( -1 \right)^k}{\left( 2k \right)! \, \left( 2k+1 \right)!} \left( \frac{x}{2} \right)^{4k+1}
 \end{align}
 
-In asymptotischer Näherung\footnote{Hier was zu der Näherung der asymptotischen Näherung und Quelle} ergibt sich mit der Definition $\alpha = \frac{x}{\sqrt{2}}-\frac{\pi}{8}$ und $C(x) = e^{\frac{x}{\sqrt{2}}}/\sqrt{2 \pi x} $:
+In asymptotischer Näherung \cite{abramowitzstegun} ergibt sich mit der Definition $\alpha = \frac{x}{\sqrt{2}}-\frac{\pi}{8}$ und $C(x) = e^{\frac{x}{\sqrt{2}}}/\sqrt{2 \pi x} $:
 \begin{align}
 	\mathrm{ber}_0(x) &\approx C(x) \left[f_0(x) \cos(\alpha) + g_0(x) \sin(\alpha) \right]\label{eq:berpotenzreiheasym}\\
 	\mathrm{bei}_0(x) &\approx C(x) \left[f_0(x) \sin(\alpha) - g_0(x) \cos(\alpha) \right]\label{eq:beipotenzreiheasym}
@@ -92,8 +93,8 @@ In asymptotischer Näherung\footnote{Hier was zu der Näherung der asymptotische
 
 Mit den Hilfsfunktionen:
 \begin{align}
-  f_0(x) = 1 + \sum^{\infty}_{k=1} \frac{\cos(k \pi / k)}{k! \, (8k)^k} \prod^{k}_{l=1}(2l - 1)^2\\
-  g_0(x) = \sum^{\infty}_{k=1} \frac{\sin(k \pi / k)}{k! \, (8k)^k} \prod^{k}_{l=1}(2l - 1)^2
+	f_0(x) = 1 + \sum^{\infty}_{k=1} \frac{\cos(k \pi / k)}{k! \, (8k)^k} \prod^{k}_{l=1}(2l - 1)^2\\
+	g_0(x) = \sum^{\infty}_{k=1} \frac{\sin(k \pi / k)}{k! \, (8k)^k} \prod^{k}_{l=1}(2l - 1)^2
 \end{align}
 
 Auch dieses leiten wir wieder ab:
@@ -104,8 +105,8 @@ Auch dieses leiten wir wieder ab:
 
 Und den Ableitungen der Hilfsfunktionen:
 \begin{align}
-  f'_0(x) = 1 - \sum^{\infty}_{k=1} \frac{\cos(k \pi / k)}{(k-1)! \, 8^k} \frac{1}{x^{k+1}} \prod^{k}_{l=1}(2l - 1)^2\\
-  g'_0(x) = -\sum^{\infty}_{k=1} \frac{\sin(k \pi / k)}{(k-1)! \, 8^k} \frac{1}{x^{k+1}} \prod^{k}_{l=1}(2l - 1)^2
+	f'_0(x) = 1 - \sum^{\infty}_{k=1} \frac{\cos(k \pi / k)}{(k-1)! \, 8^k} \frac{1}{x^{k+1}} \prod^{k}_{l=1}(2l - 1)^2\\
+	g'_0(x) = -\sum^{\infty}_{k=1} \frac{\sin(k \pi / k)}{(k-1)! \, 8^k} \frac{1}{x^{k+1}} \prod^{k}_{l=1}(2l - 1)^2
 \end{align}
 
 \subsection{Implementierung}
@@ -123,8 +124,14 @@ Analog gilt:\newline
 \end{tabular}
 \begin{thebibliography}{9}
 
+\bibitem{abramowitzstegun}
+Abramowitz, M. \& Stegun, I. A.
+\emph{Handbook of Mathematical Functions},
+Dover Books (1965)
+
 \bibitem{healdmarion}
-Heald, M. \& Marion, J. \emph{Classical Electromagnetic Radiation},
+Heald, M. \& Marion, J.
+\emph{Classical Electromagnetic Radiation},
 Brooks Cole (1994)
 
 \bibitem{kazimierczuk}
