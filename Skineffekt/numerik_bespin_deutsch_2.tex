@@ -75,14 +75,14 @@ Mit der Identität $\Gamma(n+1) = n!$ für $n \in \mathbb{N}$ ergibt sich:
 Die Kelvin-Funktionen $\mathrm{ber}_\nu(x)$ und $\mathrm{bei}_\nu(x)$ sind definiert als der Real-
 beziehungsweise Imaginärteil von $J_\nu(x \sqrt{-i} )$. Mit (\ref{eq:bessel0})
 folgt für den Fall $\nu = 0$ umgehend die Reihendarstellung der Kelvinfunktionen:
-\stepcounter{equation}
 \begin{align}
-	\mathrm{ber}_0(x) = 1 + \sum^{\infty}_{k=1} \frac{\left( -1 \right)^k}{\left( \left(2k\right)! \right)^2} \left( \frac{x}{2} \right)^{4k}&\hspace{40pt}\mathrm{bei}_0(x) = \sum^{\infty}_{k=0} \frac{\left( -1 \right)^k}{\left( \left(2k+1\right)! \right)^2} \left( \frac{x}{2} \right)^{4k+2}\label{eq:berbeipotenzreihe} \tag{\theequation a,b}
+	\mathrm{ber}_0(x) = 1 + \sum^{\infty}_{k=1} \frac{\left( -1 \right)^k}{\left( \left(2k\right)! \right)^2} \left( \frac{x}{2} \right)^{4k}&&
+	\mathrm{bei}_0(x) = \sum^{\infty}_{k=0} \frac{\left( -1 \right)^k}{\left( \left(2k+1\right)! \right)^2} \left( \frac{x}{2} \right)^{4k+2}\label{eq:potenzreihe}
 \end{align}
-Um die erste Ableitung zu erhalten, leiten wir (\ref{eq:berbeipotenzreihe}) gliedweise ab:
-\stepcounter{equation}
+Um die erste Ableitung zu erhalten, leiten wir (\ref{eq:potenzreihe}) gliedweise ab:
 \begin{align}
-	\mathrm{ber}'_0(x) = \sum^{\infty}_{k=1} \frac{\left( -1 \right)^k}{\left( 2k-1 \right)! \, \left( 2k \right)!} \left( \frac{x}{2} \right)^{4k-1}&\hspace{30pt}\mathrm{bei}'_0(x) = \sum^{\infty}_{k=0} \frac{\left( -1 \right)^k}{\left( 2k \right)! \, \left( 2k+1 \right)!} \left( \frac{x}{2} \right)^{4k+1} \tag{\theequation a, b}
+	\mathrm{ber}'_0(x) = \sum^{\infty}_{k=1} \frac{\left( -1 \right)^k}{\left( 2k-1 \right)! \, \left( 2k \right)!} \left( \frac{x}{2} \right)^{4k-1}&&
+	\mathrm{bei}'_0(x) = \sum^{\infty}_{k=0} \frac{\left( -1 \right)^k}{\left( 2k \right)! \, \left( 2k+1 \right)!} \left( \frac{x}{2} \right)^{4k+1}
 \end{align}
 In asymptotischer Näherung \cite{abramowitzstegun} ergibt sich mit den Definitionen $\alpha = \frac{x}{\sqrt{2}}-\frac{\pi}{8}$ und $C(x) = e^{\frac{x}{\sqrt{2}}}/\sqrt{2 \pi x} $:
 \begin{align}
@@ -92,7 +92,7 @@ In asymptotischer Näherung \cite{abramowitzstegun} ergibt sich mit den Definiti
 Dabei sind $\mathrm{ker}_0$ und $\mathrm{kei}_0$ die Kelvin-Funktionen basierend auf der modifizierten Besselfunktion zweiter Art und nullter Ordnung.
 Außerdem gilt:
 \begin{align}
-	f_0(x) = 1 + \sum^{\infty}_{k=1} \frac{\cos(k \pi / k)}{k! \, (8k)^k} \prod^{k}_{l=1}(2l - 1)^2\\
+	f_0(x) = 1 + \sum^{\infty}_{k=1} \frac{\cos(k \pi / k)}{k! \, (8k)^k} \prod^{k}_{l=1}(2l - 1)^2&&
 	g_0(x) = \sum^{\infty}_{k=1} \frac{\sin(k \pi / k)}{k! \, (8k)^k} \prod^{k}_{l=1}(2l - 1)^2
 \end{align}
 Wir vernachlässigen den Beitrag von $\mathrm{ker}_0$ und $\mathrm{kei}_0$ zur asymptotischen Näherung, da gilt:
@@ -106,7 +106,7 @@ Nun leiten wir (\ref{eq:berpotenzreiheasym}) und (\ref{eq:beipotenzreiheasym}) a
 \end{align}
 mit
 \begin{align}
-	f'_0(x) = 1 - \sum^{\infty}_{k=1} \frac{\cos(k \pi / k)}{(k-1)! \, 8^k} \frac{1}{x^{k+1}} \prod^{k}_{l=1}(2l - 1)^2\\
+	f'_0(x) = 1 - \sum^{\infty}_{k=1} \frac{\cos(k \pi / k)}{(k-1)! \, 8^k} \frac{1}{x^{k+1}} \prod^{k}_{l=1}(2l - 1)^2&&
 	g'_0(x) = -\sum^{\infty}_{k=1} \frac{\sin(k \pi / k)}{(k-1)! \, 8^k} \frac{1}{x^{k+1}} \prod^{k}_{l=1}(2l - 1)^2
 \end{align}
 
