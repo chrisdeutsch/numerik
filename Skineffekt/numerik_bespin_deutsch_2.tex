@@ -137,9 +137,9 @@ Funktion & $c(x,k)$ \\\hline
 \label{tab:rekursionsfaktoren}
 \end{wraptable}
 
-Man sieht leicht, dass diese Methode nicht für $f_0$ und $g_0$ sowie deren Ableitungen funktioniert, da ein Sinus bzw. Cosinus mit $k$-Abhängigkeit im Summanden vorkommt.
-Um dennoch die Vorteile der Methode zu erhalten, können wir die problematische Funktion $f(x,k)$ ausklammern (also $S_k = f(x,k) \cdot \alpha_k(x,k)$ sowie $S_{k-1} = f(x,k-1) \cdot \alpha_{k-1}(x,k)$)
-und analog zur Methode von vorhin den Faktor $\alpha_k(x,k)$ entwickeln. Dies nimmt dann die allgemeine Form $\alpha_k(x,k) = c(x,k)\cdot\alpha_{k-1}(x,k)$.
+Man sieht leicht, dass diese Methode für $f_0$ und $g_0$ sowie deren Ableitungen nicht optimal ist, da ein Sinus bzw. Cosinus mit $k$-Abhängigkeit im Summanden vorkommt.
+Dies beheben wir, indem die problematische Funktion $f(x,k)$ ausgeklammert wird (also $S_k = f(x,k) \cdot \alpha_k(x,k)$ sowie $S_{k-1} = f(x,k-1) \cdot \alpha_{k-1}(x,k)$)
+und analog zur Methode von vorhin der Faktor $\alpha_k(x,k)$ entwickelt wird. Dies nimmt dann die allgemeine Form $\alpha_k(x,k) = c(x,k)\cdot\alpha_{k-1}(x,k)$ an.
 \subsubsection{Abbruchbedingungen}
 
 \subsection{physikalische Ergebnisse}
