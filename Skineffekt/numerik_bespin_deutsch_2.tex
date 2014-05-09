@@ -4,6 +4,7 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
+\usepackage{siunitx}
 \usepackage{multirow}
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 \usepackage{wrapfig}
@@ -23,7 +24,7 @@
 
 \subsection{Physikalischer Hintergrund}
 
-In einem zylinderförmigen elektrischen Leiter, der hinreichend lang ist und in dem ein Wechselstrom $I(t)=I_0 e^{i \omega t}$ fließt, ist die Stromdichte nicht über den ganzen Leiterquerschnitt konstant. Das im Leiter schwingende elektrische Feld genügt bei verschwindendem Verschiebungsstrom ($\dot D \approx 0$) der elektromagnetischen Wellengleichung:
+In einem zylinderförmigen elektrischen Leiter mit Radius $\rho_0$, der hinreichend lang ist und in dem ein Wechselstrom $I(t)=I_0 e^{i \omega t}$ fließt, ist die Stromdichte nicht über den ganzen Leiterquerschnitt konstant. Das im Leiter schwingende elektrische Feld genügt bei verschwindendem Verschiebungsstrom ($\dot D \approx 0$) der elektromagnetischen Wellengleichung:
 \begin{align}
 	\Delta\mathbf{E} - \frac{4\pi\sigma\mu}{c^2} \frac{\partial \mathbf{E}}{\partial t} = 0
 	\label{eq:maxwellgleichung}
@@ -82,7 +83,7 @@ folgt für den Fall $\nu = 0$ umgehend die Reihendarstellung der Kelvinfunktione
 Um die erste Ableitung zu erhalten, leiten wir (\ref{eq:potenzreihe}) gliedweise ab:
 \begin{align}
 	\mathrm{ber}'_0(x) = \sum^{\infty}_{k=1} \frac{\left( -1 \right)^k}{\left( 2k-1 \right)! \, \left( 2k \right)!} \left( \frac{x}{2} \right)^{4k-1}&&
-	\mathrm{bei}'_0(x) = \sum^{\infty}_{k=0} \frac{\left( -1 \right)^k}{\left( 2k \right)! \, \left( 2k+1 \right)!} \left( \frac{x}{2} \right)^{4k+1}
+	\mathrm{bei}'_0(x) = \sum^{\infty}_{k=0} \frac{\left( -1 \right)^k}{\left( 2k \right)! \, \left( 2k+1 \right)!} \left( \frac{x}{2} \right)^{4k+1}\label{eq:dpotenzreihe}
 \end{align}
 In asymptotischer Näherung \cite{abramowitzstegun} ergibt sich mit den Definitionen $\alpha = \frac{x}{\sqrt{2}}-\frac{\pi}{8}$ und $C(x) = e^{\frac{x}{\sqrt{2}}}/\sqrt{2 \pi x} $:
 \begin{align}
@@ -93,7 +94,7 @@ Dabei sind $\mathrm{ker}_0$ und $\mathrm{kei}_0$ die Kelvin-Funktionen basierend
 Außerdem gilt:
 \begin{align}
 	f_0(x) = 1 + \sum^{\infty}_{k=1} \frac{\cos(k \pi / k)}{k! \, (8k)^k} \prod^{k}_{l=1}(2l - 1)^2&&
-	g_0(x) = \sum^{\infty}_{k=1} \frac{\sin(k \pi / k)}{k! \, (8k)^k} \prod^{k}_{l=1}(2l - 1)^2
+	g_0(x) = \sum^{\infty}_{k=1} \frac{\sin(k \pi / k)}{k! \, (8k)^k} \prod^{k}_{l=1}(2l - 1)^2\label{eq:f0g0}
 \end{align}
 Wir vernachlässigen den Beitrag von $\mathrm{ker}_0$ und $\mathrm{kei}_0$ zur asymptotischen Näherung, da gilt:
 \begin{align}
@@ -107,10 +108,19 @@ Nun leiten wir (\ref{eq:berpotenzreiheasym}) und (\ref{eq:beipotenzreiheasym}) a
 mit
 \begin{align}
 	f'_0(x) = 1 - \sum^{\infty}_{k=1} \frac{\cos(k \pi / k)}{(k-1)! \, 8^k} \frac{1}{x^{k+1}} \prod^{k}_{l=1}(2l - 1)^2&&
-	g'_0(x) = -\sum^{\infty}_{k=1} \frac{\sin(k \pi / k)}{(k-1)! \, 8^k} \frac{1}{x^{k+1}} \prod^{k}_{l=1}(2l - 1)^2
+	g'_0(x) = -\sum^{\infty}_{k=1} \frac{\sin(k \pi / k)}{(k-1)! \, 8^k} \frac{1}{x^{k+1}} \prod^{k}_{l=1}(2l - 1)^2\label{eq:d_f0g0}
 \end{align}
 
 \subsection{Implementierung}
+
+\subsubsection{Struktur des Programmes}
+\begin{itemize}
+\item \texttt{ber}, \texttt{bei}: Gln. \ref{eq:potenzreihe}
+\item \texttt{d\_ber}, \texttt{d\_bei}: Gln. \ref{eq:dpotenzreihe}
+\item \texttt{f0}, \texttt{g0}: Gln. \ref{eq:f0g0}
+\item \texttt{d\_f0}, \texttt{d\_g0}: Gln. \ref{eq:d_f0g0}
+\end{itemize}
+Aufteilung in asymptotische Näherung und Reihenentwicklung erklären.
 
 \subsubsection{rekursive Berechnung der Summanden der Reihen}
 Um Reihen effizienter zu berechnen (besonders bei Verwendung von Potenzen und Fakultäten), kann man oft den $k$-ten Summanden $S_k$ aus $S_{k-1}$ berechnen. Diesen Fakt nutzen wir aus, um unsere Reihenberechnung effizienter zu gestalten. Allgemein nimmt dies die Form: $S_k = c(x, k)\cdot S_{k-1}$ an.
@@ -127,8 +137,11 @@ $-\dfrac{1}{(2k-1) (2k)^2 (2k+1)}\dfrac{x^4}{16}$ \\
 
 TODO: Das geht bei $f_0$ und $g_0$ sowie den Ableitungen nicht!
 
+\subsubsection{Abbruchbedingungen}
 
-
+\subsection{physikalische Ergebnisse}
+Verwendeter spezifischer Widerstand $\rho_{Cu} = \num{1.678e-8} \si{\ohm\metre}$ \cite{crchandbook}.
+Im Gaußschen Maßsystem: $\sigma_{Cu} = \num{5.356e17} \si{\per\second}$
 
 \begin{thebibliography}{9}
 
@@ -146,6 +159,12 @@ Brooks Cole (1994)
 Kazimierczuk, M.
 \emph{High-Frequency Magnetic Components},
 Wiley (2009)
+
+\bibitem{crchandbook}
+David R. Lide (ed),
+\emph{CRC Handbook of Chemistry and Physics},
+84th Edition. CRC Press. Boca Raton, Florida, 2003;
+Section 12, Properties of Solids; Electrical Resistivity of Pure Metals
 
 \end{thebibliography}
 
