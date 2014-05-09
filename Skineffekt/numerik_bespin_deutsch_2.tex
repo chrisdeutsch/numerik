@@ -23,7 +23,7 @@
 
 \subsection{Physikalischer Hintergrund}
 
-In einem zylinderförmigen elektrischen Leiter, der hinreichend lang ist und in dem ein Wechselstrom $I(t)=I_0 e^{i \omega t}$ fließt, ist die Stromdichte nicht über den ganzen Leiterquerschnitt konstant. Das im Leiter schwingende elektrische Feld genügt mit $\dot D \approx 0$ der elektromagnetischen Wellengleichung:
+In einem zylinderförmigen elektrischen Leiter, der hinreichend lang ist und in dem ein Wechselstrom $I(t)=I_0 e^{i \omega t}$ fließt, ist die Stromdichte nicht über den ganzen Leiterquerschnitt konstant. Das im Leiter schwingende elektrische Feld genügt bei verschwindendem Verschiebungsstrom ($\dot D \approx 0$) der elektromagnetischen Wellengleichung:
 \begin{align}
 	\Delta\mathbf{E} - \frac{4\pi\sigma\mu}{c^2} \frac{\partial \mathbf{E}}{\partial t} = 0
 	\label{eq:maxwellgleichung}
@@ -33,12 +33,12 @@ Wir drücken das elektrische Feld $\mathbf{E}$ durch das ohm'sche Gesetz $\mathb
 	\Delta\mathbf{j}_0 + k^2 \mathbf{j}_0 = 0
 	\label{eq:maxwellgleichungJ}
 \end{align}
-mit $k^2 = - i \frac{4 \pi \sigma \mu \omega}{c^2}$. Gehen wir in Zylinderkoordinaten über und nutzen Symmetrie aus, erhalten wir:
+mit $k^2 = - i \frac{4 \pi \sigma \mu \omega}{c^2}$. Gehen wir in Zylinderkoordinaten über, wobei die z-Achse parallel zum Leiter gelegt wird und nutzen Symmetrie aus (keine Winkelabhängigkeit der Stromdichte), erhalten wir:
 \begin{align}
 	\frac{\mathrm{d}^2 j_0}{\mathrm{d}\rho^2} + \frac{1}{\rho}\frac{\mathrm{d}j_0}{\mathrm{d}\rho} + k^2 j_0 = 0
 	\label{eq:besseldgl} 
 \end{align}
-Multiplikation dieser Gleichung mit $\rho^2$ und der Substitution $\xi = k \rho$ liefert die Bessel'sche Differentialgleichung:
+Multiplikation dieser Gleichung mit $\rho^2$ liefert mit der Substitution $\xi = k \rho$ die Bessel'sche Differentialgleichung:
 \begin{align}
   \xi^2 \frac{\mathrm{d}^2j_0}{\mathrm{d}\xi^2} + \xi \frac{\mathrm{d}j_0}{\mathrm{d}\xi} + \xi^2 j_0 = 0
 \end{align}
@@ -51,7 +51,7 @@ Die Konstante $A$ kann aus dem Strom, der im Leiter fließt, bestimmt werden \ci
 \begin{align}
 	j_0(\rho) = \frac{I_0 \kappa}{2\pi\rho_0}\frac{\mathrm{ber}_0(\kappa\rho)+i \mathrm{bei}_0(\kappa\rho)}{\mathrm{bei}'_0(\kappa\rho_0)-i\mathrm{ber}'_0(\kappa\rho_0)}
 \end{align}
-folgt. Mit steigender Frequenz $\omega$ geschieht der Ladungstransport überwiegend am Rand des Leiter. Dieser Effekt wird als \emph{Skin-Effekt} bezeichnet, der hier nach erfolgreicher Implementierung der Kelvin-Funktionen an einigen Werten beispielhaft numerisch überprüft werden soll. Insbesondere ist $j_0$ eine komplexe Zahl, da sie nach dem Separationsansatz sowohl Amplituden- wie auch Phaseinformation enthält.
+folgt. Mit steigender Frequenz $\omega$ geschieht der Ladungstransport überwiegend am Rand des Leiter. HIER:(kleine Erklärung mit Wirbelströmen) Dieser Effekt wird als \emph{Skin-Effekt} bezeichnet. Insbesondere ist $j_0$ eine komplexe Zahl, da sie nach dem Separationsansatz sowohl Amplituden- wie auch Phaseinformation enthält.
 
 
 \subsection{Mathematischer Hintergrund}
@@ -101,8 +101,8 @@ Wir vernachlässigen den Beitrag von $\mathrm{ker}_0$ und $\mathrm{kei}_0$ zur a
 \end{align}
 Nun leiten wir (\ref{eq:berpotenzreiheasym}) und (\ref{eq:beipotenzreiheasym}) ab und erhalten:
 \begin{align}
-	\mathrm{ber}'_0(x) &\approx C(x) \left( \frac{1}{\sqrt{2}} - \frac{1}{2x} \right) \left[f_0(x) \cos(\alpha) + g_0(x) \sin(\alpha) \right] \notag\\ & + C(x) \left[ f'_0(x) \cos(\alpha) + g'_0(x) \sin(\alpha) - f_0(x) \sin(\alpha)/\sqrt{2} + g_0(x) \cos(\alpha)/\sqrt{2} \right]\label{eq:dberpotenzreiheasym}\\
-	\mathrm{ber}'_0(x) &\approx C(x) \left( \frac{1}{\sqrt{2}} - \frac{1}{2x} \right) \left[f_0(x) \sin(\alpha) - g_0(x) \cos(\alpha) \right] \notag\\ & + C(x) \left[ f'_0(x) \sin(\alpha) - g'_0(x) \cos(\alpha) + f_0(x) \cos(\alpha)/\sqrt{2} + g_0(x) \sin(\alpha)/\sqrt{2} \right] \label{eq:dbeipotenzreiheasym}
+	\mathrm{ber}'_0(x) &\approx C(x) \left( \frac{1}{\sqrt{2}} - \frac{1}{2x} \right) \left[f_0(x) \cos(\alpha) + g_0(x) \sin(\alpha) \right] \notag\\ & + C(x) \left[ f'_0(x) \cos(\alpha) + g'_0(x) \sin(\alpha) - f_0(x) \frac{\sin(\alpha)}{\sqrt{2}} + g_0(x) \frac{\cos(\alpha)}{\sqrt{2}} \right]\label{eq:dberpotenzreiheasym}\\
+	\mathrm{ber}'_0(x) &\approx C(x) \left( \frac{1}{\sqrt{2}} - \frac{1}{2x} \right) \left[f_0(x) \sin(\alpha) - g_0(x) \cos(\alpha) \right] \notag\\ & + C(x) \left[ f'_0(x) \sin(\alpha) - g'_0(x) \cos(\alpha) + f_0(x) \frac{\cos(\alpha)}{\sqrt{2}} + g_0(x) \frac{\sin(\alpha)}{\sqrt{2}} \right] \label{eq:dbeipotenzreiheasym}
 \end{align}
 mit
 \begin{align}
@@ -112,17 +112,20 @@ mit
 
 \subsection{Implementierung}
 
-Sei $S_k$ der $k$-te Summand der Reihendarstellung von \emph{ber}. Wir berechnen $S_k$ aus $S_{k-1}$ mit
-\begin{align}
-	S_k=c\cdot S_{k-1}
-\end{align} mit $c=konstant$.
-Analog gilt:\newline
+\subsubsection{rekursive Berechnung der Summanden der Reihen}
+Um Reihen effizienter zu berechnen (besonders bei Verwendung von Potenzen und Fakultäten), kann man oft den $k$-ten Summanden $S_k$ aus $S_{k-1}$ berechnen. Diesen Fakt nutzen wir aus, um unsere Reihenberechnung effizienter zu gestalten. Allgemein nimmt dies die Form: $S_k = c(x, k)\cdot S_{k-1}$ an.
+Im Folgenden geben wir $c(x, k)$ für unsere Reihen an:\newline
 \begin{tabular}{c|c|c|c}
 \centering
 \rule[1ex]{0pt}{2.5ex} c für $\mathrm{ber}$ & c für $\mathrm{bei}$ & c für $\mathrm{ber}'$ & c für $\mathrm{bei}'$ \\ 
 \hline 
-\rule[2ex]{0pt}{2.5ex} $-\dfrac{1}{(2k-1)^2\cdot(2k)^2}\dfrac{x^4}{16}$ & $-\dfrac{1}{(2k+1)^2\cdot(2k)^2}\dfrac{x^4}{16}$ & $-\dfrac{1}{(2k-2)(2k-1)^2\cdot 2k}\dfrac{x^4}{16}$ & $-\dfrac{1}{(2k+1)(2k-1) \cdot (2k)^2}\dfrac{x^4}{16}$ \\ 
+\rule[2ex]{0pt}{2.5ex} $-\dfrac{1}{(2k-1)^2 (2k)^2}\dfrac{x^4}{16}$ &
+$-\dfrac{1}{(2k)^2 (2k+1)^2}\dfrac{x^4}{16}$ &
+$-\dfrac{1}{(2k-2) (2k-1)^2 (2k)}\dfrac{x^4}{16}$ &
+$-\dfrac{1}{(2k-1) (2k)^2 (2k+1)}\dfrac{x^4}{16}$ \\ 
 \end{tabular}
+
+TODO: Das geht bei $f_0$ und $g_0$ sowie den Ableitungen nicht!
 
 
 
