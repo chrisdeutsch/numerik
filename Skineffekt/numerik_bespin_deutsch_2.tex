@@ -93,8 +93,8 @@ In asymptotischer Näherung \cite{abramowitzstegun} ergibt sich mit den Definiti
 Dabei sind $\mathrm{ker}_0$ und $\mathrm{kei}_0$ die Kelvin-Funktionen basierend auf der modifizierten Besselfunktion zweiter Art und nullter Ordnung.
 Außerdem gilt:
 \begin{align}
-	f_0(x) = 1 + \sum^{\infty}_{k=1} \frac{\cos(k \pi / k)}{k! \, (8k)^k} \prod^{k}_{l=1}(2l - 1)^2&&
-	g_0(x) = \sum^{\infty}_{k=1} \frac{\sin(k \pi / k)}{k! \, (8k)^k} \prod^{k}_{l=1}(2l - 1)^2\label{eq:f0g0}
+	f_0(x) = 1 + \sum^{\infty}_{k=1} \frac{\cos(k \pi / 4)}{k! \, (8k)^k} \prod^{k}_{l=1}(2l - 1)^2&&
+	g_0(x) = \sum^{\infty}_{k=1} \frac{\sin(k \pi / 4)}{k! \, (8k)^k} \prod^{k}_{l=1}(2l - 1)^2\label{eq:f0g0}
 \end{align}
 Wir vernachlässigen den Beitrag von $\mathrm{ker}_0$ und $\mathrm{kei}_0$ zur asymptotischen Näherung, da gilt:
 \begin{align}
@@ -107,8 +107,8 @@ Nun leiten wir (\ref{eq:berpotenzreiheasym}) und (\ref{eq:beipotenzreiheasym}) a
 \end{align}
 mit
 \begin{align}
-	f'_0(x) = 1 - \sum^{\infty}_{k=1} \frac{\cos(k \pi / k)}{(k-1)! \, 8^k} \frac{1}{x^{k+1}} \prod^{k}_{l=1}(2l - 1)^2&&
-	g'_0(x) = -\sum^{\infty}_{k=1} \frac{\sin(k \pi / k)}{(k-1)! \, 8^k} \frac{1}{x^{k+1}} \prod^{k}_{l=1}(2l - 1)^2\label{eq:d_f0g0}
+	f'_0(x) = - \sum^{\infty}_{k=1} \frac{\cos(k \pi / 4)}{(k-1)! \, 8^k} \frac{1}{x^{k+1}} \prod^{k}_{l=1}(2l - 1)^2&&
+	g'_0(x) = -\sum^{\infty}_{k=1} \frac{\sin(k \pi / 4)}{(k-1)! \, 8^k} \frac{1}{x^{k+1}} \prod^{k}_{l=1}(2l - 1)^2\label{eq:d_f0g0}
 \end{align}
 
 \subsection{Implementierung}
@@ -124,8 +124,7 @@ Aufteilung in asymptotische Näherung und Reihenentwicklung erklären.
 
 \subsubsection{rekursive Berechnung der Summanden der Reihen}
 Um Reihen effizienter zu berechnen (besonders bei Verwendung von Potenzen und Fakultäten), kann man oft den $k$-ten Summanden $S_k$ aus $S_{k-1}$ berechnen. Diesen Fakt nutzen wir aus, um unsere Reihenberechnung effizienter zu gestalten. Allgemein nimmt dies die Form: $S_k = c(x, k)\cdot S_{k-1}$ an.
-Im Folgenden geben wir $c(x, k)$ für unsere Reihen an:
-
+In Tabelle \ref{tab:rekursionsfaktoren} geben wir die, aus den Gleichungen aus Abschnitt \ref{sssec:kelvin-funktionen}, berechneten Faktoren an.
 \begin{wraptable}{R}[1pt]{0.5\textwidth}
 \begin{tabular}{c|c}
 Funktion & $c$ \\\hline
