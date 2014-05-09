@@ -124,16 +124,19 @@ Aufteilung in asymptotische Näherung und Reihenentwicklung erklären.
 
 \subsubsection{rekursive Berechnung der Summanden der Reihen}
 Um Reihen effizienter zu berechnen (besonders bei Verwendung von Potenzen und Fakultäten), kann man oft den $k$-ten Summanden $S_k$ aus $S_{k-1}$ berechnen. Diesen Fakt nutzen wir aus, um unsere Reihenberechnung effizienter zu gestalten. Allgemein nimmt dies die Form: $S_k = c(x, k)\cdot S_{k-1}$ an.
-Im Folgenden geben wir $c(x, k)$ für unsere Reihen an:\newline
-\begin{tabular}{c|c|c|c}
-\centering
-\rule[1ex]{0pt}{2.5ex} c für $\mathrm{ber}$ & c für $\mathrm{bei}$ & c für $\mathrm{ber}'$ & c für $\mathrm{bei}'$ \\ 
-\hline 
-\rule[2ex]{0pt}{2.5ex} $-\dfrac{1}{(2k-1)^2 (2k)^2}\dfrac{x^4}{16}$ &
-$-\dfrac{1}{(2k)^2 (2k+1)^2}\dfrac{x^4}{16}$ &
-$-\dfrac{1}{(2k-2) (2k-1)^2 (2k)}\dfrac{x^4}{16}$ &
-$-\dfrac{1}{(2k-1) (2k)^2 (2k+1)}\dfrac{x^4}{16}$ \\ 
+Im Folgenden geben wir $c(x, k)$ für unsere Reihen an:
+
+\begin{wraptable}{R}[1pt]{0.5\textwidth}
+\begin{tabular}{c|c}
+Funktion & $c$ \\\hline
+\rule[-3.5ex]{0pt}{8ex} ber & $-\dfrac{1}{(2k-1)^2 (2k)^2}\dfrac{x^4}{16}$ \\ \hline
+\rule[-3.5ex]{0pt}{8ex} bei & $-\dfrac{1}{(2k)^2 (2k+1)^2}\dfrac{x^4}{16}$ \\ \hline
+\rule[-3.5ex]{0pt}{8ex} ber' & $-\dfrac{1}{(2k-2) (2k-1)^2 (2k)}\dfrac{x^4}{16}$ \\ \hline
+\rule[-3.5ex]{0pt}{8ex} bei' & $-\dfrac{1}{(2k-1) (2k)^2 (2k+1)}\dfrac{x^4}{16}$
 \end{tabular}
+\caption{Ausgabe unseres Programmes bei vorgegebener Genauigkeit $\epsilon$}
+\label{tab:rekursionsfaktoren}
+\end{wraptable}
 
 TODO: Das geht bei $f_0$ und $g_0$ sowie den Ableitungen nicht!
 
