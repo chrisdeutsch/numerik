@@ -143,12 +143,13 @@ und analog zur Methode von vorhin der Faktor $\alpha_k(x,k)$ entwickelt wird. Di
 TODO: kEpsilon erklären; Abbruch von den Potenzreihen von ber,bei sowie Ableitung; insbesondere Multiplikation mit der aktuellen Summe im Hinblick auf Auslöschung; erklären warum bei $f_0$ und $g_0$ der Faktor betrachtet wird (Cos/Sin wird Null und würde schon nach wenigen Glieder abbrechen und das unabhängig von der erzielten Genauigkeit); Außerdem die Multiplikation mit der aktuellen Summe erklären (das macht vermutlich keinen Sinn evtl. nochmal den Code überarbeiten).
 
 \subsection{physikalische Ergebnisse}
-Uns interessiert die Amplitude:
+Wir teilen Gl. (\ref{eq:stromdichte}) in Real- und Imaginärteil auf:
 \begin{align}
-	|j_0(\rho)| &= \left|\frac{I_0 \kappa}{2 \pi \rho_0}\right|\sqrt{\frac{\mathrm{ber}^2_0(\kappa \rho)+\mathrm{bei}^2_0(\kappa \rho)}{\mathrm{ber}'^2_0(\kappa \rho_0)+\mathrm{bei}'^2_0(\kappa \rho_0)}}
+	j_0(\rho) &= \frac{I_0 \kappa}{2 \pi \rho_0} \left[ \frac{\mathrm{ber}_0(\kappa \rho)\mathrm{bei}'_0(\kappa \rho_0) - \mathrm{bei}_0(\kappa \rho)\mathrm{ber}'_0(\kappa \rho_0)}{\mathrm{ber}'^2_0(\kappa \rho_0)+\mathrm{bei}'^2_0(\kappa \rho_0)} + i\frac{\mathrm{ber}_0(\kappa \rho)\mathrm{ber}'_0(\kappa \rho_0) - \mathrm{bei}_0(\kappa \rho)\mathrm{bei}'_0(\kappa \rho_0)}{\mathrm{ber}'^2_0(\kappa \rho_0)+\mathrm{bei}'^2_0(\kappa \rho_0)}\right]
 \end{align}
-sowie die relative Phase der Stromdichte:
+So kann die Amplitude sowie Phase einfach berechnet werden:
 \begin{align}
+	|j_0(\rho)| &= \sqrt{\operatorname{Re}(j_0(\rho))^2 + \operatorname{Im}(j_0(\rho))^2}\\
 	\phi(\rho) &= \operatorname{atan2}\left(\operatorname{Im}(j_0(\rho)), \operatorname{Re}(j_0(\rho))\right)
 \end{align}
 
