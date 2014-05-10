@@ -17,7 +17,7 @@ set ytics nomirror
 
 set tics scale 0.7
 
-set key right bottom
+set key left top
 
 plot "../plots/e7.txt" using 1:2 smooth csplines lt 1 axes x1y1 t'\footnotesize Amplitude', "../plots/e7.txt" using 1:3 with lines lt 2 axes x1y2 t'\footnotesize Phase' 
 
