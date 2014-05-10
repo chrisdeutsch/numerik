@@ -20,7 +20,8 @@ double d_f0(double x);
 double d_g0(double x);
 
 /* Berechnet zunächst Werte für Kupfer Radius im cgs-System: Einheit cm */
-void table(double radius, int count);
+void table(double I_0, double sigma, double mu,
+           double omega, double radius, int N);
 
 /* vergleicht die Ergebnisse der Funktion dbl func(dbl) mit den idealwerten in
    der Datei hinter filename (Format: x-Wert f(x)-Wert). Sollte der relative
@@ -36,14 +37,11 @@ const double kSqrt2 = 1.4142135623730950488016887242097;
 const double kPi = 3.1415926535897932384626433832795;
 
 int main() {
-  /*
-  test_func(ber, "literatur/ber.tsv", 1E-7);
-  test_func(bei, "literatur/bei.tsv", 1E-7);
-  test_func(d_ber, "literatur/dber.tsv", 1E-7);
-  test_func(d_bei, "literatur/dbei.tsv", 1E-7);
-  */
-  printf("#Interface: \n");
-  table(0.1, 49);
+  double I_0 = 1; /* cgs-System Einheit: Fr/s */
+  double sigma = 5.356E+17; /* cgs-System Einheit: 1/s */
+  double omega = 1E+6; /* Einheit: 1/s */
+  double mu = 1; /* Einheit: keine */
+  table(I_0, sigma, mu, omega, 0.1, 49);
   
   return 0;
 }
@@ -228,24 +226,21 @@ double d_g0(double x) {
   return sum;
 }
 
-void table(double radius, int count) {
-  double sigma = 5.356E+17; /* cgs-System Einheit: 1/s */
-  double omega = 1E+6; /* Einheit: 1/s */
-  double mu = 1; /* Einheit: keine */
-  double kappa = 2 * sqrt(kPi * sigma * mu * omega) / 3E10; /* Einheit 1/cm */
-  double I_0 = 1; /* cgs-System Einheit: Fr/s */
+void table(double I_0, double sigma, double mu,
+           double omega, double radius, int N) {
+  /* Einheit 1/cm */
+  double kappa = 2 * sqrt(kPi * sigma * mu * omega) / 2.99792458E10;
   
   /* Vorberechnete Werte die in in jedem Schleifendurchlauf gleich sind */
   double factor = I_0 * kappa / (2 * kPi * radius); /* cgs-System Einheit: Fr/s/cm^2 */
   double denominator = d_ber(kappa*radius) * d_ber(kappa*radius)
                        + d_bei(kappa*radius) * d_bei(kappa*radius);
   
-  
   int i;
-  double step = radius / (count - 1);
+  double step = radius / (N - 1);
   
   printf("#rho\tamplitude\tphase\n");
-  for(i = 0; i < count; i++) {
+  for(i = 0; i < N; i++) {
     double rho = i*step;
     
     double real = ( ber(kappa*rho) * d_bei(kappa*radius)
