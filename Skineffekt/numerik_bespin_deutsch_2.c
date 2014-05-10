@@ -230,22 +230,24 @@ double d_g0(double x) {
 
 void table(double radius, int count) {
   double sigma = 5.356E+17;
-  double omega = 1E+6*2*kPi;
+  double omega = 1E+9;
+  double mu = 1;
+  double kappa = 2 * sqrt(kPi * sigma * mu * omega) / 3E10;
+  double I_0 = 1;
   
-  double kappa = 2 * sqrt(kPi * sigma * 1 * omega) / 3E10;
-  double fac = kappa / (2 * kPi * radius);
+  double factor = I_0*kappa/(2*kPi*radius);
   
   int i;
   double step = radius / (count - 1);
   
   printf("#rho\tamplitude\tphase\n");
   for(i = 0; i < count; i++) {
-    double real = ber(kappa * i*step) * d_bei(kappa * radius) - bei(kappa * i*step) * d_ber(kappa * radius);
-    double imag = bei(kappa * i*step) * d_bei(kappa * radius) + ber(kappa * i*step) * d_ber(kappa * radius);
-    double amplitude = sqrt(real*real + imag*imag);
-    double phase = atan2(imag, real);
+    double rho = i*step;
+    double amplitude = factor* sqrt( (ber(kappa*rho)*ber(kappa*rho) + bei(kappa*rho)*bei(kappa*rho)) / 
+                             (d_ber(kappa*radius)*d_ber(kappa*radius) + d_bei(kappa*radius)*d_bei(kappa*radius)) );
+    double phase = 0;
     
-    printf("%.4f\t%E\t%f\n", i*step, amplitude, phase);
+    printf("%.4f\t%f\t%f\n", i*step, amplitude, phase);
   }
 }
 
