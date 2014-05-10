@@ -17,6 +17,9 @@ set tics scale 0.7
 
 set key left
 
-plot "../plots/e3.txt" using 1:2 smooth csplines lt 1 t'Amplitude'
+plot "../plots/e3.txt" using 1:2 smooth csplines lt 1 t'$\omega=10^3 1$/s', '../plots/e4.txt' using 1:2 smooth csplines lt 2 t'$\omega=10^4 1$/s', '../plots/e5.txt' using 1:2 smooth csplines lt 3 t'$\omega=10^5 1$/s', '../plots/e6.txt' using 1:2 smooth csplines lt 4 t'$\omega=10^6 1$/s'
+
+
+
 
 unset output
