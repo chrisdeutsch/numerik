@@ -141,7 +141,7 @@ Funktion & $c(x,k)$ \\\hline
 
 Man sieht leicht, dass diese Methode für $f_0$ und $g_0$ sowie deren Ableitungen nicht optimal ist, da ein Sinus bzw. Cosinus mit $k$-Abhängigkeit im Summanden vorkommt.
 Dies beheben wir, indem die problematische Funktion $f(x,k)$ ausgeklammert wird (also $S_k = f(x,k) \cdot \alpha_k(x,k)$ sowie $S_{k-1} = f(x,k-1) \cdot \alpha_{k-1}(x,k)$)
-und analog zur Methode von vorhin der Faktor $\alpha_k(x,k)$ berechnen. Dies nimmt dann die allgemeine Form $\alpha_k(x,k) = c(x,k)\cdot\alpha_{k-1}(x,k)$ an\footnote{Wir verzichten auf die Angabe des Faktors in diesem Fall (findet man allerdings im Quellcode)}.
+und analog zur Methode von vorhin der Faktor $\alpha_k(x,k)$ berechnen. Dies nimmt dann die allgemeine Form $\alpha_k(x,k) = c(x,k)\cdot\alpha_{k-1}(x,k)$ an\footnote{Wir verzichten auf die Angabe der Faktoren in diesem Fall (findet man allerdings im Quellcode)}.
 \subsubsection{Abbruchbedingungen}
 Wir haben eine globale Konstante \texttt{kEpsilon} definiert, die als Abbruchbedingung der Reihenberechnung dient.
 Die Reihen werden dann abgebrochen, wenn der letzte Summand kleiner als \texttt{kEpsilon} multipliziert mit der aktuellen Partialsumme ist.
@@ -159,7 +159,7 @@ So kann die Amplitude sowie Phase einfach berechnet werden:
 	|j_0(\rho)| &= \sqrt{\operatorname{Re}(j_0(\rho))^2 + \operatorname{Im}(j_0(\rho))^2}\\
 	\phi(\rho) &= \operatorname{atan2}\left[\operatorname{Im}(j_0(\rho)), \operatorname{Re}(j_0(\rho))\right]
 \end{align}
-
+Fazit: TODO: Plots erklären, Interpolation erklären
 Verwendeter spezifischer Widerstand $\rho_{Cu} = \num{1.678e-8} \si{\ohm\metre}$ \cite{crchandbook}.
 Im Gaußschen Maßsystem: $\sigma_{Cu} = \num{5.356e17} \si{\per\second}$
 
