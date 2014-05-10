@@ -230,7 +230,7 @@ double d_g0(double x) {
 
 void table(double radius, int count) {
   double sigma = 5.356E+17;
-  double omega = 1E+6;
+  double omega = 1E+6*2*kPi;
   
   double kappa = 2 * sqrt(kPi * sigma * 1 * omega) / 3E10;
   double fac = kappa / (2 * kPi * radius);
@@ -245,7 +245,7 @@ void table(double radius, int count) {
     double amplitude = sqrt(real*real + imag*imag);
     double phase = atan2(imag, real);
     
-    printf("%f\t%f\t%f\n", i*step, amplitude, phase);
+    printf("%.4f\t%E\t%f\n", i*step, amplitude, phase);
   }
 }
 
