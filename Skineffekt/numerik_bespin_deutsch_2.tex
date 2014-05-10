@@ -53,8 +53,7 @@ Die Konstante $A$ kann aus dem Strom, der im Leiter fließt, bestimmt werden \ci
 	j_0(\rho) = \frac{I_0 \kappa}{2\pi\rho_0}\frac{\mathrm{ber}_0(\kappa\rho)+i \mathrm{bei}_0(\kappa\rho)}{\mathrm{bei}'_0(\kappa\rho_0)-i\mathrm{ber}'_0(\kappa\rho_0)}
 \label{eq:stromdichte}
 \end{align}
-folgt. Mit steigender Frequenz $\omega$ geschieht der Ladungstransport überwiegend am Rand des Leiter. HIER:(kleine Erklärung mit Wirbelströmen) Dieser Effekt wird als \emph{Skin-Effekt} bezeichnet. Insbesondere ist $j_0$ eine komplexe Zahl, da sie nach dem Separationsansatz sowohl Amplituden- wie auch Phaseinformation enthält.
-
+folgt. Mit steigender Frequenz $\omega$ geschieht der Ladungstransport überwiegend am Rand des Leiter. Dies geschieht aufgrund des (alternierenden) Magnetfelds, das vom Wechselstrom induziert wird. Nach der Lenz'schen Regel wirkt dieses seiner Ursache entgegen und übt eine Kraft (Lorentzkraft) auf die Ladungsträger aus, die zum Rand des Leiters gerichtet ist. Am Rand sind also mehr Ladungsträger lokalisiert als im Kern, wobei der Ring am Rand des Leiters, in dem sich die Ladungsträger konzentrieren, mit zunehmender Frequenz immer dünner wird und das Phänomen daher als \emph{Skin-Effekt} bezeichnet wird. Insbesondere ist $j_0$ eine komplexe Zahl, da sie nach dem Separationsansatz sowohl Amplituden- wie auch Phaseinformation enthält.
 
 \subsection{Mathematischer Hintergrund}
 
@@ -134,9 +133,9 @@ Funktion & $c(x,k)$ \\\hline
 \rule[-3.5ex]{0pt}{8ex} $\mathrm{ber}'_0$ & $-\dfrac{1}{(2k-2) (2k-1)^2 (2k)}\dfrac{x^4}{16}$ \\ \hline
 \rule[-3.5ex]{0pt}{8ex} $\mathrm{bei}'_0$ & $-\dfrac{1}{(2k-1) (2k)^2 (2k+1)}\dfrac{x^4}{16}$
 \end{tabular}
-\caption{CAPTION}
+\caption{Faktoren der Rekursionsformeln}
 \label{tab:rekursionsfaktoren}
-\end{wraptable}\newline
+\end{wraptable}
 Man sieht leicht, dass diese Methode für $f_0$ und $g_0$ sowie deren Ableitungen nicht optimal ist, da ein Sinus bzw. Cosinus mit $k$-Abhängigkeit im Summanden vorkommt.
 Dies beheben wir, indem die problematische Funktion $f(x,k)$ ausgeklammert wird (also $S_k = f(x,k) \cdot \alpha_k(x,k)$ sowie $S_{k-1} = f(x,k-1) \cdot \alpha_{k-1}(x,k)$)
 und analog zur Methode von vorhin der Faktor $\alpha_k(x,k)$ entwickelt wird. Dies nimmt dann die allgemeine Form $\alpha_k(x,k) = c(x,k)\cdot\alpha_{k-1}(x,k)$ an.
@@ -157,7 +156,8 @@ Verwendeter spezifischer Widerstand $\rho_{Cu} = \num{1.678e-8} \si{\ohm\metre}$
 Im Gaußschen Maßsystem: $\sigma_{Cu} = \num{5.356e17} \si{\per\second}$
 
 \input{./figures/e3}
-\input{./figures/amplitude}
+\newline
+\input{./figures/e4}
 
 \begin{thebibliography}{9}
 
