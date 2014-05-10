@@ -19,6 +19,9 @@ double g0(double x);
 double d_f0(double x);
 double d_g0(double x);
 
+/* Berechnet zunächst Werte für Kupfer */
+void table(double radius, int count);
+
 /* vergleicht die Ergebnisse der Funktion dbl func(dbl) mit den idealwerten in
    der Datei hinter filename (Format: x-Wert f(x)-Wert). Sollte der relative
    Fehler größer als epsilon sein meldet sich die Funktion */
@@ -33,10 +36,15 @@ const double kSqrt2 = 1.4142135623730950488016887242097;
 const double kPi = 3.1415926535897932384626433832795;
 
 int main() {
+  /*
   test_func(ber, "literatur/ber.tsv", 1E-7);
   test_func(bei, "literatur/bei.tsv", 1E-7);
   test_func(d_ber, "literatur/dber.tsv", 1E-7);
   test_func(d_bei, "literatur/dbei.tsv", 1E-7);
+  */
+  printf("#Interface: \n");
+  table(0.1, 49);
+  
   return 0;
 }
 
@@ -218,6 +226,27 @@ double d_g0(double x) {
   }
   
   return sum;
+}
+
+void table(double radius, int count) {
+  double sigma = 5.356E+17;
+  double omega = 1E+6*2*kPi;
+  
+  double kappa = 2 * sqrt(kPi * sigma * 1 * omega) / 3E10;
+  double fac = kappa / (2 * kPi * radius);
+  
+  int i;
+  double step = radius / (count - 1);
+  
+  printf("#rho\tamplitude\tphase\n");
+  for(i = 0; i < count; i++) {
+    double real = ber(kappa * i*step) * d_bei(kappa * radius) - bei(kappa * i*step) * d_ber(kappa * radius);
+    double imag = bei(kappa * i*step) * d_bei(kappa * radius) + ber(kappa * i*step) * d_ber(kappa * radius);
+    double amplitude = sqrt(real*real + imag*imag);
+    double phase = atan2(imag, real);
+    
+    printf("%.4f\t%E\t%f\n", i*step, amplitude, phase);
+  }
 }
 
 void test_func(double (*func)(double), char *filename, double epsilon) {

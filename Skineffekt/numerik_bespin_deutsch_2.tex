@@ -126,7 +126,7 @@ Aufteilung in asymptotische Näherung und Reihenentwicklung erklären.
 \subsubsection{rekursive Berechnung der Summanden der Reihen}
 Um Reihen effizienter zu berechnen (besonders bei Verwendung von Potenzen und Fakultäten), kann man oft den $k$-ten Summanden $S_k$ aus $S_{k-1}$ berechnen. Diesen Fakt nutzen wir aus, um unsere Reihenberechnung effizienter zu gestalten. Allgemein nimmt dies die Form: $S_k = c(x, k)\cdot S_{k-1}$ an.
 In Tabelle \ref{tab:rekursionsfaktoren} geben wir die, aus den Gleichungen aus Abschnitt \ref{sssec:kelvin-funktionen}, berechneten Faktoren an.
-\begin{wraptable}{R}[1pt]{0.37\textwidth}
+\begin{wraptable}[13]{R}[1pt]{0.37\textwidth}
 \begin{tabular}{c|c}
 Funktion & $c(x,k)$ \\\hline
 \rule[-3.5ex]{0pt}{8ex} $\mathrm{ber}_0$ & $-\dfrac{1}{(2k-1)^2 (2k)^2}\dfrac{x^4}{16}$ \\ \hline
@@ -145,8 +145,21 @@ TODO: kEpsilon erklären; Abbruch von den Potenzreihen von ber,bei sowie Ableitu
 
 \subsection{physikalische Ergebnisse}
 Verwendeter spezifischer Widerstand $\rho_{Cu} = \num{1.678e-8} \si{\ohm\metre}$ \cite{crchandbook}.
-Im Gaußschen Maßsystem: $\sigma_{Cu} = \num{5.356e17} \si{\per\second}$.
-
+Im Gaußschen Maßsystem: $\sigma_{Cu} = \num{5.356e17} \si{\per\second}$
+Formel:
+\begin{align}
+	j_0(\rho) = \frac{I_0 \kappa}{2 \pi \rho_0} \left( \mathrm{ber}'_0(\kappa \rho_0) + \mathrm{bei}'_0(\kappa \rho_0) \right)^{-1}\\
+	\operatorname{Re}(j) = \mathrm{ber}_0(\kappa \rho)\mathrm{bei}'_0(\kappa \rho_0) + \mathrm{bei}_0(\kappa \rho)\mathrm{ber}'_0(\kappa \rho_0)\\
+	\operatorname{Im}(j) = - \mathrm{ber}_0(\kappa \rho)\mathrm{ber}'_0(\kappa \rho_0) + \mathrm{bei}_0(\kappa \rho)\mathrm{bei}'_0(\kappa \rho_0)
+\end{align}
+Die Phase berechnet sich zu:
+\begin{align}
+	\phi = \operatorname{atan2}(\operatorname{Im}, \operatorname{Re})
+\end{align}
+Der Betrag:
+\begin{align}
+	|j| = \left|\frac{I_0 \kappa}{2 \pi \rho_0}\right|\sqrt{\frac{\mathrm{ber}^2_0(\kappa \rho)+\mathrm{bei}^2_0(\kappa \rho)}{\mathrm{ber}'^2_0(\kappa \rho_0)+\mathrm{bei}'^2_0(\kappa \rho_0)}}
+\end{align}
 
 \begin{thebibliography}{9}
 
