@@ -1,6 +1,5 @@
-/* Kompilieranweisungen */
+/* gcc -O2 numerik_bespin_deutsch_2.c -o numerik_2 -lm */
 /* Christian Bespin, Christopher Deutsch */
-/* TODO: Fakultätsfaktoren ausmultiplizieren */
 
 #include <stdio.h>
 #include <math.h>
@@ -12,14 +11,14 @@ double d_ber(double x);
 double d_bei(double x);
 
 /* Die folgenden Funktionen werden für die asymptotische Näherung benötigt 
-   vgl. englisches Wikipedia und Abramowitz, Stegun (der ker/kei Anteil wurde
-   vernachlässigt) */
+   vgl. Abramowitz, Stegun (der ker/kei Anteil wurde vernachlässigt) */
 double f0(double x);
 double g0(double x);
 double d_f0(double x);
 double d_g0(double x);
 
-/* Berechnet zunächst Werte für Kupfer Radius im cgs-System: Einheit cm */
+/* Berechnet eine Wertetabelle der Stromverteilung mit N gleichverteilten Werten
+   auf das Intervall 0 bis radius; Einheiten der Parameter im cgs-System */
 void table(double I_0, double sigma, double mu,
            double omega, double radius, int N);
 
@@ -37,13 +36,13 @@ const double kSqrt2 = 1.4142135623730950488016887242097;
 const double kPi = 3.1415926535897932384626433832795;
 
 int main() {
-  /* Standardwerte */
+  /* Standardwerte fuer Kupfer */
   double I_0 = 1; /* cgs-System Einheit: Fr/s */
   double sigma = 5.356E+17; /* cgs-System Einheit: 1/s */
   double omega = 1E+6; /* Einheit: 1/s */
   double mu = 0.999994; /* Einheit: keine */
   double radius = 0.1; /* Einheit: cm */
-  int N;
+  int N; /* Anzahl der berechneten Werte */
   
   int choice;
   printf("# Berechnung der Stromdichteverteilung in einem zylindischen Leiter\n");
