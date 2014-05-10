@@ -142,8 +142,12 @@ Man sieht leicht, dass diese Methode für $f_0$ und $g_0$ sowie deren Ableitunge
 Dies beheben wir, indem die problematische Funktion $f(x,k)$ ausgeklammert wird (also $S_k = f(x,k) \cdot \alpha_k(x,k)$ sowie $S_{k-1} = f(x,k-1) \cdot \alpha_{k-1}(x,k)$)
 und analog zur Methode von vorhin der Faktor $\alpha_k(x,k)$ entwickelt wird. Dies nimmt dann die allgemeine Form $\alpha_k(x,k) = c(x,k)\cdot\alpha_{k-1}(x,k)$ an\footnote{Wir verzichten auf die Angabe des Faktors in diesem Fall (findet man allerdings im Quellcode)}.
 \subsubsection{Abbruchbedingungen}
-Wir haben eine globale Konstante \texttt{kEpsilon} definiert, die als Abbruchbedingung der Reihenberechnung dient. Die Reihen werden dann abgebrochen, wenn der letzte Summand kleiner als \texttt{kEpsilon} multipliziert mit der aktuellen Partialsumme ist. Diese Bedingung wurde gewählt, da die Addition von sehr kleinen Gleitkommazahlen auf sehr Große keine Änderung der Summe erzielt. Mit dieser Abbruchbedingung vermeiden wir unnötige Rechenschritte die das Ergebnis nicht ändern.
-TODO: kEpsilon erklären; Abbruch von den Potenzreihen von ber,bei sowie Ableitung; insbesondere Multiplikation mit der aktuellen Summe im Hinblick auf Auslöschung; erklären warum bei $f_0$ und $g_0$ der Faktor betrachtet wird (Cos/Sin wird Null und würde schon nach wenigen Glieder abbrechen und das unabhängig von der erzielten Genauigkeit); Außerdem die Multiplikation mit der aktuellen Summe erklären (das macht vermutlich keinen Sinn evtl. nochmal den Code überarbeiten).
+Wir haben eine globale Konstante \texttt{kEpsilon} definiert, die als Abbruchbedingung der Reihenberechnung dient.
+Die Reihen werden dann abgebrochen, wenn der letzte Summand kleiner als \texttt{kEpsilon} multipliziert mit der aktuellen Partialsumme ist.
+Diese Bedingung wurde gewählt, da die Addition von sehr kleinen Gleitkommazahlen auf sehr Große keine Änderung der Summe erzielt.
+Mit dieser Abbruchbedingung vermeiden wir unnötige Rechenschritte die das Ergebnis nicht ändern.
+Analog dazu betrachten wir bei der Berechnung von $f_0$, $g_0$ sowie deren Ableitungen den Faktor vor dem Sinus/Cosinus,
+da dieser zwangsweise nach wenigen Schritten null werden würde, auch wenn die danach folgenden Glieder einen maßgeblichen Einfluss auf die Summe hätten.
 
 \subsection{physikalische Ergebnisse}
 Wir teilen Gl. (\ref{eq:stromdichte}) in Real- und Imaginärteil auf:
