@@ -114,15 +114,11 @@ mit
 \subsection{Implementierung}
 
 \subsubsection{Struktur des Programmes}
-Das Programm ist wie folgt eingeteilt:
-\begin{itemize}
-\item \texttt{ber}, \texttt{bei}: Gln. \ref{eq:potenzreihe}
-\item \texttt{d\_ber}, \texttt{d\_bei}: Gln. \ref{eq:dpotenzreihe}
-\item \texttt{f0}, \texttt{g0}: Gln. \ref{eq:f0g0}
-\item \texttt{d\_f0}, \texttt{d\_g0}: Gln. \ref{eq:d_f0g0}
-\item \texttt{table}
-\end{itemize}
-Wir verwenden die globale Konstante \texttt{kThreshold} um zu entscheiden, ob die Reihenentwicklung oder die asymptotische Näherung der Kelvinfunktionen verwendet wird. Sollte das Argument kleiner sein als \texttt{kThreshold} wird die Reihenentwicklung sonst die asymptotische Näherung verwendet.
+Alle Reihen aus Abschnitt \ref{sssec:kelvin-funktionen} wurden als Funktionen im Quellcode implementiert.
+Dabei wird anhand der globalen Konstante \texttt{kThreshold} entschieden, ob die Reihenentwicklung oder die asymptotische Näherung der Kelvinfunktionen verwendet wird.
+Sollte das Argument kleiner sein als \texttt{kThreshold} wird die Reihenentwicklung sonst die asymptotische Näherung verwendet.
+Außerdem wurde noch eine Funktion \texttt{table} implementiert, die dazu dient eine Wertetabelle für einen Parametersatz ($I_0$, $\sigma$, $\mu$, $\omega$, $\rho_0$) zu berechnen.
+Dabei werden $N$ Werte gleichmäßig auf dem Intervall $[0,\rho_0]$ verteilt. Die Berechnung wird analog zu den Formeln aus Abschnitt \ref{ssec:physikalischeergebnisse} durchgeführt.
 
 \subsubsection{rekursive Berechnung der Summanden der Reihen}
 Um Reihen effizienter zu berechnen (besonders bei Verwendung von Potenzen und Fakultäten), kann man oft den $k$-ten Summanden $S_k$ aus $S_{k-1}$ berechnen. Diesen Fakt nutzen wir aus, um unsere Reihenberechnung effizienter zu gestalten. Allgemein nimmt dies die Form: $S_k = c(x, k)\cdot S_{k-1}$ an.
@@ -150,6 +146,7 @@ Analog dazu betrachten wir bei der Berechnung von $f_0$ und $g_0$, sowie deren A
 da dieser zwangsweise nach wenigen Schritten null werden würde, auch wenn die danach folgenden Glieder einen maßgeblichen Einfluss auf die Summe haben.
 
 \subsection{physikalische Ergebnisse}
+\label{ssec:physikalischeergebnisse}
 Wir teilen Gl. (\ref{eq:stromdichte}) in Real- und Imaginärteil auf:
 \begin{align}
 	j_0(\rho) &= \frac{I_0 \kappa}{2 \pi \rho_0} \left[ \frac{\mathrm{ber}_0(\kappa \rho)\mathrm{bei}'_0(\kappa \rho_0) - \mathrm{bei}_0(\kappa \rho)\mathrm{ber}'_0(\kappa \rho_0)}{\mathrm{ber}'^2_0(\kappa \rho_0)+\mathrm{bei}'^2_0(\kappa \rho_0)} + i\frac{\mathrm{ber}_0(\kappa \rho)\mathrm{ber}'_0(\kappa \rho_0) + \mathrm{bei}_0(\kappa \rho)\mathrm{bei}'_0(\kappa \rho_0)}{\mathrm{ber}'^2_0(\kappa \rho_0)+\mathrm{bei}'^2_0(\kappa \rho_0)}\right]
