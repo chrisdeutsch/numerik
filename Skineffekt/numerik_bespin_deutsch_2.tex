@@ -53,7 +53,7 @@ Die Konstante $A$ kann aus dem Strom, der im Leiter fließt, bestimmt werden \ci
 	j_0(\rho) = \frac{I_0 \kappa}{2\pi\rho_0}\frac{\mathrm{ber}_0(\kappa\rho)+i \mathrm{bei}_0(\kappa\rho)}{\mathrm{bei}'_0(\kappa\rho_0)-i\mathrm{ber}'_0(\kappa\rho_0)}
 \label{eq:stromdichte}
 \end{align}
-folgt. Mit steigender Frequenz $\omega$ geschieht der Ladungstransport überwiegend am Rand des Leiter. Dies geschieht aufgrund des (alternierenden) Magnetfelds, das vom Wechselstrom induziert wird und eine Kraft (Lorentzkraft) auf die Ladungsträger ausübt. Die Kraft ist zum Rand des Leiters gerichtet, weshalb am Rand also mehr Ladungsträger lokalisiert sind als im Kern, wobei die düne Schicht am Rand des Leiters, in dem sich die Ladungsträger konzentrieren, mit zunehmender Frequenz immer dünner wird. Darum wird das Phänomen daher als \emph{Skin-Effekt} bezeichnet. Insbesondere ist $j_0$ eine komplexe Zahl, da sie nach dem Separationsansatz sowohl Amplituden- wie auch Phaseinformation enthält.
+folgt. Mit steigender Frequenz $\omega$ geschieht der Ladungstransport überwiegend am Rand des Leiter, weil das (alternierenden) Magnetfeld, das vom Wechselstrom induziert wird, Kraft (Lorentzkraft) auf die Ladungsträger ausübt. Diese ist zum Rand des Leiters gerichtet, weshalb am Rand mehr Ladungsträger lokalisiert sind als im Kern, wobei die Schicht am Rand des Leiters, in dem sich die Ladungsträger konzentrieren, mit zunehmender Frequenz $\omega$ immer dünner wird. Darum wird das Phänomen als \emph{Skin-Effekt} bezeichnet. Insbesondere ist $j_0$ eine komplexe Zahl, da sie nach dem Separationsansatz sowohl Amplituden- wie auch Phaseinformation enthält.
 
 \subsection{Mathematischer Hintergrund}
 
@@ -91,12 +91,12 @@ In asymptotischer Näherung \cite{abramowitzstegun} ergibt sich mit den Definiti
 	\mathrm{bei}_0(x) &\approx C(x) \left[f_0(x) \sin(\alpha) - g_0(x) \cos(\alpha) \right]\label{eq:beipotenzreiheasym}-\frac{\mathrm{ker}_0(x)}{\pi}
 \end{align}
 Dabei sind $\mathrm{ker}_0$ und $\mathrm{kei}_0$ die Kelvin-Funktionen basierend auf der modifizierten Besselfunktion zweiter Art und nullter Ordnung.
-Außerdem gilt:
+Außerdem gilt per Definition:
 \begin{align}
 	f_0(x) = 1 + \sum^{\infty}_{k=1} \frac{\cos(k \pi / 4)}{k! \, (8k)^k} \prod^{k}_{l=1}(2l - 1)^2&&
 	g_0(x) = \sum^{\infty}_{k=1} \frac{\sin(k \pi / 4)}{k! \, (8k)^k} \prod^{k}_{l=1}(2l - 1)^2\label{eq:f0g0}
 \end{align}
-Wir vernachlässigen den Beitrag von $\mathrm{ker}_0$ und $\mathrm{kei}_0$ zur asymptotischen Näherung, da gilt:
+Wir vernachlässigen den Beitrag von $\mathrm{ker}_0$ und $\mathrm{kei}_0$ zur asymptotischen Näherung, da:
 \begin{align}
 	\mathrm{ker}_0, \mathrm{kei}_0 \in \mathcal{O}\left( \sqrt{\frac{\pi}{2 x}}e^{-\frac{x}{\sqrt{2}}} \right)
 \end{align}
@@ -120,6 +120,7 @@ Das Programm ist wie folgt eingeteilt:
 \item \texttt{d\_ber}, \texttt{d\_bei}: Gln. \ref{eq:dpotenzreihe}
 \item \texttt{f0}, \texttt{g0}: Gln. \ref{eq:f0g0}
 \item \texttt{d\_f0}, \texttt{d\_g0}: Gln. \ref{eq:d_f0g0}
+\item \texttt{table}
 \end{itemize}
 Wir verwenden die globale Konstante \texttt{kThreshold} um zu entscheiden, ob die Reihenentwicklung oder die asymptotische Näherung der Kelvinfunktionen verwendet wird. Sollte das Argument kleiner sein als \texttt{kThreshold} wird die Reihenentwicklung sonst die asymptotische Näherung verwendet.
 
@@ -140,14 +141,13 @@ Funktion & $c(x,k)$ \\\hline
 
 Man sieht leicht, dass diese Methode für $f_0$ und $g_0$ sowie deren Ableitungen nicht optimal ist, da ein Sinus bzw. Cosinus mit $k$-Abhängigkeit im Summanden vorkommt.
 Dies beheben wir, indem die problematische Funktion $f(x,k)$ ausgeklammert wird (also $S_k = f(x,k) \cdot \alpha_k(x,k)$ sowie $S_{k-1} = f(x,k-1) \cdot \alpha_{k-1}(x,k)$)
-und analog zur Methode von vorhin der Faktor $\alpha_k(x,k)$ entwickelt wird. Dies nimmt dann die allgemeine Form $\alpha_k(x,k) = c(x,k)\cdot\alpha_{k-1}(x,k)$ an\footnote{Wir verzichten auf die Angabe des Faktors in diesem Fall (findet man allerdings im Quellcode)}.
+und analog zur Methode von vorhin der Faktor $\alpha_k(x,k)$ berechnen. Dies nimmt dann die allgemeine Form $\alpha_k(x,k) = c(x,k)\cdot\alpha_{k-1}(x,k)$ an\footnote{Wir verzichten auf die Angabe des Faktors in diesem Fall (findet man allerdings im Quellcode)}.
 \subsubsection{Abbruchbedingungen}
 Wir haben eine globale Konstante \texttt{kEpsilon} definiert, die als Abbruchbedingung der Reihenberechnung dient.
 Die Reihen werden dann abgebrochen, wenn der letzte Summand kleiner als \texttt{kEpsilon} multipliziert mit der aktuellen Partialsumme ist.
-Diese Bedingung wurde gewählt, da die Addition von sehr kleinen Gleitkommazahlen auf sehr Große keine Änderung der Summe erzielt.
-Mit dieser Abbruchbedingung vermeiden wir unnötige Rechenschritte die das Ergebnis nicht ändern.
-Analog dazu betrachten wir bei der Berechnung von $f_0$, $g_0$ sowie deren Ableitungen den Faktor vor dem Sinus/Cosinus,
-da dieser zwangsweise nach wenigen Schritten null werden würde, auch wenn die danach folgenden Glieder einen maßgeblichen Einfluss auf die Summe hätten.
+Diese Bedingung wurde gewählt, da die Addition von sehr kleinen Gleitkommazahlen auf sehr Große keine Änderung der Summe erzielt und vermeiden so Rechenschritte die das Ergebnis nicht ändern.
+Analog dazu betrachten wir bei der Berechnung von $f_0$, $g_0$ sowie deren Ableitungen den Faktor vor dem Sinus/Cosinus statt dem Summanden,
+da dieser zwangsweise nach wenigen Schritten null werden würde, auch wenn die danach folgenden Glieder einen maßgeblichen Einfluss auf die Summe haben.
 
 \subsection{physikalische Ergebnisse}
 Wir teilen Gl. (\ref{eq:stromdichte}) in Real- und Imaginärteil auf:
