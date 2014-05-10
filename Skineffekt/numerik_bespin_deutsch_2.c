@@ -39,7 +39,7 @@ const double kPi = 3.1415926535897932384626433832795;
 int main() {
   double I_0 = 1; /* cgs-System Einheit: Fr/s */
   double sigma = 5.356E+17; /* cgs-System Einheit: 1/s */
-  double omega = 1E+6; /* Einheit: 1/s */
+  double omega = 1E+5; /* Einheit: 1/s */
   double mu = 0.999994; /* Einheit: keine */
   table(I_0, sigma, mu, omega, 0.1, 99);
   
@@ -251,7 +251,7 @@ void table(double I_0, double sigma, double mu,
     double amplitude = factor * sqrt(real*real + imag*imag);
     double phase = atan2(imag, real);
     
-    printf("%.4f\t%f\t%f\n", i*step, amplitude, phase);
+    printf("%.5f\t%f\t%f\n", i*step, amplitude, phase);
   }
 }
 
