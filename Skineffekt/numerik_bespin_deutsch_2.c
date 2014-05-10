@@ -37,11 +37,55 @@ const double kSqrt2 = 1.4142135623730950488016887242097;
 const double kPi = 3.1415926535897932384626433832795;
 
 int main() {
+  /* Standardwerte */
   double I_0 = 1; /* cgs-System Einheit: Fr/s */
   double sigma = 5.356E+17; /* cgs-System Einheit: 1/s */
   double omega = 1E+6; /* Einheit: 1/s */
   double mu = 0.999994; /* Einheit: keine */
-  table(I_0, sigma, mu, omega, 0.1, 99);
+  double radius = 0.1; /* Einheit: cm */
+  int N;
+  
+  int choice;
+  printf("# Berechnung der Stromdichteverteilung in einem zylindischen Leiter\n");
+  printf("# [1]: Standard-Werte fuer Kupferdraht vom Radius 1mm und Strom I_0 = 1 Fr/s\n");
+  printf("# [2]: benutzerdefinierte Parameter\n");
+  printf("# Auswahl: ");
+  scanf("%i", &choice);
+  
+  if (choice == 1) {
+    printf("\n# Benutze Standard-Werte fuer Kupfer\n");
+    printf("# Kreisfrequenz des Wechselstroms in Hz: ");
+    scanf("%lf", &omega);
+    printf("# Anzahl der berechneten Werte N: ");
+    scanf("%i", &N);
+    
+    table(I_0, sigma, mu, omega, radius, N);
+  } else if (choice == 2) {
+    printf("\n# benutzerdefinierter Parametersatz\n");
+    
+    printf("# Strom I_0 in Fr/s: ");
+    scanf("%lf", &I_0);
+    
+    printf("# Leitfaehigkeit sigma in 1/s: ");
+    scanf("%lf", &sigma);
+    
+    printf("# Permeabilitaet mu: ");
+    scanf("%lf", &mu);
+    
+    printf("# Leiterradius rho_0 in cm: ");
+    scanf("%lf", &radius);
+    
+    printf("# Kreisfrequenz des Wechselstroms in Hz: ");
+    scanf("%lf", &omega);
+    
+    printf("# Anzahl der berechneten Werte N: ");
+    scanf("%i", &N);
+    
+    table(I_0, sigma, mu, omega, radius, N);
+  } else {
+    printf("Eingabe ungültig\n");
+    return 1;
+  }
   
   return 0;
 }
@@ -239,7 +283,14 @@ void table(double I_0, double sigma, double mu,
   int i;
   double step = radius / (N - 1);
   
-  printf("#rho\tamplitude\tphase\n");
+  printf("\n# Verwendete Parameter:\n");
+  printf("# Strom: I_0 = %E Fr/s\n", I_0);
+  printf("# Leitfaehigkeit: sigma = %E 1/s\n", sigma);
+  printf("# Permeabilitaet: mu = %E\n", mu);
+  printf("# Wechselstromkreisfrequenz: omega = %E 1/s\n", omega);
+  printf("# Leiterradius: rho_0 = %f cm\n\n", radius);
+ 
+  printf("#rho[cm]\t|j|[Fr/s/cm^2]\t\tphi[rad]\n");
   for(i = 0; i < N; i++) {
     double rho = i*step;
     
@@ -251,7 +302,7 @@ void table(double I_0, double sigma, double mu,
     double amplitude = factor * sqrt(real*real + imag*imag);
     double phase = atan2(imag, real);
     
-    printf("%.5f\t%f\t%f\n", i*step, amplitude, phase);
+    printf("%.5f\t\t%f\t\t%f\n", i*step, amplitude, phase);
   }
 }
 
