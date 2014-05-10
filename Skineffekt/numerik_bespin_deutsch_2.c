@@ -19,7 +19,7 @@ double g0(double x);
 double d_f0(double x);
 double d_g0(double x);
 
-/* Berechnet zunächst Werte für Kupfer */
+/* Berechnet zunächst Werte für Kupfer Radius im cgs-System: Einheit cm */
 void table(double radius, int count);
 
 /* vergleicht die Ergebnisse der Funktion dbl func(dbl) mit den idealwerten in
@@ -229,13 +229,17 @@ double d_g0(double x) {
 }
 
 void table(double radius, int count) {
-  double sigma = 5.356E+17;
-  double omega = 1E+9;
-  double mu = 1;
-  double kappa = 2 * sqrt(kPi * sigma * mu * omega) / 3E10;
-  double I_0 = 1;
+  double sigma = 5.356E+17; /* cgs-System Einheit: 1/s */
+  double omega = 1E+6; /* Einheit: 1/s */
+  double mu = 1; /* Einheit: keine */
+  double kappa = 2 * sqrt(kPi * sigma * mu * omega) / 3E10; /* Einheit 1/cm */
+  double I_0 = 1; /* cgs-System Einheit: Fr/s */
   
-  double factor = I_0*kappa/(2*kPi*radius);
+  /* Vorberechnete Werte die in in jedem Schleifendurchlauf gleich sind */
+  double factor = I_0 * kappa / (2 * kPi * radius); /* cgs-System Einheit: Fr/s/cm^2 */
+  double denominator = d_ber(kappa*radius) * d_ber(kappa*radius)
+                       + d_bei(kappa*radius) * d_bei(kappa*radius);
+  
   
   int i;
   double step = radius / (count - 1);
@@ -243,9 +247,14 @@ void table(double radius, int count) {
   printf("#rho\tamplitude\tphase\n");
   for(i = 0; i < count; i++) {
     double rho = i*step;
-    double amplitude = factor* sqrt( (ber(kappa*rho)*ber(kappa*rho) + bei(kappa*rho)*bei(kappa*rho)) / 
-                             (d_ber(kappa*radius)*d_ber(kappa*radius) + d_bei(kappa*radius)*d_bei(kappa*radius)) );
-    double phase = 0;
+    
+    double real = ( ber(kappa*rho) * d_bei(kappa*radius)
+                    - bei(kappa*rho)* d_ber(kappa*radius) ) / denominator;
+    double imag = ( ber(kappa*rho) * d_ber(kappa*radius)
+                    + bei(kappa*rho) * d_bei(kappa*radius) ) / denominator;
+    
+    double amplitude = factor * sqrt(real*real + imag*imag);
+    double phase = atan2(imag, real);
     
     printf("%.4f\t%f\t%f\n", i*step, amplitude, phase);
   }
