@@ -12,7 +12,7 @@ set yrange [0:*]
 
 set y2label 'Phase von $j$ [rad]' 
 set y2range[-2*pi:2*pi]
-set y2tics
+set y2tics ('$-2\pi$' -2*pi, '$-\pi$' -pi, $0$ 0, '$\pi$' pi, '$2\pi$' 2*pi)
 set ytics nomirror
 
 set tics scale 0.7
