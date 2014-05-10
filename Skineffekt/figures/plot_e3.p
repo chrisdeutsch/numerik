@@ -14,7 +14,7 @@ set yrange [0:*]
 #set ytics 1.61, 0.001
 
 set y2label 'Phase von $j$ [rad]' 
-set y2range[*:*]
+set y2range[-2*pi:2*pi]
 set y2tics
 set ytics nomirror
 
