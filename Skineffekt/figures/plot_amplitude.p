@@ -1,4 +1,4 @@
-set terminal epslatex color colortext size 3.5, 2.1
+set terminal epslatex color colortext size 8, 3
 
 set output 'amplitude.tex'
 
