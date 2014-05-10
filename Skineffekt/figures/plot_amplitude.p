@@ -4,19 +4,19 @@ set output 'amplitude.tex'
 
 set title ''
 
-set xlabel 'Radius $\rho$'
+set xlabel 'Radius $\rho$ [cm]'
 set xrange [*:*]
 #set xtics 0, 5
 #set mxtics 5
 
-set ylabel 'Amplitude der Stromdichte $j$'
+set ylabel 'Amplitude von $j$ [Fr/s/cm$^2$]'
 set yrange [*:*]
 #set ytics 1.61, 0.001
 
 set tics scale 0.7
 
-set key left top
+set key left
 
-plot "data.csv" using 1:2 lt 1 t'Amplitude' 
+plot "../plots/e3.txt" using 1:2 smooth csplines lt 1 t'Amplitude'
 
 unset output
