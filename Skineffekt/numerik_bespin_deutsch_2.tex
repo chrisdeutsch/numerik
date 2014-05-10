@@ -156,26 +156,26 @@ So kann die Amplitude sowie Phase einfach berechnet werden:
 	|j_0(\rho)| &= \sqrt{\operatorname{Re}(j_0(\rho))^2 + \operatorname{Im}(j_0(\rho))^2}\\
 	\phi(\rho) &= \operatorname{atan2}\left[\operatorname{Im}(j_0(\rho)), \operatorname{Re}(j_0(\rho))\right]
 \end{align}
-Nachfolgend sind vier Plots aufgeführt, die für unterschiedliche Frequenzen sowohl die Amplitude als auch die Phase der Stromdichte im Leiter, in Abhängigkeit vom Radius $\rho$ darstellt. $\rho_0$ ist dabei immer auf $0,1\mathrm{cm}$ festgelegt, der verwendete spezifischer Widerstand ist $\rho_{Cu} = \num{1.678e-8} \si{\ohm\metre}$ \cite{crchandbook}, die Permeabilität $\mu = \num{0.999994}$ \cite{crchandbook} und es wurde $I_0 = \num{1} \, \mathrm{Fr}\,\mathrm{s}^{-1}$ gesetzt. Im Gaußschen Maßsystem gilt $\sigma_{Cu} = \num{5.356e17} \si{\per\second}$. Die mit unserem Programm erhaltenen Datenpunkte wurden für die Phase mit Geraden verbunden, um den Sägezahn-Verlauf am besten darzustellen. Bei der Amplitude wurde mit Splines interpoliert, wobei die Anzahl Datenpunkte so groß ist, dass die Art der Interpolation hier keinen Unterschied in der Darstellung macht. Man sieht deutlich das zu erwartende Verhalten der Amplitude: für größere Frequenzen nimmt die Amplitude im Kern immer mehr ab und steigt dafür bei großen Werten von $\rho$ umso stärker an. Besonders im letzten Diagramm ist deutlich der Skin-Effekt sichtbar, die Stromdichte ist bis deutlich über dem halben Radius praktisch null.
+Nachfolgend sind vier Plots aufgeführt, die für unterschiedliche Frequenzen sowohl die Amplitude als auch die Phase der Stromdichte im Leiter, in Abhängigkeit vom Radius $\rho$ darstellt. $\rho_0$ ist dabei immer auf $\num{0.1} \si{\centi\metre}$ festgelegt, der verwendete spezifischer Widerstand ist $\rho_{Cu} = \num{1.678e-8} \si{\ohm\metre}$ \cite{crchandbook}, was im cgs-System einer Leitfähigkeit von $\sigma_{Cu} = \num{5.356e17} \si{\per\second}$ entspricht, die Permeabilität $\mu = \num{0.999994}$ \cite{crchandbook} und es wurde $I_0 = \num{1} \, \mathrm{Fr}\,\mathrm{s}^{-1}$ gesetzt. Die mit unserem Programm erhaltenen Datenpunkte wurden für die Phase mit Geraden verbunden, um den Sägezahn-Verlauf am besten darzustellen. Bei der Amplitude wurde mit Splines interpoliert, wobei die Anzahl Datenpunkte so groß ist, dass die Art der Interpolation hier keinen Unterschied in der Darstellung macht. Man sieht deutlich das zu erwartende Verhalten der Amplitude: für größere Frequenzen nimmt die Amplitude im Kern immer mehr ab und steigt dafür bei großen Werten von $\rho$ umso stärker an. Besonders im letzten Diagramm ist deutlich der Skin-Effekt sichtbar, die Stromdichte ist bis deutlich über dem halben Radius praktisch null.
 \begin{figure}[htbp]
 \centering
 \scalebox{1.0}{\input{./figures/e4}}
-\caption{Amplituden- und Phasenverhalten für $\omega=10^4 1/s$}
+\caption{Amplituden- und Phasenverhalten für $\omega=\num{1E4} \si{\per\second}$}
 \end{figure}
 \begin{figure}[htbp]
 \centering
 \scalebox{1.0}{\input{./figures/e5}}
-\caption{Amplituden- und Phasenverhalten für $\omega=10^5 1/s$}
+\caption{Amplituden- und Phasenverhalten für $\omega=\num{1E5} \si{\per\second}$}
 \end{figure}
 \begin{figure}[htbp]
 \centering
 \scalebox{1.0}{\input{./figures/e6}}
-\caption{Amplituden- und Phasenverhalten für $\omega=10^6 1/s$}
+\caption{Amplituden- und Phasenverhalten für $\omega=\num{1E6} \si{\per\second}$}
 \end{figure}
 \begin{figure}[htbp]
 \centering
 \scalebox{1.0}{\input{./figures/e7}}
-\caption{Amplituden- und Phasenverhalten für $\omega=10^7 1/s$}
+\caption{Amplituden- und Phasenverhalten für $\omega=\num{1E7} \si{\per\second}$}
 \end{figure}
 \begin{thebibliography}{9}
 
@@ -198,8 +198,8 @@ Wiley (2009)
 David R. Lide (ed),
 \emph{CRC Handbook of Chemistry and Physics},
 84th Edition. CRC Press. Boca Raton, Florida, 2003;
-Section 12, Properties of Solids; Electrical Resistivity of Pure Metals
-Section 4, The Elements; Magnetic Susceptibility
+Section 12, Properties of Solids; Electrical Resistivity of Pure Metals;
+Section 4, The Elements: Magnetic Susceptibility
 
 \end{thebibliography}
 
