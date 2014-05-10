@@ -115,13 +115,14 @@ mit
 \subsection{Implementierung}
 
 \subsubsection{Struktur des Programmes}
-Aufteilung in asymptotische Näherung und Reihenentwicklung erklären.
+Das Programm ist wie folgt eingeteilt:
 \begin{itemize}
 \item \texttt{ber}, \texttt{bei}: Gln. \ref{eq:potenzreihe}
 \item \texttt{d\_ber}, \texttt{d\_bei}: Gln. \ref{eq:dpotenzreihe}
 \item \texttt{f0}, \texttt{g0}: Gln. \ref{eq:f0g0}
 \item \texttt{d\_f0}, \texttt{d\_g0}: Gln. \ref{eq:d_f0g0}
 \end{itemize}
+Wir verwenden die globale Konstante \texttt{kThreshold} um zu entscheiden, ob die Reihenentwicklung oder die asymptotische Näherung der Kelvinfunktionen verwendet wird. Sollte das Argument kleiner sein als \texttt{kThreshold} wird die Reihenentwicklung sonst die asymptotische Näherung verwendet.
 
 \subsubsection{rekursive Berechnung der Summanden der Reihen}
 Um Reihen effizienter zu berechnen (besonders bei Verwendung von Potenzen und Fakultäten), kann man oft den $k$-ten Summanden $S_k$ aus $S_{k-1}$ berechnen. Diesen Fakt nutzen wir aus, um unsere Reihenberechnung effizienter zu gestalten. Allgemein nimmt dies die Form: $S_k = c(x, k)\cdot S_{k-1}$ an.
@@ -136,22 +137,24 @@ Funktion & $c(x,k)$ \\\hline
 \end{tabular}
 \caption{CAPTION}
 \label{tab:rekursionsfaktoren}
-\end{wraptable}\newline
+\end{wraptable}
+
 Man sieht leicht, dass diese Methode für $f_0$ und $g_0$ sowie deren Ableitungen nicht optimal ist, da ein Sinus bzw. Cosinus mit $k$-Abhängigkeit im Summanden vorkommt.
 Dies beheben wir, indem die problematische Funktion $f(x,k)$ ausgeklammert wird (also $S_k = f(x,k) \cdot \alpha_k(x,k)$ sowie $S_{k-1} = f(x,k-1) \cdot \alpha_{k-1}(x,k)$)
-und analog zur Methode von vorhin der Faktor $\alpha_k(x,k)$ entwickelt wird. Dies nimmt dann die allgemeine Form $\alpha_k(x,k) = c(x,k)\cdot\alpha_{k-1}(x,k)$ an.
+und analog zur Methode von vorhin der Faktor $\alpha_k(x,k)$ entwickelt wird. Dies nimmt dann die allgemeine Form $\alpha_k(x,k) = c(x,k)\cdot\alpha_{k-1}(x,k)$ an\footnote{Wir verzichten auf die Angabe des Faktors in diesem Fall (findet man allerdings im Quellcode)}.
 \subsubsection{Abbruchbedingungen}
+Wir haben eine globale Konstante \texttt{kEpsilon} definiert, die als Abbruchbedingung der Reihenberechnung dient. Die Reihen werden dann abgebrochen, wenn der letzte Summand kleiner als \texttt{kEpsilon} multipliziert mit der aktuellen Partialsumme ist. Diese Bedingung wurde gewählt, da die Addition von sehr kleinen Gleitkommazahlen auf sehr Große keine Änderung der Summe erzielt. Mit dieser Abbruchbedingung vermeiden wir unnötige Rechenschritte die das Ergebnis nicht ändern.
 TODO: kEpsilon erklären; Abbruch von den Potenzreihen von ber,bei sowie Ableitung; insbesondere Multiplikation mit der aktuellen Summe im Hinblick auf Auslöschung; erklären warum bei $f_0$ und $g_0$ der Faktor betrachtet wird (Cos/Sin wird Null und würde schon nach wenigen Glieder abbrechen und das unabhängig von der erzielten Genauigkeit); Außerdem die Multiplikation mit der aktuellen Summe erklären (das macht vermutlich keinen Sinn evtl. nochmal den Code überarbeiten).
 
 \subsection{physikalische Ergebnisse}
 Wir teilen Gl. (\ref{eq:stromdichte}) in Real- und Imaginärteil auf:
 \begin{align}
-	j_0(\rho) &= \frac{I_0 \kappa}{2 \pi \rho_0} \left[ \frac{\mathrm{ber}_0(\kappa \rho)\mathrm{bei}'_0(\kappa \rho_0) - \mathrm{bei}_0(\kappa \rho)\mathrm{ber}'_0(\kappa \rho_0)}{\mathrm{ber}'^2_0(\kappa \rho_0)+\mathrm{bei}'^2_0(\kappa \rho_0)} + i\frac{\mathrm{ber}_0(\kappa \rho)\mathrm{ber}'_0(\kappa \rho_0) - \mathrm{bei}_0(\kappa \rho)\mathrm{bei}'_0(\kappa \rho_0)}{\mathrm{ber}'^2_0(\kappa \rho_0)+\mathrm{bei}'^2_0(\kappa \rho_0)}\right]
+	j_0(\rho) &= \frac{I_0 \kappa}{2 \pi \rho_0} \left[ \frac{\mathrm{ber}_0(\kappa \rho)\mathrm{bei}'_0(\kappa \rho_0) - \mathrm{bei}_0(\kappa \rho)\mathrm{ber}'_0(\kappa \rho_0)}{\mathrm{ber}'^2_0(\kappa \rho_0)+\mathrm{bei}'^2_0(\kappa \rho_0)} + i\frac{\mathrm{ber}_0(\kappa \rho)\mathrm{ber}'_0(\kappa \rho_0) + \mathrm{bei}_0(\kappa \rho)\mathrm{bei}'_0(\kappa \rho_0)}{\mathrm{ber}'^2_0(\kappa \rho_0)+\mathrm{bei}'^2_0(\kappa \rho_0)}\right]
 \end{align}
 So kann die Amplitude sowie Phase einfach berechnet werden:
 \begin{align}
 	|j_0(\rho)| &= \sqrt{\operatorname{Re}(j_0(\rho))^2 + \operatorname{Im}(j_0(\rho))^2}\\
-	\phi(\rho) &= \operatorname{atan2}\left(\operatorname{Im}(j_0(\rho)), \operatorname{Re}(j_0(\rho))\right)
+	\phi(\rho) &= \operatorname{atan2}\left[\operatorname{Im}(j_0(\rho)), \operatorname{Re}(j_0(\rho))\right]
 \end{align}
 
 Verwendeter spezifischer Widerstand $\rho_{Cu} = \num{1.678e-8} \si{\ohm\metre}$ \cite{crchandbook}.

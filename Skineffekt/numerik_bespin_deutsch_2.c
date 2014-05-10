@@ -28,7 +28,7 @@ void table(double I_0, double sigma, double mu,
    Fehler größer als epsilon sein meldet sich die Funktion */
 void test_func(double (*func)(double), char *filename, double epsilon);
 
-/* Konvergenzeinstellung */
+/* Konvergenzeinstellung der Kelvin-Funktionen */
 const double kThreshold = 10;
 const double kEpsilon = 1E-6;
 
