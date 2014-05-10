@@ -141,8 +141,8 @@ und analog zur Methode von vorhin der Faktor $\alpha_k(x,k)$ berechnen. Dies nim
 \subsubsection{Abbruchbedingungen}
 Wir haben eine globale Konstante \texttt{kEpsilon} definiert, die als Abbruchbedingung der Reihenberechnung dient.
 Die Reihen werden dann abgebrochen, wenn der letzte Summand kleiner als \texttt{kEpsilon} multipliziert mit der aktuellen Partialsumme ist.
-Diese Bedingung wurde gewählt, da die Addition von sehr kleinen Gleitkommazahlen auf sehr Große keine Änderung der Summe erzielt und vermeiden so Rechenschritte die das Ergebnis nicht ändern.
-Analog dazu betrachten wir bei der Berechnung von $f_0$, $g_0$ sowie deren Ableitungen den Faktor vor dem Sinus/Cosinus statt dem Summanden,
+Diese Bedingung wurde gewählt, da die Addition von sehr kleinen Gleitkommazahlen auf sehr Große keine Änderung der Summe erzielt und wir vermeiden so Rechenschritte, die das Ergebnis nicht ändern.
+Analog dazu betrachten wir bei der Berechnung von $f_0$ und $g_0$, sowie deren Ableitungen, den Faktor vor dem Sinus/Cosinus statt dem Summanden,
 da dieser zwangsweise nach wenigen Schritten null werden würde, auch wenn die danach folgenden Glieder einen maßgeblichen Einfluss auf die Summe haben.
 
 \subsection{physikalische Ergebnisse}
@@ -159,10 +159,14 @@ So kann die Amplitude sowie Phase einfach berechnet werden:
 Fazit: TODO: Plots erklären, Interpolation erklären
 Verwendeter spezifischer Widerstand $\rho_{Cu} = \num{1.678e-8} \si{\ohm\metre}$ \cite{crchandbook}.
 Im Gaußschen Maßsystem: $\sigma_{Cu} = \num{5.356e17} \si{\per\second}$
-
-\input{./figures/e3}
 \newline
 \input{./figures/e4}
+\newline
+\input{./figures/e5}
+\newline
+\input{./figures/e6}
+\newline
+\input{./figures/e7}
 
 \begin{thebibliography}{9}
 
