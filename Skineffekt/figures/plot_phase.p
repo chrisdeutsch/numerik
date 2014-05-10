@@ -17,6 +17,6 @@ set tics scale 0.7
 
 set key left top
 
-plot "data.csv" using 1:3 lt 1 t'Phase' 
+plot "data.csv" using 1:3 lt 1 t'Phase ' 
 
 unset output
