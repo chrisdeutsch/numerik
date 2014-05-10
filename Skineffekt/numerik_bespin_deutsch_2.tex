@@ -145,7 +145,7 @@ Diese Bedingung wurde gewählt, da die Addition von sehr kleinen Gleitkommazahle
 Analog dazu betrachten wir bei der Berechnung von $f_0$ und $g_0$, sowie deren Ableitungen, den Faktor vor dem Sinus/Cosinus statt dem Summanden,
 da dieser zwangsweise nach wenigen Schritten null werden würde, auch wenn die danach folgenden Glieder einen maßgeblichen Einfluss auf die Summe haben.
 
-\subsection{physikalische Ergebnisse}
+\subsection{Physikalische Ergebnisse}
 \label{ssec:physikalischeergebnisse}
 Wir teilen Gl. (\ref{eq:stromdichte}) in Real- und Imaginärteil auf:
 \begin{align}
@@ -156,20 +156,30 @@ So kann die Amplitude sowie Phase einfach berechnet werden:
 	|j_0(\rho)| &= \sqrt{\operatorname{Re}(j_0(\rho))^2 + \operatorname{Im}(j_0(\rho))^2}\\
 	\phi(\rho) &= \operatorname{atan2}\left[\operatorname{Im}(j_0(\rho)), \operatorname{Re}(j_0(\rho))\right]
 \end{align}
-Fazit: TODO: Plots erklären, Interpolation erklären
-Verwendeter spezifischer Widerstand $\rho_{Cu} = \num{1.678e-8} \si{\ohm\metre}$ \cite{crchandbook}.
-Im Gaußschen Maßsystem: $\sigma_{Cu} = \num{5.356e17} \si{\per\second}$
-Verwendetes $\mu = \num{0.999994}$ Quelle: Wikipedia?
+Nachfolgend sind vier Plots aufgeführt, die für unterschiedliche Frequenzen sowohl die Amplitude als auch die Phase der Stromdichte im Leiter, in Abhängigkeit vom Radius $\rho$ darstellt. $\rho_0$ ist dabei immer auf $0,1\mathrm{cm}$ festgelegt, der verwendete spezifischer Widerstand ist $\rho_{Cu} = \num{1.678e-8} \si{\ohm\metre}$ \cite{crchandbook}.
+Im Gaußschen Maßsystem gilt $\sigma_{Cu} = \num{5.356e17} \si{\per\second}$
+Verwendetes $\mu = \num{0.999994}$ \cite{crchandbook}
 Verwendetes $I_0 = \num{1} \, \mathrm{Fr}\,\mathrm{s}^{-1}$
-\newline
-\input{./figures/e4}
-\newline
-\input{./figures/e5}
-\newline
-\input{./figures/e6}
-\newline
-\input{./figures/e7}
-
+\begin{figure}[htbp]
+\centering
+\scalebox{1.0}{\input{./figures/e4}}
+\caption{Amplituden- und Phasenverhalten für $\omega=10^4 1/s$}
+\end{figure}
+\begin{figure}[htbp]
+\centering
+\scalebox{1.0}{\input{./figures/e5}}
+\caption{CAPTION}
+\end{figure}
+\begin{figure}[htbp]
+\centering
+\scalebox{1.0}{\input{./figures/e6}}
+\caption{CAPTION}
+\end{figure}
+\begin{figure}[htbp]
+\centering
+\scalebox{1.0}{\input{./figures/e7}}
+\caption{CAPTION}
+\end{figure}
 \begin{thebibliography}{9}
 
 \bibitem{abramowitzstegun}
@@ -192,6 +202,7 @@ David R. Lide (ed),
 \emph{CRC Handbook of Chemistry and Physics},
 84th Edition. CRC Press. Boca Raton, Florida, 2003;
 Section 12, Properties of Solids; Electrical Resistivity of Pure Metals
+Section 4, The Elements; Magnetic Susceptibility
 
 \end{thebibliography}
 
