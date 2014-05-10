@@ -24,7 +24,8 @@ void table(double I_0, double sigma, double mu,
 
 /* vergleicht die Ergebnisse der Funktion dbl func(dbl) mit den Idealwerten in
    der Datei hinter filename (Format: x-Wert f(x)-Wert). Sollte der relative
-   Fehler größer als epsilon sein meldet sich die Funktion */
+   Fehler größer als epsilon sein meldet sich die Funktion 
+   Benutzung: test_func(ber, "mathematica_vglswerte/ber.tsv", 1E-6); */
 void test_func(double (*func)(double), char *filename, double epsilon);
 
 /* Konvergenzeinstellung der Kelvin-Funktionen */
