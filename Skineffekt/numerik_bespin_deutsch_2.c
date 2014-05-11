@@ -53,11 +53,6 @@ int main() {
   /* Ein/Ausgabe: die Berechnung findet in der table-Funktion statt */
   int choice;
   
-  test_func(ber, "mathematica_vglswerte/ber.tsv", 1E-6);
-  test_func(bei, "mathematica_vglswerte/bei.tsv", 1E-6);
-  test_func(d_ber, "mathematica_vglswerte/dber.tsv", 1E-6);
-  test_func(d_bei, "mathematica_vglswerte/dbei.tsv", 1E-6);
-  
   printf("# Berechnung der Stromdichteverteilung in einem zylindischen Leiter\n");
   printf("# [1]: Standard-Werte fuer Kupferdraht vom Radius 1mm und Strom I_0 = 1 Fr/s\n");
   printf("# [2]: benutzerdefinierte Parameter\n");
