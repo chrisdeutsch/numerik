@@ -62,7 +62,7 @@ int main() {
   printf("# [1]: Standard-Werte fuer Kupferdraht vom Radius 1mm und Strom I_0 = 1 Fr/s\n");
   printf("# [2]: benutzerdefinierte Parameter\n");
   printf("# Auswahl: ");
-  scanf("%i", &choice);
+  if (scanf("%i", &choice) != 1) return 1;
   
   if (choice == 1) {
     printf("\n# Benutze Standard-Werte fuer Kupfer\n");
