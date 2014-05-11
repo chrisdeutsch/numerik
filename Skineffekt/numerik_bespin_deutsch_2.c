@@ -68,11 +68,11 @@ int main() {
     printf("\n# Benutze Standard-Werte fuer Kupfer\n");
     
     printf("# Kreisfrequenz des Wechselstroms in Hz: ");
-    scanf("%lf", &omega);
+    if (scanf("%lf", &omega) != 1) return 1;
     omega = fabs(omega);
     
     printf("# Anzahl der berechneten Werte N: ");
-    scanf("%i", &N);
+    if (scanf("%i", &N) != 1) return 1;
     N = N < 2 ? 2 : N; /* N muss mind. 2 sein */
     
     table(I_0, sigma, mu, omega, rho_0, N);
@@ -80,26 +80,26 @@ int main() {
     printf("\n# benutzerdefinierter Parametersatz\n");
     
     printf("# Strom I_0 in Fr/s: ");
-    scanf("%lf", &I_0);
+    if (scanf("%lf", &I_0) != 1) return 1;
     I_0 = fabs(I_0);
     
     printf("# Leitfaehigkeit sigma in 1/s: ");
-    scanf("%lf", &sigma);
+    if (scanf("%lf", &sigma) != 1) return 1;
     sigma = fabs(sigma);
     
     printf("# Permeabilitaet mu: ");
-    scanf("%lf", &mu);
+    if (scanf("%lf", &mu) != 1) return 1;
     
     printf("# Leiterradius rho_0 in cm: ");
-    scanf("%lf", &rho_0);
+    if (scanf("%lf", &rho_0) != 1) return 1;
     rho_0 = fabs(rho_0);
     
     printf("# Kreisfrequenz des Wechselstroms in Hz: ");
-    scanf("%lf", &omega);
+    if (scanf("%lf", &omega) != 1) return 1;
     omega = fabs(omega);
     
     printf("# Anzahl der berechneten Werte N: ");
-    scanf("%i", &N);
+    if (scanf("%i", &N) != 1) return 1;
     N = N < 2 ? 2 : N; /* N muss mind. 2 sein */
     
     table(I_0, sigma, mu, omega, rho_0, N);
@@ -360,7 +360,7 @@ void test_func(double (*func)(double), char *filename, double epsilon) {
   int failed = 0;
   
   if (file == NULL) {
-    printf("Konnte die Datei %s nicht öffnen.", filename);
+    printf("Konnte die Datei %s nicht öffnen.\n", filename);
     return;
   }
   
