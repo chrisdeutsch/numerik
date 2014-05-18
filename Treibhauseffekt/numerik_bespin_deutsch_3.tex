@@ -24,7 +24,26 @@
 
 \subsection{Physikalischer Hintergrund}
 
-Wir verwenden zur Erklärung des Treibhauseffektes ein einfaches Modell grauer und schwarzer Körper. Die Erde entspricht dabei einem schwarzen Körper, das heißt Emissionsgrad ist gleich $1$, mit der Temperatur $T_E$. Die Sonne wird als grauer Körper mit konstanter Emissivität $\epsilon_S$ und ebenfalls konstanter Temperatur $T_S$. Im Gegensatz zum schwarzen Körper, absorbiert der graue Körper nicht die gesamte auf ihn treffende Strahlung und emittiert entsprechend auch nicht die maximal mögliche Schwarzkörperstrahlung. Es gilt daher, dass $\epsilon_{S}<1$. Im verwendeten Modell hat die Atmosphäre die Emissivität $\epsilon$ und die Temperatur $\tau$. Die Atmosphäre absorbiert den Anteil $epsilon(T_S)$ der von der Sonne emittierte Srahlung, lässt entsprechend den Anteil $1-epsilon(T_S)$ dieser Strahlung zur Erde durch und emittiert selber eine Strahlung mit Anteil $\epsilon(\tau)}$. Letzteres , sowie die zur Berechnung benötigten Formeln sind unter $(1)$-$(3)$ auf dem Aufgabenzettel zu finden.
+Wir verwenden zur Erklärung des Treibhauseffektes ein einfaches Modell grauer und schwarzer Körper. Die Erde entspricht dabei einem schwarzen Körper, das heißt Emissionsgrad ist gleich $1$, mit der Temperatur $T_E$. Die Sonne wird als grauer Körper mit konstanter Emissivität $\epsilon_S$ und ebenfalls konstanter Temperatur $T_S$. Im Gegensatz zum schwarzen Körper, absorbiert der graue Körper nicht die gesamte auf ihn treffende Strahlung und emittiert entsprechend auch nicht die maximal mögliche Schwarzkörperstrahlung. Es gilt daher, dass $\epsilon_{S}<1$. Im verwendeten Modell hat die Atmosphäre die Emissivität $\epsilon$ und die Temperatur $\tau$. Die Atmosphäre absorbiert den Anteil $\epsilon(T_S)$ der von der Sonne emittierte Srahlung, lässt entsprechend den Anteil $1-\epsilon(T_S)$ dieser Strahlung zur Erde durch und emittiert selber eine Strahlung mit Anteil $\epsilon(\tau)$. Letzteres, sowie die zur Berechnung benötigten Formeln sind unter $(1)$-$(3)$ auf dem Aufgabenzettel zu finden.\\
+Die Temperaturen der Körper ändern sich je nach abgestrahlter und emittierter Strahlung, bis sich irgendwann ein Strahlungsgleichgewicht einstellt. In diesem strahlen alle Körper genau so viel ab, wie sie absorbieren und alle Temperaturen sind gleich der Endtemperatur.
+\begin{figure}[htbp]
+\centering
+\includegraphics[height=5cm]{./figures/strahlungsgleichgewicht.pdf}
+\caption{Strahlungsgleichgewicht}
+\label{fig:strahlungsgleichgewicht}
+\end{figure}
+Im Strahlungsgleichgewicht gilt für unsere Modellannahme nach $(4)$ vom Aufgabenblatt:
+\begin{align}
+\left[2-\epsilon(T_E)\right]T_E^4=\epsilon_S\left[2-\epsilon(T_S)\right]T_S^4
+\label{eqn:gleichgewicht}
+\end{align}
+Um $T_E$ zu bestimmen, muss man \ref{eqn:gleichgewicht} umstellen, so dass sich ein Nullstellenproblem ergibt:
+\begin{align}
+\left[2-\epsilon(T_E)\right]T_E^4-\epsilon_S\left[2-\epsilon(T_S)\right]T_S^4=0
+\label{eqn:nullstellenform}
+\end{align}
+Der hintere Term hängt nicht von $T_E$ ab und kann mit geeigneten Verfahren (s.u.) zu einer konstanten Zahl bestimmt werden.
+$\nu_{max}=T\cdot 5,8789254\num{1E10}\si{\per\second}\si{\per\kelvin}$ \footnote{http://physics.nist.gov/constants, Wien frequency displacement law constant}
 
 \subsection{Mathematischer Hintergrund}
 
