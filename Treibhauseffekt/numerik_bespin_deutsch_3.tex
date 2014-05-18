@@ -14,172 +14,31 @@
 
 
 \author{Christian Bespin \and Christopher Deutsch}
-\title{Übungsblatt 2: Numerische Methoden der Physik}
+\title{Übungsblatt 3: Numerische Methoden der Physik}
 \begin{document}
 \maketitle
 
 \setcounter{section}{1}
 
-\section{Skin-Effekt}
+\section{Treibhauseffekt}
 
 \subsection{Physikalischer Hintergrund}
 
-In einem zylinderförmigen elektrischen Leiter mit Radius $\rho_0$, der hinreichend lang ist und in dem ein Wechselstrom $I(t)=I_0 e^{i \omega t}$ fließt, ist die Stromdichte nicht über den ganzen Leiterquerschnitt konstant. Das im Leiter schwingende elektrische Feld genügt bei verschwindendem Verschiebungsstrom ($\dot D \approx 0$) der elektromagnetischen Wellengleichung:
-\begin{align}
-	\Delta\mathbf{E} - \frac{4\pi\sigma\mu}{c^2} \frac{\partial \mathbf{E}}{\partial t} = 0
-	\label{eq:maxwellgleichung}
-\end{align}
-Wir drücken das elektrische Feld $\mathbf{E}$ durch das ohm'sche Gesetz $\mathbf{j} = \sigma \mathbf{E}$ aus und separieren die Zeitabhängigkeit der Stromdichte \cite{healdmarion} indem wir $\mathbf{j} = \mathbf{j}_0 e^{i \omega t}$ setzen.
-\begin{align}
-	\Delta\mathbf{j}_0 + k^2 \mathbf{j}_0 = 0
-	\label{eq:maxwellgleichungJ}
-\end{align}
-mit $k^2 = - i \frac{4 \pi \sigma \mu \omega}{c^2}$. Gehen wir in Zylinderkoordinaten über, wobei die z-Achse parallel zum Leiter gelegt wird und nutzen Symmetrie aus (keine Winkelabhängigkeit der Stromdichte), erhalten wir:
-\begin{align}
-	\frac{\mathrm{d}^2 j_0}{\mathrm{d}\rho^2} + \frac{1}{\rho}\frac{\mathrm{d}j_0}{\mathrm{d}\rho} + k^2 j_0 = 0
-	\label{eq:besseldgl} 
-\end{align}
-Multiplikation dieser Gleichung mit $\rho^2$ liefert mit der Substitution $\xi = k \rho$ die Bessel'sche Differentialgleichung:
-\begin{align}
-  \xi^2 \frac{\mathrm{d}^2j_0}{\mathrm{d}\xi^2} + \xi \frac{\mathrm{d}j_0}{\mathrm{d}\xi} + \xi^2 j_0 = 0
-\end{align}
-Als allgemeine Lösung erhält man Besselfunktionen erster Art und nullter Ordnung, mit der Integrationskonstante $A$:
-\begin{align}
-	j_0(\rho)=A J_0(k \rho) = A(\mathrm{ber}_0(\kappa \rho)+i\mathrm{bei}_0(\kappa \rho))
-\end{align}
-wobei für $\kappa$, wie auf dem Blatt definiert, $\kappa = 2 \sqrt{\pi \sigma \mu \omega}/c$ gilt.
-Die Konstante $A$ kann aus dem Strom, der im Leiter fließt, bestimmt werden \cite{kazimierczuk}, woraus direkt
-\begin{align}
-	j_0(\rho) = \frac{I_0 \kappa}{2\pi\rho_0}\frac{\mathrm{ber}_0(\kappa\rho)+i \mathrm{bei}_0(\kappa\rho)}{\mathrm{bei}'_0(\kappa\rho_0)-i\mathrm{ber}'_0(\kappa\rho_0)}
-\label{eq:stromdichte}
-\end{align}
-folgt. Mit steigender Frequenz $\omega$ geschieht der Ladungstransport überwiegend am Rand des Leiter, weil das (alternierenden) Magnetfeld, das vom Wechselstrom induziert wird, Kraft (Lorentzkraft) auf die Ladungsträger ausübt. Diese ist zum Rand des Leiters gerichtet, weshalb am Rand mehr Ladungsträger lokalisiert sind als im Kern, wobei die Schicht am Rand des Leiters, in dem sich die Ladungsträger konzentrieren, mit zunehmender Frequenz $\omega$ immer dünner wird. Darum wird das Phänomen als \emph{Skin-Effekt} bezeichnet. Insbesondere ist $j_0$ eine komplexe Zahl, da sie nach dem Separationsansatz sowohl Amplituden- wie auch Phaseinformation enthält.
+Wir verwenden zur Erklärung des Treibhauseffektes ein einfaches Modell grauer und schwarzer Körper. Die Erde entspricht dabei einem schwarzen Körper, das heißt Emissionsgrad ist gleich $1$, mit der Temperatur $T_E$. Die Sonne wird als grauer Körper mit konstanter Emissivität $\epsilon_S$ und ebenfalls konstanter Temperatur $T_S$. Im Gegensatz zum schwarzen Körper, absorbiert der graue Körper nicht die gesamte auf ihn treffende Strahlung und emittiert entsprechend auch nicht die maximal mögliche Schwarzkörperstrahlung. Es gilt daher, dass $\epsilon_{S}<1$. Im verwendeten Modell hat die Atmosphäre die Emissivität $\epsilon$ und die Temperatur $\tau$. Die Atmosphäre absorbiert den Anteil $epsilon(T_S)$ der von der Sonne emittierte Srahlung, lässt entsprechend den Anteil $1-epsilon(T_S)$ dieser Strahlung zur Erde durch und emittiert selber eine Strahlung mit Anteil $\epsilon(\tau)}$. Letzteres , sowie die zur Berechnung benötigten Formeln sind unter $(1)$-$(3)$ auf dem Aufgabenzettel zu finden.
 
 \subsection{Mathematischer Hintergrund}
-
-\subsubsection{Bessel-Funktionen erster Art}
-
-Man kann die Bessel-Funktionen erster Art durch ihre Potenzreihenentwicklung im Ursprung definieren:
-\begin{align}
-	J_\nu(z) = \sum^{\infty}_{m=0} \frac{\left( -1 \right)^m}{m! \, \Gamma(m + \nu + 1)} \left(\frac{z}{2}\right)^{2m+\nu}
-\end{align}
-Dabei ist $\nu \in \mathbb{R}$. Uns interessiert die Besselfunktion 0-ter Ordnung $\nu = 0$.
-Mit der Identität $\Gamma(n+1) = n!$ für $n \in \mathbb{N}$ ergibt sich:
-\begin{align}
-	\label{eq:bessel0}
-	J_0(z) = \sum^{\infty}_{m=0} \frac{\left( -1 \right)^m}{\left( m! \right)^2} \left( \frac{z}{2} \right)^{2m}
-\end{align}
-
-\subsubsection{Kelvin-Funktionen}
-\label{sssec:kelvin-funktionen}
-
-Die Kelvin-Funktionen $\mathrm{ber}_\nu(x)$ und $\mathrm{bei}_\nu(x)$ sind definiert als der Real-
-beziehungsweise Imaginärteil von $J_\nu(x \sqrt{-i} )$. Mit (\ref{eq:bessel0})
-folgt für den Fall $\nu = 0$ umgehend die Reihendarstellung der Kelvinfunktionen:
-\begin{align}
-	\mathrm{ber}_0(x) = 1 + \sum^{\infty}_{k=1} \frac{\left( -1 \right)^k}{\left( \left(2k\right)! \right)^2} \left( \frac{x}{2} \right)^{4k}&&
-	\mathrm{bei}_0(x) = \sum^{\infty}_{k=0} \frac{\left( -1 \right)^k}{\left( \left(2k+1\right)! \right)^2} \left( \frac{x}{2} \right)^{4k+2}\label{eq:potenzreihe}
-\end{align}
-Um die erste Ableitung zu erhalten, leiten wir (\ref{eq:potenzreihe}) gliedweise ab:
-\begin{align}
-	\mathrm{ber}'_0(x) = \sum^{\infty}_{k=1} \frac{\left( -1 \right)^k}{\left( 2k-1 \right)! \, \left( 2k \right)!} \left( \frac{x}{2} \right)^{4k-1}&&
-	\mathrm{bei}'_0(x) = \sum^{\infty}_{k=0} \frac{\left( -1 \right)^k}{\left( 2k \right)! \, \left( 2k+1 \right)!} \left( \frac{x}{2} \right)^{4k+1}\label{eq:dpotenzreihe}
-\end{align}
-In asymptotischer Näherung \cite{abramowitzstegun} ergibt sich mit den Definitionen $\alpha = \frac{x}{\sqrt{2}}-\frac{\pi}{8}$ und $C(x) = e^{\frac{x}{\sqrt{2}}}/\sqrt{2 \pi x} $:
-\begin{align}
-	\mathrm{ber}_0(x) &\approx C(x) \left[f_0(x) \cos(\alpha) + g_0(x) \sin(\alpha) \right]\label{eq:berpotenzreiheasym}-\frac{\mathrm{kei}_0(x)}{\pi}\\
-	\mathrm{bei}_0(x) &\approx C(x) \left[f_0(x) \sin(\alpha) - g_0(x) \cos(\alpha) \right]\label{eq:beipotenzreiheasym}-\frac{\mathrm{ker}_0(x)}{\pi}
-\end{align}
-Dabei sind $\mathrm{ker}_0$ und $\mathrm{kei}_0$ die Kelvin-Funktionen basierend auf der modifizierten Besselfunktion zweiter Art und nullter Ordnung.
-Außerdem gilt per Definition:
-\begin{align}
-	f_0(x) = 1 + \sum^{\infty}_{k=1} \frac{\cos(k \pi / 4)}{k! \, (8k)^k} \prod^{k}_{l=1}(2l - 1)^2&&
-	g_0(x) = \sum^{\infty}_{k=1} \frac{\sin(k \pi / 4)}{k! \, (8k)^k} \prod^{k}_{l=1}(2l - 1)^2\label{eq:f0g0}
-\end{align}
-Wir vernachlässigen den Beitrag von $\mathrm{ker}_0$ und $\mathrm{kei}_0$ zur asymptotischen Näherung, da:
-\begin{align}
-	\mathrm{ker}_0, \mathrm{kei}_0 \in \mathcal{O}\left( \sqrt{\frac{\pi}{2 x}}e^{-\frac{x}{\sqrt{2}}} \right)
-\end{align}
-Nun leiten wir (\ref{eq:berpotenzreiheasym}) und (\ref{eq:beipotenzreiheasym}) ab und erhalten:
-\begin{align}
-	\mathrm{ber}'_0(x) &\approx C(x) \left( \frac{1}{\sqrt{2}} - \frac{1}{2x} \right) \left[f_0(x) \cos(\alpha) + g_0(x) \sin(\alpha) \right] \notag\\ & + C(x) \left[ f'_0(x) \cos(\alpha) + g'_0(x) \sin(\alpha) - f_0(x) \frac{\sin(\alpha)}{\sqrt{2}} + g_0(x) \frac{\cos(\alpha)}{\sqrt{2}} \right]\label{eq:dberpotenzreiheasym}\\
-	\mathrm{ber}'_0(x) &\approx C(x) \left( \frac{1}{\sqrt{2}} - \frac{1}{2x} \right) \left[f_0(x) \sin(\alpha) - g_0(x) \cos(\alpha) \right] \notag\\ & + C(x) \left[ f'_0(x) \sin(\alpha) - g'_0(x) \cos(\alpha) + f_0(x) \frac{\cos(\alpha)}{\sqrt{2}} + g_0(x) \frac{\sin(\alpha)}{\sqrt{2}} \right] \label{eq:dbeipotenzreiheasym}
-\end{align}
-mit
-\begin{align}
-	f'_0(x) = - \sum^{\infty}_{k=1} \frac{\cos(k \pi / 4)}{(k-1)! \, 8^k} \frac{1}{x^{k+1}} \prod^{k}_{l=1}(2l - 1)^2&&
-	g'_0(x) = -\sum^{\infty}_{k=1} \frac{\sin(k \pi / 4)}{(k-1)! \, 8^k} \frac{1}{x^{k+1}} \prod^{k}_{l=1}(2l - 1)^2\label{eq:d_f0g0}
-\end{align}
 
 \subsection{Implementierung}
 
 \subsubsection{Struktur des Programmes}
-Alle Reihen aus Abschnitt \ref{sssec:kelvin-funktionen} wurden als Funktionen im Quellcode implementiert.
-Dabei wird anhand der globalen Konstante \texttt{kThreshold} entschieden, ob die Reihenentwicklung oder die asymptotische Näherung der Kelvinfunktionen verwendet wird.
-Sollte das Argument kleiner sein als \texttt{kThreshold} wird die Reihenentwicklung, sonst die asymptotische Näherung verwendet.
-Außerdem wurde noch eine Funktion \texttt{table} implementiert, die dazu dient, eine Wertetabelle für einen Parametersatz ($I_0$, $\sigma$, $\mu$, $\omega$, $\rho_0$) zu berechnen.
-Dabei werden $N$ Werte gleichmäßig auf dem Intervall $[0,\rho_0]$ verteilt. Die Berechnung wird analog zu den Formeln aus Abschnitt \ref{ssec:physikalischeergebnisse} durchgeführt.
 
-\subsubsection{rekursive Berechnung der Summanden der Reihen}
-Um Reihen effizienter zu berechnen (besonders bei Verwendung von Potenzen und Fakultäten), kann man oft den $k$-ten Summanden $S_k$ aus $S_{k-1}$ berechnen. Diesen Fakt nutzen wir aus, um unsere Reihenberechnung effizienter zu gestalten. Allgemein nimmt dies die Form: $S_k = c(x, k)\cdot S_{k-1}$ an.
-In Tabelle \ref{tab:rekursionsfaktoren} geben wir die, aus den Gleichungen aus Abschnitt \ref{sssec:kelvin-funktionen}, berechneten Faktoren an.
-\begin{wraptable}[16]{R}[1pt]{0.37\textwidth}
-\begin{tabular}{c|c}
-Funktion & $c(x,k)$ \\\hline
-\rule[-3.5ex]{0pt}{8ex} $\mathrm{ber}_0$ & $-\dfrac{1}{(2k-1)^2 (2k)^2}\dfrac{x^4}{16}$ \\ \hline
-\rule[-3.5ex]{0pt}{8ex} $\mathrm{bei}_0$ & $-\dfrac{1}{(2k)^2 (2k+1)^2}\dfrac{x^4}{16}$ \\ \hline
-\rule[-3.5ex]{0pt}{8ex} $\mathrm{ber}'_0$ & $-\dfrac{1}{(2k-2) (2k-1)^2 (2k)}\dfrac{x^4}{16}$ \\ \hline
-\rule[-3.5ex]{0pt}{8ex} $\mathrm{bei}'_0$ & $-\dfrac{1}{(2k-1) (2k)^2 (2k+1)}\dfrac{x^4}{16}$
-\end{tabular}
-\caption{Faktoren der Rekursionsformeln}
-\label{tab:rekursionsfaktoren}
-\end{wraptable}
-
-Man sieht leicht, dass diese Methode für $f_0$ und $g_0$ sowie deren Ableitungen nicht optimal ist, da ein Sinus bzw. Cosinus mit $k$-Abhängigkeit im Summanden vorkommt.
-Dies beheben wir, indem die problematische Funktion $f(x,k)$ ausgeklammert wird (also $S_k = f(x,k) \cdot \alpha_k(x,k)$ sowie $S_{k-1} = f(x,k-1) \cdot \alpha_{k-1}(x,k)$)
-und analog zur Methode von vorhin der Faktor $\alpha_k(x,k)$ berechnen. Dies nimmt dann die allgemeine Form $\alpha_k(x,k) = c(x,k)\cdot\alpha_{k-1}(x,k)$ an\footnote{Wir verzichten auf die Angabe der Faktoren in diesem Fall (findet man allerdings im Quellcode)}.
 \subsubsection{Abbruchbedingungen}
-Wir haben eine globale Konstante \texttt{kEpsilon} definiert, die als Abbruchbedingung der Reihenberechnung dient.
-Die Reihen werden dann abgebrochen, wenn der letzte Summand kleiner als \texttt{kEpsilon} multipliziert mit der aktuellen Partialsumme ist.
-Diese Bedingung wurde gewählt, da die Addition von sehr kleinen Gleitkommazahlen auf sehr Große keine Änderung der Summe erzielt und wir vermeiden so Rechenschritte, die das Ergebnis nicht ändern.
-Analog dazu betrachten wir bei der Berechnung von $f_0$ und $g_0$, sowie deren Ableitungen, den Faktor vor dem Sinus/Cosinus statt dem Summanden,
-da dieser zwangsweise nach wenigen Schritten null werden würde, auch wenn die danach folgenden Glieder einen maßgeblichen Einfluss auf die Summe haben.
-\subsubsection{Genaugkeit der Kelvin-Funktionen}
-Die Kelvin-Funktionen wurden mit der Funktion \texttt{test\_func} und Vergleichswerten\footnote{Die Vergleichswerte sind im Archiv enthalten} von \emph{Mathematica} auf einem Parameterbereich von $0$ bis $1000$ getestet.
-Mit \texttt{kThreshold = 10} und \texttt{kEpsilon = 1E-6} weisen die Kelvin-Funktionen einen relativen Fehler von weniger als $10^{-6}$ auf.
+
+\subsubsection{Genaugkeit}
 
 \subsection{Physikalische Ergebnisse}
 \label{ssec:physikalischeergebnisse}
-Wir teilen Gl. (\ref{eq:stromdichte}) in Real- und Imaginärteil auf:
-\begin{align}
-	j_0(\rho) &= \frac{I_0 \kappa}{2 \pi \rho_0} \left[ \frac{\mathrm{ber}_0(\kappa \rho)\mathrm{bei}'_0(\kappa \rho_0) - \mathrm{bei}_0(\kappa \rho)\mathrm{ber}'_0(\kappa \rho_0)}{\mathrm{ber}'^2_0(\kappa \rho_0)+\mathrm{bei}'^2_0(\kappa \rho_0)} + i\frac{\mathrm{ber}_0(\kappa \rho)\mathrm{ber}'_0(\kappa \rho_0) + \mathrm{bei}_0(\kappa \rho)\mathrm{bei}'_0(\kappa \rho_0)}{\mathrm{ber}'^2_0(\kappa \rho_0)+\mathrm{bei}'^2_0(\kappa \rho_0)}\right]
-\end{align}
-So kann die Amplitude sowie Phase einfach berechnet werden:
-\begin{align}
-	|j_0(\rho)| &= \sqrt{\operatorname{Re}(j_0(\rho))^2 + \operatorname{Im}(j_0(\rho))^2}\\
-	\phi(\rho) &= \operatorname{atan2}\left[\operatorname{Im}(j_0(\rho)), \operatorname{Re}(j_0(\rho))\right]
-\end{align}
-Nachfolgend sind vier Plots aufgeführt, die für unterschiedliche Frequenzen sowohl die Amplitude als auch die Phase der Stromdichte im Leiter, in Abhängigkeit vom Radius $\rho$ darstellt. $\rho_0$ ist dabei immer auf $\num{0.1} \si{\centi\metre}$ festgelegt, der verwendete spezifischer Widerstand ist $\rho_{Cu} = \num{1.678e-8} \si{\ohm\metre}$ \cite{crchandbook} (was im cgs-System einer Leitfähigkeit von $\sigma_{Cu} = \num{5.356e17} \si{\per\second}$ entspricht), die Permeabilität $\mu = \num{0.999994}$ \cite{crchandbook} und es wurde $I_0 = \num{1} \, \mathrm{Fr}\,\mathrm{s}^{-1}$ gesetzt. Die mit unserem Programm erhaltenen Datenpunkte wurden für die Phase mit Geraden verbunden, um den Sägezahn-Verlauf am besten darzustellen. Bei der Amplitude wurde mit Splines interpoliert, wobei die Anzahl Datenpunkte so groß ist, dass die Art der Interpolation hier keinen Unterschied in der Darstellung macht. Man sieht deutlich das zu erwartende Verhalten der Amplitude: für größere Frequenzen nimmt die Amplitude im Kern immer mehr ab und steigt dafür bei großen Werten von $\rho$ umso stärker an. Besonders im letzten Diagramm ist deutlich der Skin-Effekt sichtbar, die Stromdichte ist bis deutlich über dem halben Radius praktisch null. Der periodische Verlauf der Phase entsteht durch die verwendete \texttt{atan2} Funktion, die die Phase auf den Bereich von $-\pi$ bis $\pi$ reduziert und die Phasenlage dadurch eindeutig definiert. Tatsächlich aber steigt die Phase für steigendes $\rho$ an.
-\begin{figure}[htbp]
-\centering
-\scalebox{1.0}{\input{./figures/e4}}
-\caption{Amplituden- und Phasenverhalten für $\omega=\num{1E4} \si{\per\second}$}
-\end{figure}
-\begin{figure}[htbp]
-\centering
-\scalebox{1.0}{\input{./figures/e5}}
-\caption{Amplituden- und Phasenverhalten für $\omega=\num{1E5} \si{\per\second}$}
-\end{figure}
-\begin{figure}[htbp]
-\centering
-\scalebox{1.0}{\input{./figures/e6}}
-\caption{Amplituden- und Phasenverhalten für $\omega=\num{1E6} \si{\per\second}$}
-\end{figure}
-\begin{figure}[htbp]
-\centering
-\scalebox{1.0}{\input{./figures/e7}}
-\caption{Amplituden- und Phasenverhalten für $\omega=\num{1E7} \si{\per\second}$}
-\end{figure}
+
 \begin{thebibliography}{9}
 
 \bibitem{abramowitzstegun}
