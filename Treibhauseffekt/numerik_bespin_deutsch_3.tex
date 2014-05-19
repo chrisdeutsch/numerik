@@ -52,7 +52,7 @@ $\nu_{max}=T\cdot 5,8789254\num{1E10}\si{\per\second}\si{\per\kelvin}$ \footnote
 
 Das Programm besteht aus zwei Teilen: der numerischen Integration, bei der $epsilon(T)$ bestimmt wird und der numerischen Auswertung, um $T_E$ zu bestimmen, bei der \ref{eqn:nullstellenform} gilt.
 
-\subsubsection{Bisektion}
+\subsubsection{Nullstellenberechnung mit Bisektion}
 
 Ein Verfahren, um numerisch Nullstellen zu bestimmen, ist das 1-Punkt-Iterationsverfahren Bisektion. Wir verwenden dieses hier, da es im Gegensatz zum Newtonverfahren keine Ableitungen der Funktion berechnen und auswerten muss. Dabei wird vorausgesetzt, dass die Funktion auf dem relevanten Intervall $[a,b]$ nur eine Nullstelle hat. Die Bisektion halbiert das zu betrachtende Intervall immer so, dass der Vorzeichenwechsel des Funktionswerts im betrachteten Intervall bleibt. Der Fehler halbiert sich mit jedem Iterationsschritt, was nicht so schnell wie das Newtonverfahren ist, die Laufzeit des Programms aber dennoch in einem akzeptablen Rahmen hält.
 \begin{figure}[htbp]
@@ -62,7 +62,9 @@ Ein Verfahren, um numerisch Nullstellen zu bestimmen, ist das 1-Punkt-Iterations
 \label{fig:bisektion}
 \end{figure}
 
-\subsubsection{Struktur des Programmes}
+\subsubsection{Numerische Integration mit rekursivem Simpson-Verfahren}
+
+Wir verwenden zur numerischen Integration eine rekursive Variante des Simpson-Verfahrens, bei der das Intervall, über dem integriert wird, mit jedem Rekursionsschritt in zwei Hälften zerlegt wird, auf die die normale Simpson-Methode angewendet wird. Ist die Differenz zwischen dem mit Simpson über dem ganzen Intervall berechneten Integralwert und der Summe der zwei Teilintervalle größer als eine vorgegebene Genauigkeit, wird die Funktion rekursiv aufgerufen, wodurch jedes der Teilintervalle erneut halbiert wird. Durch dieses Vorgehen fallen im Gegensatz zum gewöhnlichen Simpsonverfahren einige laufzeitbeeinträchtigende Funktionsaufrufe weg.
 
 \subsubsection{Abbruchbedingungen}
 
