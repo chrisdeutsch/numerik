@@ -27,7 +27,7 @@
 Wir verwenden zur Erklärung des Treibhauseffektes ein einfaches Modell grauer und schwarzer Körper. Die Erde entspricht dabei einem schwarzen Körper, das heißt Emissionsgrad ist gleich $1$, mit der Temperatur $T_E$. Die Sonne wird als grauer Körper mit konstanter Emissivität $\epsilon_S$ und ebenfalls konstanter Temperatur $T_S$. Im Gegensatz zum schwarzen Körper, absorbiert der graue Körper nicht die gesamte auf ihn treffende Strahlung und emittiert entsprechend auch nicht die maximal mögliche Schwarzkörperstrahlung. Es gilt daher, dass $\epsilon_{S}<1$. Im verwendeten Modell hat die Atmosphäre die Emissivität $\epsilon$ und die Temperatur $\tau$. Die Atmosphäre absorbiert den Anteil $\epsilon(T_S)$ der von der Sonne emittierte Srahlung, lässt entsprechend den Anteil $1-\epsilon(T_S)$ dieser Strahlung zur Erde durch und emittiert selber eine Strahlung mit Anteil $\epsilon(\tau)$. Letzteres, sowie die zur Berechnung benötigten Formeln sind unter $(1)$-$(3)$ auf dem Aufgabenzettel zu finden.\\
 \begin{wrapfigure}{L}[1pt]{0.47\textwidth}
 \centering
-\includegraphics[width=0.45\textwidth]{./figures/strahlungsgleichgewicht.pdf}
+\includegraphics[width=0.45\textwidth]{./figures/strahlungsgleichgewicht.eps}
 \caption{Strahlungsgleichgewicht}
 \label{fig:strahlungsgleichgewicht}
 \end{wrapfigure}
@@ -57,7 +57,7 @@ Das Programm besteht aus zwei Teilen: der numerischen Integration, bei der $epsi
 Ein Verfahren, um numerisch Nullstellen zu bestimmen, ist das 1-Punkt-Iterationsverfahren Bisektion. Wir verwenden dieses hier, da es im Gegensatz zum Newtonverfahren keine Ableitungen der Funktion berechnen und auswerten muss. Dabei wird vorausgesetzt, dass die Funktion auf dem relevanten Intervall $[a,b]$ nur eine Nullstelle hat. Die Bisektion halbiert das zu betrachtende Intervall immer so, dass der Vorzeichenwechsel des Funktionswerts im betrachteten Intervall bleibt. Der Fehler halbiert sich mit jedem Iterationsschritt, was nicht so schnell wie das Newtonverfahren ist, die Laufzeit des Programms aber dennoch in einem akzeptablen Rahmen hält.
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.6\textwidth]{./figures/bisektion.pdf}
+\includegraphics[width=0.6\textwidth]{./figures/bisektion.eps}
 \caption{Bisektions-Verfahren}
 \label{fig:bisektion}
 \end{figure}
