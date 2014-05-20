@@ -13,7 +13,9 @@ typedef struct {
 int find_root(function f, double x1, double x2, double epsilon, double *root);
 
 /* Integriert die Funktion f rekursiv mit der adaptiven Simpsonmethode
- * von a bis b */
+ * von a bis b.
+ * rdepth: maximale Rekursionstiefe 
+ * epsilon: Abbruchbedingung (Abweichung von der letzten Naeherung) */
 double integrate(function f, double a, double b, double epsilon, int rdepth);
 
 /* Rekursionsfunktion zur Integration */

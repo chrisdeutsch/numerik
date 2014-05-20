@@ -1,5 +1,5 @@
-/* gcc -o numerik_3 -O2 numerik.c main.c */
-/* Namen */
+/* gcc -o numerik_3 -O2 numerik_bespin_deutsch_mathfunctions.c numerik_bespin_deutsch_3.c */
+/* Christian Bespin, Christopher Deutsch */
 
 #include <stdio.h>
 #include <math.h>
@@ -21,29 +21,32 @@ const double c_n0 = 7.3E+25;
 const double c_TS = 5750;
 const double c_epsilon_s = 5.5E-6;
 
-
+/* Wirkungsquerschnitt */
 double sigma(double nu);
+/* Irgendwas-Energiedichte */
 double rho(double nu, double T);
-/* analytisch */
+/* analytisch integrierte Energiedichte */
 double Z(double T);
 
-/*  */
-double f(double nu, double n_schl);
-double diff(double nu, void *args);
-double epsilon(double T, double n_schl);
+/* Integrand der Emissivitaet: *args = {dbl T, dbl n} */
+double epsilon_integrand(double nu, void *args);
+/* Berechnet die Emissivitaet */
+double epsilon(double T, double n);
+
+/* Die eigentlich zu loesende nichtlineare Gleichung: *args = {dbl n, dbl rhs} */
 double eqn(double TE, void *args);
 
 int main() {
   double root;
-
-  double args[2];
   
+  /* Verpackt die zu loesende Gleichung */
+  double args[2];
   function F;
   F.func = eqn;
   
   int i;
   
-  for (i = 1; i <= 1000; i++) {
+  for (i = 1; i <= 100; i++) {
     args[0] = i / 10.0;
     args[1] = c_epsilon_s * (2 - epsilon(c_TS, args[0])) * pow(c_TS, 4);
     
@@ -56,33 +59,42 @@ int main() {
 }
 
 double rho(double nu, double T) {
-  return 8 * c_pi * c_h / pow(c_c, 3) * pow(nu, 3) / ( exp(c_h / c_k * nu / T ) -1 );
+  return 8 * c_pi * c_h * pow(nu / c_c, 3) / ( exp(c_h / c_k * nu / T ) -1 );
 }
 
 double sigma(double nu) {
-  return c_S2 / c_pi * c_gamma / ((nu - c_nu2) * (nu - c_nu2) + c_gamma * c_gamma)
-         + c_S3 / c_pi * c_gamma / ((nu - c_nu3) * (nu - c_nu3) + c_gamma * c_gamma);
+  double gamma_sqred = c_gamma * c_gamma;
+  double nu2_diff = nu - c_nu2;
+  double nu3_diff = nu - c_nu3;
+  
+  return c_gamma / c_pi * (c_S2 / (nu2_diff * nu2_diff + gamma_sqred)
+                           + c_S3 / (nu3_diff * nu3_diff + gamma_sqred));
+
 }
 
 double Z(double T) {
-  return 8 * c_pi * c_h / pow(c_c, 3) * pow(c_pi, 4) / (15 * pow(c_h / c_k / T, 4));
+  /* Form der analytischen Gleichung mit nur einem pow(x, 4)-Aufruf */
+  return 8.0 / 15.0 * c_pi * c_h * c_c * pow(c_pi * c_k * T / c_h / c_c, 4);
 }
 
-double f(double nu, double n_schl) {
-  return exp(-n_schl * c_n0 * sigma(nu));
-}
-
-double diff(double nu, void *args) {
+double epsilon_integrand(double nu, void *args) {
+  /* Extrahiert die Argumente */
   double T = *(double*)args;
-  double n_schl = *((double*)args + 1);
-  return rho(nu, T) * (1 - f(nu, n_schl));
+  double n = *((double*)args + 1);
+  
+  /*  */
+  double f = exp(-n * c_n0 * sigma(nu));
+  
+  return rho(nu, T) * (1 - f);
 }
 
-double epsilon(double T, double n_schl) {
-  double args[2] = {T, n_schl};
+double epsilon(double T, double n) {
+  /* in den Integranden zu substituierende Groessen */
+  double args[2] = {T, n};
   
+  /* Wrapper fuer Funktion + Argumente */
   function F;
-  F.func = diff;
+  F.func = epsilon_integrand;
   F.args = args;
   
   /* Die gewaehlten Grenzen sind gut fuer T = 5750 sowie T im 300er Bereich */
@@ -90,7 +102,8 @@ double epsilon(double T, double n_schl) {
 }
 
 double eqn(double TE, void *args) {
-  double n_schl = *(double*)args;
+  double n = *(double*)args;
   double rhs = *((double*)args + 1);
-  return (2 - epsilon(TE, n_schl))*pow(TE, 4) - rhs;
+  
+  return (2 - epsilon(TE, n)) * pow(TE, 4) - rhs;
 }
