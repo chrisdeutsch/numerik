@@ -64,7 +64,6 @@ double recursive_simpson(function f, double prev_simp,
                          double x0, double x1, double x2,
                          double f0, double f1, double f2,
                          double epsilon, int rdepth) {
-  rdepth--;
   /* Wir haben zwei Intervalle [x0,x1] und [x1,x2] mit den Funktionswerten f0, 
    * f1 und f2. Es wird die naechste Verfeinerung nach Simpson berechnet. */
   double h = 0.5 * (x1 - x0);
@@ -83,6 +82,9 @@ double recursive_simpson(function f, double prev_simp,
   
   /* Neue Abschaetzung des Integrals: */
   double simp = simp01 + simp12;
+  
+  /* Rekursionszaehler */
+  rdepth--;
   
   /* Vergleich des neuen Schaetzwertes mit dem Alten. Sollte die Differenz
    * groesser als epsilon sein, werden die Intervalle halbiert und der Prozess
