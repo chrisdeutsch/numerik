@@ -33,8 +33,12 @@ Wir verwenden zur Erklärung des Treibhauseffektes ein einfaches Modell grauer u
 \label{fig:strahlungsgleichgewicht}
 \end{wrapfigure}
 \\
-Die Temperaturen der Körper ändern sich je nach abgestrahlter und emittierter Strahlung, bis sich irgendwann ein Strahlungsgleichgewicht einstellt. In diesem strahlen alle Körper genau so viel ab, wie sie absorbieren. Man kann für alle drei Elemente im Modell eine Formel aufstellen, die das Strahlungsgleichgewicht beschreibt. Dazu settz man an, dass die abgestrahlte Leistung $P$ proportional zu $\epsilon T^4$ ist (Stefan-Boltzmann-Gesetz). Weiterhin gilt nach Kirchhoff, dass die Absorptions- und Emissionskoeffizient eines Körpers gleich groß sind; es wird immer so viel Leistung emittiert, wie absorbiert. Damit erhält man für das Gleichgewicht der Atmosphäre (die Proportionalitätsfaktoren von $P$ werden vernachlässigt, sie kürzen sich beim Lösen heraus.)
-Im Strahlungsgleichgewicht gilt für unsere Modellannahme nach $(4)$ vom Aufgabenblatt:
+Die Temperaturen der Körper ändern sich je nach abgestrahlter und emittierter Strahlung, bis sich irgendwann ein Strahlungsgleichgewicht einstellt. In diesem strahlen alle Körper genau so viel ab, wie sie absorbieren. Man kann für alle drei Elemente im Modell eine Formel aufstellen, die das Strahlungsgleichgewicht beschreibt. Dazu settz man an, dass die abgestrahlte Leistung $P$ proportional zu $\epsilon T^4$ ist (Stefan-Boltzmann-Gesetz). Weiterhin gilt nach Kirchhoff, dass die Absorptions- und Emissionskoeffizient eines Körpers gleich groß sind; es wird immer so viel Leistung emittiert, wie absorbiert. Damit erhält man für das Gleichgewicht der Atmosphäre (die Proportionalitätsfaktoren von $P$ werden vernachlässigt, sie kürzen sich beim Lösen heraus):
+\begin{align}
+2\epsilon(\tau)\tau^4=\epsilon(T_S)\epsilon_s T_S^4+\epsilon(T_E)T_E^4
+\end{align}
+Der Term auf der linken Seite beschreibt die von der Atmosphäre abgestrahlte Leistung. Der Faktor $2$ berücksichtigt die Abstrahlung sowohl zur Erde als auch zur Sonne. Die absorbierte Strahlung auf der rechten Seite setzt sich zusammen aus der von der Sonne und der Erde emittierten Strahlung ($\epsilon_S T_s^4$ bzw. $T_E^4$, da $\epsilon_{\mathrm{Erde}}=1$). Die Faktoren $\epsilon(T)$ beschreiben nach Kirchhoff nicht nur die Emissivität, sondern auch den Absorptionskoeffizienten der Atmosphäre. Sie ist in diesem Modell ein grauer Körper und absorbiert nur einen Teil, der auf sie treffenden Strahlung. Die Gleichungen für Sonne und Erde lassen sich analog aufstellen mit den gegebenen Informationen.
+Aus den Gleichungen lässt sich $\tau$ eliminieren und man erhält $(4)$ vom Aufgabenblatt:
 \begin{align}
 \left[2-\epsilon(T_E)\right]T_E^4=\epsilon_S\left[2-\epsilon(T_S)\right]T_S^4
 \label{eqn:gleichgewicht}
@@ -44,7 +48,8 @@ Um $T_E$ zu bestimmen, muss man \ref{eqn:gleichgewicht} umstellen, so dass sich 
 \left[2-\epsilon(T_E)\right]T_E^4-\epsilon_S\left[2-\epsilon(T_S)\right]T_S^4=0
 \label{eqn:nullstellenform}
 \end{align}
-Der hintere Term hängt nicht von $T_E$ ab und kann mit geeigneten Verfahren (s.u.) zu einer konstanten Zahl bestimmt werden.
+
+
 $\nu_{max}=T\cdot 5,8789254\num{1E10}\si{\per\second}\si{\per\kelvin}$ \footnote{http://physics.nist.gov/constants, Wien frequency displacement law constant}
 
 \subsection{Mathematischer Hintergrund}
