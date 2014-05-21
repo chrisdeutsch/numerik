@@ -30,25 +30,25 @@ double Z(double T);
 
 /* Integrand der Emissivitaet: *args = {dbl T, dbl n} */
 double epsilon_integrand(double nu, void *args);
-/* Berechnet die Emissivitaet */
-double epsilon(double T, double n);
+/* Berechnet die Emissivitaet (das Integral ist in den Grenzen a, b um an die
+ * Berechnung an den jeweiligen Parametersatz T,n anpassen zu koennen) */
+double epsilon(double T, double n, double a, double b);
 
 /* Die eigentlich zu loesende nichtlineare Gleichung: *args = {dbl n, dbl rhs} */
 double eqn(double TE, void *args);
 
 int main() {
   double root;
-  
-  /* Verpackt die zu loesende Gleichung */
-  double args[2];
-  function F;
-  F.func = eqn;
-  
   int i;
   
-  for (i = 1; i <= 100; i++) {
+  /* Verpackt die zu loesende Gleichung */
+  function F;
+  double args[2];
+  F.func = eqn;
+  
+  for (i = 1; i <= 1000; i++) {
     args[0] = i / 10.0;
-    args[1] = c_epsilon_s * (2 - epsilon(c_TS, args[0])) * pow(c_TS, 4);
+    args[1] = c_epsilon_s * (2 - epsilon(c_TS, args[0], 1E12, 1E15)) * pow(c_TS, 4);
     
     F.args = args;
     find_root(F, 250, 350, 0.1, &root);
@@ -88,22 +88,24 @@ double epsilon_integrand(double nu, void *args) {
   return rho(nu, T) * (1 - f);
 }
 
-double epsilon(double T, double n) {
+double epsilon(double T, double n, double a, double b) {
+  function F;
+  double args[2];
   /* in den Integranden zu substituierende Groessen */
-  double args[2] = {T, n};
+  args[0] = T;
+  args[1] = n;
   
   /* Wrapper fuer Funktion + Argumente */
-  function F;
   F.func = epsilon_integrand;
   F.args = args;
   
-  /* Die gewaehlten Grenzen sind gut fuer T = 5750 sowie T im 300er Bereich */
-  return integrate(F, 1E12, 1E15, 1E-11, 20) / Z(T);
+  /* Die gewaehlten Grenzen sind gut fuer T = 300 K */
+  return integrate(F, a, b, 1E-11, 20) / Z(T);
 }
 
 double eqn(double TE, void *args) {
   double n = *(double*)args;
   double rhs = *((double*)args + 1);
   
-  return (2 - epsilon(TE, n)) * pow(TE, 4) - rhs;
+  return (2 - epsilon(TE, n, 1E12, 1E14)) * pow(TE, 4) - rhs;
 }
