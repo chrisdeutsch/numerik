@@ -47,21 +47,35 @@ double equilibrium_eqn(double TE, void *args);
 
 
 int main(int argc, char **argv) {
+  /* Parameter: argv -> start, stop, step */
+  double n_start, n_stop, n_step;
   double equi_temp;
-  int i;
   
-  /* Verpackt die zu loesende Gleichung */
+  /* struct der zu loesenden Gleichung */
   function F;
   double args[2];
+  
+  if (argc != 4) {
+    printf("Benutzung: ./test start stop step\n");
+    return 1;
+  }
+  
+  sscanf(argv[1], "%lf", &n_start);
+  sscanf(argv[2], "%lf", &n_stop);
+  sscanf(argv[3], "%lf", &n_step);
+  
   F.func = equilibrium_eqn;
   F.args = args;
   
-  for (i = 1; i <= 1000; i++) {
-    args[0] = i / 10.0;
+  printf("# n\tT_E [K]\n");  
+  while (n_start <= n_stop) {
+    args[0] = n_start;
     args[1] = k_epsilon_s * (2 - epsilon(k_TS, args[0], 1E12, 1E15)) * pow(k_TS, 4);
     
     find_root(F, 250, 350, 0.01, &equi_temp);
     printf("%f\t%f\n", args[0], equi_temp);
+    
+    n_start += n_step;
   }
   
   return 0;
@@ -91,7 +105,7 @@ double epsilon_integrand(double nu, void *args) {
   double T = *(double*)args;
   double n = *((double*)args + 1);
   
-  /*  */
+  /* Wahrscheinlichkeit fuer das Entweichen eines Photons */
   double f = exp(-n * k_n0 * sigma(nu));
   
   return rho(nu, T) * (1 - f);
