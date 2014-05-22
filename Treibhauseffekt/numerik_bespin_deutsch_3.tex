@@ -24,6 +24,37 @@
 \section{Treibhauseffekt}
 
 \subsection{Physikalischer Hintergrund}
+Zur Erklärung des Treibhauseffektes wird ein Modell grauer und schwarzer Körper
+im thermischen Gleichgewicht verwendet. Wir beschreiben die Erde als schwarzen
+Strahler mit Emissions-/Absorptionsgrad $\epsilon_E = \alpha_E = 1$. Die Sonne 
+wird durch einen grauen Strahler der Temperatur $T_S$ mit Emissionsgrad
+$\epsilon_S = \text{konst.}$ ersetzt.
+Auch die Atmosphäre wird als grauer Strahler modelliert. Diese habe die
+Temperatur $\tau$ und den Emissionsgrad $\epsilon(\tau)$. 
+Das Kirchhoff'sche Strahlungsgesetz besagt, dass der Emissionsgrad $\epsilon$ eines
+grauen Körpers gleich seinem Absorptionsgrad $\alpha$ ist. Demnach hat die
+Atmosphäre für Strahlung der Temperatur $\tau$ den Absorptionsgrad $\alpha(\tau) = \epsilon(\tau)$.
+
+Ein Körper ist im thermischen Gleichgewicht, wenn seine abgestrahlte Leistung
+gleich seiner absorbierten Leistung ist. Diese wird durch das Stefan-Boltzmann-Gesetz
+$P \propto \epsilon T^4$ beschrieben. Die Gleichgewichtsbedingung für die Atmosphäre ist:
+\begin{align}
+	2\epsilon(\tau)\tau^4 = \alpha(T_S) \epsilon_S T_S^4 + \alpha(T_E) \epsilon_E T_E^4 = \epsilon(T_S) \epsilon_S T_S^4 + \epsilon(T_E) T_E^4
+\end{align}
+dabei wurde die Proportionalitätskonstante aus der Gleichung gekürzt.
+Der Term auf der linken Seite beschreibt die Abstrahlung der Atmosphäre, wobei
+Faktor $2$ die Abstrahlung sowohl zur Erde als auch zur Sonne beschreibt.
+Die rechte Seite beschreibt die Absorption, dabei wurde erst im letzten
+Umformungsschritt $\epsilon_E = 1$ und das Kirchhoff'sche Strahlungsgesetz verwendet,
+um den Unterschied zwischen der Absorption der Atmosphäre und des Emissionsgrades von
+Sonne/Erde deutlich zu machen.
+Analog dazu erhält man zwei weitere Gleichgewichtsbedingungen, aus denen man
+$\tau$ eliminieren kann und eine Bestimmungsgleichung für die Temperatur $T_E$
+der Erde im Gleichgewicht erhält:
+\begin{align}
+\left[2-\epsilon(T_E)\right]T_E^4=\epsilon_S\left[2-\epsilon(T_S)\right]T_S^4
+\end{align}
+
 
 \begin{wrapfigure}[15]{L}[1pt]{0.47\textwidth}
 \centering
