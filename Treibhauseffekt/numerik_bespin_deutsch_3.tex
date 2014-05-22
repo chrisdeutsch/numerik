@@ -71,8 +71,14 @@ der Erde im Gleichgewicht erhält:
 HIER NOCH WAS ZUR EMISSIVITÄT. Abhängigkeit von Wirkungsquerschnitt (Breit-Wigner) 
 
 \subsection{Implementierung}
+Im wesentlichen besteht unser Programm aus zwei Teilen:
+\begin{enumerate}
+	\item die benötigten numerischen Methoden zum Lösen der nichtlinearen Gleichung (Referenz) also Integration und numerisches Lösen von Gleichungen
+	\item die konkrete Implementierung des physikalischen Problems
+\end{enumerate}
+Wir haben uns bemüht diese Teile im Quellcode strikt zu trennen um Übersichtlichkeit zu gewährleisten.
+Die numerischen Methoden finden sich in dem Modul \texttt{numerik\_bespin\_deutsch\_mathfunctions} und die Lösung des physikalischen Problems in der Hauptquelldatei \texttt{numerik\_bespin\_deutsch\_3.c}
 
-Das Programm besteht aus zwei Teilen: der numerischen Integration, bei der $epsilon(T)$ bestimmt wird und der numerischen Auswertung, um $T_E$ zu bestimmen, bei der INSERT GLEICHUNGSNUMMERgilt.
 
 Z wurde analytisch berechnet: $Z=\frac{8}{15}\frac{\pi^5 \mathrm{kT}}{\mathrm{c}^3}$
 
