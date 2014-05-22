@@ -33,15 +33,21 @@ Auch die Atmosphäre wird als grauer Strahler modelliert. Diese habe die
 Temperatur $\tau$ und den Emissionsgrad $\epsilon(\tau)$. 
 Das Kirchhoff'sche Strahlungsgesetz besagt, dass der Emissionsgrad $\epsilon$ eines
 grauen Körpers gleich seinem Absorptionsgrad $\alpha$ ist. Demnach hat die
-Atmosphäre für Strahlung der Temperatur $\tau$ den Absorptionsgrad $\alpha(\tau) = \epsilon(\tau)$.
+Atmosphäre für Strahlung der Temperatur $T$ den Absorptionsgrad $\alpha(\tau) = \epsilon(\tau)$.
 
-Ein Körper ist im thermischen Gleichgewicht, wenn seine abgestrahlte Leistung
+\begin{wrapfigure}[14]{R}[1pt]{0.47\textwidth}
+\centering
+\includegraphics[width=0.45\textwidth]{./figures/strahlungsgleichgewicht.eps}
+\caption{Strahlungsgleichgewicht}
+\label{fig:strahlungsgleichgewicht}
+\end{wrapfigure}
+\noindent Ein Körper ist im thermischen Gleichgewicht, wenn seine abgestrahlte Leistung
 gleich seiner absorbierten Leistung ist. Diese wird durch das Stefan-Boltzmann-Gesetz
 $P \propto \epsilon T^4$ beschrieben. Die Gleichgewichtsbedingung für die Atmosphäre ist:
 \begin{align}
-	2\epsilon(\tau)\tau^4 = \alpha(T_S) \epsilon_S T_S^4 + \alpha(T_E) \epsilon_E T_E^4 = \epsilon(T_S) \epsilon_S T_S^4 + \epsilon(T_E) T_E^4
+	2\epsilon(\tau)\tau^4 &= \alpha(T_S) \epsilon_S T_S^4 + \alpha(T_E) \epsilon_E T_E^4 \notag \\ &=\epsilon(T_S) \epsilon_S T_S^4 + \epsilon(T_E) T_E^4
 \end{align}
-dabei wurde die Proportionalitätskonstante aus der Gleichung gekürzt.
+Dabei wurde die Proportionalitätskonstante aus der Gleichung heraus gekürzt.
 Der Term auf der linken Seite beschreibt die Abstrahlung der Atmosphäre, wobei
 Faktor $2$ die Abstrahlung sowohl zur Erde als auch zur Sonne beschreibt.
 Die rechte Seite beschreibt die Absorption, dabei wurde erst im letzten
@@ -55,42 +61,13 @@ der Erde im Gleichgewicht erhält:
 \left[2-\epsilon(T_E)\right]T_E^4=\epsilon_S\left[2-\epsilon(T_S)\right]T_S^4
 \end{align}
 
-
-\begin{wrapfigure}[15]{L}[1pt]{0.47\textwidth}
-\centering
-\includegraphics[width=0.45\textwidth]{./figures/strahlungsgleichgewicht.eps}
-\caption{Strahlungsgleichgewicht}
-\label{fig:strahlungsgleichgewicht}
-\end{wrapfigure}
-
-Der Treibhauseffekt beschreibt den Einfluss der Atmosphäre und der in ihr auftretenden Gase auf die Temperatur auf der Erde. Das zugrunde liegende Prinzip ist die Absorption und Emission der Atmosphäre. Während von der Sonne kommende Strahlung die Atmosphäre größtenteils durchdringt, wird die von der Erde emittierte Strahlung von der Atmosphäre größtenteils reflektiert, was zu einer Erwärmung auf der Erdoberfläche führt.\\
-Wir verwenden zur Erklärung des Treibhauseffektes ein einfaches Modell grauer und schwarzer Körper. Die Erde entspricht dabei einem schwarzen Körper, das heißt Emissionsgrad ist gleich $1$, mit der Temperatur $T_E$. Die Sonne wird als grauer Körper mit konstanter Emissivität $\epsilon_S$ und ebenfalls konstanter Temperatur $T_S$. Im Gegensatz zum schwarzen Körper, absorbiert der graue Körper nicht die gesamte auf ihn treffende Strahlung und emittiert entsprechend auch nicht die maximal mögliche Schwarzkörperstrahlung. Es gilt daher, dass $\epsilon_{S}<1$. Im verwendeten Modell hat die Atmosphäre die Emissivität $\epsilon$ und die Temperatur $\tau$. 
-Die Atmosphäre absorbiert den Anteil $\epsilon(T_S)$ der von der Sonne emittierte Srahlung, lässt entsprechend den Anteil $1-\epsilon(T_S)$ dieser Strahlung zur Erde durch und emittiert selber eine Strahlung mit Anteil $\epsilon(\tau)$. Letzteres, sowie die zur Berechnung benötigten Formeln sind unter $(1)$-$(3)$ auf dem Aufgabenzettel zu finden.
-\\
-Im Strahlungsgleichgewicht strahlen alle Körper genau so viel ab, wie sie absorbieren (s. Abbildung \ref{fig:strahlungsgleichgewicht}). Man kann für alle drei Elemente im Modell eine Formel aufstellen, die das Strahlungsgleichgewicht beschreibt. Dazu settz man an, dass die abgestrahlte Leistung $P$ proportional zu $\epsilon T^4$ ist (Stefan-Boltzmann-Gesetz). Weiterhin gilt nach Kirchhoff, dass die Absorptions- und Emissionskoeffizient eines Körpers gleich groß sind; es wird immer so viel Leistung emittiert, wie absorbiert. Damit erhält man für das Gleichgewicht der Atmosphäre (die Proportionalitätsfaktoren von $P$ werden vernachlässigt, sie kürzen sich beim Lösen heraus):
-\begin{align}
-2\epsilon(\tau)\tau^4=\epsilon(T_S)\epsilon_s T_S^4+\epsilon(T_E)T_E^4
-\end{align}
-Der Term auf der linken Seite beschreibt die von der Atmosphäre abgestrahlte Leistung. Der Faktor $2$ berücksichtigt die Abstrahlung sowohl zur Erde als auch zur Sonne. Die absorbierte Strahlung auf der rechten Seite setzt sich zusammen aus der von der Sonne und der Erde emittierten Strahlung ($\epsilon_S T_s^4$ bzw. $T_E^4$, da $\epsilon_{\mathrm{Erde}}=1$). Die Faktoren $\epsilon(T)$ beschreiben nach Kirchhoff nicht nur die Emissivität, sondern auch den Absorptionskoeffizienten der Atmosphäre. Sie ist in diesem Modell ein grauer Körper und absorbiert nur einen Teil, der auf sie treffenden Strahlung. Die Gleichungen für Sonne und Erde lassen sich analog aufstellen mit den gegebenen Informationen.
-Aus den Gleichungen lässt sich $\tau$ eliminieren und man erhält $(4)$ vom Aufgabenblatt:
-\begin{align}
-\left[2-\epsilon(T_E)\right]T_E^4=\epsilon_S\left[2-\epsilon(T_S)\right]T_S^4
-\label{eqn:gleichgewicht}
-\end{align}
-Um $T_E$ zu bestimmen, muss man \ref{eqn:gleichgewicht} umstellen, so dass sich ein Nullstellenproblem ergibt:
-\begin{align}
-\left[2-\epsilon(T_E)\right]T_E^4-\epsilon_S\left[2-\epsilon(T_S)\right]T_S^4=0
-\label{eqn:nullstellenform}
-\end{align}
-
-
 $\nu_{max}=T\cdot 5,8789254\num{1E10}\si{\per\second}\si{\per\kelvin}$ \footnote{http://physics.nist.gov/constants, Wien frequency displacement law constant}
 
 \subsection{Mathematischer Hintergrund}
 
 \subsection{Implementierung}
 
-Das Programm besteht aus zwei Teilen: der numerischen Integration, bei der $epsilon(T)$ bestimmt wird und der numerischen Auswertung, um $T_E$ zu bestimmen, bei der \ref{eqn:nullstellenform} gilt.
+Das Programm besteht aus zwei Teilen: der numerischen Integration, bei der $epsilon(T)$ bestimmt wird und der numerischen Auswertung, um $T_E$ zu bestimmen, bei der INSERT GLEICHUNGSNUMMERgilt.
 
 Z wurde analytisch berechnet: $Z=\frac{8}{15}\frac{\pi^5 \mathrm{kT}}{\mathrm{c}^3}$
 
