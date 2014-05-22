@@ -4,6 +4,7 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
+\usepackage{mhchem}
 \usepackage{siunitx}
 \usepackage{multirow}
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
@@ -24,6 +25,12 @@
 \section{Treibhauseffekt}
 
 \subsection{Physikalischer Hintergrund}
+Der Treibhauseffekt beschreibt den Einfluss der Atmosphäre und der in ihr
+auftretenden Gase auf die Temperatur der Erde. Während die Sonnenstrahlung die
+Atmosphäre zu großen Teilen durchdringt, wird die von der Erde emittierte
+infrarote Strahlung von den Gasen der Atmosphäre absorbiert (vorallem durch Wasserdampf
+aber auch durch Spurengase wie \ce{CO2}), was zu einer Erwärmung des Klimas führt.
+
 Zur Erklärung des Treibhauseffektes wird ein Modell grauer und schwarzer Körper
 im thermischen Gleichgewicht verwendet. Wir beschreiben die Erde als schwarzen
 Strahler mit Emissions-/Absorptionsgrad $\epsilon_E = \alpha_E = 1$. Die Sonne 
@@ -41,7 +48,7 @@ Atmosphäre für Strahlung der Temperatur $T$ den Absorptionsgrad $\alpha(\tau) 
 \caption{Strahlungsgleichgewicht}
 \label{fig:strahlungsgleichgewicht}
 \end{wrapfigure}
-\noindent Ein Körper ist im thermischen Gleichgewicht, wenn seine abgestrahlte Leistung
+Ein Körper ist im thermischen Gleichgewicht, wenn seine abgestrahlte Leistung
 gleich seiner absorbierten Leistung ist. Diese wird durch das Stefan-Boltzmann-Gesetz
 $P \propto \epsilon T^4$ beschrieben. Die Gleichgewichtsbedingung für die Atmosphäre ist:
 \begin{align}
@@ -61,9 +68,7 @@ der Erde im Gleichgewicht erhält:
 \left[2-\epsilon(T_E)\right]T_E^4=\epsilon_S\left[2-\epsilon(T_S)\right]T_S^4
 \end{align}
 
-$\nu_{max}=T\cdot 5,8789254\num{1E10}\si{\per\second}\si{\per\kelvin}$ \footnote{http://physics.nist.gov/constants, Wien frequency displacement law constant}
-
-\subsection{Mathematischer Hintergrund}
+HIER NOCH WAS ZUR EMISSIVITÄT. Abhängigkeit von Wirkungsquerschnitt (Breit-Wigner) 
 
 \subsection{Implementierung}
 
