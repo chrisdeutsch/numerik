@@ -1,5 +1,6 @@
 /* gcc -o numerik_3 -O2 numerik_bespin_deutsch_mathfunctions.c numerik_bespin_deutsch_3.c */
 /* Christian Bespin, Christopher Deutsch */
+/* BENUTZUNG: Aufruf mit 3 Parametern (n_start, n_stop, n_step) */
 
 #include <stdio.h>
 #include <math.h>
@@ -47,7 +48,6 @@ double equilibrium_eqn(double TE, void *args);
 
 
 int main(int argc, char **argv) {
-  /* Parameter: argv -> start, stop, step */
   double n_start, n_stop, n_step;
   double equi_temp;
   
@@ -55,14 +55,46 @@ int main(int argc, char **argv) {
   function F;
   double args[2];
   
-  if (argc != 4) {
-    printf("Benutzung: ./test start stop step\n");
+  /* ---Schnittstelle--- */
+  if (argc != 4 && argc != 2) {
+    printf("\nBenutzung:\n");
+    printf("Berechnung der Gleichgewichtstemperatur fuer ein n:\n"
+           "%s n\n\n", argv[0]);
+    printf("Tabelle von n = start bis stop mit step Schrittbreite:\n"
+           "%s start stop step\n", argv[0]);
     return 1;
   }
   
   sscanf(argv[1], "%lf", &n_start);
-  sscanf(argv[2], "%lf", &n_stop);
-  sscanf(argv[3], "%lf", &n_step);
+  if (n_start > 100) {
+    printf("n_start sollte kleiner als 100 sein\n");
+    return 1;
+  }
+  
+  if (argc == 2) {
+    n_stop = n_start;
+    n_step = 1;
+  } else {
+    sscanf(argv[2], "%lf", &n_stop);
+    sscanf(argv[3], "%lf", &n_step);
+    if (n_start < 0) {
+      printf("Ungueltiger Startwert\n");
+      return 1;
+    }
+    if (n_step <= 0) {
+      printf("Ungueltige Schrittweite\n");
+      return 1;
+    }
+    if (n_stop < n_start) {
+      printf("n_stop sollte groesser sein als n_start\n");
+      return 1;
+    }
+    if (n_stop > 100) {
+      printf("# Warnung: n_stop > 100; setze n_stop = 100\n");
+      n_stop = 100;
+    }
+  }
+  /* ---Schnittstelle--- */
   
   F.func = equilibrium_eqn;
   F.args = args;
@@ -73,7 +105,7 @@ int main(int argc, char **argv) {
     args[1] = k_epsilon_s * (2 - epsilon(k_TS, args[0], 1E12, 1E15)) * pow(k_TS, 4);
     
     find_root(F, 250, 350, 0.01, &equi_temp);
-    printf("%f\t%f\n", args[0], equi_temp);
+    printf("%.3f\t%.5f\n", args[0], equi_temp);
     
     n_start += n_step;
   }
@@ -92,7 +124,6 @@ double sigma(double nu) {
   
   return k_gamma / k_pi * (k_S2 / (nu2_diff * nu2_diff + gamma_sq)
                            + k_S3 / (nu3_diff * nu3_diff + gamma_sq));
-
 }
 
 double Z(double T) {
