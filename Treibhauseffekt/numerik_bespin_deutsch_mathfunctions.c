@@ -41,17 +41,16 @@ int find_root(function f, double x1, double x2, double epsilon, double *root) {
 }
 
 double integrate(function f, double a, double b, double epsilon, int rdepth) {
-  /* Halbiert das Intervall [a,b] zum ersten Mal und berechnet Funktionswerte 
-   * an den Stuetzstellen */
-  double h = 0.5 * (b - a);
-  double mid = a + h;
+  /* Berechnet die erste Naeherung nach Simpson fuer das Intervall [a,b] */
+  double h = b - a;
+  double mid = 0.5 * (a + b);
   
   double fa = f.func(a, f.args);
   double fmid = f.func(mid, f.args);
   double fb = f.func(b, f.args);
   
   /* Berechnet die erste Naeherung nach Simpson */
-  double simp = (fa + 4*fmid + fb) * h / 3;
+  double simp = (fa + 4*fmid + fb) * h / 6;
   
   /* Leitet die Rekursion ein. Dabei werden alle schon berechneten Funktions-
    * werte weitergegeben, damit die Anzahl der Funktionsaufrufe minimiert wird.
@@ -66,19 +65,19 @@ double recursive_simpson(function f, double prev_simp,
                          double epsilon, int rdepth) {
   /* Wir haben zwei Intervalle [x0,x1] und [x1,x2] mit den Funktionswerten f0, 
    * f1 und f2. Es wird die naechste Verfeinerung nach Simpson berechnet. */
-  double h = 0.5 * (x1 - x0);
+  double h = x1 - x0;
   /* Berechne den Beitrag des Intervalls [x0,x1] zum Integral, dazu muss die
    * Stuetzstelle in der Haelfte des Intervalls berechnet werden: */
-  double x01 = h + x0;
+  double x01 = 0.5 * (x0 + x1);
   double f01 = f.func(x01, f.args);
   
-  double simp01 = (f0 + 4*f01 + f1) * h / 3;
+  double simp01 = (f0 + 4*f01 + f1) * h / 6;
   
   /* Berechne den Beitrag des Intervalls [x1,x2] zum Integral: */
-  double x12 = h + x1;
+  double x12 = x01 + h;
   double f12 = f.func(x12, f.args);
   
-  double simp12 = (f1 + 4*f12 + f2) * h / 3;
+  double simp12 = (f1 + 4*f12 + f2) * h / 6;
   
   /* Neue Abschaetzung des Integrals: */
   double simp = simp01 + simp12;
