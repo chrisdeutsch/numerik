@@ -83,14 +83,8 @@ Z wurde analytisch berechnet: $Z=\frac{8}{15}\frac{\pi^5 \mathrm{kT}}{\mathrm{c}
 
 \subsubsection{Nullstellenberechnung mit Bisektion}
 
-Ein Verfahren, um numerisch Nullstellen zu bestimmen, ist das Iterationsverfahren der Bisektion. Wir verwenden dieses hier, da es im Gegensatz zum Newtonverfahren keine Ableitungen der Funktion berechnen und auswerten muss. Dabei wird vorausgesetzt, dass die Funktion auf dem relevanten Intervall $[a,b]$ stetig ist und dort einen Vorzeichenwechsel hat. Dann folgt aus dem Zwischenwertsatz, dass dort garantiert eine Nullstelle liegt. Die Bisektion halbiert zunächst das zu betrachtende Intervall und prüft, ob zwischen den Grenzen der Teilintervalle ein Vorzeichenwechsel in den Funktionswerten vorliegt. Da die Funktion nach Voraussetzung nur eine Nullstelle auf dem ganzen Intervall hatte, tritt in einem der Teilintervalle kein Vorzeichenwechsel auf und dieses wird im Folgenden vernachlässigt. Bei dem nächsten Schleifendurchlauf wird dieses Verfahren auf das verbleibende Teilintervall angewendet. Das Intervall, auf dem der Vorzeichenwechsel stattfindet, wird so immer weiter eingeschränkt, bis es eine gewünschte vorgegebene Genauigkeit erreicht (Intervallbreite $<\epsilon$). 
-Der Fehler halbiert sich mit jedem Iterationsschritt, was nicht so schnell wie das Newtonverfahren ist, die Laufzeit des Programms aber dennoch in einem akzeptablen Rahmen hält.
-\begin{figure}[tbp]
-\centering
-\includegraphics[width=0.55\textwidth]{./figures/bisektion.eps}
-\caption{Bisektions-Verfahren}
-\label{fig:bisektion}
-\end{figure}
+Ein Verfahren, um numerisch Nullstellen zu bestimmen, ist das Iterationsverfahren der Bisektion. Dabei wird vorausgesetzt, dass die Funktion auf dem relevanten Intervall $[a,b]$ stetig ist und dort einen Vorzeichenwechsel hat. Dann folgt aus dem Zwischenwertsatz, dass dort garantiert eine Nullstelle liegt. Die Bisektion halbiert zunächst das zu betrachtende Intervall und prüft, ob zwischen den Grenzen der Teilintervalle ein Vorzeichenwechsel in den Funktionswerten vorliegt. Da die Funktion nach Voraussetzung nur einen Vorzeichenwechsel auf dem ganzen Intervall hatte, tritt in einem der Teilintervalle kein Vorzeichenwechsel auf und dieses wird im Folgenden vernachlässigt. Bei dem nächsten Schleifendurchlauf wird dieses Verfahren auf das verbleibende Teilintervall angewendet. Das Intervall, auf dem der Vorzeichenwechsel stattfindet, wird so immer weiter eingeschränkt, bis es eine gewünschte vorgegebene Genauigkeit erreicht (Intervallbreite $<\epsilon$). 
+Wir verwenden die Bisektion hier, da im Gegensatz zum Newtonverfahren keine Ableitungen der Funktion  berechnet werden müssen. Bei der hier vorliegenden Funktion ist die Ableitung nur numerisch bestimmbar, was den Rechenaufwand erheblich negativ beeinträchtigen würde.
 
 \subsubsection{Numerische Integration mit rekursivem Simpson-Verfahren}
 
@@ -127,8 +121,8 @@ Seiten 483-495
 
 \end{thebibliography}
 
-\appendix
-
+\begin{appendix}
+\section{Grafiken}
 
 \begin{figure}[htbp]
 \centering
@@ -145,5 +139,6 @@ Seiten 483-495
 \caption{Ergebnisse}
 \label{fig:ergebnisse}
 \end{figure}
+\end{appendix}
 
 \end{document}
