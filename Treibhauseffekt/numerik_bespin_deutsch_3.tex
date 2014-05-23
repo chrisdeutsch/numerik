@@ -66,7 +66,7 @@ $\tau$ eliminieren kann und eine Bestimmungsgleichung für die Temperatur $T_E$
 der Erde im Gleichgewicht erhält:
 \begin{align}
 \left[2-\epsilon(T_E)\right]T_E^4=\epsilon_S\left[2-\epsilon(T_S)\right]T_S^4
-\label{eq:gleichgewicht}
+\label{eqn:gleichgewicht}
 \end{align}
 
 HIER NOCH WAS ZUR EMISSIVITÄT. Abhängigkeit von Wirkungsquerschnitt (Breit-Wigner) 
@@ -101,7 +101,7 @@ Der Vorteil einer rekursiven Umsetzung ist, dass sich der adaptive Mechanismus l
 
 \subsubsection{Lösung des physikalischen Problems}
 
-Zur Berechnung der Temperatur der Erde im thermischen Gleichgewicht formen wir Gleichung (\ref{eq:gleichgewicht}) in ein Nullstellenproblem um, welches mithilfe von Bisektion gelöst werden kann.
+Zur Berechnung der Temperatur der Erde im thermischen Gleichgewicht formen wir Gleichung (\ref{eqn:gleichgewicht}) in ein Nullstellenproblem um, welches mithilfe von Bisektion gelöst werden kann.
 \begin{align}
 	\left[2-\epsilon(T_E)\right]T_E^4 - \epsilon_S\left[2-\epsilon(T_S)\right]T_S^4 = 0
 	\label{eq:nullstellenproblem}
@@ -123,7 +123,7 @@ Die Integration soll im Folgenden näher erläutert werden. Zunächst ist eine u
 \subsection{Physikalische Ergebnisse}
 \label{ssec:physikalischeergebnisse}
 
-$T_E(\tilde{n})$ ist in Abbildung \ref{fig:ergebnisse} grafisch dargestellt. Dort ist ebenfalls der aktuelle Wert ($\tilde{n}=1$) eingezeichent. Man sieht gut, dass mit steigendem $\tilde{n}$ und damit mehr \ce{CO2} Molekülen in einer Luftsäule von 1\si{\meter^2} die Temperatur der Erde ein Sättigungsverhalten aufweist, die Temperatur steigt immer langsamer. (Für höhere $\tilde{n}$, die in Abbildung \ref{fig:ergebnisse} nicht mehr dargestellt sind, erreicht die Temperatur ein Maximum und nimmt dann linear ab.)  
+$T_E(\tilde{n})$ ist in Abbildung \ref{fig:ergebnisse} grafisch dargestellt. Dort ist ebenfalls der aktuelle Wert ($\tilde{n}=1$) eingezeichent. Man sieht gut, dass mit steigendem $\tilde{n}$ und damit mehr \ce{CO2} Molekülen in einer Luftsäule von 1\si{\meter^2} die Temperatur der Erde ein Sättigungsverhalten aufweist, die Temperatur steigt immer langsamer. (Für höhere $\tilde{n}$, die in Abbildung \ref{fig:ergebnisse} nicht mehr dargestellt sind, erreicht die Temperatur ein Maximum und nimmt dann linear ab.) Das Modell ist nur bedingt gut geeignet, es stellt schon für den Wert von $\tilde{n}=1$ (was dem aktuellen Wert entsprechen würde) eine zu hohe Temperatur dar. 2013 war die globale Durchschnittstemperatur 14,52 \si{\celsius} \cite{noaa}. Weiterhin berücksichtigt das verwendete Modell nur das Treibhausgas \ce{CO2}, obwohl sich die Atmosphäre aus vielen verschiedenen Gasen mit unterschiedlich starken Auswirkungen auf den Treibhauseffekt zusammensetzt (z.B. Wasserdampf, FCKW). Trotzdem wird qualitativ gut dargestellt, dass sich die Temperatur der Erde mit steigender Anzahl \ce{CO2} Moleküle in der Atmosphäre erhöht.
 
 \begin{thebibliography}{9}
 
@@ -134,6 +134,9 @@ Journal of the ACM
 Volume 16 Issue 3, (1969) 
 Seiten 483-495 
 
+\bibitem{noaa}
+Global Analysis - Annual 2013, National Climatic Data Center (National Oceanic And Atmospheric Administration) Internet: http://www.ncdc.noaa.gov/sotc/global/2013/13 (2013), abgerufen am 23.05.2014
+
 \end{thebibliography}
 
 \begin{appendix}
@@ -142,16 +145,17 @@ Seiten 483-495
 \begin{figure}[htbp]
 \centering
 \input{./figures/rho}
-\caption{Integrand für T=300K}
+\caption{Integrand der Emissivität $\epsilon$ für $T=300\, \si{\kelvin}$}
 
 \input{./figures/rho_sonne}
-\caption{Integrand für T=5750K}
+\caption{Integrand der Emissivität $\epsilon$ für $T=5750\, \si{\kelvin}$}
+\label{fig:integranden}
 \end{figure}
 
 \begin{figure}
 \centering
 \input{./figures/temperatur}
-\caption{Ergebnisse}
+\caption{$T_E$ in Abhängigkeit von $\tilde{n}$}
 \label{fig:ergebnisse}
 \end{figure}
 \end{appendix}
