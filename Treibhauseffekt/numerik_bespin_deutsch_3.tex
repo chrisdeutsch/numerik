@@ -94,7 +94,16 @@ Der Fehler halbiert sich mit jedem Iterationsschritt, was nicht so schnell wie d
 
 \subsubsection{Numerische Integration mit rekursivem Simpson-Verfahren}
 
-Wir verwenden zur numerischen Integration eine rekursive Variante des Simpson-Verfahrens, bei der das Intervall, über dem integriert wird, mit jedem Rekursionsschritt in zwei Hälften zerlegt wird, auf die die normale Simpson-Methode angewendet wird (s. \cite{kuncir}). Ist die Differenz zwischen dem mit Simpson über dem ganzen Intervall berechneten Integralwert und der Summe der zwei Teilintervalle größer als eine vorgegebene Genauigkeit, wird die Funktion rekursiv aufgerufen, wodurch jedes der Teilintervalle erneut halbiert wird. Durch dieses Vorgehen fallen im Gegensatz zum gewöhnlichen Simpsonverfahren einige laufzeitbeeinträchtigende Funktionsaufrufe weg.
+Die Simpson-Methode nähert das Integral einer Funktion $f$ auf dem Intervall $[x_0,x_2]$ durch das Integral des Interpolationspolynoms mit den Stützstellen $x_0$, $x_1$ und $x_2$, wobei $x_1$ gerade das Intervall halbiert. Die Auswertung der Näherung ist:
+\begin{align}
+  \int_{x_0}^{x_2} f(x) \, \mathrm{d}x \approx \frac{h}{6} \left( f(x_0) + 4 f(x_1) + f(x_2) \right) \quad \text{mit } h = x_2 - x_0
+\end{align}
+Man kann die Näherung des Integrals verbessern, indem man das Intervall halbiert und schließlich auf den Teilintervallen erneut die Simpson-Methode anwendet. Dies kann je nach Präzisionsbedarf beliebig oft wiederholt werden.
+
+Wir haben uns für die Implementierung der adaptiven Simpson-Methode entschieden, bei der das Integral rekursiv berechnet wird. Dazu wird das zu integrierende Intervall halbiert und anschließend werden diese Teilintervalle mit der Simpson-Methode ausgewertet. Sollte die Differenz der Summe der integrierten Teilintervalle und des Gesamtintervalls eine Grenze $\epsilon$ überschreiten, wird das Verfahren auf jedem der Teilintervalle wiederholt. Da bei der Rekursion die Intervalle halbiert werden, muss auch mit jedem Schritt die Grenze $\epsilon$ halbiert werden, um eine sinnvolle Fehlereinschätzung zu gewährleisten. In \cite{lyness} wird gezeigt, dass $\epsilon / 15$ ein guter Schätzer für den absoluten Fehler der Näherung ist. Vorteile der rekursiven Methode und warum ist es adaptiv.
+ 
+
+Wir verwenden zur numerischen Integration eine rekursive Variante des Simpson-Verfahrens, bei der das Intervall, über dem integriert wird, mit jedem Rekursionsschritt in zwei Hälften zerlegt wird, auf die die normale Simpson-Methode angewendet wird (s. \cite{lyness}). Ist die Differenz zwischen dem mit Simpson über dem ganzen Intervall berechneten Integralwert und der Summe der zwei Teilintervalle größer als eine vorgegebene Genauigkeit, wird die Funktion rekursiv aufgerufen, wodurch jedes der Teilintervalle erneut halbiert wird. Durch dieses Vorgehen fallen im Gegensatz zum gewöhnlichen Simpsonverfahren einige laufzeitbeeinträchtigende Funktionsaufrufe weg.
 
 \subsubsection{Abbruchbedingungen}
 
