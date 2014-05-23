@@ -66,6 +66,7 @@ $\tau$ eliminieren kann und eine Bestimmungsgleichung für die Temperatur $T_E$
 der Erde im Gleichgewicht erhält:
 \begin{align}
 \left[2-\epsilon(T_E)\right]T_E^4=\epsilon_S\left[2-\epsilon(T_S)\right]T_S^4
+\label{eq:gleichgewicht}
 \end{align}
 
 HIER NOCH WAS ZUR EMISSIVITÄT. Abhängigkeit von Wirkungsquerschnitt (Breit-Wigner) 
@@ -79,14 +80,13 @@ Im wesentlichen besteht unser Programm aus zwei Teilen:
 Wir haben uns bemüht diese Teile im Quellcode strikt zu trennen um Übersichtlichkeit zu gewährleisten.
 Die numerischen Methoden finden sich in dem Modul \texttt{numerik\_bespin\_deutsch\_mathfunctions} und die Lösung des physikalischen Problems in der Hauptquelldatei \texttt{numerik\_bespin\_deutsch\_3.c}
 
-Z wurde analytisch berechnet: $Z=\frac{8}{15}\frac{\pi^5 \mathrm{kT}}{\mathrm{c}^3}$
-
 \subsubsection{Nullstellenberechnung mit Bisektion}
 
 Ein Verfahren, um numerisch Nullstellen zu bestimmen, ist das Iterationsverfahren der Bisektion. Dabei wird vorausgesetzt, dass die Funktion auf dem relevanten Intervall $[a,b]$ stetig ist und dort einen Vorzeichenwechsel hat. Dann folgt aus dem Zwischenwertsatz, dass dort garantiert eine Nullstelle liegt. Die Bisektion halbiert zunächst das zu betrachtende Intervall und prüft, ob zwischen den Grenzen der Teilintervalle ein Vorzeichenwechsel in den Funktionswerten vorliegt. Da die Funktion nach Voraussetzung nur einen Vorzeichenwechsel auf dem ganzen Intervall hatte, tritt in einem der Teilintervalle kein Vorzeichenwechsel auf und dieses wird im Folgenden vernachlässigt. Bei dem nächsten Schleifendurchlauf wird dieses Verfahren auf das verbleibende Teilintervall angewendet. Das Intervall, auf dem der Vorzeichenwechsel stattfindet, wird so immer weiter eingeschränkt, bis es eine gewünschte vorgegebene Genauigkeit erreicht (Intervallbreite $<\epsilon$). 
 Wir verwenden die Bisektion hier, da im Gegensatz zum Newtonverfahren keine Ableitungen der Funktion  berechnet werden müssen. Bei der hier vorliegenden Funktion ist die Ableitung nur numerisch bestimmbar, was den Rechenaufwand erheblich negativ beeinträchtigen würde.
 
 \subsubsection{Numerische Integration mit rekursivem Simpson-Verfahren}
+\label{sssec:integration}
 
 Die Simpson-Methode nähert das Integral einer Funktion $f$ auf dem Intervall $[x_0,x_2]$ durch das Integral des Interpolationspolynoms mit den Stützstellen $x_0$, $x_1$ und $x_2$, wobei $x_1$ gerade das Intervall halbiert. Die Auswertung der Näherung ist:
 \begin{align}
@@ -94,16 +94,31 @@ Die Simpson-Methode nähert das Integral einer Funktion $f$ auf dem Intervall $[
 \end{align}
 Man kann die Näherung des Integrals verbessern, indem man das Intervall halbiert und schließlich auf den Teilintervallen erneut die Simpson-Methode anwendet. Dies kann je nach Präzisionsbedarf beliebig oft wiederholt werden.
 
-Wir haben uns für die Implementierung der adaptiven Simpson-Methode entschieden, bei der das Integral rekursiv berechnet wird. Dazu wird das zu integrierende Intervall halbiert und anschließend werden diese Teilintervalle mit der Simpson-Methode ausgewertet (+Integral des Gesamtintervalls). Sollte die Differenz der Summe der integrierten Teilintervalle und des Gesamtintervalls eine Grenze $\epsilon$ überschreiten, wird das Verfahren auf jedem der Teilintervalle wiederholt. Da bei der Rekursion die Intervalle halbiert werden, muss auch mit jedem Schritt die Grenze $\epsilon$ halbiert werden, um eine sinnvolle Fehlereinschätzung zu gewährleisten. In \cite{lyness} wird gezeigt, dass $\epsilon / 15$ ein guter Schätzer für den absoluten Fehler der Näherung ist.
+Wir haben uns für die Implementierung der adaptiven Simpson-Methode entschieden, bei der das Integral rekursiv berechnet wird. Dazu wird das zu integrierende Intervall halbiert und anschließend werden diese Teilintervalle mit der Simpson-Methode ausgewertet (+Integral des Gesamtintervalls zum Vergleich). Sollte die Differenz der Summe der integrierten Teilintervalle und des Gesamtintervalls eine Grenze $\epsilon$ überschreiten, wird das Verfahren auf jedem der Teilintervalle wiederholt. Da bei der Rekursion die Intervalle halbiert werden, muss auch mit jedem Schritt die Grenze $\epsilon$ halbiert werden, um eine sinnvolle Fehlereinschätzung zu gewährleisten. In \cite{lyness} wird gezeigt, dass $\epsilon / 15$ ein guter Schätzer für den absoluten Fehler der Näherung ist.
 
-Der Vorteil einer rekursiven Umsetzung ist, dass sich der adaptive Mechanismus leicht implementieren lässt, da sich jedes Teilintervall unabhängig betrachten lässt. Dabei ist die Idee, dass man eine sehr feine Intervallteilung in Bereichen starker und eine sehr Grobe in Bereichen minimaler Änderung des Integranden vornimmt.
+Der Vorteil einer rekursiven Umsetzung ist, dass sich der adaptive Mechanismus leicht implementieren lässt, da sich jedes Teilintervall unabhängig betrachten lässt. Dabei ist die Idee, dass man eine sehr feine Intervallteilung in Bereichen starker und eine sehr Grobe in Bereichen minimaler Änderung des Integranden vornimmt. Für die Implementierung ist wichtig, dass bereits berechnete Funktionswerte rekursiv weitergegeben werden, um die Anzahl der Funktionsauswertungen zu minimieren.
 
 
-\subsubsection{Abbruchbedingungen}
+\subsubsection{Lösung des physikalischen Problems}
 
-Integrationsgrenzen
+Zur Berechnung der Temperatur der Erde im thermischen Gleichgewicht formen wir Gleichung (\ref{eq:gleichgewicht}) in ein Nullstellenproblem um, welches mithilfe von Bisektion gelöst werden kann.
+\begin{align}
+	\left[2-\epsilon(T_E)\right]T_E^4 - \epsilon_S\left[2-\epsilon(T_S)\right]T_S^4 = 0
+	\label{eq:nullstellenproblem}
+\end{align}
+Dies wurde in der Funktion \texttt{equilibrium\_eqn} umgesetzt. Zur numerischen Lösung dieser Gleichung muss die Emissivität der Atmosphäre berechnet werden. Diese hängt unter anderem von der integrierten spektralen Energiedichte $Z(T)$ ab, welche analytisch berechnet wird:
+\begin{align}
+	Z(T) = \frac{8}{15} \frac{\pi^5 k_B^4 T^4}{c^3 h^3}
+\end{align}
+Außerdem von dem Integral:
+\begin{align}
+	\int_0^\infty \rho(\nu,T)[1 - f(\nu)] \, \mathrm{d}\nu
+\end{align}
+welches mit der in Abschnitt \ref{sssec:integration} erklärten Methode berechnet wird.
 
-\subsubsection{Genaugkeit}
+Die Integration soll im Folgenden näher erläutert werden. Zunächst ist eine uneigentliche numerische Integration über ein Intervall unendlicher Länge nicht möglich. Dies ist in unserem Fall nicht nötig, da der Integrand nur auf einem endlichen Intervall signifikant von Null verschieden ist. Für unsere Berechnung interessant ist das Verhalten des Integranden für $T = \num{5750}\si{\kelvin}$, sowie $T = \num{300}\si{\kelvin}$ (in diesem Bereich erwarten wir die Gleichgewichtstemperatur der Erde) für $\num{0.1} < \tilde{n} < \num{100}$ wobei die obere Grenze sehr großzügig gewählt wurde. Aus den Abbildungen (REF) folgern wir, dass man $[10^{13}\si{\per\second},10^{15}\si{\per\second}]$ als sinnvolle Integrationsgrenzen für $T = \num{5750}\si{\kelvin}$ und $[10^{12}\si{\per\second}, 10^{14}\si{\per\second}]$ für $T = \num{300}\si{\kelvin}$ wählen kann. Darüberhinaus erwarten wir einen Wert des Integrals in der Größenordnung $10^{-6}\si{\joule\per\metre^3}$, weshalb die Abbruchbedingung der Integration (vgl. \ref{sssec:integration}) $\epsilon = 10^{-11}\si{\joule\per\metre^3}$ gewählt wurde, was einen absoluten Fehler von $\epsilon / 15 \approx 10^{-12} \si{\joule\per\metre^3}$ entspricht. Die hier erwähnten Maßnahmen wurden in der Funktion \texttt{epsilon} implementiert.
+
+
 
 \subsection{Physikalische Ergebnisse}
 \label{ssec:physikalischeergebnisse}
