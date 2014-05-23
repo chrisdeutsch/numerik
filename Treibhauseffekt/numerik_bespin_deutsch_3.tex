@@ -94,66 +94,47 @@ Der Fehler halbiert sich mit jedem Iterationsschritt, was nicht so schnell wie d
 
 \subsubsection{Numerische Integration mit rekursivem Simpson-Verfahren}
 
-Wir verwenden zur numerischen Integration eine rekursive Variante des Simpson-Verfahrens, bei der das Intervall, über dem integriert wird, mit jedem Rekursionsschritt in zwei Hälften zerlegt wird, auf die die normale Simpson-Methode angewendet wird (s. \cite{kuncir}). Ist die Differenz zwischen dem mit Simpson über dem ganzen Intervall berechneten Integralwert und der Summe der zwei Teilintervalle größer als eine vorgegebene Genauigkeit, wird die Funktion rekursiv aufgerufen, wodurch jedes der Teilintervalle erneut halbiert wird. Durch dieses Vorgehen fallen im Gegensatz zum gewöhnlichen Simpsonverfahren einige laufzeitbeeinträchtigende Funktionsaufrufe weg.
+Wir verwenden zur numerischen Integration eine rekursive Variante des Simpson-Verfahrens, bei der das Intervall, über dem integriert wird, mit jedem Rekursionsschritt in zwei Hälften zerlegt wird, auf die die normale Simpson-Methode angewendet wird (s. \cite{lyness}). Ist die Differenz zwischen dem mit Simpson über dem ganzen Intervall berechneten Integralwert und der Summe der zwei Teilintervalle größer als eine vorgegebene Genauigkeit, wird die Funktion rekursiv aufgerufen, wodurch jedes der Teilintervalle erneut halbiert wird. Durch dieses Vorgehen fallen im Gegensatz zum gewöhnlichen Simpsonverfahren einige laufzeitbeeinträchtigende Funktionsaufrufe weg.
 
 \subsubsection{Abbruchbedingungen}
 
 Integrationsgrenzen
-\begin{figure}[htbp]
-\centering
-\input{./figures/rho}
-\caption{Integrand für T=300K}
-\end{figure}
-
-\begin{figure}[htbp]
-\centering
-\input{./figures/rho_sonne}
-\caption{Integrand für T=5750K}
-
-\input{./figures/temperatur}
-\caption{Ergebnisse}
-\end{figure}
 
 \subsubsection{Genaugkeit}
 
 \subsection{Physikalische Ergebnisse}
 \label{ssec:physikalischeergebnisse}
 
-$\tilde{n}$ ist Vielfaches der aktuellen Anzahl CO2 Moleküle\\
-Bei mehr CO2 Molekülen steigt die Temperatur der Erde an\\
-Sättigungsverhalten\\
-Modell funktioniert für hohe n nicht mehr (Abnahme)
+$T_E(\tilde{n})$ ist in Abbildung \ref{fig:ergebnisse} grafisch dargestellt. Dort ist ebenfalls der aktuelle Wert ($\tilde{n}=1$) eingezeichent. Man sieht gut, dass mit steigendem $\tilde{n}$ und damit mehr \ce{CO2} Molekülen in einer Luftsäule von 1\si{\meter^2} die Temperatur der Erde ein Sättigungsverhalten aufweist, die Temperatur steigt immer langsamer. (Für höhere $\tilde{n}$, die in Abbildung \ref{fig:ergebnisse} nicht mehr dargestellt sind, erreicht die Temperatur ein Maximum und nimmt dann linear ab.)  
 
 \begin{thebibliography}{9}
 
-\bibitem{kuncir}
- Kuncir, Guy F.,
- \emph{Algorithm 103: Simpson's Rule Integrator},
- Commun. ACM \textbf{5}(6) (1962)
-
-
-\bibitem{abramowitzstegun}
-Abramowitz, M. \& Stegun, I. A.
-\emph{Handbook of Mathematical Functions},
-Dover Books (1965)
-
-\bibitem{healdmarion}
-Heald, M. \& Marion, J.
-\emph{Classical Electromagnetic Radiation},
-Brooks Cole (1994)
-
-\bibitem{kazimierczuk}
-Kazimierczuk, M.
-\emph{High-Frequency Magnetic Components},
-Wiley (2009)
-
-\bibitem{crchandbook}
-David R. Lide (ed),
-\emph{CRC Handbook of Chemistry and Physics},
-84th Edition. CRC Press. Boca Raton, Florida, 2003;
-Section 12, Properties of Solids; Electrical Resistivity of Pure Metals;
-Section 4, The Elements: Magnetic Susceptibility
+\bibitem{lyness}
+ Lyness, J. N.,
+ \emph{Notes on the Adaptive Simpson Quadrature Routine},
+Journal of the ACM
+Volume 16 Issue 3, (1969) 
+Seiten 483-495 
 
 \end{thebibliography}
+
+\appendix
+
+
+\begin{figure}[htbp]
+\centering
+\input{./figures/rho}
+\caption{Integrand für T=300K}
+
+\input{./figures/rho_sonne}
+\caption{Integrand für T=5750K}
+\end{figure}
+
+\begin{figure}
+\centering
+\input{./figures/temperatur}
+\caption{Ergebnisse}
+\label{fig:ergebnisse}
+\end{figure}
 
 \end{document}
