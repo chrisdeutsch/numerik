@@ -123,8 +123,13 @@ Die Integration soll im Folgenden näher erläutert werden. Zunächst ist eine u
 
 \subsection{Physikalische Ergebnisse}
 \label{ssec:physikalischeergebnisse}
-
-$T_E(\tilde{n})$ ist in Abbildung \ref{fig:ergebnisse} grafisch dargestellt. Dort ist ebenfalls der aktuelle Wert ($\tilde{n}=1$) eingezeichnet. Wir haben Datenpunkte in $0,01$er Schritten ausgewertet und mit einer Interpolation geplottet. Man sieht gut, dass mit steigendem $\tilde{n}$ und damit mehr \ce{CO2} Molekülen in einer Luftsäule von 1\si{\meter^2} Grundfläche die Temperatur der Erde ein Sättigungsverhalten aufweist; sie steigt immer langsamer. Das Modell ist jedoch nur bedingt gut geeignet, es stellt schon für den Wert von $\tilde{n}=1$ (was dem aktuellen Wert entsprechen würde) eine zu hohe Temperatur dar. 2013 beispielsweise lag die globale Durchschnittstemperatur bei 14,52 \si{\celsius} \cite{noaa}. Trotzdem wird qualitativ gut dargestellt, wie sich die Temperatur der Erde mit steigender Anzahl \ce{CO2} Moleküle in der Atmosphäre erhöht.
+\begin{figure}[htpb!]
+\centering
+\input{./figures/temperatur}
+\caption{$T_E$ in Abhängigkeit von $\tilde{n}$}
+\label{fig:ergebnisse}
+\end{figure}
+\noindent$T_E(\tilde{n})$ ist in Abbildung \ref{fig:ergebnisse} grafisch dargestellt. Dort ist ebenfalls der aktuelle Wert ($\tilde{n}=1$) eingezeichnet. Wir haben Datenpunkte in $0,01$er Schritten ausgewertet und mit einer Interpolation geplottet. Man sieht gut, dass mit steigendem $\tilde{n}$ und damit mehr \ce{CO2} Molekülen in einer Luftsäule von 1\si{\meter^2} Grundfläche die Temperatur der Erde ein Sättigungsverhalten aufweist; sie steigt immer langsamer. Das Modell ist jedoch nur bedingt gut geeignet, es stellt schon für den Wert von $\tilde{n}=1$ (was dem aktuellen Wert entsprechen würde) eine zu hohe Temperatur dar. 2013 beispielsweise lag die globale Durchschnittstemperatur bei 14,52 \si{\celsius} \cite{noaa}. Trotzdem wird qualitativ gut dargestellt, wie sich die Temperatur der Erde mit steigender Anzahl \ce{CO2} Moleküle in der Atmosphäre erhöht.
 Die Schwächen des Modells liegen unter anderem darin, dass die Erde kein schwarzer Körper ist, sondern beispielsweise an Wasser und Eis die einfallende Strahlung auch reflektiert. Dies stellt einen Kühleffekt dar, womit die zu hohen Temperaturen des Modells zumindest zum Teil erklärt werden können. Zuletzt muss beachtet werden, dass nur das Treibhausgas \ce{CO2} berücksichtigt wird, obwohl sich die Atmosphäre aus vielen verschiedenen Gasen mit unterschiedlich starken Auswirkungen auf den Treibhauseffekt zusammensetzt (z.B. Wasserdampf, FCKW). 
 
 \begin{thebibliography}{9}
@@ -144,26 +149,20 @@ Global Analysis - Annual 2013, National Climatic Data Center (National Oceanic A
 \begin{appendix}
 \section{Grafiken}
 
-\begin{figure}[htbp]
+\begin{figure}[htbp!]
 \centering
 \input{./figures/rho}
 \caption{Integrand der Emissivität $\epsilon$ für $T=300\, \si{\kelvin}$}
 \label{fig:integrand300}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[htbp!]
 \centering
 \input{./figures/rho_sonne}
 \caption{Integrand der Emissivität $\epsilon$ für $T=5750\, \si{\kelvin}$}
 \label{fig:integrand5750}
 \end{figure}
 
-\begin{figure}
-\centering
-\input{./figures/temperatur}
-\caption{$T_E$ in Abhängigkeit von $\tilde{n}$}
-\label{fig:ergebnisse}
-\end{figure}
 \end{appendix}
 
 \end{document}
