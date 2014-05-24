@@ -73,7 +73,7 @@ Der Emissionsgrad ergibt sich aus dem Verhältnis von spezifischer Ausstrahlung 
 
 Die spezifische Ausstrahlung erhält man durch Integration der spektralen Energiedichte (Planck'sches Gesetz) über alle Frequenzen $\nu$. Dabei muss bei der spezifischen Ausstrahlung der Atmosphäre beachtet werden, dass die spektrale Energiedichte mit der Wahrscheinlichkeit  $1-f(\nu)$ gewichtet wird, dass ein Photon von \ce{CO2} absorbiert wird.
 
-$f(\nu) = \exp\left( {-\tilde{n} N_0 \sigma(\nu)\right) $ beschreibt die Wahrscheinlichkeit, dass ein Photon die Atmosphäre durchdringen kann. Dabei ist $N_0 = \num{7.3e25}\,\si{\per\metre^2}$ die aktuelle Konzentration \ce{CO2} Moleküle in einer Luftsäule mit 1\,\si{\metre^2} Grundfläche, die mit $\tilde{n}$ skaliert wird und für den Wirkungsquerschnitt $\sigma(\nu)$ wurde die Breit-Wigner-Formel mit Resonanzen bei $\nu_2 = \num{2.00e13}\, \si{\per\second}$ und $\nu_3 = \num{7.04e13}\, \si{\per\second}$ angenommen.
+$f(\nu) = \exp\left( -\tilde{n} \,N_0\, \sigma(\nu)\right) $ beschreibt die Wahrscheinlichkeit, dass ein Photon die Atmosphäre durchdringen kann. Dabei ist $N_0 = \num{7.3e25}\,\si{\per\metre^2}$ die aktuelle Konzentration \ce{CO2} Moleküle in einer Luftsäule mit 1\,\si{\metre^2} Grundfläche, die mit $\tilde{n}$ skaliert wird und für den Wirkungsquerschnitt $\sigma(\nu)$ wurde die Breit-Wigner-Formel mit Resonanzen bei $\nu_2 = \num{2.00e13}\, \si{\per\second}$ und $\nu_3 = \num{7.04e13}\, \si{\per\second}$ angenommen.
 
 \subsection{Implementierung}
 Im wesentlichen besteht unser Programm aus zwei Teilen:
@@ -120,7 +120,7 @@ Außerdem von dem Integral:
 \end{align}
 welches mit der in Abschnitt \ref{sssec:integration} erklärten Methode berechnet wird.
 
-Die Integration soll im Folgenden näher erläutert werden. Zunächst ist eine uneigentliche numerische Integration über ein Intervall unendlicher Länge nicht möglich. Dies ist in unserem Fall nicht nötig, da der Integrand nur auf einem endlichen Intervall signifikant von Null verschieden ist. Für unsere Berechnung interessant ist das Verhalten des Integranden für $T = \num{5750}\,\si{\kelvin}$ (Temperatur der Sonne), sowie $T = \num{300}\,\si{\kelvin}$ (in diesem Bereich erwarten wir die Gleichgewichtstemperatur der Erde) für $\num{0.1} < \tilde{n} < \num{100}$ wobei die obere Grenze sehr großzügig gewählt wurde. Aus der Abbildung \ref{fig:integranden} folgern wir, dass man $[10^{13}\,\si{\per\second},10^{15}\,\si{\per\second}]$ als sinnvolle Integrationsgrenzen für $T = \num{5750}\,\si{\kelvin}$ und $[10^{12}\,\si{\per\second}, 10^{14}\,\si{\per\second}]$ für $T = \num{300}\,\si{\kelvin}$ wählen kann. Darüber hinaus erwarten wir einen Wert des Integrals in der Größenordnung $10^{-6}\,\si{\joule\per\metre^3}$, weshalb die Abbruchbedingung der Integration (vgl. \ref{sssec:integration}) $\epsilon = 10^{-11}\,\si{\joule\per\metre^3}$ gewählt wurde, was einem absoluten Fehler von $\epsilon / 15 \approx 10^{-12}\,\si{\joule\per\metre^3}$ entspricht. Die hier erwähnten Maßnahmen wurden in der Funktion \texttt{epsilon} implementiert.
+Die Integration soll im Folgenden näher erläutert werden. Zunächst ist eine uneigentliche numerische Integration über ein Intervall unendlicher Länge nicht möglich. Dies ist in unserem Fall nicht nötig, da der Integrand nur auf einem endlichen Intervall signifikant von Null verschieden ist. Für unsere Berechnung interessant ist das Verhalten des Integranden für $T = \num{5750}\,\si{\kelvin}$ (Temperatur der Sonne), sowie $T = \num{300}\,\si{\kelvin}$ (in diesem Bereich erwarten wir die Gleichgewichtstemperatur der Erde) für $\num{0.1} < \tilde{n} < \num{100}$ wobei die obere Grenze sehr großzügig gewählt wurde. Aus den Abbildungen \ref{fig:integrand300} und \ref{fig:integrand5750} folgern wir, dass man $[10^{13}\,\si{\per\second},10^{15}\,\si{\per\second}]$ als sinnvolle Integrationsgrenzen für $T = \num{5750}\,\si{\kelvin}$ und $[10^{12}\,\si{\per\second}, 10^{14}\,\si{\per\second}]$ für $T = \num{300}\,\si{\kelvin}$ wählen kann. Darüber hinaus erwarten wir einen Wert des Integrals in der Größenordnung $10^{-6}\,\si{\joule\per\metre^3}$, weshalb die Abbruchbedingung der Integration (vgl. \ref{sssec:integration}) $\epsilon = 10^{-11}\,\si{\joule\per\metre^3}$ gewählt wurde, was einem absoluten Fehler von $\epsilon / 15 \approx 10^{-12}\,\si{\joule\per\metre^3}$ entspricht. Die hier erwähnten Maßnahmen wurden in der Funktion \texttt{epsilon} implementiert.
 
 
 
@@ -150,10 +150,14 @@ Global Analysis - Annual 2013, National Climatic Data Center (National Oceanic A
 \centering
 \input{./figures/rho}
 \caption{Integrand der Emissivität $\epsilon$ für $T=300\, \si{\kelvin}$}
+\label{fig:integrand300}
+\end{figure}
 
+\begin{figure}
+\centering
 \input{./figures/rho_sonne}
 \caption{Integrand der Emissivität $\epsilon$ für $T=5750\, \si{\kelvin}$}
-\label{fig:integranden}
+\label{fig:integrand5750}
 \end{figure}
 
 \begin{figure}
