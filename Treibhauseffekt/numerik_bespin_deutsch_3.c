@@ -116,6 +116,7 @@ int main(int argc, char **argv) {
     args[1] = k_emissivity_sun * (2 - emissivity(k_T_sun, args[0], 1E13, 1E15))
                  * pow(k_T_sun, 4);
     
+    /* Berechne die Gleichgewichtstemperatur aus dem Nullstellenproblem */
     find_root(F, 250, 350, 0.01, &equi_temp);
     printf("%.3f\t%.3f\n", args[0], equi_temp);
     
