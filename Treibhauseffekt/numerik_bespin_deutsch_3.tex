@@ -36,7 +36,7 @@ im thermischen Gleichgewicht verwendet. Wir beschreiben die Erde als schwarzen
 Strahler mit Emissions-/Absorptionsgrad $\epsilon_E = \alpha_E = 1$. Die Sonne 
 wird durch einen grauen Strahler der Temperatur $T_S$ mit Emissionsgrad
 $\epsilon_S = \text{konst.}$ ersetzt.
-Auch die Atmosphäre wird als grauer Strahler modelliert. Diese habe die
+Auch die Atmosphäre wird als grauer Strahler modelliert. Dieser habe die
 Temperatur $\tau$ und den Emissionsgrad $\epsilon(\tau)$. 
 Das Kirchhoff'sche Strahlungsgesetz besagt, dass der Emissionsgrad $\epsilon$ eines
 grauen Körpers gleich seinem Absorptionsgrad $\alpha$ ist. Demnach hat die
@@ -81,7 +81,7 @@ Im Wesentlichen besteht unser Programm aus zwei Teilen:
 	\item die benötigten numerischen Methoden zum Lösen der nichtlinearen Gleichung (\ref{eqn:gleichgewicht}), also Integration und numerisches Lösen von Gleichungen
 	\item die konkrete Implementierung des physikalischen Problems
 \end{enumerate}
-Wir haben uns bemüht, diese Teile im Quellcode strikt zu trennen um Übersichtlichkeit zu gewährleisten. Die numerischen Methoden finden sich in dem Modul \texttt{numerik\_bespin\_deutsch\_mathfunctions} und die Lösung des physikalischen Problems in der Hauptquelldatei \texttt{numerik\_bespin\_deutsch\_3.c}
+Wir haben uns bemüht, diese Teile im Quellcode strikt zu trennen, um Übersichtlichkeit zu gewährleisten. Die numerischen Methoden finden sich in dem Modul \texttt{numerik\_bespin\_deutsch\_mathfunctions} und die Lösung des physikalischen Problems in der Hauptquelldatei \texttt{numerik\_bespin\_deutsch\_3.c}
 
 \subsubsection{Nullstellenberechnung mit Bisektion}
 
@@ -99,7 +99,7 @@ Man kann die Näherung des Integrals verbessern, indem man das Intervall halbier
 
 Wir haben uns für die Implementierung der adaptiven Simpson-Methode entschieden, bei der das Integral rekursiv berechnet wird. Dazu wird zunächst eine erste Näherung des Integrals auf dem Gesamtintervall durchgeführt. Dann wird das zu integrierende Intervall halbiert und anschließend werden diese Teilintervalle mit der Simpson-Methode ausgewertet. Sollte die Differenz der Summe der integrierten Teilintervalle und des Gesamtintervalls eine Grenze $\epsilon$ überschreiten, wird das Verfahren auf jedem der Teilintervalle wiederholt. Da bei der Rekursion die Intervalle halbiert werden, muss auch mit jedem Schritt die Grenze $\epsilon$ halbiert werden, um eine sinnvolle Fehlereinschätzung zu gewährleisten. In \cite{lyness} wird gezeigt, dass $\epsilon / 15$ ein guter Schätzer für den absoluten Fehler der Näherung ist.
 
-Der Vorteil einer rekursiven Umsetzung ist, dass sich der adaptive Mechanismus leicht implementieren lässt, da sich jedes Teilintervall unabhängig betrachten lässt. Dabei ist die Idee, dass man eine sehr feine Intervallteilung in Bereichen starker und eine sehr Grobe in Bereichen minimaler Änderung des Integranden vornimmt. Für die Implementierung ist wichtig, dass bereits berechnete Funktionswerte rekursiv weitergegeben werden, um die Anzahl der Funktionsauswertungen zu minimieren.
+Der Vorteil einer rekursiven Umsetzung ist, dass sich der adaptive Mechanismus leicht implementieren lässt, da sich jedes Teilintervall unabhängig betrachten lässt. Dabei ist die Idee, dass man eine sehr feine Intervallteilung in Bereichen starker und eine sehr grobe in Bereichen minimaler Änderung des Integranden vornimmt. Für die Implementierung ist wichtig, dass bereits berechnete Funktionswerte rekursiv weitergegeben werden, um die Anzahl der Funktionsauswertungen zu minimieren.
 
 
 \subsubsection{Lösung des physikalischen Problems}
