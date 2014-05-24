@@ -26,8 +26,8 @@ const double k_nu3 = 7.04E+13;
 const double k_N0 = 7.3E+25;
 
 /* Strahlungseigenschaften der Sonne */
-const double k_TS = 5750;
-const double k_epsilon_s = 5.5E-6;
+const double k_T_sun = 5750;
+const double k_emissivity_sun = 5.5E-6;
 
 
 /* spektrale Energiedichte */
@@ -40,11 +40,11 @@ double sigma(double nu);
 double Z(double T);
 
 /* Integrand der Emissivitaet: *args = {double T, double n} */
-double epsilon_integrand(double nu, void *args);
+double emissivity_integrand(double nu, void *args);
 
 /* Berechnet die Emissivitaet (das Integral ist in den Grenzen a, b um an die
  * Berechnung an den jeweiligen Parametersatz T,n anpassen zu koennen) */
-double epsilon(double T, double n, double a, double b);
+double emissivity(double T, double n, double a, double b);
 
 /* Die zu loesende nichtlineare Gleichung fuer das thermische Gleichgewicht.
  * Argumente: *args = {double n, double rhs}
@@ -113,7 +113,8 @@ int main(int argc, char **argv) {
     args[0] = n_start;
     /* rechte Seite der Gleichung (2) (PDF); unabhaengig von T_E, daher
      * Berechnung ausserhalb der Bisektion */
-    args[1] = k_epsilon_s * (2 - epsilon(k_TS, args[0], 1E13, 1E15)) * pow(k_TS, 4);
+    args[1] = k_emissivity_sun * (2 - emissivity(k_T_sun, args[0], 1E13, 1E15))
+                 * pow(k_T_sun, 4);
     
     find_root(F, 250, 350, 0.01, &equi_temp);
     printf("%.3f\t%.3f\n", args[0], equi_temp);
@@ -142,7 +143,7 @@ double Z(double T) {
   return 8.0 / 15.0 * k_pi * k_h * k_c0 * pow(k_pi * k_kB * T / k_h / k_c0, 4);
 }
 
-double epsilon_integrand(double nu, void *args) {
+double emissivity_integrand(double nu, void *args) {
   /* Extrahiert die Argumente */
   double T = *(double*)args;
   double n = *((double*)args + 1);
@@ -153,7 +154,7 @@ double epsilon_integrand(double nu, void *args) {
   return rho(nu, T) * (1 - f);
 }
 
-double epsilon(double T, double n, double a, double b) {
+double emissivity(double T, double n, double a, double b) {
   function F;
   double args[2];
   
@@ -161,7 +162,7 @@ double epsilon(double T, double n, double a, double b) {
   args[0] = T;
   args[1] = n;
   
-  F.func = epsilon_integrand;
+  F.func = emissivity_integrand;
   F.args = args;
   
   return integrate(F, a, b, 1E-11, 20) / Z(T);
@@ -171,5 +172,5 @@ double equilibrium_eqn(double TE, void *args) {
   double n = *(double*)args;
   double rhs = *((double*)args + 1);
   
-  return (2 - epsilon(TE, n, 1E12, 1E14)) * pow(TE, 4) - rhs;
+  return (2 - emissivity(TE, n, 1E12, 1E14)) * pow(TE, 4) - rhs;
 }

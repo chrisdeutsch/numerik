@@ -40,7 +40,7 @@ Auch die Atmosphäre wird als grauer Strahler modelliert. Diese habe die
 Temperatur $\tau$ und den Emissionsgrad $\epsilon(\tau)$. 
 Das Kirchhoff'sche Strahlungsgesetz besagt, dass der Emissionsgrad $\epsilon$ eines
 grauen Körpers gleich seinem Absorptionsgrad $\alpha$ ist. Demnach hat die
-Atmosphäre für Strahlung der Temperatur $T$ den Absorptionsgrad $\alpha(\tau) = \epsilon(\tau)$.
+Atmosphäre für Strahlung der Temperatur $T$ den Absorptionsgrad $\alpha(T) = \epsilon(T)$.
 
 \begin{wrapfigure}[14]{R}[1pt]{0.47\textwidth}
 \centering
@@ -72,7 +72,7 @@ Der Emissionsgrad ergibt sich aus dem Verhältnis von spezifischer Ausstrahlung 
 
 Die spezifische Ausstrahlung erhält man durch Integration der spektralen Energiedichte (Planck'sches Gesetz) über alle Frequenzen $\nu$. Dabei muss bei der spezifischen Ausstrahlung der Atmosphäre beachtet werden, dass die spektrale Energiedichte mit $1-f(\nu)$ gewichtet wird, was die Wahrscheinlichkeit darstellt, dass ein Photon von \ce{CO2} absorbiert wird.
 
-Dementsprechend ist $f(\nu) = \exp\left(-\tilde{n} N_0 \sigma(\nu) \right)$ die Wahrscheinlichkeit, dass ein Photon die Atmosphäre durchdringen kann. Dabei ist $N_0 = \num{7.3e25}\,\si{\per\metre^2}$ die aktuelle Anzahl von \ce{CO2} Molekülen in einer Luftsäule mit $\num{1}\,\si{\metre^2}$ Grundfläche und das Verhältnis der Konzentration zum aktuellen Wert $\tilde{n}$. Für den Wirkungsquerschnitt $\sigma(\nu)$ von \ce{CO2} wurde die Breit-Wigner-Formel mit Resonanzen bei $\nu_2 = \num{2.00e13}\, \si{\per\second}$ und $\nu_3 = \num{7.04e13}\, \si{\per\second}$ angenommen.
+Dementsprechend ist $f(\nu) = \exp\left(-N \sigma(\nu) \right)$ mit $N = \tilde{n} N_0$ die Wahrscheinlichkeit, dass ein Photon die Atmosphäre durchdringen kann. Dabei ist $N_0 = \num{7.3e25}\,\si{\per\metre^2}$ die aktuelle Anzahl von \ce{CO2} Molekülen in einer Luftsäule mit $\num{1}\,\si{\metre^2}$ Grundfläche. Für den Wirkungsquerschnitt $\sigma(\nu)$ von \ce{CO2} wurde die Breit-Wigner-Formel mit Resonanzen bei $\nu_2 = \num{2.00e13}\, \si{\per\second}$ und $\nu_3 = \num{7.04e13}\, \si{\per\second}$ angenommen.
 
 
 \subsection{Implementierung}
@@ -86,7 +86,7 @@ Wir haben uns bemüht, diese Teile im Quellcode strikt zu trennen um Übersichtl
 \subsubsection{Nullstellenberechnung mit Bisektion}
 
 Ein Verfahren, um numerisch Nullstellen zu bestimmen, ist das Iterationsverfahren der Bisektion. Dabei wird vorausgesetzt, dass die Funktion auf dem relevanten Intervall $[a,b]$ stetig ist und dort einen Vorzeichenwechsel hat. Dann folgt aus dem Zwischenwertsatz, dass dort garantiert eine Nullstelle liegt. Die Bisektion halbiert zunächst das zu betrachtende Intervall und prüft, ob zwischen den Grenzen der Teilintervalle ein Vorzeichenwechsel in den Funktionswerten vorliegt. Da die Funktion nach Voraussetzung nur einen Vorzeichenwechsel auf dem ganzen Intervall hatte, tritt in einem der Teilintervalle kein Vorzeichenwechsel auf und dieses wird im Folgenden vernachlässigt. Bei dem nächsten Schleifendurchlauf wird dieses Verfahren auf das verbleibende Teilintervall angewendet. Das Intervall, auf dem der Vorzeichenwechsel stattfindet, wird so immer weiter eingeschränkt, bis es eine gewünschte vorgegebene Genauigkeit erreicht (Intervallbreite $<\epsilon$). 
-Wir verwenden die Bisektion hier, da im Gegensatz zum Newtonverfahren keine Ableitungen der Funktion  berechnet werden müssen. Bei der hier vorliegenden Funktion ist die Ableitung nur numerisch bestimmbar, was den Rechenaufwand erheblich negativ beeinträchtigen würde.
+Wir verwenden die Bisektion hier, da im Gegensatz zum Newtonverfahren keine Ableitungen der Funktion  berechnet werden müssen. Bei der hier vorliegenden Funktion ist die Ableitung nur numerisch bestimmbar, was den Rechenaufwand erheblich beeinträchtigen würde.
 
 \subsubsection{Numerische Integration mit rekursivem Simpson-Verfahren}
 \label{sssec:integration}
@@ -97,7 +97,7 @@ Die Simpson-Methode nähert das Integral einer Funktion $f$ auf dem Intervall $[
 \end{align}
 Man kann die Näherung des Integrals verbessern, indem man das Intervall halbiert und schließlich auf den Teilintervallen erneut die Simpson-Methode anwendet. Dies kann je nach Präzisionsbedarf beliebig oft wiederholt werden.
 
-Wir haben uns für die Implementierung der adaptiven Simpson-Methode entschieden, bei der das Integral rekursiv berechnet wird. Dazu wird das zu integrierende Intervall halbiert und anschließend werden diese Teilintervalle mit der Simpson-Methode ausgewertet (+Integral des Gesamtintervalls zum Vergleich). Sollte die Differenz der Summe der integrierten Teilintervalle und des Gesamtintervalls eine Grenze $\epsilon$ überschreiten, wird das Verfahren auf jedem der Teilintervalle wiederholt. Da bei der Rekursion die Intervalle halbiert werden, muss auch mit jedem Schritt die Grenze $\epsilon$ halbiert werden, um eine sinnvolle Fehlereinschätzung zu gewährleisten. In \cite{lyness} wird gezeigt, dass $\epsilon / 15$ ein guter Schätzer für den absoluten Fehler der Näherung ist.
+Wir haben uns für die Implementierung der adaptiven Simpson-Methode entschieden, bei der das Integral rekursiv berechnet wird. Dazu wird zunächst eine erste Näherung des Integrals auf dem Gesamtintervall durchgeführt. Dann wird das zu integrierende Intervall halbiert und anschließend werden diese Teilintervalle mit der Simpson-Methode ausgewertet. Sollte die Differenz der Summe der integrierten Teilintervalle und des Gesamtintervalls eine Grenze $\epsilon$ überschreiten, wird das Verfahren auf jedem der Teilintervalle wiederholt. Da bei der Rekursion die Intervalle halbiert werden, muss auch mit jedem Schritt die Grenze $\epsilon$ halbiert werden, um eine sinnvolle Fehlereinschätzung zu gewährleisten. In \cite{lyness} wird gezeigt, dass $\epsilon / 15$ ein guter Schätzer für den absoluten Fehler der Näherung ist.
 
 Der Vorteil einer rekursiven Umsetzung ist, dass sich der adaptive Mechanismus leicht implementieren lässt, da sich jedes Teilintervall unabhängig betrachten lässt. Dabei ist die Idee, dass man eine sehr feine Intervallteilung in Bereichen starker und eine sehr Grobe in Bereichen minimaler Änderung des Integranden vornimmt. Für die Implementierung ist wichtig, dass bereits berechnete Funktionswerte rekursiv weitergegeben werden, um die Anzahl der Funktionsauswertungen zu minimieren.
 
@@ -119,9 +119,7 @@ Außerdem von dem Integral:
 \end{align}
 welches mit der in Abschnitt \ref{sssec:integration} erklärten Methode berechnet wird.
 
-Die Integration soll im Folgenden näher erläutert werden. Zunächst ist eine uneigentliche numerische Integration über ein Intervall unendlicher Länge nicht möglich. Dies ist in unserem Fall nicht nötig, da der Integrand nur auf einem endlichen Intervall signifikant von Null verschieden ist. Für unsere Berechnung interessant ist das Verhalten des Integranden für $T = \num{5750}\,\si{\kelvin}$ (Temperatur der Sonne), sowie $T = \num{300}\,\si{\kelvin}$ (in diesem Bereich erwarten wir die Gleichgewichtstemperatur der Erde) für $\num{0.1} < \tilde{n} < \num{100}$ wobei die obere Grenze sehr großzügig gewählt wurde. Aus den Abbildungen \ref{fig:integrand300} und \ref{fig:integrand5750} folgern wir, dass man $[10^{13}\,\si{\per\second},10^{15}\,\si{\per\second}]$ als sinnvolle Integrationsgrenzen für $T = \num{5750}\,\si{\kelvin}$ und $[10^{12}\,\si{\per\second}, 10^{14}\,\si{\per\second}]$ für $T = \num{300}\,\si{\kelvin}$ wählen kann. Darüber hinaus erwarten wir einen Wert des Integrals in der Größenordnung $10^{-6}\,\si{\joule\per\metre^3}$, weshalb die Abbruchbedingung der Integration (vgl. \ref{sssec:integration}) $\epsilon = 10^{-11}\,\si{\joule\per\metre^3}$ gewählt wurde, was einem absoluten Fehler von $\epsilon / 15 \approx 10^{-12}\,\si{\joule\per\metre^3}$ entspricht. Die hier erwähnten Maßnahmen wurden in der Funktion \texttt{epsilon} implementiert.
-
-
+Die Integration soll im Folgenden näher erläutert werden. Zunächst ist eine uneigentliche numerische Integration über ein Intervall unendlicher Länge nicht möglich. Dies ist in unserem Fall nicht nötig, da der Integrand nur auf einem endlichen Intervall signifikant von Null verschieden ist. Für unsere Berechnung interessant ist das Verhalten des Integranden für $T = \num{5750}\,\si{\kelvin}$ (Temperatur der Sonne), sowie $T = \num{300}\,\si{\kelvin}$ (in diesem Bereich erwarten wir die Gleichgewichtstemperatur der Erde) für $\num{0.1} < \tilde{n} < \num{100}$, wobei die obere Grenze sehr großzügig gewählt wurde. Aus den Abbildungen \ref{fig:integrand300} und \ref{fig:integrand5750} folgern wir, dass man $[10^{13}\,\si{\per\second},10^{15}\,\si{\per\second}]$ als sinnvolle Integrationsgrenzen für $T = \num{5750}\,\si{\kelvin}$ und $[10^{12}\,\si{\per\second}, 10^{14}\,\si{\per\second}]$ für $T = \num{300}\,\si{\kelvin}$ wählen kann. Darüber hinaus erwarten wir einen Wert des Integrals in der Größenordnung $10^{-6}\,\si{\joule\per\metre^3}$, weshalb die Abbruchbedingung der Integration (vgl. \ref{sssec:integration}) $\epsilon = 10^{-11}\,\si{\joule\per\metre^3}$ gewählt wurde, was einem absoluten Fehler von $\epsilon / 15 \approx 10^{-12}\,\si{\joule\per\metre^3}$ entspricht. Die hier erwähnten Maßnahmen wurden in der Funktion \texttt{emissivity} implementiert.
 
 \subsection{Physikalische Ergebnisse}
 \label{ssec:physikalischeergebnisse}
