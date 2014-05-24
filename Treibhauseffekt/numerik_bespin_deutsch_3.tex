@@ -73,7 +73,7 @@ Der Emissionsgrad ergibt sich aus dem Verhältnis von spezifischer Ausstrahlung 
 
 Die spezifische Ausstrahlung erhält man durch Integration der spektralen Energiedichte (Planck'sches Gesetz) über alle Frequenzen $\nu$. Dabei muss bei der spezifischen Ausstrahlung der Atmosphäre beachtet werden, dass die spektrale Energiedichte mit der Wahrscheinlichkeit  $1-f(\nu)$ gewichtet wird, dass ein Photon von \ce{CO2} absorbiert wird.
 
-$f(\nu) = \exp\left( {-\tilde{n} N_0 \sigma(\nu)\right) $ beschreibt die Wahrscheinlichkeit, dass ein Photon die Atmosphäre durchdringen kann. Dabei ist $N_0 = \num{7.3e25}\,\si{\per\metre^2}$ die aktuelle Konzentration \ce{CO2} Moleküle in einer Luftsäule mit 1\,\si{\metre^2} Grundfläche, die mit $\tilde{n}$ skaliert wird und für den Wirkungsquerschnitt $\sigma(\nu)$ wurde die Breit-Wigner-Formel mit Resonanzen bei $\nu_2 = \num{2.00e13}\, \si{\per\second}$ und $\nu_3 = \num{7.04e13}\, \si{\per\second}$ angenommen.
+$f(\nu) = \exp\left(\tilde{n} N_0 \sigma(\nu) \right) $ beschreibt die Wahrscheinlichkeit, dass ein Photon die Atmosphäre durchdringen kann. Dabei ist $N_0 = \num{7.3e25}\,\si{\per\metre^2}$ die aktuelle Konzentration \ce{CO2} Moleküle in einer Luftsäule mit 1\,\si{\metre^2} Grundfläche, die mit $\tilde{n}$ skaliert wird und für den Wirkungsquerschnitt $\sigma(\nu)$ wurde die Breit-Wigner-Formel mit Resonanzen bei $\nu_2 = \num{2.00e13}\, \si{\per\second}$ und $\nu_3 = \num{7.04e13}\, \si{\per\second}$ angenommen.
 
 \subsection{Implementierung}
 Im wesentlichen besteht unser Programm aus zwei Teilen:
