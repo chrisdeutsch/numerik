@@ -1,6 +1,7 @@
 /* gcc -o numerik_3 -O2 numerik_bespin_deutsch_mathfunctions.c numerik_bespin_deutsch_3.c */
 /* Christian Bespin, Christopher Deutsch */
-/* BENUTZUNG: Aufruf mit 3 Parametern (n_start, n_stop, n_step) */
+/* Programmaufruf: ./numerik_3 n_start, n_stop, n_step */
+/* Das Programm gibt T_E(n) von n = n_start bis n = n_stop in Schritten von n_step aus */
 
 #include <stdio.h>
 #include <math.h>
