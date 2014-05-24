@@ -1,7 +1,7 @@
 #ifndef _MATHFUNCTIONS_H_
 #define _MATHFUNCTIONS_H_
 
-/* Wrapper fuer Funktionen mit beliebigen Argumenten */
+/* Funktionen mit beliebigen Argumenten */
 typedef struct {
   double (*func)(double x, void *args);
   void *args;

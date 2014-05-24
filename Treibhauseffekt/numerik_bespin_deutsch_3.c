@@ -1,7 +1,9 @@
-/* gcc -o numerik_3 -O2 numerik_bespin_deutsch_mathfunctions.c numerik_bespin_deutsch_3.c */
+/* gcc -o numerik_3 -O2 numerik_bespin_deutsch_mathfunctions.c numerik_bespin_deutsch_3.c -lm */
 /* Christian Bespin, Christopher Deutsch */
+
 /* Programmaufruf: ./numerik_3 n_start, n_stop, n_step */
 /* Das Programm gibt T_E(n) von n = n_start bis n = n_stop in Schritten von n_step aus */
+/* Alternativ: ./numerik_3 n fuer den Wert von T_E(n) */
 
 #include <stdio.h>
 #include <math.h>
@@ -20,12 +22,13 @@ const double k_gamma = 3.00E+10;
 const double k_nu2 = 2.00E+13;
 const double k_nu3 = 7.04E+13;
 
-/* CO2 Gehalt der Atmosphaere */
-const double k_n0 = 7.3E+25;
+/* CO2 Konzentration der Atmosphaere */
+const double k_N0 = 7.3E+25;
 
-/* Sonnenparameter */
+/* Strahlungseigenschaften der Sonne */
 const double k_TS = 5750;
 const double k_epsilon_s = 5.5E-6;
+
 
 /* spektrale Energiedichte */
 double rho(double nu, double T);
@@ -44,7 +47,10 @@ double epsilon_integrand(double nu, void *args);
 double epsilon(double T, double n, double a, double b);
 
 /* Die zu loesende nichtlineare Gleichung fuer das thermische Gleichgewicht.
- * Argumente: *args = {double n, double rhs} */
+ * Argumente: *args = {double n, double rhs}
+ * Dabei ist rhs die rechte Seite der Gleichung (2) (PDF) 
+ * Die Funktion liefert den Wert von lhs - rhs, sodass nur die Nullstelle
+ * gefunden werden muss */
 double equilibrium_eqn(double TE, void *args);
 
 
@@ -56,7 +62,8 @@ int main(int argc, char **argv) {
   function F;
   double args[2];
   
-  /* ---Schnittstelle--- */
+  
+  /* ---Auswertung der Programm-Parameter--- */
   if (argc != 4 && argc != 2) {
     printf("\nBenutzung:\n");
     printf("Berechnung der Gleichgewichtstemperatur fuer ein n:\n"
@@ -95,7 +102,8 @@ int main(int argc, char **argv) {
       n_stop = 100;
     }
   }
-  /* ---Schnittstelle--- */
+  /* ---Auswertung der Programm-Parameter--- */
+  
   
   F.func = equilibrium_eqn;
   F.args = args;
@@ -103,10 +111,12 @@ int main(int argc, char **argv) {
   printf("# n\tT_E [K]\n");  
   while (n_start <= n_stop) {
     args[0] = n_start;
-    args[1] = k_epsilon_s * (2 - epsilon(k_TS, args[0], 1E12, 1E15)) * pow(k_TS, 4);
+    /* rechte Seite der Gleichung (2) (PDF); unabhaengig von T_E, daher
+     * Berechnung ausserhalb der Bisektion */
+    args[1] = k_epsilon_s * (2 - epsilon(k_TS, args[0], 1E13, 1E15)) * pow(k_TS, 4);
     
     find_root(F, 250, 350, 0.01, &equi_temp);
-    printf("%.3f\t%.5f\n", args[0], equi_temp);
+    printf("%.3f\t%.3f\n", args[0], equi_temp);
     
     n_start += n_step;
   }
@@ -138,7 +148,7 @@ double epsilon_integrand(double nu, void *args) {
   double n = *((double*)args + 1);
   
   /* Wahrscheinlichkeit fuer das Entweichen eines Photons */
-  double f = exp(-n * k_n0 * sigma(nu));
+  double f = exp(-n * k_N0 * sigma(nu));
   
   return rho(nu, T) * (1 - f);
 }
@@ -146,15 +156,14 @@ double epsilon_integrand(double nu, void *args) {
 double epsilon(double T, double n, double a, double b) {
   function F;
   double args[2];
+  
   /* in den Integranden zu substituierende Groessen */
   args[0] = T;
   args[1] = n;
   
-  /* Wrapper fuer Funktion + Argumente */
   F.func = epsilon_integrand;
   F.args = args;
   
-  /* Die gewaehlten Grenzen sind gut fuer T = 300 K */
   return integrate(F, a, b, 1E-11, 20) / Z(T);
 }
 
