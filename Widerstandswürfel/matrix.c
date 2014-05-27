@@ -4,11 +4,18 @@
 
 MATRIX matrix_alloc(int n, int m) {
   MATRIX ret;
+  int i;
   
   /* Fehlercheck fehlt */
   ret.data = malloc(n * m * sizeof(double));
   ret.n = n;
   ret.m = m;
+  
+  /* GET Pointerstruktur */
+  ret.elem = malloc(n * sizeof(double *));
+  for (i = 0; i < n; i++) {
+    ret.elem[i] = ret.data + i * m;
+  }
   
   return ret;  
 }
@@ -17,13 +24,14 @@ void matrix_init(MATRIX *A, double value) {
   int i, j;
   for (i = 0; i < A->n; i++) {
     for (j = 0; j < A->m; j++) {
-      matrix_set(A, i, j, value);
+      A->elem[i][j] = value;
     }
   }
 }
 
 void matrix_free(MATRIX *A) {
   /* Fehlercheck */
+  free(A->elem);
   free(A->data);
 }
 
@@ -31,19 +39,10 @@ void matrix_print(MATRIX *A) {
   int i, j;
   for (i = 0; i < A->n; i++) {
     for (j = 0; j < A->m; j++) {
-      printf("%f ", matrix_get(A, i, j));
+      printf("%f ", A->elem[i][j]);
     }
     printf("\n");
   }
-}
-
-/* Access */
-double matrix_get(MATRIX *A, int i, int j) {
-  return A->data[i * A->m + j];
-}
-
-void matrix_set(MATRIX *A, int i, int j, double value) {
-  A->data[i * A->m + j] = value;
 }
 
 /* Operationen */
@@ -64,9 +63,9 @@ MATRIX matrix_mult(MATRIX *A, MATRIX *B) {
     for (j = 0; j < B->m; j++) {
       sum = 0;
       for (k = 0; k < A-> m; k++) {
-        sum += matrix_get(A, i, k) * matrix_get(B, k, j);
+        sum += A->elem[i][k] * B->elem[k][j];
       }
-      matrix_set(&ret, i, j, sum);
+      ret.elem[i][j] = sum;
     }
   }
   

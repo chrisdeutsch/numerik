@@ -3,6 +3,7 @@
 
 typedef struct {
   double *data;
+  double **elem;
   int n, m;
 } MATRIX;
 
@@ -14,11 +15,6 @@ void matrix_init(MATRIX *A, double value);
 void matrix_free(MATRIX *A);
 
 void matrix_print(MATRIX *A);
-
-/* Access */
-double matrix_get(MATRIX *A, int i, int j);
-
-void matrix_set(MATRIX *A, int i, int j, double value);
 
 /* Operationen */
 MATRIX matrix_mult(MATRIX *A, MATRIX *B);
