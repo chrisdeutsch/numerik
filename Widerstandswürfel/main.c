@@ -2,27 +2,23 @@
 #include <stdio.h>
 
 int main() {
-	MATRIX m = matrix_alloc(3, 1);
-  MATRIX n = matrix_alloc(1, 3);
-  MATRIX result;
+	MATRIX m = matrix_alloc(2, 2);
+  int permutation[2] = {1, 2};
   
-  m.elem[0][0] = 1;
-  m.elem[1][0] = 2;
-  m.elem[2][0] = 3;
-  
-  n.elem[0][0] = 3;
-  n.elem[0][1] = 2;
-  n.elem[0][2] = 1;
+  m.elem[0][0] = 4;
+  m.elem[0][1] = 3;
+  m.elem[1][0] = 6;
+  m.elem[1][1] = 3;
   
   matrix_print(&m);
   printf("\n");
-  matrix_print(&n);
+  
+  LU_decomp(&m, permutation);
+  
+  matrix_print(&m);
   printf("\n");
   
-  result = matrix_mult(&m, &n);
-  
-  matrix_print(&result);
-  printf("\n");
+  printf("%i, %i\n", permutation[0], permutation[1]);
   
   return 0;
 }
