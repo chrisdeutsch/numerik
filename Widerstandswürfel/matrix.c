@@ -81,24 +81,42 @@ void matrix_swap_row(MATRIX *A, int i, int j) {
   A->elem[j] = temp;
 }
 
-void LU_decomp(MATRIX *A, int *permutation) {
+int LU_decomp(MATRIX *A, int *permutation) {
   int i, j, k;
-  int piv;
-  int temp;
+  int n = A->n;
+  int piv, temp;
   
-  for (i = 0; i < A->n; i++) {            
-    for (j = i; j < A->n; j++) {
+  for (i = 0; i < n; i++) {
+    /* Hier Pivotisierung */
+    piv = pivot(A, i);
+    if (piv != i) {
+      /* Tauschen der Zeilen */
+      matrix_swap_row(A, i, piv);
+      /* Merken der Vertauschung */
+      temp = permutation[i];
+      permutation[i] = permutation[piv];
+      permutation[piv] = temp;
+    }
+    /* U */
+    for (j = i; j < n; j++) {
       for (k = 0; k < i; k++) {
         A->elem[i][j] -= A->elem[i][k] * A->elem[k][j];
       }
     }
-    for (j = i + 1; j < A->n; j++) {
+    /* check ob singulär (Warum hier?) */
+    if (fabs(A->elem[i][i]) < 1E-10) {
+      return -1;
+    }
+    /* L */
+    for (j = i + 1; j < n; j++) {
       for (k = 0; k < i; k++) {
         A->elem[j][i] -= A->elem[j][k] * A->elem[k][i];
       }
       A->elem[j][i] /= A->elem[i][i];
     }
   }
+  
+  return 0;
 }
 
 int pivot(MATRIX *A, int k) {
@@ -150,26 +168,4 @@ void vector_print(VECTOR *v) {
   for (i = 0; i < v->n; i++) {
     printf("%f\n", v->elem[i]);
   }
-}
-
-VECTOR matrix_vector_mult(MATRIX *A, VECTOR *v) {
-  VECTOR ret;
-  int i, j;
-  double sum;
-  
-  if (A->m != v->n) {
-    printf("Nicht kompatibel\n");
-  }
-  
-  ret = vector_alloc(A->n);
-  
-  
-  for (i = 0; i < A->n; i++) {
-    sum = 0;
-    for (j = 0; j < A->m; j++) {
-      break; /*WEITER*/
-    }
-  }
-  
-    return ret;
 }
