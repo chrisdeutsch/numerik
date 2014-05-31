@@ -31,12 +31,14 @@ int LU_decomp(MATRIX *A, int *permutation);
 
 int pivot(MATRIX *A, int k);
 
-int LU_solve(MATRIX *LU, int *permutation, VECTOR b);
+/* Löst ein LU aufgespaltenes System  L*U*x = P*b dabei ist Pb bereits permutiert*/
+int LU_solve(MATRIX *LU, VECTOR *Pb, VECTOR *sol);
 
-int forward_sub(MATRIX *LU, VECTOR *b, VECTOR *sol);
+int LU_forward_sub(MATRIX *LU, VECTOR *b, VECTOR *sol);
 
-int back_sub(MATRIX *LU, VECTOR *b, VECTOR *sol);
+int LU_back_sub(MATRIX *LU, VECTOR *b, VECTOR *sol);
 
+int linear_solve(MATRIX *A, VECTOR *b, VECTOR *sol);
 
 /* Vektorkram */
 VECTOR vector_alloc(int n);

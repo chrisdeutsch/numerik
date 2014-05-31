@@ -143,11 +143,18 @@ int pivot(MATRIX *A, int k) {
   return piv;
 }
 
-int LU_solve(MATRIX *LU, int *permutation, VECTOR b) {
+int LU_solve(MATRIX *LU, VECTOR *Pb, VECTOR *sol) {
+  VECTOR y = vector_alloc(Pb->n);
+  
+  LU_forward_sub(LU, Pb, &y);
+  LU_back_sub(LU, &y, sol);
+  
+  vector_free(&y);
+  
   return 0;
 }
 
-int forward_sub(MATRIX *LU, VECTOR *b, VECTOR *sol) {
+int LU_forward_sub(MATRIX *LU, VECTOR *b, VECTOR *sol) {
   int i, j;
   int n = LU->n;
   
@@ -167,7 +174,7 @@ int forward_sub(MATRIX *LU, VECTOR *b, VECTOR *sol) {
   return 0;
 }
 
-int back_sub(MATRIX *LU, VECTOR *b, VECTOR *sol) {
+int LU_back_sub(MATRIX *LU, VECTOR *b, VECTOR *sol) {
   int i, j;
   int n = LU->n;
   
@@ -182,6 +189,36 @@ int back_sub(MATRIX *LU, VECTOR *b, VECTOR *sol) {
     }
     sol->elem[i] /= LU->elem[i][i];
   }
+  
+  return 0;
+}
+
+int linear_solve(MATRIX *A, VECTOR *b, VECTOR *sol) {
+  int i;
+  int n = A->n;
+  int *permutation = malloc(n * sizeof(int));
+  VECTOR Pb = vector_alloc(n);
+  
+  /* setup permutation */
+  for (i = 0; i < n; i++) {
+    permutation[i] = i;
+  }
+  
+  /* LUP-Decomp */
+  LU_decomp(A, permutation);
+  
+  printf("{");
+  for (i = 0; i < n - 1; i++) {
+    printf("%i, ", permutation[i]);
+  }
+  printf("%i}\n", permutation[n-1]);
+  
+  /* Permutiere b */
+  for (i = 0; i < n; i++) {
+    Pb.elem[i] = b->elem[permutation[i]];
+  }
+  
+  LU_solve(A, &Pb, sol);
   
   return 0;
 }
