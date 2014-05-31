@@ -21,6 +21,7 @@ void matrix_free(MATRIX *A);
 
 void matrix_print(MATRIX *A);
 
+
 /* Operationen */
 MATRIX matrix_mult(MATRIX *A, MATRIX *B);
 
@@ -29,6 +30,13 @@ void matrix_swap_row(MATRIX *A, int i, int j);
 int LU_decomp(MATRIX *A, int *permutation);
 
 int pivot(MATRIX *A, int k);
+
+int LU_solve(MATRIX *LU, int *permutation, VECTOR b);
+
+int forward_sub(MATRIX *LU, VECTOR *b, VECTOR *sol);
+
+int back_sub(MATRIX *LU, VECTOR *b, VECTOR *sol);
+
 
 /* Vektorkram */
 VECTOR vector_alloc(int n);

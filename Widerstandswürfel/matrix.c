@@ -143,11 +143,55 @@ int pivot(MATRIX *A, int k) {
   return piv;
 }
 
+int LU_solve(MATRIX *LU, int *permutation, VECTOR b) {
+  return 0;
+}
+
+int forward_sub(MATRIX *LU, VECTOR *b, VECTOR *sol) {
+  int i, j;
+  int n = LU->n;
+  
+  if (n != LU->m || n != b->n) {
+    return -1;
+  }
+  
+  for (i = 0; i < n; i++) {
+    sol->elem[i] = b->elem[i];
+    for (j = 0; j < i; j++) {
+      sol->elem[i] -= LU->elem[i][j] * sol->elem[j];
+    }
+    /* Es muss nicht durch L_i_i geteilt werden, da die diagonalelemente der 
+     * L Matrix 1 sind; sonst gibt es keinen zugriff auf das Diag.elem. */
+  }
+  
+  return 0;
+}
+
+int back_sub(MATRIX *LU, VECTOR *b, VECTOR *sol) {
+  int i, j;
+  int n = LU->n;
+  
+  if (n != LU->m || n != b->n) {
+    return -1;
+  }
+  
+  for (i = n - 1; i >= 0; i--) {
+    sol->elem[i] = b->elem[i];
+    for (j = i + 1; j < n; j++) {
+      sol->elem[i] -= LU->elem[i][j] * sol->elem[j];
+    }
+    sol->elem[i] /= LU->elem[i][i];
+  }
+  
+  return 0;
+}
+
 VECTOR vector_alloc(int n) {
   VECTOR ret;
   
   /* Fehlercheck */
   ret.elem = malloc(n * sizeof(double));
+  ret.n = n;
   
   return ret;
 }
