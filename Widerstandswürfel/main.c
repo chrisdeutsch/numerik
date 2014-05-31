@@ -3,11 +3,19 @@
 
 int main() {
   MATRIX m = matrix_alloc(6, 6);
-  int permutation[6] = {1, 2, 3, 4, 5, 6};
+  VECTOR b = vector_alloc(6);
+  VECTOR sol = vector_alloc(6);
   
   double R[12] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
   
   matrix_init(&m, 0.0);
+  vector_init(&b, 0.0);
+  b.elem[0] = 0;
+  b.elem[1] = 0;
+  b.elem[2] = 0;
+  b.elem[3] = 0;
+  b.elem[4] = 0;
+  b.elem[5] = 1;
   
   /*erste Zeile*/
   m.elem[0][0] =  R[0] + R[1] + R[2] + R[3];
@@ -60,14 +68,11 @@ int main() {
   matrix_print(&m);
   printf("\n");
   
-  if (LU_decomp(&m, permutation) == -1) {
-    printf("Matrix ist (fast) singulaer!\n");
-  } else {
   
-    matrix_print(&m);
-    printf("\n");
-    
-    printf("{%i, %i, %i, %i, %i, %i}\n", permutation[0], permutation[1], permutation[2], permutation[3], permutation[4], permutation[5]);
-  }
+  linear_solve(&m, &b, &sol);
+  
+  vector_print(&sol);
+  printf("\n");
+  
   return 0;
 }
