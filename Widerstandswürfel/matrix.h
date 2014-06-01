@@ -12,7 +12,7 @@ typedef struct {
 } MATRIX;
 
 /* Vector-Struct fuer n-dimensionale Vektoren
- * elem: Speicherblock fuer Vektorelement
+ * elem: Speicherblock fuer Vektorelemente
          Zugriff: v->elem[i] fuer das i-te Element */
 typedef struct {
   double *elem;
