@@ -1,6 +1,5 @@
 #include "numerik_bespin_deutsch_mathfunctions.h"
 #include <math.h>
-#include <stdio.h>
 
 int find_root(function f, double x1, double x2, double epsilon, double *root) {
   /* Es wird davon ausgegangen, dass eine Nullstelle mit Vorzeichenwechsel
@@ -49,7 +48,6 @@ double integrate(function f, double a, double b, double epsilon, int rdepth) {
   double fmid = f.func(mid, f.args);
   double fb = f.func(b, f.args);
   
-  /* Berechnet die erste Naeherung nach Simpson */
   double simp = (fa + 4*fmid + fb) * h / 6;
   
   /* Leitet die Rekursion ein. Dabei werden alle schon berechneten Funktions-
