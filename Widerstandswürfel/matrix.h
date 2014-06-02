@@ -13,7 +13,7 @@ typedef struct {
 
 /* Vector-Struct fuer n-dimensionale Vektoren
  * elem: Speicherblock fuer Vektorelemente
-         Zugriff: v->elem[i] fuer das i-te Element */
+ *       Zugriff: v->elem[i] fuer das i-te Element */
 typedef struct {
   double *elem;
   int n;
