@@ -1,0 +1,76 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[german]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{siunitx}
+\usepackage{multirow}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{wrapfig}
+\usepackage{graphicx}
+\usepackage[outdir=./]{epstopdf}
+\usepackage{caption}
+\usepackage[colorlinks]{hyperref}
+
+
+\author{Christian Bespin \and Christopher Deutsch}
+\title{Übungsblatt 4: Numerische Methoden der Physik}
+\begin{document}
+\maketitle
+
+\setcounter{section}{1}
+
+\section{Widerstandswürfel}
+
+\subsection{Physikalischer Hintergrund}
+
+\begin{wrapfigure}[14]{R}[1pt]{0.47\textwidth}
+\centering
+\includegraphics[width=0.45\textwidth]{./figures/GRAFIK}
+\caption{CAPTION}
+\label{fig:CAPTION}
+\end{wrapfigure}
+
+\subsection{Implementierung}
+
+\subsubsection{Nullstellenberechnung mit Bisektion}
+
+\subsubsection{Numerische Integration mit rekursivem Simpson-Verfahren}
+
+
+\subsubsection{Abbruchbedingungen}
+
+\subsubsection{Genaugkeit}
+
+\subsection{Physikalische Ergebnisse}
+\begin{thebibliography}{9}
+
+\bibitem{lyness}
+ Lyness, J. N.,
+ \emph{Notes on the Adaptive Simpson Quadrature Routine},
+Journal of the ACM
+Volume 16 Issue 3, (1969) 
+Seiten 483-495 
+
+\end{thebibliography}
+
+\appendix
+
+\begin{figure}[htbp]
+\centering
+\input{./figures/rho}
+\caption{Integrand für T=300K}
+
+\input{./figures/rho_sonne}
+\caption{Integrand für T=5750K}
+\end{figure}
+
+\begin{figure}
+\centering
+\input{./figures/temperatur}
+\caption{Ergebnisse}
+\label{fig:ergebnisse}
+\end{figure}
+
+\end{document}
