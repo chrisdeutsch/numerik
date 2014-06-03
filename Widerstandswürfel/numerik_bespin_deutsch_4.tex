@@ -5,14 +5,13 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{siunitx}
-\usepackage{multirow}
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 \usepackage{wrapfig}
 \usepackage{graphicx}
 \usepackage[outdir=./]{epstopdf}
 \usepackage{caption}
 \usepackage[colorlinks]{hyperref}
-
+\usepackage{pdflscape}
 
 \author{Christian Bespin \and Christopher Deutsch}
 \title{Übungsblatt 4: Numerische Methoden der Physik}
@@ -25,12 +24,12 @@
 
 \subsection{Physikalischer Hintergrund}
 
-\begin{wrapfigure}[14]{R}[1pt]{0.47\textwidth}
-\centering
-\includegraphics[width=0.45\textwidth]{./figures/GRAFIK}
-\caption{CAPTION}
-\label{fig:CAPTION}
-\end{wrapfigure}
+%\begin{wrapfigure}[14]{R}[1pt]{0.47\textwidth}
+%\centering
+%\includegraphics[width=0.45\textwidth]{./figures/GRAFIK}
+%\caption{CAPTION}
+%\label{fig:CAPTION}
+%\end{wrapfigure}
 
 
 \subsubsection{Oktaeder}
@@ -69,23 +68,21 @@ Volume 16 Issue 3, (1969)
 Seiten 483-495 
 
 \end{thebibliography}
-
+\begin{landscape}
+\thispagestyle{empty}
 \appendix
+\section{Anhang}
+\begin{align}
+\begin{pmatrix}
+R_1+R_2+R_3+R_4 &  -R_4  &  0  &  -R_3  &  -R_2  &  0  \\ 
+-R_4 & R_4+R_6+R_7+R_{10} & -R_{10} & -R_7 & -R_6 & -R_6 \\ 
+ 0  & -R_{10} & (R_9+R_{10}+R_{11}+R_{12}) & -R_{11} & -R_9 & -(R_9+R_{12}) \\ 
+-R_3 & -R_7 & -R_11 & (R_3+R_7+R_8+R_{11}) & 0 & 0 \\ 
+-R_2 & -R_6 & -R_9 & 0 & (R_2+R_5+R_6+R_9) & (R_6+R_9) \\ 
+ 0  & -R_6 & -(R_9+R_{12}) &  0  & R_6+R_9 & R_6+R_9+R_{12}
+\end{pmatrix}
+\end{align}
+\end{landscape}
 
-\begin{figure}[htbp]
-\centering
-\input{./figures/rho}
-\caption{Integrand für T=300K}
-
-\input{./figures/rho_sonne}
-\caption{Integrand für T=5750K}
-\end{figure}
-
-\begin{figure}
-\centering
-\input{./figures/temperatur}
-\caption{Ergebnisse}
-\label{fig:ergebnisse}
-\end{figure}
 
 \end{document}
