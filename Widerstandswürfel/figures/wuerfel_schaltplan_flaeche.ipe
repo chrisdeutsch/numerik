@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70005" creator="Ipe 7.1.5">
-<info created="D:20140603191800" modified="D:20140604142343"/>
+<info created="D:20140603191800" modified="D:20140604142735"/>
 <ipestyle name="basic">
 <symbol name="arrow/arc(spx)">
 <path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
@@ -332,10 +332,10 @@ h
 160 624 m
 160 608 l
 </path>
-<path matrix="1 0 0 1 -24 32" stroke="black">
+<path matrix="1 0 0 1 -112 24" stroke="black">
 8 0 0 8 160 544 e
 </path>
-<text matrix="1 0 0 1 -24 32" transformations="translations" pos="160 544" stroke="black" type="label" width="7.888" height="6.808" depth="0" halign="center" valign="center">$U$</text>
+<text matrix="1 0 0 1 -112 24" transformations="translations" pos="160 544" stroke="black" type="label" width="7.888" height="6.808" depth="0" halign="center" valign="center">$U$</text>
 <use matrix="1 0 0 1 32 0" name="mark/disk(sx)" pos="160 672" size="small" stroke="black"/>
 <use matrix="1 0 0 1 32 0" name="mark/disk(sx)" pos="64 672" size="small" stroke="black"/>
 <use matrix="1 0 0 1 32 0" name="mark/disk(sx)" pos="64 736" size="small" stroke="black"/>
@@ -531,19 +531,9 @@ h
 <path stroke="black">
 28 736 m
 0 736 l
-0 576 l
-128 576 l
-88 576 l
-</path>
-<path stroke="black">
-144 576 m
-192 576 l
-192 608 l
-</path>
-<path stroke="red">
-116 600 m
-24 600 l
-24 676 l
+0 568 l
+40 568 l
+40 568 l
 </path>
 <path stroke="red">
 8 676 m
@@ -554,14 +544,6 @@ h
 8 664 l
 </path>
 <path stroke="red">
-116 600 m
-8 0 0 -8 116 592 116 584 a
-</path>
-<path stroke="red">
-116 584 m
-16 584 l
-</path>
-<path stroke="red">
 8 660 m
 8 592 l
 </path>
@@ -569,6 +551,35 @@ h
 16 584 m
 8 0 0 -8 16 592 8 592 a
 </path>
-<text transformations="translations" pos="12 660" stroke="red" type="label" width="16.555" height="6.808" depth="2.85" valign="baseline">$I_{ges}$</text>
+<text matrix="1 0 0 1 4 -68" transformations="translations" pos="12 660" stroke="red" type="label" width="16.555" height="6.808" depth="2.85" valign="baseline">$I_{ges}$</text>
+<path stroke="black">
+96 608 m
+96 576 l
+</path>
+<path stroke="black">
+56 568 m
+96 568 l
+96 576 l
+</path>
+<path matrix="-0 -1 1 -0 -600 608" stroke="red">
+8 676 m
+8 0 0 -8 16 676 24 676 a
+</path>
+<path stroke="red">
+24 676 m
+24 604 l
+</path>
+<path stroke="red">
+24 604 m
+4 0 0 4 28 604 28 600 a
+</path>
+<path stroke="red">
+28 600 m
+76 600 l
+</path>
+<path stroke="red">
+16 584 m
+76 584 l
+</path>
 </page>
 </ipe>

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70005" creator="Ipe 7.1.5">
-<info created="D:20140603191800" modified="D:20140604142343"/>
+<info created="D:20140603191800" modified="D:20140604142309"/>
 <ipestyle name="basic">
 <symbol name="arrow/arc(spx)">
 <path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
@@ -332,10 +332,10 @@ h
 160 624 m
 160 608 l
 </path>
-<path matrix="1 0 0 1 -24 32" stroke="black">
+<path matrix="1 0 0 1 -24 24" stroke="black">
 8 0 0 8 160 544 e
 </path>
-<text matrix="1 0 0 1 -24 32" transformations="translations" pos="160 544" stroke="black" type="label" width="7.888" height="6.808" depth="0" halign="center" valign="center">$U$</text>
+<text matrix="1 0 0 1 -24 24" transformations="translations" pos="160 544" stroke="black" type="label" width="7.888" height="6.808" depth="0" halign="center" valign="center">$U$</text>
 <use matrix="1 0 0 1 32 0" name="mark/disk(sx)" pos="160 672" size="small" stroke="black"/>
 <use matrix="1 0 0 1 32 0" name="mark/disk(sx)" pos="64 672" size="small" stroke="black"/>
 <use matrix="1 0 0 1 32 0" name="mark/disk(sx)" pos="64 736" size="small" stroke="black"/>
@@ -349,10 +349,6 @@ h
 <text matrix="1 0 0 1 36 -64" transformations="translations" pos="108 800" stroke="black" type="label" width="12.034" height="6.812" depth="1.49" halign="center" valign="center">$R_4$</text>
 <text matrix="1 0 0 1 -12 -96" transformations="translations" pos="108 800" stroke="black" type="label" width="12.034" height="6.812" depth="1.49" halign="center" valign="center">$R_6$</text>
 <text matrix="1 0 0 1 84 -96" transformations="translations" pos="108 800" stroke="black" type="label" width="12.034" height="6.812" depth="1.49" halign="center" valign="center">$R_7$</text>
-<path matrix="1 0 0 1 -223.866 159.763" stroke="black">
-252 576 m
-4 0 0 -4 256 576 260 576 a
-</path>
 <path matrix="1 0 0 1 32 0" stroke="red" rarrow="arc/small">
 96 772 m
 16.4924 0 0 -16.4924 112 768 96 764 a
@@ -525,50 +521,35 @@ h
 <text transformations="translations" pos="90.485 636.508" stroke="black" type="label" width="12.034" height="6.812" depth="1.49" valign="baseline">$R_9$</text>
 <text matrix="1 0 0 1 -2.69329 0.269329" transformations="translations" pos="186.905 635.969" stroke="black" type="label" width="16.005" height="6.812" depth="1.49" valign="baseline">$R_{11}$</text>
 <path stroke="black">
-36 736 m
-96 736 l
-</path>
-<path stroke="black">
-28 736 m
-0 736 l
-0 576 l
-128 576 l
-88 576 l
-</path>
-<path stroke="black">
-144 576 m
-192 576 l
+144 568 m
+192 568 l
 192 608 l
 </path>
-<path stroke="red">
-116 600 m
-24 600 l
-24 676 l
-</path>
-<path stroke="red">
-8 676 m
-8 0 0 -8 16 676 24 676 a
-</path>
-<path stroke="red" arrow="normal/small">
-8 676 m
-8 664 l
-</path>
-<path stroke="red">
+<path matrix="1 0 0 1 56 -4" stroke="red">
 116 600 m
 8 0 0 -8 116 592 116 584 a
 </path>
-<path stroke="red">
-116 584 m
-16 584 l
+<text matrix="1 0 0 1 112 -72" transformations="translations" pos="12 660" stroke="red" type="label" width="16.555" height="6.808" depth="2.85" valign="baseline">$I_{ges}$</text>
+<path stroke="black">
+96 608 m
+96 568 l
+128 568 l
+</path>
+<path matrix="-1 0 0 -1 232 1176" stroke="red">
+116 596 m
+8 0 0 -8 116 588 116 580 a
 </path>
 <path stroke="red">
-8 660 m
-8 592 l
+116 596 m
+124 596 l
+</path>
+<path stroke="red" rarrow="normal/small">
+132 596 m
+172 596 l
 </path>
 <path stroke="red">
-16 584 m
-8 0 0 -8 16 592 8 592 a
+116 580 m
+172 580 l
 </path>
-<text transformations="translations" pos="12 660" stroke="red" type="label" width="16.555" height="6.808" depth="2.85" valign="baseline">$I_{ges}$</text>
 </page>
 </ipe>
