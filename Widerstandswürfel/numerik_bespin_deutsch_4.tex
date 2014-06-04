@@ -28,7 +28,7 @@ Zur Berechnung des Gesamtwiderstands werden die Zusammenhänge zwischen den einz
 \begin{align}
 \oint_A \vec{E}\,\mathrm{d}\vec{A}=\frac{Q}{\epsilon_0}
 \end{align}
-Die Spannungen an den Widerständen werden mit dem Ohmschen Gesetz ($U=R I$) aus $I$ und $R$ berechnet.
+Die Spannungen an den Widerständen werden mit dem Ohmschen Gesetz ($U=R I$) aus $I$ und $R$ berechnet. Es lassen sich im Fall des Würfels $6$, beim Oktaeder $8$ Maschen finden, für die je eine Gleichung aufgestellt wird, mit denen sich ein lineares Gleichungssystem in Matrixschreibweise aufstellen lässt (REFS).
 
 %\begin{wrapfigure}[14]{R}[1pt]{0.47\textwidth}
 %\centering
@@ -78,8 +78,16 @@ Seiten 483-495
 	0 & 0 & -R_7 & 0 & -R_{11} & R_7 + R_{11} + R_{12} & R_7 & -R_{12} \\
 	-R_5 & -R_6 & -R7 & R_5 & R_6 & R_7 & R_5 + R_6 + R_7 + R_8 & 0
 \end{pmatrix}
+\begin{pmatrix}
+I_1\\ I_2\\ I_3\\I_4\\I_5\\I_6\\I_7\\I_ges
+\end{pmatrix}
+=
+\begin{pmatrix}
+U\\0\\0\\0\\0\\0\\0\\0
+\end{pmatrix}
 \end{align}
 \subsection{Würfel}
+\subsubsection{Spannung an der Raumdiagonalen}
 \begin{align}
 \begin{pmatrix}
 R_1+R_2+R_3+R_4 &  -R_4  &  0  &  -R_3  &  -R_2  &  0  \\ 
@@ -89,7 +97,15 @@ R_1+R_2+R_3+R_4 &  -R_4  &  0  &  -R_3  &  -R_2  &  0  \\
 -R_2 & -R_6 & -R_9 & 0 & R_2+R_5+R_6+R_9 & R_6+R_9) \\ 
  0  & -R_6 & -(R_9+R_{12}) &  0  & R_6+R_9 & R_6+R_9+R_{12}
 \end{pmatrix}
+\begin{pmatrix}
+I_1\\I_2\\I_3\\I_4\\I_5\\I_{ges}
+\end{pmatrix}
+=
+\begin{pmatrix}
+0\\0\\0\\0\\0\\U
+\end{pmatrix}
 \end{align}
+\subsubsection{Spannung an der Flächendiagonalen}
 \end{landscape}
 
 
