@@ -28,14 +28,20 @@ Zur Berechnung des Gesamtwiderstands werden die Zusammenhänge zwischen den einz
 \begin{align}
 \oint_A \vec{E}\,\mathrm{d}\vec{A}=\frac{Q}{\epsilon_0}
 \end{align}
-Die Spannungen an den Widerständen werden mit dem Ohmschen Gesetz ($U=R I$) aus $I$ und $R$ berechnet. Es lassen sich im Fall des Würfels $6$, beim Oktaeder $8$ Maschen finden, für die je eine Gleichung aufgestellt wird, mit denen sich ein lineares Gleichungssystem in Matrixschreibweise aufstellen lässt (REFS).
+Die Spannungen an den Widerständen werden mit dem Ohmschen Gesetz ($U=R I$) aus $I$ und $R$ berechnet. Es lassen sich im Fall des Würfels $6$, beim Oktaeder $8$ Maschen finden, für die je eine Gleichung aufgestellt wird, mit denen sich ein lineares Gleichungssystem in Matrixschreibweise aufstellen lässt (REFS). Wir berechnen also den Vektor mit Komponenten $I_i, I_{ges}$, um von dem Gesamtstrom mit erneuter Verwendung des Ohm'schen Gesetzes auf den Gesamtwiderstand $R_{ges}$ zu schließen.
+\begin{wrapfigure}[14]{R}[1pt]{0.35\textwidth}
+\centering
+\includegraphics[width=0.3\textwidth]{./figures/ersatzschaltbild.eps}
+\caption{Schaltbild für gleiche Widerstände $R$}
+\label{fig:ersatzschaltbild}
+\end{wrapfigure}
 
-%\begin{wrapfigure}[14]{R}[1pt]{0.47\textwidth}
-%\centering
-%\includegraphics[width=0.45\textwidth]{./figures/GRAFIK}
-%\caption{CAPTION}
-%\label{fig:CAPTION}
-%\end{wrapfigure}
+\noindent Für den Fall, dass alle verwendeten Widerstände gleich sind, lassen sich alle Ecken gleichen Potenzials verbinden und man erhält ein einfaches Ersatzschaltbild (Abb. \ref{fig:ersatzschaltbild}). Man nutzt nun aus, dass sich Widerstände in Parallelschaltungen reziprok und in Reihenschaltungen gewöhnlich addieren. Man erhält somit schnell:
+\begin{align}
+R_{ges}=\left( 3\,R\right)^{-1}+\left( 6\,R\right)^{-1}+\left( 3\,R\right)^{-1}=\frac{5}{6}\,R
+\end{align}
+
+
 
 
 \subsubsection{Oktaeder}
