@@ -24,11 +24,11 @@
 
 \subsection{Physikalischer Hintergrund}
 
-Zur Berechnung des Gesamtwiderstands werden die Zusammenhänge zwischen den einzelnen, auf jeder Kante liegenden, Widerständen bestimmt. Es gilt allgemein das Faraday'sche Induktionsgesetz für stationäre Ströme
+Zur Berechnung des Gesamtwiderstands von allgemeinen Widerstandsnetzwerken sind die Kirchhoff'schen Regeln sehr nützlich. Es gilt allgemein das Faraday'sche Induktionsgesetz für stationäre Ströme
 \begin{align}
-\oint_{\partial\Sigma} \vec{E}\,\mathrm{d}\vec{l}=-\frac{\mathrm{d}}{\mathrm{dt}}\iint_{\Sigma}\vec{B}\,\mathrm{d}\vec{S}
+\oint_{\mathcal{C}} \vec{E}\,\mathrm{d}\vec{s} = 0
 \end{align}
-wobei die rechte Seite gleich $0$ ist, da wir eine Gleichspannung anlegen und somit Ströme auftreten, die ein konstantes Magnetfeld $\vec{B}$ erzeugen. Daraus folgt mit der Tatsache, dass das Linienintegral über $\vec{E}$ einer Spannung entspricht, unmittelbar die Kirchhoff'sche Maschenregel $\sum_i U_i=0$, nach der sich alle Spannungen in einer Masche des Netzwerks aufheben.
+Daraus folgt mit der Tatsache, dass das Kurvenintegral über das elektrische Feld $\vec{E}$ der Spannung zwischen den Endpunkten der Kurve entspricht, unmittelbar die Kirchhoff'sche Maschenregel $\sum_i U_i=0$, nach der die Summe aller Spannungen in einer Masche des Netzwerks aufheben.
 Die Spannungen an den Widerständen werden mit dem Ohmschen Gesetz ($U=R I$) aus $I$ und $R$ berechnet. Es lassen sich im Fall des Würfels $6$, beim Oktaeder $8$ Maschen finden, für die je eine Gleichung aufgestellt wird, mit denen sich ein lineares Gleichungssystem in Matrixschreibweise aufstellen lässt (REFS). Wir berechnen also den Vektor mit Komponenten $I_i, I_{ges}$, um von dem Gesamtstrom mit erneuter Verwendung des Ohm'schen Gesetzes auf den Gesamtwiderstand $R_{ges}$ zu schließen.
 \begin{wrapfigure}[16]{R}[1pt]{0.35\textwidth}
 \centering
