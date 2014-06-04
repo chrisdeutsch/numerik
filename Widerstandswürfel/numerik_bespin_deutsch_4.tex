@@ -50,7 +50,7 @@ Damit lässt sich das Gleichungssystem ausdrücken als $PA\vec{x} = LR\vec{x} = 
 \subsubsection{LR-Zerlegung}
 Wir zerlegen eine Matrix $A$ in ein Produkt aus unterer und oberer Dreiecksmatrix, indem wir die Matrix $A$ mithilfe des Gauß'schen Eliminationsverfahrens auf obere Dreiecksform bringen. Die Umformungsschritte des Eliminationsverfahrens können durch die Elementarmatrix $Q^j_i(\lambda)$ beschrieben werden. Dabei beschreibt $Q^j_i (\lambda) A$ die Addition des $\lambda$-fachen der $j$-ten Zeile von $A$ zur $i$-ten Zeile. Konkret hat $Q^j_i (\lambda)$ die Form der Einheitsmatrix mit Ausnahme von $\left(Q^j_i (\lambda) \right)_{i, j} = \lambda$. Das Inverse dieser Matrix ist gegeben durch $\left( Q^j_i\right) ^{-1} (\lambda) = Q^j_i (-\lambda)$.
 
-Wir können jetzt eine LR-Zerlegung einer ($N \times N$)-Matrix $A$ durchführen, indem wir zunächst das Gauß'sche Eliminationsverfahren auf die erste Spalte der Matrix $A = A^{(0)}$ anwenden und diese damit in die Matrix $A^{(1)}$ überführen. Mit der oben beschriebenen Elementarmatrix und ihrer Inversen können wir offenbar schreiben:
+Wir können jetzt eine LR-Zerlegung einer ($N \times N$)-Matrix $A$ durchführen, indem wir zunächst das Gauß'sche Eliminationsverfahren auf die erste Spalte der Matrix $A = A^{(0)}$ anwenden und diese damit in die Matrix $A^{(1)}$ überführen (wie wird die Gaußelimination durchgeführt?). Mit der oben beschriebenen Elementarmatrix und ihrer Inversen können wir offenbar schreiben:
 \begin{align}
 	A^{(k-1)} = \prod_{l=k+1}^N Q^{k}_l \left( \frac{(A^{(k-1)})_{l,k}}{(A^{(k-1)})_{k,k}}\right)  A^{(k)}
 \end{align}
