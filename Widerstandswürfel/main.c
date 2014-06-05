@@ -2,29 +2,37 @@
 #include "gls.h"
 #include <stdio.h>
 
-
+void table(void (*func)(MATRIX*, VECTOR*, double*), int dim, int resistor, double start, double stop, double step);
 
 int main() {
-  MATRIX *m = matrix_alloc(6);
-  VECTOR *b = vector_alloc(6);
-  VECTOR *sol = vector_alloc(6);
+  table(cube_diag, 6, 2, 0.1, 2, 0.1);
+  
+  table(cube_facediag, 6, 2, 0.1, 2, 0.1);
+  
+  table(cube_edge, 6, 2, 0.1, 2, 0.1);
+  
+  return 0;
+}
+
+void table(void (*func)(MATRIX*, VECTOR*, double*), int dim, int resistor, double start, double stop, double step) {
+  MATRIX *m = matrix_alloc(dim);
+  VECTOR *b = vector_alloc(dim);
+  VECTOR *sol = vector_alloc(dim);
   
   double R[12] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
   
-  cube_diag(m, b, R);  
+  R[resistor] = start;
   
-  matrix_print(m);
-  printf("\n");
-  
-  
-  linear_solve(m, b, sol);
-  
-  vector_print(sol);
-  printf("\n");
+  printf("R%i\tR\n", resistor + 1);
+  while (R[resistor] <= stop) {
+    func(m, b, R);
+    linear_solve(m, b, sol);
+    
+    printf("%f\t%f\n", R[resistor], 1.0 / sol->elem[dim - 1]);
+    R[resistor] += step;  
+  }
   
   matrix_free(m);
   vector_free(b);
   vector_free(sol);
-  
-  return 0;
 }
