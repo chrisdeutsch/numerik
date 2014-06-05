@@ -231,7 +231,7 @@ int linear_solve(MATRIX *A, VECTOR *b, VECTOR *sol) {
   int *permutation = malloc(n * sizeof(int));
   VECTOR *Pb = vector_alloc(n);
   
-  if (A->n != b->n) return -1;
+  if ( A->n != b->n ) return -1;
   
   /* Fuellt das Permutationsarray mit {0, 1, ..., n-1} */
   for (i = 0; i < n; i++) {
@@ -239,14 +239,9 @@ int linear_solve(MATRIX *A, VECTOR *b, VECTOR *sol) {
   }
   
   /* LU-Zerlegung der Matrix */
-  LU_decomp(A, permutation);
-  
-  /* !!!DEBUG MESSAGE!!! */
-  printf("{");
-  for (i = 0; i < n - 1; i++) {
-    printf("%i, ", permutation[i]);
+  if ( LU_decomp(A, permutation) == -1 ) {
+    return -2;
   }
-  printf("%i}\n", permutation[n-1]);
   
   /* Permutation von b */
   for (i = 0; i < n; i++) {

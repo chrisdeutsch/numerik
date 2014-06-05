@@ -83,7 +83,8 @@ int LU_back_sub(MATRIX *LU, VECTOR *b, VECTOR *sol);
  *
  * Rueckgabewert:
  * 0: Erfolg
- * -1: Dimensionskonflikt zwischen A und b */
+ * -1: Dimensionskonflikt zwischen A und b
+ * -2: Matrix ist (fast) singulaer */
 int linear_solve(MATRIX *A, VECTOR *b, VECTOR *sol);
 
 #endif

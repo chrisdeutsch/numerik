@@ -10,9 +10,9 @@ int main() {
   VECTOR *b = vector_alloc(8);
   VECTOR *sol = vector_alloc(8);
   
-  double R[12] = {5, 5, 2, 5, 2, 2, 2, 2, 5, 2, 2, 5};
+  double R[12] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
   
-  oktahedron_edge(m, b, R);
+  oktahedron(m, b, R);
   
   
   matrix_print(m);
@@ -23,6 +23,10 @@ int main() {
   
   vector_print(sol);
   printf("\n");
+  
+  matrix_free(m);
+  vector_free(b);
+  vector_free(sol);
   
   return 0;
 }
