@@ -5,11 +5,11 @@
 void table(void (*func)(MATRIX*, VECTOR*, double*), int dim, int resistor, double start, double stop, double step);
 
 int main() {
-  table(cube_diag, 6, 2, 0.1, 2, 0.1);
+  int i;
   
-  table(cube_facediag, 6, 2, 0.1, 2, 0.1);
-  
-  table(cube_edge, 6, 2, 0.1, 2, 0.1);
+  for(i = 0; i < 12; i++) {
+    table(oktahedron_edge, 8, i, 0.1, 2, 0.1);
+  }
   
   return 0;
 }
