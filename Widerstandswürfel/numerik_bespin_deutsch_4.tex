@@ -61,7 +61,7 @@ Das in \ref{lr-zerlegung} erklärte Verfahren zur Berechnung der $LR$-Zerlegung 
 \begin{align}
 	\frac{A^{(k-1)}_{ik}}{\sum_{j=k}^N \left|A^{k-1}_{ij}\right| }
 \end{align}
-maximiert. Die Pivotzeilensuche wurde in der Funktion \texttt{pivot\_row} implementiert.
+maximiert. Die Pivotzeilensuche wurde in der Funktion \texttt{pivot\_row} implementiert. Inbesondere wird dieser Funktion ein Ganzzahl-Array übergeben, an dem jede Permutation von Zeilen der Matrix auch auf den Elementen des Arrays durchgeführt wird. Damit kann man die Permutationsmatrix reproduzieren, solange die Elemente des Arrays einzigartig (z.B. $(0, 1, \dots, N-1) $) sind.
 
 \subsubsection{Vorwärts- und Rückwärtssubstitution}
 Die Lösung eines linearen Gleichungssystems $A\vec{x} = \vec{b}$ dessen $(N \times N)$-Koeffizientenmatrix $A$ eine Untere $L$ oder obere Dreiecksmatrix $R$ ist, nennt man Vorwärts- bzw. Rückwärtssubstitution. Für die Vorwärtssubstitution werden die unbekannten $x_i$ des Lösungsvektors $\vec{x}$ sukzessiv beginnend mit $i = 1$ bestimmt:
