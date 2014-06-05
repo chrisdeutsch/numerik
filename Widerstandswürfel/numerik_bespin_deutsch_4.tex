@@ -63,25 +63,6 @@ Das in \ref{lr-zerlegung} erklärte Verfahren zur Berechnung der $LR$-Zerlegung 
 \end{align}
 maximiert. Die Pivotzeilensuche wurde in der Funktion \texttt{pivot\_row} implementiert. Inbesondere wird dieser Funktion ein Ganzzahl-Array übergeben, an dem jede Permutation von Zeilen der Matrix auch auf den Elementen des Arrays durchgeführt wird. Damit kann man die Permutationsmatrix reproduzieren, solange die Elemente des Arrays einzigartig (z.B. $(0, 1, \dots, N-1) $) sind.
 
-<<<<<<< HEAD
-
-\subsubsection{Oktaeder}
-\begin{figure}[htbp!]
-\centering
-\includegraphics[width=0.5\textwidth]{./figures/oktaeder.eps}
-\caption{Geometrie des Oktaeders mit Festlegung der Widerstände}
-\label{fig:geometrie_oktaeder}
-\end{figure}
-\subsection{Implementierung}
-
-\subsubsection{Nullstellenberechnung mit Bisektion}
-
-
-
-\subsubsection{Abbruchbedingungen}
-
-\subsubsection{Genaugkeit}
-
 \subsubsection{Vorwärts- und Rückwärtssubstitution}
 Die Lösung eines linearen Gleichungssystems $A\vec{x} = \vec{b}$ dessen $(N \times N)$-Koeffizientenmatrix $A$ eine Untere $L$ oder obere Dreiecksmatrix $R$ ist, nennt man Vorwärts- bzw. Rückwärtssubstitution. Für die Vorwärtssubstitution werden die unbekannten $x_i$ des Lösungsvektors $\vec{x}$ sukzessiv beginnend mit $i = 1$ bestimmt:
 \begin{align}
@@ -95,6 +76,14 @@ Dies wurde für den Fall einer $LR$-Zerlegung in den Funktionen \texttt{LU\_forw
 
 \subsection{Implementierung}
 
+\subsubsection{Oktaeder}
+\begin{figure}[htbp!]
+\centering
+\includegraphics[width=0.5\textwidth]{./figures/oktaeder.eps}
+\caption{Geometrie des Oktaeders mit Festlegung der Widerstände}
+\label{fig:geometrie_oktaeder}
+\end{figure}
+\subsection{Implementierung}
 \subsubsection{Variation der Widerstände}
 
 Würfel Raumdiagonale. Es passiert das gleiche bei
