@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70005" creator="Ipe 7.1.5">
-<info created="D:20140603191800" modified="D:20140604145807"/>
+<info created="D:20140603191800" modified="D:20140604145822"/>
 <ipestyle name="basic">
 <symbol name="arrow/arc(spx)">
 <path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
@@ -332,10 +332,10 @@ h
 160 624 m
 160 608 l
 </path>
-<path matrix="1 0 0 1 -24 24" stroke="black">
+<path matrix="1 0 0 1 -104 24" stroke="black">
 8 0 0 8 160 544 e
 </path>
-<text matrix="1 0 0 1 -24 24" transformations="translations" pos="160 544" stroke="black" type="label" halign="center" valign="center">$U$</text>
+<text matrix="1 0 0 1 -104 24" transformations="translations" pos="160 544" stroke="black" type="label" halign="center" valign="center">$U$</text>
 <use matrix="1 0 0 1 32 0" name="mark/disk(sx)" pos="160 672" size="small" stroke="black"/>
 <use matrix="1 0 0 1 32 0" name="mark/disk(sx)" pos="64 672" size="small" stroke="black"/>
 <use matrix="1 0 0 1 32 0" name="mark/disk(sx)" pos="64 736" size="small" stroke="black"/>
@@ -532,18 +532,10 @@ h
 28 736 m
 16 736 l
 16 568 l
-128 568 l
-88 568 l
-</path>
-<path stroke="black">
-144 568 m
-192 568 l
-192 608 l
+48 568 l
 </path>
 <path stroke="red">
-168 596 m
-64 596 l
-60 600 m
+60 588 m
 60 607.6 l
 60 712 l
 </path>
@@ -555,30 +547,23 @@ h
 44 712 m
 44 648 l
 </path>
-<path matrix="1 0 0 1 52 -4" stroke="red">
-116 600 m
-8 0 0 -8 116 592 116 584 a
-</path>
-<path stroke="red">
-168 580 m
-52 580 l
-</path>
 <path stroke="red">
 44 640 m
 44 588 l
-</path>
-<path matrix="1 0 0 1 36 -4" stroke="red">
-16 584 m
-8 0 0 -8 16 592 8 592 a
 </path>
 <text matrix="1 0 0 1 32 -16" transformations="translations" pos="12 660" stroke="red" type="label" valign="baseline">$I_{ges}$</text>
 <path stroke="red">
 64 632 m
 64 640 l
 </path>
+<path stroke="black">
+64 568 m
+96 568 l
+96 608 l
+</path>
 <path stroke="red">
-60 600 m
-4 0 0 4 64 600 64 596 a
+44 588 m
+8 0 0 8 52 588 60 588 a
 </path>
 </page>
 </ipe>
