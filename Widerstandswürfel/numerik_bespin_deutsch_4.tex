@@ -57,25 +57,24 @@ Die Zerlegung wurde in der Funktion \texttt{LU\_decomp} implementiert. Insbesond
 
 \subsubsection{Pivotisierung}
 \label{pivotisierung}
-Das in \ref{lr-zerlegung} erklärte Verfahren zur Berechnung der $LR$-Zerlegung funktioniert nicht für jede invertierbare Matrix, da während der Elimination eines der Diagonalelemente $A^{(k-1)}_{kk} = 0$ werden kann und damit der nächste Eliminationsschritt nicht möglich ist. Dies lässt sich vermeiden, indem man die Pivotzeile der Matrix vor jedem Schritt so vertauscht, dass dessen Diagonalelement nicht verschwindet. Sollte man keine Zeile finden, deren Pivotelement von null verschieden ist, so ist die Matrix singulär. Gleichzeitig kann diese Pivotisierung verwendet werden, um die Konditionierung des Problems zu verbessern, indem man stets mit der Zeile $i = k, \dots, N$ der Matrix tauscht, die den Term
+Das in \ref{lr-zerlegung} erklärte Verfahren zur Berechnung der $LR$-Zerlegung funktioniert nicht für jede invertierbare Matrix, da während der Elimination eines der Diagonalelemente $A^{(k-1)}_{kk} = 0$ werden kann und damit der nächste Eliminationsschritt nicht möglich ist. Dies lässt sich vermeiden, indem man die Pivotzeile der Matrix vor jedem Schritt so vertauscht, dass dessen Diagonalelement nicht verschwindet. Sollte man keine Zeile finden, deren Pivotelement von null verschieden ist, so ist die Matrix singulär. Gleichzeitig kann diese Pivotisierung verwendet werden, um die numerische Stabilität des Gauß-Verfahrens zu verbessern, indem man stets mit der Zeile $i = k, \dots, N$ der Matrix tauscht, die den Term
 \begin{align}
-\frac{A^{(k-1)}_{ik}}{\sum_{j=k}^N \left|A^{k-1}_{ij}\right| }
+	\frac{A^{(k-1)}_{ik}}{\sum_{j=k}^N \left|A^{k-1}_{ij}\right| }
 \end{align}
-maximiert.
+maximiert. Die Pivotzeilensuche wurde in der Funktion \texttt{pivot\_row} implementiert.
 
-
-\subsubsection{Oktaeder}
+\subsubsection{Vorwärts- und Rückwärtssubstitution}
+Die Lösung eines linearen Gleichungssystems $A\vec{x} = \vec{b}$ dessen $(N \times N)$-Koeffizientenmatrix $A$ eine Untere $L$ oder obere Dreiecksmatrix $R$ ist, nennt man Vorwärts- bzw. Rückwärtssubstitution. Für die Vorwärtssubstitution werden die unbekannten $x_i$ des Lösungsvektors $\vec{x}$ sukzessiv beginnend mit $i = 1$ bestimmt:
+\begin{align}
+	x_i = \frac{1}{L_{ii}} \left( b_i - \sum_{j = 1}^{i-1} L_{ij} x_j \right)
+\end{align}
+Analog beginnt man bei der Rückwärtssubstitution mit $i = N$:
+\begin{align}
+	x_i = \frac{1}{R_{ii}} \left( b_i - \sum_{j=i+1}^{N} R_{ij} x_j \right)
+\end{align}
+Dies wurde für den Fall einer $LR$-Zerlegung in den Funktionen \texttt{LU\_forward\_sub} und \texttt{LU\_back\_sub} implementiert.
 
 \subsection{Implementierung}
-
-\subsubsection{Nullstellenberechnung mit Bisektion}
-
-\subsubsection{Numerische Integration mit rekursivem Simpson-Verfahren}
-
-
-\subsubsection{Abbruchbedingungen}
-
-\subsubsection{Genaugkeit}
 
 \subsection{Physikalische Ergebnisse}
 
