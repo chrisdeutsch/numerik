@@ -8,7 +8,7 @@ int main() {
   int i;
   
   for(i = 0; i < 12; i++) {
-    table(oktahedron_edge, 8, i, 0.1, 2, 0.1);
+    table(oktahedron, 8, i, 0.1, 2, 0.1);
   }
   
   return 0;
