@@ -8,7 +8,7 @@
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 \usepackage{wrapfig}
 \usepackage{graphicx}
-\usepackage[outdir=./]{epstopdf}
+\usepackage[outdir=./figures/]{epstopdf}
 \usepackage{caption}
 \usepackage[colorlinks]{hyperref}
 \usepackage{pdflscape}
@@ -24,23 +24,16 @@
 
 \subsection{Physikalischer Hintergrund}
 
-Zur Berechnung des Gesamtwiderstands von allgemeinen Widerstandsnetzwerken sind die Kirchhoff'schen Regeln sehr nützlich. Es gilt allgemein das Faraday'sche Induktionsgesetz für stationäre Ströme
+In vielen elektronischen Schaltungen finden sich ohm'sche Widerstände, deren Betrachtung hier im Vordergrund steht. Zum Verständnis der Schaltungen ist es interessant, das Verhalten der Widerstände zu kennen. Bei der Bearbeitung der Aufgaben werden Widerstandsnetzwerke berechnet. Dies lässt sich analytisch durchführen, in dem man Widerstände in Parallel- bzw. Reihenschaltungen zu Ersatzwiderständen zusammenfasst, bis man schlussendlich einen Ersatzwiderstand für die gesamte Schaltung erhält. Zur Berechnung nutzt man nun, dass sich Widerstände in Parallelschaltung reziprok und in Reihenschaltung gewöhnlich addieren (s. \ref{auswertung} für die hier benötigten analytischen Berechnungen).
+
+Zur numerischen Berechnung des Gesamtwiderstands von allgemeinen Widerstandsnetzwerken sind die Kirchhoff'schen Regeln sehr nützlich. Es gilt allgemein das Faraday'sche Induktionsgesetz für stationäre Ströme
 \begin{align}
 \oint_{\gamma} \vec{E}\,\mathrm{d}\vec{s} = 0
 \end{align}
 Daraus folgt mit der Tatsache, dass das Kurvenintegral über das elektrische Feld $\vec{E}$ der Spannung zwischen den Endpunkten der Kurve entspricht, unmittelbar die Kirchhoff'sche Maschenregel $\sum_i U_i=0$, nach der die Summe aller Spannungen in einer Masche des Netzwerks aufheben.
 Die Spannungen an den Widerständen werden mit dem Ohmschen Gesetz ($U=R I$) aus $I$ und $R$ berechnet. Es lassen sich im Fall des Würfels $6$, beim Oktaeder $8$ Maschen finden, für die je eine Gleichung aufgestellt wird, mit denen sich ein lineares Gleichungssystem in Matrixschreibweise aufstellen lässt (REFS). Wir berechnen also den Vektor mit Komponenten $I_i, I_{ges}$, um von dem Gesamtstrom mit erneuter Verwendung des Ohm'schen Gesetzes auf den Gesamtwiderstand $R_{ges}$ zu schließen.
-\begin{wrapfigure}[16]{R}[1pt]{0.35\textwidth}
-\centering
-\includegraphics[width=0.3\textwidth]{./figures/ersatzschaltbild.eps}
-\caption{Schaltbild für gleiche Widerstände $R$}
-\label{fig:ersatzschaltbild}
-\end{wrapfigure}
-
-\noindent Für den Fall, dass alle verwendeten Widerstände gleich sind, lassen sich alle Ecken gleichen Potenzials verbinden und man erhält ein einfaches Ersatzschaltbild (Abb. \ref{fig:ersatzschaltbild}). Man nutzt nun aus, dass sich Widerstände in Parallelschaltungen reziprok und in Reihenschaltungen gewöhnlich addieren. Man erhält somit schnell:
-\begin{align}
-R_{ges}=\frac{R}{3}+\frac{R}{6}+\frac{R}{3}=\frac{5}{6}\,R
-\end{align}
+Neben der Maschenregel existiert auch die Knotenregel, nach der die Summe der Ströme $I$ an einem Knoten des Netzwerks gleich $0$ ist (es sind die Richtungen der Ströme zu beachten). Sie folgt aus der Kontinuitätsgleichung $\frac{\partial\rho}{\partial t}+\mathrm{div}\vec{j}=0$.
+Maschen- und Knotenregel bilden zusammen die Grundlage zur Analyse beliebiger Netzwerke.
 
 \subsection{Lösung des linearen Gleichungssystems}
 Wir haben ein lineares Gleichungssystem der Form $A\vec{x} = \vec{b}$. Jede invertierbare Matrix $A$ lässt sich durch $LR = PA$ darstellen. Dabei ist $L$ eine Untere, $R$ eine obere Dreiecksmatrix und $P$ eine Permutationsmatrix.
@@ -82,6 +75,19 @@ Das in \ref{lr-zerlegung} erklärte Verfahren zur Berechnung der LR-Zerlegung fu
 \subsubsection{Genaugkeit}
 
 \subsection{Physikalische Ergebnisse}
+
+\subsubsection{Analytische Lösung für gleiche Widerstände}
+\label{auswertung}
+\begin{wrapfigure}[19]{R}[1pt]{0.32\textwidth}
+\centering
+\includegraphics[width=0.3\textwidth]{./figures/ersatzschaltbild.eps}
+\caption{Schaltbild für gleiche Widerstände $R$}
+\label{fig:ersatzschaltbild}
+\end{wrapfigure}
+Für den Fall, dass alle verwendeten Widerstände gleich sind, lassen sich alle Ecken gleichen Potenzials verbinden und man erhält ein einfaches Ersatzschaltbild (Abb. \ref{fig:ersatzschaltbild}). Man nutzt nun aus, dass sich Widerstände in Parallelschaltungen reziprok und in Reihenschaltungen gewöhnlich addieren. Man erhält somit schnell:
+\begin{align}
+R_{ges}=\frac{R}{3}+\frac{R}{6}+\frac{R}{3}=\frac{5}{6}\,R
+\end{align}
 
 Für die Aufgabe gleicher Widerstände erhalten wir numerisch die gleiche Lösung, die sich bei analytischer Betrachtung ergibt. Zusammengefasst erhalten wir:
 \begin{table}[htbp!]
