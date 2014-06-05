@@ -40,13 +40,13 @@ Wir haben ein lineares Gleichungssystem der Form $A\vec{x} = \vec{b}$. Jede inve
 
 Damit lässt sich das Gleichungssystem ausdrücken als $PA\vec{x} = LR\vec{x} = P\vec{b}$. Jetzt kann schrittweise die Lösung des Gleichungssystems berechnet werden, indem man das Gleichungssystem als $L\vec{y} = P\vec{b}$ mit $\vec{y} = R\vec{x}$ schreibt. Zunächst berechnet man $\vec{y}$ durch Vorwärtssubstitution, um dann aus $R\vec{x} = \vec{y}$ die Lösung des Gleichungssystems durch Rückwärtssubstitution zu erhalten.
 
-\subsubsection{LR-Zerlegung}
+\subsubsection{$LR$-Zerlegung}
 \label{lr-zerlegung}
-Wir zerlegen eine Matrix $A$ in ein Produkt aus unterer und oberer Dreiecksmatrix, indem wir die Matrix $A$ mithilfe des Gauß'schen Eliminationsverfahrens auf obere Dreiecksform bringen. Die Umformungsschritte des Eliminationsverfahrens können durch die Elementarmatrix $Q^j_i(\lambda)$ beschrieben werden. Dabei beschreibt $Q^j_i (\lambda) A$ die Addition des $\lambda$-fachen der $j$-ten Zeile von $A$ zur $i$-ten Zeile. Konkret hat $Q^j_i (\lambda)$ die Form der Einheitsmatrix mit Ausnahme von $\left(Q^j_i (\lambda) \right)_{i, j} = \lambda$. Das Inverse dieser Matrix ist gegeben durch $Q^j_i (-\lambda)$.
+Wir zerlegen eine Matrix $A$ in ein Produkt aus unterer und oberer Dreiecksmatrix, indem wir die Matrix $A$ mithilfe des Gauß'schen Eliminationsverfahrens auf obere Dreiecksform bringen. Die Umformungsschritte des Eliminationsverfahrens können durch die Elementarmatrix $Q^j_i(\lambda)$ beschrieben werden. Dabei beschreibt $Q^j_i (\lambda) A$ die Addition des $\lambda$-fachen der $j$-ten Zeile von $A$ zur $i$-ten Zeile. Konkret hat $Q^j_i (\lambda)$ die Form der Einheitsmatrix mit Ausnahme von $\left(Q^j_i (\lambda) \right)_{ij} = \lambda$. Das Inverse dieser Matrix ist gegeben durch $Q^j_i (-\lambda)$.
 
-Wir können jetzt eine LR-Zerlegung einer ($N \times N$)-Matrix $A$ durchführen, indem wir spaltenweise alle Elemente unterhalb der Hauptdiagonalen, mithilfe des Gauß'schen Eliminationsverfahrens, eliminieren. Im Folgenden bezeichnet $A^{(k)}$ die Matrix $A = A^{(0)}$ nach Elimination von $k$-Spalten. Mit der oben beschriebenen Elementarmatrix können wir die Matrix nach Elimination der $k$-ten Spalte wie folgt ausdrücken:
+Wir können jetzt eine $LR$-Zerlegung einer ($N \times N$)-Matrix $A$ durchführen, indem wir spaltenweise alle Elemente unterhalb der Hauptdiagonalen, mithilfe des Gauß'schen Eliminationsverfahrens, eliminieren. Im Folgenden bezeichnet $A^{(k)}$ die Matrix $A = A^{(0)}$ nach Elimination von $k$-Spalten. Mit der oben beschriebenen Elementarmatrix können wir die Matrix nach Elimination der $k$-ten Spalte wie folgt ausdrücken:
 \begin{align}
-	A^{(k)} = \prod_{l=k+1}^N \left[ Q^{k}_l \left( -\frac{(A^{(k-1)})_{l,k}}{(A^{(k-1)})_{k,k}}\right)\right] A^{(k-1)} 
+	A^{(k)} = \prod_{l=k+1}^N \left[ Q^{k}_l \left( -\frac{(A^{(k-1)})_{lk}}{(A^{(k-1)})_{kk}}\right)\right] A^{(k-1)} 
 \end{align}
 Mit dem Inversen der Elementarmatrix und der Verschiebung $k \rightarrow k + 1$ folgt:
 \begin{align}
@@ -58,7 +58,11 @@ Die Zerlegung wurde in der Funktion \texttt{LU\_decomp} implementiert. Insbesond
 
 \subsubsection{Pivotisierung}
 \label{pivotisierung}
-Das in \ref{lr-zerlegung} erklärte Verfahren zur Berechnung der LR-Zerlegung funktioniert nicht für jede invertierbare Matrix (z.B. wenn ein Diagonalelement null ist). Außerdem ist im Allgemeinen das Problem nicht optimal konditioniert. Da wir in einem Gleichungssystem ohne Probleme die Reihenfolge der einzelnen Gleichungen vertauschen können, können wir für eine gute Konditionierung des Gaußverfahrens sorgen.
+Das in \ref{lr-zerlegung} erklärte Verfahren zur Berechnung der $LR$-Zerlegung funktioniert nicht für jede invertierbare Matrix, da während der Elimination eines der Diagonalelemente $A^{(k-1)}_{kk} = 0$ werden kann und damit der nächste Eliminationsschritt nicht möglich ist. Dies lässt sich vermeiden, indem man die Pivotzeile der Matrix vor jedem Schritt so vertauscht, dass dessen Diagonalelement nicht verschwindet. Sollte man keine Zeile finden, deren Pivotelement von null verschieden ist, so ist die Matrix singulär. Gleichzeitig kann diese Pivotisierung verwendet werden, um die Konditionierung des Problems zu verbessern, indem man stets mit der Zeile $i = k, \dots, N$ der Matrix tauscht, die den Term
+\begin{align}
+\frac{A^{(k-1)}_{ik}}{\sum_{j=k}^N \left|A^{k-1}_{ij}\right| }
+\end{align}
+maximiert.
 
 
 \subsubsection{Oktaeder}
