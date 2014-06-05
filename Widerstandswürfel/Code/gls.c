@@ -1,38 +1,4 @@
-﻿#include "matrix.h"
-#include <stdio.h>
-
-/* ueber R6, R9 und R12 */
-void cube_diag(MATRIX *m, VECTOR *b, double *R);
-/* ueber R6 und R9 */
-void cube_facediag(MATRIX *m, VECTOR *b, double *R);
-/* ueber R12 */
-void cube_edge(MATRIX *m, VECTOR *b, double *R);
-/* siehe Skizze */
-void oktahedron(MATRIX *m, VECTOR *b, double *R);
-/* ueber R4 */
-void oktahedron_edge(MATRIX *m, VECTOR *b, double *R);
-
-int main() {
-  MATRIX *m = matrix_alloc(6);
-  VECTOR *b = vector_alloc(6);
-  VECTOR *sol = vector_alloc(6);
-  
-  double R[12] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
-  
-  cube_edge(m, b, R);
-  
-  
-  matrix_print(m);
-  printf("\n");
-  
-  
-  linear_solve(m, b, sol);
-  
-  vector_print(sol);
-  printf("\n");
-  
-  return 0;
-}
+#include "gls.h"
 
 void cube_diag(MATRIX *m, VECTOR *b, double *R) {
   /* Inhomogenitaet */
@@ -209,10 +175,15 @@ void cube_edge(MATRIX *m, VECTOR *b, double *R) {
 }
 
 void oktahedron(MATRIX *m, VECTOR *b, double *R) {
-  vector_init(b, 0.0);
-  
   /* Inhomogenitaet */
   b->elem[0] = 1;
+  b->elem[1] = 0;
+  b->elem[2] = 0;
+  b->elem[3] = 0;
+  b->elem[4] = 0;
+  b->elem[5] = 0;
+  b->elem[6] = 0;
+  b->elem[7] = 0;
   
   /* erste Zeile */
   m->elem[0][0] =  0;
@@ -296,10 +267,15 @@ void oktahedron(MATRIX *m, VECTOR *b, double *R) {
 }
 
 void oktahedron_edge(MATRIX *m, VECTOR *b, double *R) {
-  vector_init(b, 0.0);
-  
   /* Inhomogenitaet */
   b->elem[0] = 1;
+  b->elem[1] = 0;
+  b->elem[2] = 0;
+  b->elem[3] = 0;
+  b->elem[4] = 0;
+  b->elem[5] = 0;
+  b->elem[6] = 0;
+  b->elem[7] = 0;
   
   /* erste Zeile */
   m->elem[0][0] =  0;
