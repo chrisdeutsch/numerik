@@ -26,13 +26,13 @@
 
 In vielen elektronischen Schaltungen finden sich ohm'sche Widerstände, deren Betrachtung hier im Vordergrund steht, wobei der Fokus der Bearbeitungauf die Analyse von Widerstandsnetzwerke gelegt ist. Dies lässt sich analytisch durchführen, in dem man Widerstände in Parallel- bzw. Reihenschaltungen zu Ersatzwiderständen zusammenfasst, bis man schlussendlich einen Ersatzwiderstand für die gesamte Schaltung erhält. Zur Berechnung dieses Ersatzwiderstands nutzt man, dass sich Widerstände in Parallelschaltung reziprok und in Reihenschaltung gewöhnlich addieren (s. \ref{auswertung} für die hier benötigten analytischen Berechnungen).
 
-Zur numerischen Berechnung des Gesamtwiderstands von allgemeinen Widerstandsnetzwerken sind die Kirchhoff'schen Regeln sehr nützlich. Es gilt allgemein das Faraday'sche Induktionsgesetz für stationäre Ströme
+Zur numerischen Berechnung des Gesamtwiderstands von allgemeinen Widerstandsnetzwerken sind die Kirchhoff'schen Regeln sehr nützlich. Es gilt das Faraday'sche Induktionsgesetz für stationäre Ströme:
 \begin{align}
 \oint_{\gamma} \vec{E}\,\mathrm{d}\vec{s} = 0
 \end{align}
-Daraus folgt mit der Tatsache, dass das Kurvenintegral über das elektrische Feld $\vec{E}$ der Spannung zwischen den Endpunkten der Kurve entspricht, unmittelbar die Kirchhoff'sche Maschenregel $\sum_i U_i=0$, nach der die Summe aller Spannungen in einer Masche des Netzwerks aufheben.
-Neben der Maschenregel existiert weiterhin noch die Knotenregel, nach der die Summe der Ströme $I$ an einem Knoten des Netzwerks gleich $0$ ist (es sind die Richtungen der Ströme zu beachten). Sie folgt aus der Kontinuitätsgleichung $\frac{\partial\rho}{\partial t}+\mathrm{div}\vec{j}=0$. Maschen- und Knotenregel bilden zusammen die Grundlage zur Analyse beliebiger Netzwerke.
-Die Spannungen an den Widerständen werden mit dem Ohmschen Gesetz ($U=R I$) aus dem Strom $I$ durch den Widerstand und $R$ berechnet. Das zu lösende Gleichungssystem hat für jede Masche eine Gleichung mit Variablen $I_i, I_{ges}$. In Matrixdarstellung ergibt dies eine Koeffizientenmatrix und einen Vektor mit Komponenten $I_i, I_{ges}$, wobei zur Bestimmung des Gesamtwiderstands nur die Komponente $I_{ges}$ von Interesse ist, da mit Hilfe des Ohm'schen Gesetztes und dem Gesamtstrom auf $R_{ges}$ geschlossen werden kann.
+Daraus folgt mit der Tatsache, dass das Kurvenintegral über das elektrische Feld $\vec{E}$ der Spannung zwischen den Endpunkten der Kurve entspricht, unmittelbar die Kirchhoff'sche Maschenregel $\sum_i U_i=0$, nach der die Summe aller Spannungen in einer Masche des Netzwerks aufheben ("`Richtung"' der Spannungen beachten).
+Neben der Maschenregel existiert weiterhin noch die Knotenregel, die aus der Kontinuitätsgleichung folgt und nach der die Summe der Ströme $I$ an einem Knoten des Netzwerks gleich $0$ ist (es sind die Richtungen der Ströme zu beachten). Maschen- und Knotenregel bilden zusammen die Grundlage zur Analyse beliebiger Netzwerke.
+Zur Bestimmung des Gesamtwiderstands wird eine Spannung $U$ über dem gesamten Widerstandsnetzwerk angelegt. Die entsprechenden (Teil-)Spannungen an den Widerständen werden mit dem Ohmschen Gesetz ($U=R I$) aus dem Strom $I$ durch den Widerstand und $R$ berechnet. $I$ ist dabei die Summe der Ströme der Maschen, die $R$ einschließen. Das zu lösende Gleichungssystem hat für jede Masche eine Gleichung mit Variablen $I_i, I_{ges}$, mit $I_{ges}$ als Strom durch die Spannungsquelle. In Matrixdarstellung ergibt dies eine Koeffizientenmatrix und einen Vektor mit Komponenten $I_i, I_{ges}$, wobei zur Bestimmung des Gesamtwiderstands nur die Komponente $I_{ges}$ von Interesse ist. Unter erneuter Anwendung des Ohm'schen Gesetzes kann dann mit $I_{ges}$ und $U$ auf den Widerstand $R_{ges}$ zwischen den Anschlusspunkten der Spannungsquelle geschlossen werden.
 
 \subsection{Lösung des linearen Gleichungssystems}
 Wir haben ein lineares Gleichungssystem der Form $A\vec{x} = \vec{b}$. Jede invertierbare Matrix $A$ lässt sich durch $LR = PA$ darstellen. Dabei ist $L$ eine Untere, $R$ eine obere Dreiecksmatrix und $P$ eine Permutationsmatrix.
@@ -65,13 +65,60 @@ maximiert.
 
 
 \subsubsection{Oktaeder}
-
+\begin{figure}[htbp!]
+\centering
+\includegraphics[width=0.5\textwidth]{./figures/oktaeder.eps}
+\caption{Geometrie des Oktaeders mit Festlegung der Widerstände}
+\label{fig:geometrie_oktaeder}
+\end{figure}
 \subsection{Implementierung}
 
 \subsubsection{Nullstellenberechnung mit Bisektion}
 
-\subsubsection{Numerische Integration mit rekursivem Simpson-Verfahren}
+\subsubsection{Variation der Widerstände}
 
+Würfel Raumdiagonale. Es passiert das gleiche bei
+\begin{itemize}
+\item 2, 4, 6, 8, 11, 12
+\item 1, 3, 5, 7, 9, 10
+\end{itemize}
+Würfel Flächendiagonale
+\begin{itemize}
+\item 1, 10
+\item 2, 5, 6, 9
+\item 4, 12
+\item 3, 7, 8, 11
+\end{itemize}
+Würfel, Kante
+\begin{itemize}
+\item 1, 10
+\item 2, 3, 6, 7
+\item 4
+\item 5, 8, 9, 11
+\item 12
+\end{itemize}
+Oktaeder Raumdiagonale
+\begin{itemize}
+\item 1, 2, 3, 4, 9, 10, 11, 12
+\item 5, 6, 7, 8
+\end{itemize}
+Oktaeder flächendiagonale
+\begin{itemize}
+\item 1, 3, 7, 8
+\item 2, 12
+\item 4
+\item 5
+\item 6
+\item 9, 11
+\item 10
+\end{itemize}
+
+\begin{figure}[htbp!]
+\centering
+\includegraphics{./figures/wuerfel.eps}
+\caption{Geometrie des Würfels mit Festlegung der Widerstände}
+\label{fig:geometrie_wuerfel}
+\end{figure}
 
 \subsubsection{Abbruchbedingungen}
 
@@ -113,17 +160,13 @@ Volume 16 Issue 3, (1969)
 Seiten 483-495 
 
 \end{thebibliography}
+\newpage
 \begin{landscape}
 \thispagestyle{empty}
 \appendix
 \section{Anhang}
 \subsection{Würfel}
-\begin{figure}[htbp!]
-\centering
-\includegraphics{./figures/wuerfel.eps}
-\caption{Geometrie des Würfels mit Festlegung der Widerstände}
-\label{fig:geometrie_wuerfel}
-\end{figure}
+
 \subsubsection{Spannung an der Raumdiagonalen}
 \begin{align}
 \begin{pmatrix}
@@ -206,12 +249,7 @@ I_1\\I_2\\I_3\\I_4\\I_5\\I_{ges}
 \label{fig:wuerfel_schaltplan_kante}
 \end{figure}
 \subsection{Oktaeder}
-\begin{figure}[htbp!]
-\centering
-\includegraphics{./figures/oktaeder.eps}
-\caption{Geometrie des Oktaeders mit Festlegung der Widerstände}
-\label{fig:geometrie_oktaeder}
-\end{figure}
+
 \subsubsection{Spannung an der Diagonalen}
 \begin{align}
 \begin{pmatrix}
@@ -233,12 +271,7 @@ U\\0\\0\\0\\0\\0\\0\\0
 \end{pmatrix}
 \label{eqn:oktaeder_ganz}
 \end{align}
-\begin{figure}[htbp!]
-\centering
-\includegraphics{./figures/oktaeder_schaltplan.eps}
-\caption{Schaltplan eines Oktaeders mit angelegter Spannung an der Diagonalen}
-\label{fig:oktaeder_schaltplan}
-\end{figure}
+
 \thispagestyle{empty}
 \subsubsection{Spannung an einer Kante}
 \begin{figure}[htbp!]
