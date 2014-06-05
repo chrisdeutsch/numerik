@@ -43,20 +43,29 @@ R_{ges}=\frac{R}{3}+\frac{R}{6}+\frac{R}{3}=\frac{5}{6}\,R
 \end{align}
 
 \subsection{Lösung des linearen Gleichungssystems}
-Wir haben ein lineares Gleichungssystem der Form $A\vec{x} = \vec{b}$. Jede invertierbare Matrix $A$ lässt sich durch $LR = PA$ darstellen. Dabei ist $L$ eine Untere und $R$ eine obere Dreiecksmatrix. Die Permutationsmatrix $P$ entsteht durch die Pivotisierung der Reihen.
+Wir haben ein lineares Gleichungssystem der Form $A\vec{x} = \vec{b}$. Jede invertierbare Matrix $A$ lässt sich durch $LR = PA$ darstellen. Dabei ist $L$ eine Untere, $R$ eine obere Dreiecksmatrix und $P$ eine Permutationsmatrix.
 
 Damit lässt sich das Gleichungssystem ausdrücken als $PA\vec{x} = LR\vec{x} = P\vec{b}$. Jetzt kann schrittweise die Lösung des Gleichungssystems berechnet werden, indem man das Gleichungssystem als $L\vec{y} = P\vec{b}$ mit $\vec{y} = R\vec{x}$ schreibt. Zunächst berechnet man $\vec{y}$ durch Vorwärtssubstitution, um dann aus $R\vec{x} = \vec{y}$ die Lösung des Gleichungssystems durch Rückwärtssubstitution zu erhalten.
 
 \subsubsection{LR-Zerlegung}
+\label{lr-zerlegung}
 Wir zerlegen eine Matrix $A$ in ein Produkt aus unterer und oberer Dreiecksmatrix, indem wir die Matrix $A$ mithilfe des Gauß'schen Eliminationsverfahrens auf obere Dreiecksform bringen. Die Umformungsschritte des Eliminationsverfahrens können durch die Elementarmatrix $Q^j_i(\lambda)$ beschrieben werden. Dabei beschreibt $Q^j_i (\lambda) A$ die Addition des $\lambda$-fachen der $j$-ten Zeile von $A$ zur $i$-ten Zeile. Konkret hat $Q^j_i (\lambda)$ die Form der Einheitsmatrix mit Ausnahme von $\left(Q^j_i (\lambda) \right)_{i, j} = \lambda$. Das Inverse dieser Matrix ist gegeben durch $Q^j_i (-\lambda)$.
 
-Wir können jetzt eine LR-Zerlegung einer ($N \times N$)-Matrix $A$ durchführen, indem wir zunächst das Gauß'sche Eliminationsverfahren auf die erste Spalte der Matrix $A = A^{(0)}$ anwenden und diese damit in die Matrix $A^{(1)}$ überführen (allgemein ist $A^{(k)}$ die Matrix $A$ nach $k$ eliminierten Spalten). Mit der oben beschriebenen Elementarmatrix und ihrer Inversen können wir offenbar schreiben:
+Wir können jetzt eine LR-Zerlegung einer ($N \times N$)-Matrix $A$ durchführen, indem wir spaltenweise alle Elemente unterhalb der Hauptdiagonalen, mithilfe des Gauß'schen Eliminationsverfahrens, eliminieren. Im Folgenden bezeichnet $A^{(k)}$ die Matrix $A = A^{(0)}$ nach Elimination von $k$-Spalten. Mit der oben beschriebenen Elementarmatrix können wir die Matrix nach Elimination der $k$-ten Spalte wie folgt ausdrücken:
 \begin{align}
-	A^{(k-1)} = \prod_{l=k+1}^N \left[ Q^{k}_l \left( \frac{(A^{(k-1)})_{l,k}}{(A^{(k-1)})_{k,k}}\right)\right]  A^{(k)}
+	A^{(k)} = \prod_{l=k+1}^N \left[ Q^{k}_l \left( -\frac{(A^{(k-1)})_{l,k}}{(A^{(k-1)})_{k,k}}\right)\right] A^{(k-1)} 
 \end{align}
-Insbesondere sind die Elementarmatrizen alle von unterer Dreickecksform und damit das Produkt von unteren Dreiecksmatrizen auch wieder eine untere Dreiecksmatrix. Dieses Verfahren wird solange für die nachfolgenden Spalten durchgeführt, bis $A^{(N-1)} = R$ obere Dreiecksform hat. Somit haben wir die Matrix $A = L R$ als ein Produkt von unterer und oberer Dreiecksmatrix ausgedrückt. 
+Mit dem Inversen der Elementarmatrix und der Verschiebung $k \rightarrow k + 1$ folgt:
+\begin{align}
+	A^{(k)} = \prod_{l=k+2}^N \left[ Q^{k+1}_l \left( \frac{(A^{(k)})_{l,k+1}}{(A^{(k)})_{k+1,k+1}}\right)\right]  A^{(k+1)}
+\end{align}
+Dieses Verfahren wird solange per Induktion fortgeführt, bis wir $A^{(0)} = L A^{(N-1)}$ erhalten. Dabei ist $R = A^{(N-1)}$ von oberer Dreiecksform und $L$ ein Produkt von Elementarmatrizen unterer Dreiecksform und damit auch $L$ eine untere Dreiecksmatrix. Somit haben wir die Matrix $A = L R$ als ein Produkt von unterer und oberer Dreiecksmatrix ausgedrückt.
 
 Die Zerlegung wurde in der Funktion \texttt{LU\_decomp} implementiert. Insbesondere hat die Matrix $L$ als Produkt von Elementarmatrizen nur Einsen auf ihrer Hauptdiagonalen, weshalb wir diese nicht explizit speichern müssen. Dies legt nahe, dass wir die Matrix $L$ in den durch das Gauß'sche Eliminationsverfahren eliminierten Matrixelementen speichern.
+
+\subsubsection{Pivotisierung}
+\label{pivotisierung}
+Das in \ref{lr-zerlegung} erklärte Verfahren zur Berechnung der LR-Zerlegung funktioniert nicht für jede invertierbare Matrix (z.B. wenn ein Diagonalelement null ist). Außerdem ist im Allgemeinen das Problem nicht optimal konditioniert. Da wir in einem Gleichungssystem ohne Probleme die Reihenfolge der einzelnen Gleichungen vertauschen können, können wir für eine gute Konditionierung des Gaußverfahrens sorgen.
 
 
 \subsubsection{Oktaeder}
