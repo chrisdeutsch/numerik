@@ -294,7 +294,7 @@ void oktahedron_edge(MATRIX *m, VECTOR *b, double *R) {
   m->elem[1][3] = -R[4];
   m->elem[1][4] =  0;
   m->elem[1][5] =  0;
-  m->elem[1][6] = -R[4]; /* Hier stand -R[5] */
+  m->elem[1][6] = -R[4];
   m->elem[1][7] =  0;
   
   /* dritte Zeile */
