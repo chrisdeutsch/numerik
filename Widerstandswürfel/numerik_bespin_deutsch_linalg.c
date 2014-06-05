@@ -1,4 +1,4 @@
-﻿#include "matrix.h"
+﻿#include "numerik_bespin_deutsch_linalg.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>

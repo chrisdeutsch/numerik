@@ -1,5 +1,5 @@
-﻿#ifndef _MATRIX_H_
-#define _MATRIX_H_
+﻿#ifndef _LINALG_H_
+#define _LINALG_H_
 
 /* Matrix-Struct fuer (n x n)-Matrizen 
  * data: Speicherblock fuer die Matrixelemente
