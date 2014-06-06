@@ -135,6 +135,16 @@ Oktaeder flächendiagonale
 \begin{figure}
 \include{./figures/wuerfel_face}
 \end{figure}
+\begin{figure}
+\include{./figures/wuerfel_edge}
+\end{figure}
+\begin{figure}
+\include{./figures/oct_diag}
+\end{figure}
+\begin{figure}
+\include{./figures/oct_edge}
+\end{figure}
+
 
 \subsubsection{Analytische Lösung für gleiche Widerstände}
 \label{auswertung}
@@ -172,7 +182,7 @@ Seiten 483-495
 \end{thebibliography}
 \newpage
 \begin{landscape}
-\thispagestyle{empty}
+
 \appendix
 \section{Anhang}
 \subsection{Würfel}
@@ -196,7 +206,7 @@ I_1\\I_2\\I_3\\I_4\\I_5\\I_{ges}
 \end{pmatrix}
 \label{eqn:wuerfel_ganz}
 \end{align}
-
+\thispagestyle{empty}
 \begin{figure}[htbp!]
 \centering
 \includegraphics{./figures/wuerfel_schaltplan.eps}
@@ -205,7 +215,7 @@ I_1\\I_2\\I_3\\I_4\\I_5\\I_{ges}
 \end{figure}
 
 \subsubsection{Spannung an der Flächendiagonalen}
-\thispagestyle{empty}
+
 \begin{align}
 \begin{pmatrix}
 R_1+R_2+R_3+R_4 &  -R_4  &  0  &  -R_3  &  -R_2  &  0  \\ 
@@ -224,6 +234,7 @@ I_1\\I_2\\I_3\\I_4\\I_5\\I_{ges}
 \end{pmatrix}
 \label{eqn:wuerfel_flaeche}
 \end{align}
+\thispagestyle{empty}
 
 \begin{figure}[htbp!]
 \centering
@@ -289,6 +300,7 @@ U\\0\\0\\0\\0\\0\\0\\0
 \end{figure}
 \thispagestyle{empty}
 \subsubsection{Spannung an einer Kante}
+
 \begin{align}
 \begin{pmatrix}
 	0 & 0 & -R_4 & 0 & 0 & 0 & 0 & R_4 \\
@@ -308,6 +320,7 @@ I_1\\ I_2\\ I_3\\I_4\\I_5\\I_6\\I_7\\I_{ges}
 U\\0\\0\\0\\0\\0\\0\\0
 \end{pmatrix}
 \end{align}
+\thispagestyle{empty}
 \begin{figure}[htbp!]
 \centering
 \includegraphics[height=290pt]{./figures/oktaeder_schaltplan_kante.eps}
@@ -315,7 +328,6 @@ U\\0\\0\\0\\0\\0\\0\\0
 \label{fig:oktaeder_schaltplan_kante}
 \end{figure}
 \end{landscape}
-
 
 
 \end{document}
