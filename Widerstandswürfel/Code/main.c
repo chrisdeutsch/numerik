@@ -6,10 +6,10 @@ void table(void (*func)(MATRIX*, VECTOR*, double*), int dim, int resistor, doubl
 
 int main() {
   int i;
-  
-  for(i = 0; i < 12; i++) {
-    table(oktahedron, 8, i, 0.1, 2, 0.1);
+  for (i = 0; i < 12; i++) {
+    table(oktahedron_edge, 8, i, 0.0, 100.0, 0.1);
   }
+  
   
   return 0;
 }
@@ -23,12 +23,13 @@ void table(void (*func)(MATRIX*, VECTOR*, double*), int dim, int resistor, doubl
   
   R[resistor] = start;
   
-  printf("R%i\tR\n", resistor + 1);
+  printf("\nR%i\tR\n", resistor + 1);
   while (R[resistor] <= stop) {
     func(m, b, R);
-    linear_solve(m, b, sol);
+    if ( linear_solve(m, b, sol) == 0 ) {
+      printf("%f\t%f\n", R[resistor], 1.0 / sol->elem[dim - 1]);
+    }
     
-    printf("%f\t%f\n", R[resistor], 1.0 / sol->elem[dim - 1]);
     R[resistor] += step;  
   }
   
