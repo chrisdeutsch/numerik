@@ -1,5 +1,5 @@
 ﻿#include "numerik_bespin_deutsch_linalg.h"
-#include "gls.h"
+#include "numerik_bespin_deutsch_gls.h"
 #include <stdio.h>
 
 void table(void (*func)(MATRIX*, VECTOR*, double*), int dim, int resistor, double start, double stop, double step);
@@ -7,7 +7,7 @@ void table(void (*func)(MATRIX*, VECTOR*, double*), int dim, int resistor, doubl
 int main() {
   int i;
   for (i = 0; i < 12; i++) {
-    table(oktahedron_edge, 8, i, 0.0, 100.0, 0.1);
+    table(octahedron_edge, 8, i, 0.0, 100.0, 0.1);
   }
   
   
@@ -20,6 +20,14 @@ void table(void (*func)(MATRIX*, VECTOR*, double*), int dim, int resistor, doubl
   VECTOR *sol = vector_alloc(dim);
   
   double R[12] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+  
+  if ( m == NULL || b == NULL || sol == NULL ) {
+    matrix_free(m);
+    vector_free(b);
+    vector_free(sol);
+    printf("Probleme bei der Allokierung von Speicher!\n");
+    return;
+  }
   
   R[resistor] = start;
   

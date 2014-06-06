@@ -13,7 +13,7 @@ typedef struct {
 
 /* Vector-Struct fuer n-dimensionale Vektoren
  * elem: Speicherblock fuer Vektorelemente
- *       Zugriff: v->elem[i] fuer das i-te Element */
+ *       v->elem[i] fuer das i-te Element */
 typedef struct {
   double *elem;
   int n;
@@ -23,14 +23,8 @@ typedef struct {
 /* Allokiert eine (n x n)-Matrix */
 MATRIX *matrix_alloc(int n);
 
-/* Initialisiert eine quad. Matrix mit dem Wert "value" */
-void matrix_init(MATRIX *A, double value);
-
 /* Gibt den Speicher der Matrix wieder frei */
 void matrix_free(MATRIX *A);
-
-/* Gibt die Matrix auf dem Schirm aus (DEBUG) */
-void matrix_print(MATRIX *A);
 
 /* Vertauschung der Zeilen i, j einer Matrix */
 void matrix_swap_row(MATRIX *A, int i, int j);
@@ -39,14 +33,8 @@ void matrix_swap_row(MATRIX *A, int i, int j);
 /* Allokiert einen n-dimensionalen Vektor */
 VECTOR *vector_alloc(int n);
 
-/* Initialisiert einen Vektor mit dem Wert "value" */
-void vector_init(VECTOR *v, double value);
-
 /* Gibt den Speicher des Vektors wieder frei */
 void vector_free(VECTOR *v);
-
-/* Gibt den Vektor auf dem Schirm aus (DEBUG) */
-void vector_print(VECTOR *v);
 
 
 /* LU/LR-Zerlegung der Matrix A mit Pivotisierung
