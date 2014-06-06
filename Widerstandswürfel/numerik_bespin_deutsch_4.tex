@@ -12,6 +12,8 @@
 \usepackage{caption}
 \usepackage[colorlinks]{hyperref}
 \usepackage{pdflscape}
+\usepackage[section]{placeins}
+
 
 \author{Christian Bespin \and Christopher Deutsch}
 \title{Übungsblatt 4: Numerische Methoden der Physik}
@@ -75,11 +77,12 @@ Analog beginnt man bei der Rückwärtssubstitution mit $i = N$:
 Dies wurde für den Fall einer $LR$-Zerlegung in den Funktionen \texttt{LU\_forward\_sub} und \texttt{LU\_back\_sub} implementiert.
 
 \subsection{Implementierung}
+In dem Modul \texttt{numerik\_bespin\_deutsch\_gls} wurden die Gleichungssysteme bzw. Koeffizientenmatrizen implementiert, um sie der Übersichtlichkeit wegen vom restlichen Programmcode zu trennen. Die mathematischen Funktionen wurden im Modul \texttt{numerik\_bespin\_deutsch\_linalg} implementiert und können mit wenigen Funktionsaufrufen in der \texttt{main}-Funktion aufgerufen werden.
 
 \subsubsection{Oktaeder}
 \begin{figure}[htbp!]
 \centering
-\includegraphics[width=0.5\textwidth]{./figures/oktaeder.eps}
+\includegraphics[width=0.3\textwidth]{./figures/oktaeder.eps}
 \caption{Geometrie des Oktaeders mit Festlegung der Widerstände}
 \label{fig:geometrie_oktaeder}
 \end{figure}
@@ -129,21 +132,7 @@ Oktaeder flächendiagonale
 
 \subsection{Physikalische Ergebnisse}
 
-\begin{figure}
-\include{./figures/wuerfel_diag}
-\end{figure}
-\begin{figure}
-\include{./figures/wuerfel_face}
-\end{figure}
-\begin{figure}
-\include{./figures/wuerfel_edge}
-\end{figure}
-\begin{figure}
-\include{./figures/oct_diag}
-\end{figure}
-\begin{figure}
-\include{./figures/oct_edge}
-\end{figure}
+
 
 
 \subsubsection{Analytische Lösung für gleiche Widerstände}
@@ -181,10 +170,38 @@ Seiten 483-495
 
 \end{thebibliography}
 \newpage
-\begin{landscape}
 
 \appendix
-\section{Anhang}
+\section{Anhang: Grafische Darstellung der Variation von $R_1$}
+\begin{figure}[htbp!]
+\centering
+\include{./figures/wuerfel_diag}
+\caption{Raumdiagonale Würfel}
+\end{figure}
+\begin{figure}[htbp!]
+\centering
+\include{./figures/wuerfel_face}
+\caption{Flächendiagonale Würfel}
+\end{figure}
+\begin{figure}[htbp!]
+\centering
+\include{./figures/wuerfel_edge}
+\caption{Kante Würfel}
+\end{figure}
+\begin{figure}[htbp!]
+\centering
+\include{./figures/oct_diag}
+\caption{Diagonale Oktaeder}
+\end{figure}
+\begin{figure}[htbp!]
+\centering
+\include{./figures/oct_edge}
+\caption{Kante Oktaeder}
+\end{figure}
+\newpage
+
+\begin{landscape}
+\section{Anhang: Gleichungssysteme und zugehörige Schaltpläne}
 \subsection{Würfel}
 
 \subsubsection{Spannung an der Raumdiagonalen}
