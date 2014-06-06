@@ -21,6 +21,14 @@ void table(void (*func)(MATRIX*, VECTOR*, double*), int dim, int resistor, doubl
   
   double R[12] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
   
+  if ( m == NULL || b == NULL || sol == NULL ) {
+    matrix_free(m);
+    vector_free(b);
+    vector_free(sol);
+    printf("Probleme bei der Allokierung von Speicher!\n");
+    return;
+  }
+  
   R[resistor] = start;
   
   printf("\nR%i\tR\n", resistor + 1);
