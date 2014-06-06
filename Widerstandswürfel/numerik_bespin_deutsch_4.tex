@@ -77,6 +77,7 @@ Analog beginnt man bei der Rückwärtssubstitution mit $i = N$:
 Dies wurde für den Fall einer $LR$-Zerlegung in den Funktionen \texttt{LU\_forward\_sub} und \texttt{LU\_back\_sub} implementiert.
 
 \subsection{Implementierung}
+In dem Modul \texttt{numerik\_bespin\_deutsch\_gls} wurden die Gleichungssysteme bzw. Koeffizientenmatrizen implementiert, um sie der Übersichtlichkeit wegen vom restlichen Programmcode zu trennen. Die mathematischen Funktionen wurden im Modul \texttt{numerik\_bespin\_deutsch\_linalg} implementiert und können mit wenigen Funktionsaufrufen in der \texttt{main}-Funktion aufgerufen werden.
 
 \subsubsection{Oktaeder}
 \begin{figure}[htbp!]
