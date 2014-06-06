@@ -229,7 +229,7 @@ void oktahedron(MATRIX *m, VECTOR *b, double *R) {
   m->elem[4][0] = -R[4];
   m->elem[4][1] =  0;
   m->elem[4][2] =  0;
-  m->elem[4][3] =  R[9] + R[4] + R[8];
+  m->elem[4][3] =  R[4] + R[8] + R[9];
   m->elem[4][4] = -R[9];
   m->elem[4][5] =  0;
   m->elem[4][6] =  R[4];
