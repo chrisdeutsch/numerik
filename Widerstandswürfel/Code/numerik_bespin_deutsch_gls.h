@@ -3,15 +3,29 @@
 
 #include "numerik_bespin_deutsch_linalg.h"
 
-/* ueber R6, R9 und R12 */
+/* Gleichungssysteme aus der Kirchhoff'schen Maschenregel
+ *
+ * Die Funktionen erhalten ein Array von Widerstandswerten (12 Stueck) und
+ * weisen der Matrix A die Koeffizientenmatrix fuer die uebergebenen
+ * Widerstaende zu. Außerdem wird die Inhomogenitaet fuer das jeweilige
+ * Gleichungssystem gesetzt. 
+ *
+ * Fuer die Gleichungssysteme und die Geometrien sei auf den Anhang der PDF
+ * verwiesen. */
+
+/* ueber die Raumdiagonale des Wuerfels */
 void cube_diag(MATRIX *A, VECTOR *b, double *R);
-/* ueber R6 und R9 */
+
+/* ueber die Flaechendiagonale des Wuerfels */
 void cube_facediag(MATRIX *A, VECTOR *b, double *R);
-/* ueber R12 */
+
+/* ueber eine Kante des Wuerfels */
 void cube_edge(MATRIX *A, VECTOR *b, double *R);
-/* siehe Skizze */
+
+/* ueber zwei gegenueberliegende Spitzen des Oktaeder */
 void octahedron(MATRIX *A, VECTOR *b, double *R);
-/* ueber R4 */
+
+/* ueber eine Kante des Oktaeders */
 void octahedron_edge(MATRIX *A, VECTOR *b, double *R);
 
 #endif
