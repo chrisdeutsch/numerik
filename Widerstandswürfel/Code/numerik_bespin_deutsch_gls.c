@@ -1,4 +1,4 @@
-#include "gls.h"
+#include "numerik_bespin_deutsch_gls.h"
 
 void cube_diag(MATRIX *m, VECTOR *b, double *R) {
   /* Inhomogenitaet */

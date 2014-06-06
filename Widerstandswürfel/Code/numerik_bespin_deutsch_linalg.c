@@ -1,6 +1,5 @@
 ﻿#include "numerik_bespin_deutsch_linalg.h"
 #include <stdlib.h>
-#include <stdio.h>
 #include <math.h>
 
 MATRIX *matrix_alloc(int n) {
@@ -32,31 +31,10 @@ MATRIX *matrix_alloc(int n) {
   return ret;
 }
 
-void matrix_init(MATRIX *A, double value) {
-  int i;
-  int n = A->n;
-  
-  for (i = 0; i < n * n; i++) {
-    A->data[i] = value;
-  }
-}
-
 void matrix_free(MATRIX *A) {
   free(A->data);
   free(A->elem);
   free(A);
-}
-
-void matrix_print(MATRIX *A) {
-  int i, j;
-  int n = A->n;
-  
-  for (i = 0; i < n; i++) {
-    for (j = 0; j < n; j++) {
-      printf("%f ", A->elem[i][j]);
-    }
-    printf("\n");
-  }
 }
 
 void matrix_swap_row(MATRIX *A, int i, int j) {
@@ -86,24 +64,11 @@ VECTOR *vector_alloc(int n) {
   return ret;
 }
 
-void vector_init(VECTOR *v, double value) {
-  int i;
-  for (i = 0; i < v->n; i++) {
-    v->elem[i] = value;
-  }
-}
-
 void vector_free(VECTOR *v) {
   free(v->elem);
   free(v);
 }
 
-void vector_print(VECTOR *v) {
-  int i;
-  for (i = 0; i < v->n; i++) {
-    printf("%f\n", v->elem[i]);
-  }
-}
 
 int LU_decomp(MATRIX *A, int *permutation) {
   int i, j, k;
@@ -151,12 +116,12 @@ int LU_decomp(MATRIX *A, int *permutation) {
 int pivot_row(MATRIX *A, int k) {
   int i, j;
   int n = A->n;
-  int piv;
+  int piv = k;
   double max = 0;
   double temp, sum;
   
   /* Im letzten Schritt der Gauß-Elimination ist kein Zeilentausch moeglich */
-  if ( k == n - 1 ) return k;
+  if ( k == n - 1 ) return piv;
   
   /* Iteration ueber alle moeglichen Pivot-Zeilen */
   for (i = k; i < n; i++) {

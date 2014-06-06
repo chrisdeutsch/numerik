@@ -1,5 +1,5 @@
 ﻿#include "numerik_bespin_deutsch_linalg.h"
-#include "gls.h"
+#include "numerik_bespin_deutsch_gls.h"
 #include <stdio.h>
 
 void table(void (*func)(MATRIX*, VECTOR*, double*), int dim, int resistor, double start, double stop, double step);
