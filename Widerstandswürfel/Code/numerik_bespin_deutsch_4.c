@@ -7,7 +7,7 @@ void table(void (*func)(MATRIX*, VECTOR*, double*), int dim, int resistor, doubl
 int main() {
   int i;
   for (i = 0; i < 12; i++) {
-    table(oktahedron_edge, 8, i, 0.0, 100.0, 0.1);
+    table(octahedron_edge, 8, i, 0.0, 100.0, 0.1);
   }
   
   
