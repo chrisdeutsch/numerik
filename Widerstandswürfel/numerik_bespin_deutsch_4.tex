@@ -80,23 +80,25 @@ Dies wurde für den Fall einer $LR$-Zerlegung in den Funktionen \texttt{LU\_forw
 \subsection{Implementierung}
 In dem Modul \texttt{numerik\_bespin\_deutsch\_gls} wurden die Gleichungssysteme bzw. Koeffizientenmatrizen implementiert, um sie der Übersichtlichkeit wegen vom restlichen Programmcode zu trennen. Die mathematischen Funktionen wurden im Modul \texttt{numerik\_bespin\_deutsch\_linalg} implementiert und können mit wenigen Funktionsaufrufen in der \texttt{main}-Funktion aufgerufen werden.
 
-\begin{figure}[htbp!]
-\centering
-\includegraphics{./figures/wuerfel.eps}
-\caption{Geometrie des Würfels mit Festlegung der Widerstände}
-\label{fig:geometrie_wuerfel}
-\end{figure}
-
-\begin{figure}[htbp!]
-\centering
-\includegraphics[width=0.3\textwidth]{./figures/oktaeder.eps}
-\caption{Geometrie des Oktaeders mit Festlegung der Widerstände}
-\label{fig:geometrie_oktaeder}
-\end{figure}
-
 \subsection{Physikalische Ergebnisse}
 
 Wir setzen zur Bearbeitung der Aufgaben alle Widerstände auf $1$\si{\ohm}, wobei einer der Widerstände in Abschnitt \ref{sec:variation} varriert wird, und das Verhalten von $R_E$ bei dieser Änderung betrachtet wird.
+
+\vspace{8pt}
+\begin{minipage}[c]{0.47\textwidth}
+\captionsetup{type=figure}
+\begin{center}
+\includegraphics[width=0.7\textwidth]{./figures/wuerfel.eps}
+\vspace{10pt}
+\end{center}
+\end{minipage}
+\begin{minipage}[c]{0.47\textwidth}
+\captionsetup{type=figure}
+\begin{center}
+\includegraphics[width=0.7\textwidth]{./figures/oktaeder.eps}
+\end{center}
+\end{minipage}
+\captionof{figure}{Geometrien und Festlegung der Widerstände}
 
 \subsubsection{Analytische Lösung für gleiche Widerstände}
 \label{auswertung}
@@ -128,7 +130,7 @@ Wenn man einen beliebigen Widerstand $R_v$ ändert, hat dies je nach Lage des Wi
 \centering
 \begin{tabular}{llll}
 \toprule
-Geometrie & Spannung an & austauschbare Widerstände ohne Effekt auf $R_E$ & Position\footnotemark 
+Geometrie & Spannung an\footnotemark & austauschbare Widerstände ohne Effekt auf $R_E$ & Position\footnotemark 
 \\\midrule
  \multirow{2}{*}{Würfel} & \multirow{2}{*}{Raumdiagonale} & $R_1$, $R_3$, $R_5$, $R_7$, $R_9$, $R_{10}$ & 1\\
  & & $R_2$, $R_4$, $R_6$, $R_8$, $R_{11}$, $R_{12}$ & 2\\\midrule
@@ -154,6 +156,7 @@ Geometrie & Spannung an & austauschbare Widerstände ohne Effekt auf $R_E$ & Pos
 \caption{Widerstände in einer Zeile haben gleichen Auswirkungen auf $R_E$}
 \label{tab:variation}
 \end{table}
+\footnotetext[1]{siehe Anhang für die jeweiligen Schaltpläne}
 \footnotetext{zur Zuordnung der Plots}
 
 % % %ANHANG % % %
