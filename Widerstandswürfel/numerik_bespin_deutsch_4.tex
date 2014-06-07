@@ -27,13 +27,13 @@
 
 \subsection{Physikalischer Hintergrund}
 
-In vielen elektronischen Schaltungen finden sich ohm'sche Widerstände, deren Betrachtung hier im Vordergrund steht, wobei der Fokus der Bearbeitungauf die Analyse von Widerstandsnetzwerke gelegt ist. Dies lässt sich analytisch durchführen, in dem man Widerstände in Parallel- bzw. Reihenschaltungen zu Ersatzwiderständen zusammenfasst, bis man schlussendlich einen Ersatzwiderstand für die gesamte Schaltung erhält. Zur Berechnung dieses Ersatzwiderstands nutzt man, dass sich Widerstände in Parallelschaltung reziprok und in Reihenschaltung gewöhnlich addieren (s. \ref{auswertung} für die hier benötigten analytischen Berechnungen).
+In vielen elektronischen Schaltungen finden sich ohm'sche Widerstände, deren Betrachtung hier im Vordergrund steht, wobei der Fokus der Bearbeitung auf die Analyse von Widerstandsnetzwerke gelegt ist. Dies lässt sich analytisch durchführen, indem man Widerstände in Parallel- bzw. Reihenschaltungen zu Ersatzwiderständen zusammenfasst, bis man schlussendlich einen Ersatzwiderstand für die gesamte Schaltung erhält. Zur Berechnung dieses Ersatzwiderstands nutzt man, dass sich Widerstände in Parallelschaltung reziprok und in Reihenschaltung gewöhnlich addieren.
 
 Zur numerischen Berechnung des Gesamtwiderstands von allgemeinen Widerstandsnetzwerken sind die Kirchhoff'schen Regeln sehr nützlich. Es gilt das Faraday'sche Induktionsgesetz für stationäre Ströme:
 \begin{align}
 \oint_{\gamma} \vec{E}\,\mathrm{d}\vec{s} = 0
 \end{align}
-Daraus folgt mit der Tatsache, dass das Kurvenintegral über das elektrische Feld $\vec{E}$ der Spannung zwischen den Endpunkten der Kurve entspricht, unmittelbar die Kirchhoff'sche Maschenregel $\sum_i U_i=0$, nach der die Summe aller Spannungen in einer Masche des Netzwerks aufheben ("`Richtung"' der Spannungen beachten).
+Daraus folgt mit der Tatsache, dass das Kurvenintegral über das elektrische Feld $\vec{E}$ der Spannung zwischen den Endpunkten der Kurve entspricht, unmittelbar die Kirchhoff'sche Maschenregel $\sum_i U_i=0$, nach der die Summe aller Spannungen in einer Masche des Netzwerks aufheben (Vorzeichen der Spannungen beachten).
 Neben der Maschenregel existiert weiterhin noch die Knotenregel, die aus der Kontinuitätsgleichung folgt und nach der die Summe der Ströme $I$ an einem Knoten des Netzwerks gleich $0$ ist (es sind die Richtungen der Ströme zu beachten). Maschen- und Knotenregel bilden zusammen die Grundlage zur Analyse beliebiger Netzwerke.
 Zur Bestimmung des Gesamtwiderstands wird eine Spannung $U$ über dem gesamten Widerstandsnetzwerk angelegt. Die entsprechenden (Teil-)Spannungen an den Widerständen werden mit dem Ohmschen Gesetz ($U=R I$) aus dem Strom $I$ durch den Widerstand und $R$ berechnet. $I$ ist dabei die Summe der Ströme der Maschen, die $R$ einschließen. Das zu lösende Gleichungssystem hat für jede Masche eine Gleichung mit Variablen $I_i, I_{ges}$, mit $I_{ges}$ als Strom durch die Spannungsquelle. In Matrixdarstellung ergibt dies eine Koeffizientenmatrix und einen Vektor mit Komponenten $I_i, I_{ges}$, wobei zur Bestimmung des Gesamtwiderstands nur die Komponente $I_{ges}$ von Interesse ist. Unter erneuter Anwendung des Ohm'schen Gesetzes kann dann mit $I_{ges}$ und $U$ auf den Widerstand $R_{ges}$ zwischen den Anschlusspunkten der Spannungsquelle geschlossen werden.
 
@@ -64,7 +64,7 @@ Das in \ref{lr-zerlegung} erklärte Verfahren zur Berechnung der $LR$-Zerlegung 
 \begin{align}
 	\frac{A^{(k-1)}_{ik}}{\sum_{j=k}^N \left|A^{k-1}_{ij}\right| }
 \end{align}
-maximiert. Die Pivotzeilensuche wurde in der Funktion \texttt{pivot\_row} implementiert. Inbesondere wird dieser Funktion ein Ganzzahl-Array übergeben, an dem jede Permutation von Zeilen der Matrix auch auf den Elementen des Arrays durchgeführt wird. Damit kann man die Permutationsmatrix reproduzieren, solange die Elemente des Arrays einzigartig (z.B. $(0, 1, \dots, N-1) $) sind.
+maximiert. Die Pivotzeilensuche wurde in der Funktion \texttt{pivot\_row} implementiert. Inbesondere wird jede Permutation von Zeilen der Matrix auch auf einem Ganzzahl-Array durchgeführt, um die Permutationsmatrix reproduzieren zu können, sofern die Elemente des Arrays einzigartig (z.B. $(0, 1, \dots, N-1) $) sind.
 
 \subsubsection{Vorwärts- und Rückwärtssubstitution}
 Die Lösung eines linearen Gleichungssystems $A\vec{x} = \vec{b}$ dessen $(N \times N)$-Koeffizientenmatrix $A$ eine Untere $L$ oder obere Dreiecksmatrix $R$ ist, nennt man Vorwärts- bzw. Rückwärtssubstitution. Für die Vorwärtssubstitution werden die unbekannten $x_i$ des Lösungsvektors $\vec{x}$ sukzessiv beginnend mit $i = 1$ bestimmt:
