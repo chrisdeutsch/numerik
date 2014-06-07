@@ -30,8 +30,8 @@ int main(int argc, char **argv) {
   GLS[2] = cube_edge;
   label[2] = "Kante eines Wuerfels";
   
-  GLS[3] = octahedron;
-  label[3] = "gegenueberliegende Spitzen eines Oktaeders";
+  GLS[3] = octahedron_diag;
+  label[3] = "Raumdiagonale eines Oktaeders";
   
   GLS[4] = octahedron_edge;
   label[4] = "Kante eines Oktaeders";
