@@ -22,8 +22,8 @@ void cube_facediag(MATRIX *A, VECTOR *b, double *R);
 /* ueber eine Kante des Wuerfels */
 void cube_edge(MATRIX *A, VECTOR *b, double *R);
 
-/* ueber zwei gegenueberliegende Spitzen des Oktaeder */
-void octahedron(MATRIX *A, VECTOR *b, double *R);
+/* ueber zwei gegenueberliegende Spitzen (Raumdiagonale) des Oktaeder */
+void octahedron_diag(MATRIX *A, VECTOR *b, double *R);
 
 /* ueber eine Kante des Oktaeders */
 void octahedron_edge(MATRIX *A, VECTOR *b, double *R);

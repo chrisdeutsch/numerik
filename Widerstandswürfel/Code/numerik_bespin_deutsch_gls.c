@@ -177,7 +177,7 @@ void cube_edge(MATRIX *A, VECTOR *b, double *R) {
   A->elem[5][5] =  R[11];
 }
 
-void octahedron(MATRIX *A, VECTOR *b, double *R) {
+void octahedron_diag(MATRIX *A, VECTOR *b, double *R) {
   /* Inhomogenitaet */
   b->elem[0] = 1;
   b->elem[1] = 0;
