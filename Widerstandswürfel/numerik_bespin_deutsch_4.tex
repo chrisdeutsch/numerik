@@ -80,7 +80,6 @@ Dies wurde für den Fall einer $LR$-Zerlegung in den Funktionen \texttt{LU\_forw
 \subsection{Implementierung}
 In dem Modul \texttt{numerik\_bespin\_deutsch\_gls} wurden die Gleichungssysteme bzw. Koeffizientenmatrizen implementiert, um sie der Übersichtlichkeit wegen vom restlichen Programmcode zu trennen. Die mathematischen Funktionen wurden im Modul \texttt{numerik\_bespin\_deutsch\_linalg} implementiert und können mit wenigen Funktionsaufrufen in der \texttt{main}-Funktion aufgerufen werden.
 
-\subsubsection{Würfel}
 \begin{figure}[htbp!]
 \centering
 \includegraphics{./figures/wuerfel.eps}
@@ -88,7 +87,6 @@ In dem Modul \texttt{numerik\_bespin\_deutsch\_gls} wurden die Gleichungssysteme
 \label{fig:geometrie_wuerfel}
 \end{figure}
 
-\subsubsection{Oktaeder}
 \begin{figure}[htbp!]
 \centering
 \includegraphics[width=0.3\textwidth]{./figures/oktaeder.eps}
@@ -143,7 +141,7 @@ Geometrie & Spannung an & austauschbare Widerstände ohne Effekt auf $R_E$ & Pos
  & & $R_4$ & 9\\
  & & $R_5$, $R_8$, $R_9$, $R_{11}$ & 10\\
  & & $R_{12}$ & 11\\\midrule
- \multirow{2}{*}{Oktaeder} &\multirow{2}{*}{gegenüberliegende Spitzen} & $R_1$, $R_2$, $R_3$, $R_4$, $R_9$, $R_{10}$, $R_{11}$, $R_{12}$ & 12\\
+ \multirow{2}{*}{Oktaeder} &\multirow{2}{*}{Raumdiagonale} & $R_1$, $R_2$, $R_3$, $R_4$, $R_9$, $R_{10}$, $R_{11}$, $R_{12}$ & 12\\
  & & $R_5$, $R_6$, $R_7$, $R_8$ & 13\\\midrule
  \multirow{5}{*}{Oktaeder} & \multirow{5}{*} {Kante} & $R_1$, $R_3$, $R_7$, $R_8$ &14\\
  & & $R_2$, $R_{12}$ & 15\\
@@ -158,47 +156,194 @@ Geometrie & Spannung an & austauschbare Widerstände ohne Effekt auf $R_E$ & Pos
 \end{table}
 \footnotetext{zur Zuordnung der Plots}
 
-\begin{thebibliography}{9}
-
-\bibitem{lyness}
- Lyness, J. N.,
- \emph{Notes on the Adaptive Simpson Quadrature Routine},
-Journal of the ACM
-Volume 16 Issue 3, (1969) 
-Seiten 483-495 
-
-\end{thebibliography}
-\newpage
+% % %ANHANG % % %
 
 \appendix
-\section{Anhang: Grafische Darstellung der Variation von $R_1$}
+\begin{landscape}
+\section{Anhang}
+\subsection{Würfel}
+\subsubsection{Spannung an der Raumdiagonalen}
+\begin{align}
+\begin{pmatrix}
+R_1+R_2+R_3+R_4 &  -R_4  &  0  &  -R_3  &  -R_2  &  0  \\ 
+-R_4 & R_4+R_6+R_7+R_{10} & -R_{10} & -R_7 & -R_6 & -R_6 \\ 
+ 0  & -R_{10} & R_9+R_{10}+R_{11}+R_{12} & -R_{11} & -R_9 & -(R_9+R_{12}) \\ 
+-R_3 & -R_7 & -R_11 & R_3+R_7+R_8+R_{11} & 0 & 0 \\ 
+-R_2 & -R_6 & -R_9 & 0 & R_2+R_5+R_6+R_9 & R_6+R_9 \\ 
+ 0  & -R_6 & -(R_9+R_{12}) &  0  & R_6+R_9 & R_6+R_9+R_{12}
+\end{pmatrix}
+\begin{pmatrix}
+I_1\\I_2\\I_3\\I_4\\I_5\\I_{ges}
+\end{pmatrix}
+=
+\begin{pmatrix}
+0\\0\\0\\0\\0\\U
+\end{pmatrix}
+\label{eqn:wuerfel_ganz}
+\end{align}
+\thispagestyle{empty}
+\begin{figure}[htbp!]
+\centering
+\includegraphics{./figures/wuerfel_schaltplan.eps}
+\caption{Schaltplan eines Widerstandswürfels mit angelegter Spannung an einer Raumdiagonalen}
+\label{fig:wuerfel_schaltplan}
+\end{figure}
+\end{landscape}
 \begin{figure}[htbp!]
 \centering
 \include{./figures/wuerfel_diag}
 \caption{Raumdiagonale Würfel}
 \end{figure}
+\thispagestyle{empty}
+\newpage
+
+\begin{landscape}
+\subsubsection{Spannung an der Flächendiagonalen}
+\begin{align}
+\begin{pmatrix}
+R_1+R_2+R_3+R_4 &  -R_4  &  0  &  -R_3  &  -R_2  &  0  \\ 
+-R_4 & R_4+R_6+R_7+R_{10} & -R_{10} & -R_7 & -R_6 & -R_6 \\ 
+ 0  & -R_{10} & R_9+R_{10}+R_{11}+R_{12} & -R_{11} & -R_9 & -R_9 \\ 
+-R_3 & -R_7 & -R_11 & R_3+R_7+R_8+R_{11} & 0 & 0 \\ 
+-R_2 & -R_6 & -R_9 & 0 & R_2+R_5+R_6+R_9 & R_6+R_9 \\ 
+ 0  & -R_6 & -R_9 &  0  & R_6+R_9 & R_6+R_9
+\end{pmatrix}
+\begin{pmatrix}
+I_1\\I_2\\I_3\\I_4\\I_5\\I_{ges}
+\end{pmatrix}
+=
+\begin{pmatrix}
+0\\0\\0\\0\\0\\U
+\end{pmatrix}
+\label{eqn:wuerfel_flaeche}
+\end{align}
+\thispagestyle{empty}
+
+\begin{figure}[htbp!]
+\centering
+\includegraphics{./figures/wuerfel_schaltplan_flaeche.eps}
+\caption{Schaltplan eines Widerstandswürfels mit angelegter Spannung an einer Flächendiagonalen}
+\label{fig:wuerfel_schaltplan_flaeche}
+\end{figure}
+\end{landscape}
 \begin{figure}[htbp!]
 \centering
 \include{./figures/wuerfel_face}
 \caption{Flächendiagonale Würfel}
 \end{figure}
+\thispagestyle{empty}
+\newpage
+
+\begin{landscape}
+\subsubsection{Spannung an einer Kante}
+\begin{align}
+\begin{pmatrix}
+R_1+R_2+R_3+R_4 &  -R_4  &  0  &  -R_3  &  -R_2  &  0  \\ 
+-R_4 & R_4+R_6+R_7+R_{10} & -R_{10} & -R_7 & -R_6 & 0 \\ 
+ 0  & -R_{10} & R_9+R_{10}+R_{11}+R_{12} & -R_{11} & -R_9 & -R_{12} \\ 
+-R_3 & -R_7 & -R_11 & R_3+R_7+R_8+R_{11} & 0 & 0 \\ 
+-R_2 & -R_6 & -R_9 & 0 & R_2+R_5+R_6+R_9 & 0 \\ 
+ 0  & 0 & -R_{12} &  0  & 0 & R_{12}
+\end{pmatrix}
+\begin{pmatrix}
+I_1\\I_2\\I_3\\I_4\\I_5\\I_{ges}
+\end{pmatrix}
+=
+\begin{pmatrix}
+0\\0\\0\\0\\0\\U
+\end{pmatrix}
+\label{eqn:querfel_kante}
+\end{align}
+\thispagestyle{empty}
+\begin{figure}[htbp!]
+\centering
+\includegraphics{./figures/wuerfel_schaltplan_kante.eps}
+\caption{Schaltplan eines Widerstandswürfels mit angelegter Spannung an einer Kante}
+\label{fig:wuerfel_schaltplan_kante}
+\end{figure}
+\end{landscape}
 \begin{figure}[htbp!]
 \centering
 \include{./figures/wuerfel_edge}
 \caption{Kante Würfel}
 \end{figure}
+\thispagestyle{empty}
+\newpage
+
+\begin{landscape}
+\subsection{Oktaeder}
+\subsubsection{Spannung an der Raumdiagonalen}
+\begin{align}
+\begin{pmatrix}
+	0 & 0 & -R_4 & 0 & 0 & -R_{12} & 0 & R_4 + R_{12} \\
+	R_1 + R_2 + R_5 & -R_2 & 0 & -R_5 & 0 & 0 &-R_5 & 0 \\
+	-R_2 & R_2 + R_3 + R_6 & -R_3 & 0 & -R_6 & 0 & -R_6 & 0 \\
+	0 & -R_3 & R_3 + R_4 + R_7 & 0 & 0 & -R_7 & -R_7 & -R_4 \\
+	-R_5 & 0 & 0 & R_5 + R_9 + R_{10} & -R_{10} & 0 & R_5 & 0 \\
+	0 & -R_6 & 0 & -R_{10} & R_6 + R_{10} + R_{11} & -R_{11} & R_6 & 0 \\
+	0 & 0 & -R_7 & 0 & -R_{11} & R_7 + R_{11} + R_{12} & R_7 & -R_{12} \\
+	-R_5 & -R_6 & -R_7 & R_5 & R_6 & R_7 & R_5 + R_6 + R_7 + R_8 & 0
+\end{pmatrix}
+\begin{pmatrix}
+I_1\\ I_2\\ I_3\\I_4\\I_5\\I_6\\I_7\\I_{ges}
+\end{pmatrix}
+=
+\begin{pmatrix}
+U\\0\\0\\0\\0\\0\\0\\0
+\end{pmatrix}
+\label{eqn:oktaeder_ganz}
+\end{align}
+\begin{figure}[htbp!]
+\centering
+\includegraphics[height=290pt]{./figures/oktaeder_schaltplan.eps}
+\caption{Schaltplan eines Oktaeders mit angelegter Spannung an der Raumdiagonalen}
+\label{fig:oktaeder_schaltplan}
+\end{figure}
+\thispagestyle{empty}
+\end{landscape}
 \begin{figure}[htbp!]
 \centering
 \include{./figures/oct_diag}
-\caption{Diagonale Oktaeder}
+\caption{Raumdiagonale Oktaeder}
 \end{figure}
+\thispagestyle{empty}
+\newpage
+
+\begin{landscape}
+\subsubsection{Spannung an einer Kante}
+
+\begin{align}
+\begin{pmatrix}
+	0 & 0 & -R_4 & 0 & 0 & 0 & 0 & R_4 \\
+	R_1 + R_2 + R_5 & -R_2 & 0 & -R_5 & 0 & 0 &-R_5 & 0 \\
+	-R_2 & R_2 + R_3 + R_6 & -R_3 & 0 & -R_6 & 0 & -R_6 & 0 \\
+	0 & -R_3 & R_3 + R_4 + R_7 & 0 & 0 & -R_7 & -R_7 & -R_4 \\
+	-R_5 & 0 & 0 & R_5 + R_9 + R_{10} & -R_{10} & 0 & R_5 & 0 \\
+	0 & -R_6 & 0 & -R_{10} & R_6 + R_{10} + R_{11} & -R_{11} & R_6 & 0 \\
+	0 & 0 & -R_7 & 0 & -R_{11} & R_7 + R_{11} + R_{12} & R_7 & 0 \\
+	-R_5 & -R_6 & -R_7 & R_5 & R_6 & R_7 & R_5 + R_6 + R_7 + R_8 & 0
+\end{pmatrix}
+\begin{pmatrix}
+I_1\\ I_2\\ I_3\\I_4\\I_5\\I_6\\I_7\\I_{ges}
+\end{pmatrix}
+=
+\begin{pmatrix}
+U\\0\\0\\0\\0\\0\\0\\0
+\end{pmatrix}
+\end{align}
+\thispagestyle{empty}
+\begin{figure}[htbp!]
+\centering
+\includegraphics[height=290pt]{./figures/oktaeder_schaltplan_kante.eps}
+\caption{Schaltplan eines Oktaeders mit angelegter Spannung an einer Kante}
+\label{fig:oktaeder_schaltplan_kante}
+\end{figure}
+\end{landscape}
+\newpage
 \begin{figure}[htbp!]
 \centering
 \include{./figures/oct_edge}
 \caption{Kante Oktaeder}
 \end{figure}
-\newpage
-
-\include{anhang_matrizen}
-
+\thispagestyle{empty}
 \end{document}
