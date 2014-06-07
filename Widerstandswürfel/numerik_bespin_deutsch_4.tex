@@ -78,11 +78,16 @@ Analog beginnt man bei der Rückwärtssubstitution mit $i = N$:
 Dies wurde für den Fall einer $LR$-Zerlegung in den Funktionen \texttt{LU\_forward\_sub} und \texttt{LU\_back\_sub} implementiert.
 
 \subsection{Implementierung}
-In dem Modul \texttt{numerik\_bespin\_deutsch\_gls} wurden die Gleichungssysteme bzw. Koeffizientenmatrizen implementiert, um sie der Übersichtlichkeit wegen vom restlichen Programmcode zu trennen. Die mathematischen Funktionen wurden im Modul \texttt{numerik\_bespin\_deutsch\_linalg} implementiert und können mit wenigen Funktionsaufrufen in der \texttt{main}-Funktion aufgerufen werden.
+Um Übersichtlichkeit zu gewähren, haben wir das Programm in zwei Module aufgeteilt. 
+\begin{itemize}
+	\item \texttt{numerik\_bespin\_deutsch\_linalg}: Funktionen zum Lösen linearer Gleichungssysteme
+	\item \texttt{numerik\_bespin\_deutsch\_gls}: Implementierung der Gleichungssysteme aus \ref{Anhang}
+\end{itemize}
+In der Hauptquelldatei \texttt{numerik\_bespin\_deutsch\_4.c} wurde die Berechnung des Ersatzwiderstandes des Widerstandsnetzwerkes implementiert.
 
 \subsection{Physikalische Ergebnisse}
 
-Wir setzen zur Bearbeitung der Aufgaben alle Widerstände auf $1$\si{\ohm}, wobei einer der Widerstände in Abschnitt \ref{sec:variation} varriert wird, und das Verhalten von $R_E$ bei dieser Änderung betrachtet wird.
+Wir setzen zur Bearbeitung der Aufgaben alle Widerstände auf $\num{1}\si{\ohm}$, wobei ein beliebiger Widerstand in Abschnitt \ref{sec:variation} variiert wird. Dabei betrachten wir das Verhalten des Ersatzwiderstandes $R_E$ in Abhängigkeit des Widerstandes $R_v$ sowie von seiner Lage im Schaltkreis.
 
 \vspace{8pt}
 \begin{minipage}[c]{0.47\textwidth}
@@ -102,7 +107,7 @@ Wir setzen zur Bearbeitung der Aufgaben alle Widerstände auf $1$\si{\ohm}, wobe
 
 \subsubsection{Analytische Lösung für gleiche Widerstände}
 \label{auswertung}
-\begin{wrapfigure}[12]{R}[1pt]{0.32\textwidth}
+\begin{wrapfigure}[15]{R}[1pt]{0.32\textwidth}
 \centering
 \includegraphics[width=0.3\textwidth]{./figures/ersatzschaltbild.eps}
 \caption{Schaltbild für gleiche Widerstände $R$}
@@ -113,15 +118,7 @@ Für den Fall, dass alle verwendeten Widerstände gleich sind, lassen sich alle 
 R_{ges}=\frac{R}{3}+\frac{R}{6}+\frac{R}{3}=\frac{5}{6}\,R
 \end{align}
 
-Für die Aufgabe gleicher Widerstände erhalten wir numerisch die gleiche Lösung, die sich bei analytischer Betrachtung ergibt. Zusammengefasst erhalten wir:
-\begin{table}[htbp!]
-\centering
-\begin{tabular}{l|l}
-Geometrie und Schaltung & Gesamtwiderstand $R_{ges}$\\\hline
-\\
-Würfel, Raumdiagonale & $5/6$
-\end{tabular}
-\end{table}
+Für die Aufgabe gleicher Widerstände erhalten wir numerisch die gleiche Lösung, die sich bei analytischer Betrachtung ergibt.
 
 \subsubsection{Variation von $R_v$}
 \label{sec:variation}
@@ -164,6 +161,7 @@ Geometrie & Spannung an\footnotemark[1] & austauschbare Widerstände ohne Effekt
 \appendix
 \begin{landscape}
 \section{Anhang}
+\label{Anhang}
 \subsection{Würfel}
 \subsubsection{Spannung an der Raumdiagonalen}
 \begin{align}
