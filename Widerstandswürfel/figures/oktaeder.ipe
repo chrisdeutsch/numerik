@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70005" creator="Ipe 7.1.5">
-<info created="D:20140603185032" modified="D:20140603190329"/>
+<info created="D:20140603185032" modified="D:20140607122307"/>
 <ipestyle name="basic">
 <symbol name="arrow/arc(spx)">
 <path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
@@ -232,64 +232,64 @@ h
 <page>
 <layer name="alpha"/>
 <view layers="alpha" active="alpha"/>
-<path layer="alpha" matrix="1 0 0 1 -24 -320" stroke="black">
+<path layer="alpha" matrix="0.468651 0 0 0.468651 265.054 -30.9464" stroke="black">
 64 768 m
 312 544 l
 384 736 l
 384 736 l
 </path>
-<path matrix="1 0 0 1 -48 -32" stroke="black">
+<path matrix="0.468651 0 0 0.468651 253.806 104.025" stroke="black">
 336 256 m
 568 496 l
 568 496 l
 </path>
-<path stroke="black">
+<path matrix="0.468651 0 0 0.468651 276.301 119.022" stroke="black">
 288 688 m
 40 448 l
 40 448 l
 </path>
-<path stroke="black">
+<path matrix="0.468651 0 0 0.468651 276.301 119.022" stroke="black">
 288 688 m
 360 416 l
 360 416 l
 </path>
-<path stroke="black">
+<path matrix="0.468651 0 0 0.468651 276.301 119.022" stroke="black">
 288 688 m
 520 464 l
 </path>
-<path stroke="black" dash="dashed">
+<path matrix="0.468651 0 0 0.468651 276.301 119.022" stroke="black" dash="dashed">
 288 688 m
 200 496 l
 200 496 l
 </path>
-<path stroke="black" dash="dashed">
+<path matrix="0.468651 0 0 0.468651 276.301 119.022" stroke="black" dash="dashed">
 200 496 m
 288 224 l
 288 224 l
 </path>
-<path stroke="black">
+<path matrix="0.468651 0 0 0.468651 276.301 119.022" stroke="black">
 40 448 m
 360 416 l
 520 464 l
 520 464 l
 </path>
-<path stroke="black" dash="dashed">
+<path matrix="0.468651 0 0 0.468651 276.301 119.022" stroke="black" dash="dashed">
 40 448 m
 200 496 l
 520 464 l
 520 464 l
 </path>
-<text matrix="1 0 0 1 16 32" transformations="translations" pos="152 304" stroke="black" type="label" width="16.172" height="9.805" depth="2.15" valign="baseline" size="Large">$R_1$</text>
-<text matrix="1 0 0 1 -8 0" transformations="translations" pos="344 336" stroke="black" type="label" width="16.172" height="9.805" depth="2.15" valign="baseline" size="Large">$R_2$</text>
-<text matrix="1 0 0 1 -16 -16" transformations="translations" pos="456 384" stroke="black" type="label" width="16.172" height="9.805" depth="2.15" valign="baseline" size="Large">$R_3$</text>
-<text matrix="1 0 0 1 -4 -24" transformations="translations" pos="248 392" stroke="black" type="label" width="16.172" height="9.805" depth="2.15" valign="baseline" size="Large">$R_4$</text>
-<text matrix="1 0 0 1 60 -16" transformations="translations" pos="176 448" stroke="black" type="label" width="16.172" height="9.805" depth="2.15" valign="baseline" size="Large">$R_5$</text>
-<text matrix="1 0 0 1 8 0" transformations="translations" pos="424 448" stroke="black" type="label" width="16.172" height="9.805" depth="2.15" valign="baseline" size="Large">$R_6$</text>
-<text matrix="1 0 0 1 -76 -16" transformations="translations" pos="376 488" stroke="black" type="label" width="16.172" height="9.805" depth="2.15" valign="baseline" size="Large">$R_7$</text>
-<text matrix="1 0 0 1 4 -24" transformations="translations" pos="128 488" stroke="black" type="label" width="16.172" height="9.805" depth="2.15" valign="baseline" size="Large">$R_8$</text>
-<text matrix="1 0 0 1 16 -32" transformations="translations" pos="144 584" stroke="black" type="label" width="16.172" height="9.805" depth="2.15" valign="baseline" size="Large">$R_9$</text>
-<text matrix="1 0 0 1 -16 8" transformations="translations" pos="344 544" stroke="black" type="label" width="21.153" height="9.805" depth="2.15" valign="baseline" size="Large">$R_{10}$</text>
-<text matrix="1 0 0 1 -40 24" transformations="translations" pos="432 568" stroke="black" type="label" width="21.153" height="9.805" depth="2.15" valign="baseline" size="Large">$R_{11}$</text>
-<text matrix="1 0 0 1 4 16" transformations="translations" pos="248 576" stroke="black" type="label" width="21.153" height="9.805" depth="2.15" valign="baseline" size="Large">$R_{12}$</text>
+<text matrix="0.468651 0 0 0.468651 283.8 134.019" transformations="translations" pos="152 304" stroke="black" type="label" valign="baseline" size="Large">$R_1$</text>
+<text matrix="0.468651 0 0 0.468651 272.552 119.022" transformations="translations" pos="344 336" stroke="black" type="label" valign="baseline" size="Large">$R_2$</text>
+<text matrix="0.468651 0 0 0.468651 268.803 111.524" transformations="translations" pos="456 384" stroke="black" type="label" valign="baseline" size="Large">$R_3$</text>
+<text matrix="0.468651 0 0 0.468651 274.427 107.774" transformations="translations" pos="248 392" stroke="black" type="label" valign="baseline" size="Large">$R_4$</text>
+<text matrix="0.468651 0 0 0.468651 304.42 111.524" transformations="translations" pos="176 448" stroke="black" type="label" valign="baseline" size="Large">$R_5$</text>
+<text matrix="0.468651 0 0 0.468651 280.05 119.022" transformations="translations" pos="424 448" stroke="black" type="label" valign="baseline" size="Large">$R_6$</text>
+<text matrix="0.468651 0 0 0.468651 240.684 111.524" transformations="translations" pos="376 488" stroke="black" type="label" valign="baseline" size="Large">$R_7$</text>
+<text matrix="0.468651 0 0 0.468651 278.176 107.774" transformations="translations" pos="128 488" stroke="black" type="label" valign="baseline" size="Large">$R_8$</text>
+<text matrix="0.468651 0 0 0.468651 283.8 104.025" transformations="translations" pos="144 584" stroke="black" type="label" valign="baseline" size="Large">$R_9$</text>
+<text matrix="0.468651 0 0 0.468651 268.803 122.771" transformations="translations" pos="344 544" stroke="black" type="label" valign="baseline" size="Large">$R_{10}$</text>
+<text matrix="0.468651 0 0 0.468651 257.555 130.27" transformations="translations" pos="432 568" stroke="black" type="label" valign="baseline" size="Large">$R_{11}$</text>
+<text matrix="0.468651 0 0 0.468651 278.176 126.52" transformations="translations" pos="248 576" stroke="black" type="label" valign="baseline" size="Large">$R_{12}$</text>
 </page>
 </ipe>
