@@ -2,36 +2,55 @@
 #include "numerik_bespin_deutsch_gls.h"
 #include <stdio.h>
 
-void table(void (*func)(MATRIX*, VECTOR*, double*), int dim, int resistor, double start, double stop, double step);
+/* Erstellt eine Tabelle vo */
+void resistance_table(void (*GLS)(MATRIX*, VECTOR*, double*), int size,
+                      int resistor, double start, double stop, double step);
 
 int main(int argc, char **argv) {
-  void (*func[5])(MATRIX*, VECTOR*, double*);
+  void (*GLS[5])(MATRIX *, VECTOR *, double *);
   char *label[5];
   
   int geometry, resistor;
+  int i;
   double start, stop, step;
   
-  func[0] = cube_diag;
+  /* Zugehoerige Gleichungssysteme
+   * implementiert in numerik_bespin_deutsch_gls.c */
+  GLS[0] = cube_diag;
   label[0] = "Raumdiagonale eines Wuerfels";
   
-  func[1] = cube_facediag;
+  GLS[1] = cube_facediag;
   label[1] = "Flaechendiagonale eines Wuerfels";
   
-  func[2] = cube_edge;
+  GLS[2] = cube_edge;
   label[2] = "Kante eines Wuerfels";
   
-  func[3] = octahedron;
+  GLS[3] = octahedron;
   label[3] = "gegenueberliegende Spitzen eines Oktaeders";
   
-  func[4] = octahedron_edge;
+  GLS[4] = octahedron_edge;
   label[4] = "Kante eines Oktaeders";
   
+  /* Ueberprueft die Anzahl der Programmargumente und erklaert die Benutzung */
   if ( argc != 6 ) {
     printf("Benutzung:\n");
+    printf("%s geometry resistor start stop step\n\n", argv[0]);
+    printf("geometry: Geometrie des Widerstandsnetzwerks\n");
+    for (i = 0; i < 5; i++) {
+      printf("  %i: %s\n", i, label[i]);
+    }
+    printf("\nresistor: Der zu aendernde Widerstand. Dabei enspricht\n"
+           "          resistor=i R(i+1) in den Skizzen der PDF\n\n");
+    printf("start, stop, step: Berechnet den Ersatzwiderstand des Netzwerks\n"
+           "                   fuer Aenderung des Widerstands \"resistor\"\n"
+           "                   von \"start\" bis \"stop\" in Schritten von "
+           "\"step\"\n"
+           "                   Einheit: Ohm\n");
+    
     return -1;
   }
   
-  
+  /* Liesst die Programmargumente ein und ueberprueft auf Fehler */
   if ( sscanf(argv[1], "%i", &geometry) != 1 ||
        sscanf(argv[2], "%i", &resistor) != 1 ||
        sscanf(argv[3], "%lf", &start) != 1 ||
@@ -41,47 +60,82 @@ int main(int argc, char **argv) {
     return -1;
   }
   
-  printf("## %s ##\n", label[geometry]);
-  printf("Geo: %i\n", geometry);
-  printf("R: %i\n", resistor);
-  printf("Start: %f\n", start);
-  printf("Stop: %f\n", stop);
-  printf("Step: %f\n", step);
-  printf("%i\n", geometry > 2 ? 8 : 6);
-  table(func[geometry], geometry > 2 ? 8 : 6, resistor, start, stop, step);
+  /* Ueberprueft die Programmargumente auf Richtigkeit */
+  if ( geometry < 0 || geometry > 4 ) {
+    printf("Ungueltige Geometrie\n");
+    return -1;
+  }
+  if ( resistor < 0 || resistor > 11 ) {
+    printf("Ungueltiger Widerstand\n");
+    return -1;
+  }
+  if ( start < 0 ) {
+    printf("Der Startwert fuer den Widerstand muss groesser 0 sein\n");
+    return -1;
+  }
+  if ( stop < start ) {
+    printf("Der Endwert fuer den Widerstand muss"
+           " groesser als der Startwert sein\n");
+    return -1;
+  }
+  if ( step <= 0 ) {
+    printf("Die Schrittweite muss groesser als 0 sein\n");
+    return -1;
+  }
   
+  /* Tabellenkopf */
+  printf("# %s\n", label[geometry]);
+  printf("# Alle anderen Widerstaende R = 1 Ohm\n");
+  
+  /* Berechnung und Ausgabe der Ersatzwiderstaende */
+  resistance_table(GLS[geometry], geometry > 2 ? 8 : 6,
+                   resistor, start, stop, step);
   
   return 0;
 }
 
-void table(void (*func)(MATRIX*, VECTOR*, double*), int dim, int resistor, double start, double stop, double step) {
-  MATRIX *m = matrix_alloc(dim);
-  VECTOR *b = vector_alloc(dim);
-  VECTOR *sol = vector_alloc(dim);
+void resistance_table(void (*GLS)(MATRIX*, VECTOR*, double*), int size,
+                      int resistor, double start, double stop, double step) {
+  /* Allokiert Speicher fuer Koeffizientenmatrix, Inhomogenitaet und Loesung */
+  MATRIX *M = matrix_alloc(size);
+  VECTOR *b = vector_alloc(size);
+  VECTOR *sol = vector_alloc(size);
   
+  /* Array der Widerstaende R[i] entspricht dabei R(i+1) in der PDF */
   double R[12] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
   
-  if ( m == NULL || b == NULL || sol == NULL ) {
-    matrix_free(m);
+  /* Ueberprueft ob alle Speicherallokierungen erfolgreich waren */
+  if ( M == NULL || b == NULL || sol == NULL ) {
+    matrix_free(M);
     vector_free(b);
     vector_free(sol);
     printf("Probleme bei der Allokierung von Speicher!\n");
     return;
   }
   
+  /* setzt den veraenderlichen Widerstand auf seinen Startwert */
   R[resistor] = start;
   
-  printf("# R%i\t\tR_E\n", resistor + 1);
+  /* Tabellenkopf */
+  printf("# R%i / Ohm\tR_E / Ohm\n", resistor + 1);
+  
   while (R[resistor] <= stop) {
-    func(m, b, R);
-    if ( linear_solve(m, b, sol) == 0 ) {
-      printf("%f\t%f\n", R[resistor], 1.0 / sol->elem[dim - 1]);
+    /* Setzt "M" und "b" auf das Gleichungssystem fuer die gegebenen Widerstands-
+     * werte in dem Array "R" */
+    GLS(M, b, R);
+    
+    /* Loest das Gleichungssystem und speichert die Loesung in "sol" */
+    if ( linear_solve(M, b, sol) == 0 ) {
+      /* Gleichungssystem erfolgreich geloest: Berechnung des Ersatzwiderstandes
+       * durch R = U/I_ges, I_ges ist jeweis das letzte Element des Loesungs-
+       * vektors und U wurde 1V gewaehlt */
+      printf("%f\t%f\n", R[resistor], 1.0 / sol->elem[size - 1]);
     }
     
-    R[resistor] += step;  
+    R[resistor] += step;
   }
   
-  matrix_free(m);
+  matrix_free(M);
   vector_free(b);
   vector_free(sol);
 }
