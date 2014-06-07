@@ -125,8 +125,8 @@ void resistance_table(void (*GLS)(MATRIX*, VECTOR*, double*), int size,
   printf("# R%i / Ohm\tR_E / Ohm\n", resistor + 1);
   
   while (R[resistor] <= stop) {
-    /* Setzt "M" und "b" auf das Gleichungssystem fuer die gegebenen Widerstands-
-     * werte in dem Array "R" */
+    /* Setzt "M" und "b" auf das Gleichungssystem fuer die gegebenen
+     * Widerstandswerte in dem Array "R" */
     GLS(M, b, R);
     
     /* Loest das Gleichungssystem und speichert die Loesung in "sol" */
