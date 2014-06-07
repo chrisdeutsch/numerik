@@ -1,4 +1,9 @@
-﻿#include "numerik_bespin_deutsch_linalg.h"
+﻿/* gcc -o numerik_4 -O2 numerik_bespin_deutsch_linalg.c numerik_bespin_deutsch_gls.c numerik_bespin_deutsch_4.c -lm */
+/* Christian Bespin, Christopher Deutsch */
+
+/* Programmaufruf: Erklaerung bei Aufruf des Programms ohne Argumente */
+
+#include "numerik_bespin_deutsch_linalg.h"
 #include "numerik_bespin_deutsch_gls.h"
 #include <stdio.h>
 
