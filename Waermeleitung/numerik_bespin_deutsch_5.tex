@@ -12,7 +12,6 @@
 \usepackage{capt-of}
 \usepackage{multirow}
 \usepackage[colorlinks]{hyperref}
-\usepackage{pdflscape}
 \usepackage[section]{placeins}
 \usepackage{booktabs}
 
@@ -26,6 +25,10 @@
 \section{Wärmeleitung}
 
 \subsection{Physikalischer Hintergrund}
-
+Grundlage für Wärmeaustauschvorgänge, wie die hier zu behandelnde Wärmeleitung, bildet das \emph{Fourier'sche Gesetz}. Es besagt, dass die Wärmestromdichte $\dot{\vec{q}}$ durch ein Flächenstück proportional zum negativen Temperaturgradienten auf der Oberfläche ist. Aus der Energieerhaltung folgt, dass diese Änderung der Energie gleich der aus Quellen zugeflossenen und über die Fläche abfließenden Energie ist. Wir erhalten dann für die Temperatur $u(x)$ am Ort $x$ au dem Flächenstück:
+\begin{align}  
+\frac{\partial}{\partial t}u(x,t)=f(x,t)+ a \Delta u(x,t)
+\end{align}
+Dabei beschreibt $f(x)$ die Wärmequellen und -senken und $a$ die Temperaturleitfähigkeit, die bei der Bearbeitung der Aufgabe gleich $1$ gesetzt wird. Da wir bei der Aufgabe den stationären Fall betrachten, ist die zeitliche Ableitung konstant und $u$ und $f$ reduzieren sich auf Funktionen, die nur vom Ort $x$ abhängen.
 
 \end{document}
