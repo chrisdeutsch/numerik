@@ -25,10 +25,41 @@
 \section{Wärmeleitung}
 
 \subsection{Physikalischer Hintergrund}
-Grundlage für Wärmeaustauschvorgänge, wie die hier zu behandelnde Wärmeleitung, bildet das \emph{Fourier'sche Gesetz}. Es besagt, dass die Wärmestromdichte $\dot{\vec{q}}$ durch ein Flächenstück proportional zum negativen Temperaturgradienten auf der Oberfläche ist. Aus der Energieerhaltung folgt, dass diese Änderung der Energie gleich der aus Quellen zugeflossenen und über die Fläche abfließenden Energie ist. Wir erhalten dann für die Temperatur $u(x)$ am Ort $x$ au dem Flächenstück:
+Grundlage für Wärmeaustauschvorgänge, wie die hier zu behandelnde Wärmeleitung, bildet das \emph{Fourier'sche Gesetz}. Es besagt, dass die Wärmestromdichte $\dot{\vec{q}}$ durch ein Flächenstück proportional zum negativen Temperaturgradienten auf der Oberfläche ist. Aus der Energieerhaltung folgt, dass diese Änderung der Energie gleich der aus Quellen zugeflossenen und über die Fläche abfließenden Energie ist. Wir erhalten dann für die Temperatur $u(x)$ am Ort $x$ auf dem Flächenstück:
 \begin{align}  
 \frac{\partial}{\partial t}u(x,t)=f(x,t)+ a \Delta u(x,t)
 \end{align}
 Dabei beschreibt $f(x)$ die Wärmequellen und -senken und $a$ die Temperaturleitfähigkeit, die bei der Bearbeitung der Aufgabe gleich $1$ gesetzt wird. Da wir bei der Aufgabe den stationären Fall betrachten, ist die zeitliche Ableitung konstant und $u$ und $f$ reduzieren sich auf Funktionen, die nur vom Ort $x$ abhängen.
 
+\subsection{Gauß-Seidel Verfahren}
+Zur Lösung des Gleichungssystems nutzen wir das für große, dünne Matrizen gut geeignete Iterationsverfahren nach \emph{Gauß-Seidel}. Dazu wird das Gleichungssystem $A\vec{x}=\vec{b}$ in Fixpunktform geschrieben:
+\begin{align}
+\vec{x}^{\,k+1}=H\vec{x}^{\,k}+\vec{c}
+\end{align}
+Hierbei ist $H=1-B^{-1}A$ und $\vec{c}=B^{-1}\vec{b}$, wobei $B$ so gewählt wird, dass $B^{-1}\approx A^{-1}$. Weiterhin soll $B$ leicht zu invertieren sein. Nimmt man an, dass die Diagonalelemente von A $\not=0$ sind, kann man das Gleichungssystem zeilenweise lösen. Dazu betrachtet man die $i$-te Zeile
+\begin{align}
+a_{i0}\,x_0+\dots+a_{i,n-1}\,x_{n-1}=b_i
+\end{align}
+und löst sie nach $x_i$ auf. Man erhält dann:
+\begin{align}
+x_i^{k+1}=x^k_i+\frac{1}{a_{ii}}\left( b_i-\sum_{l=0}^{i-1}a_{il}\,x_l^{k+1} - \sum_{l=i}^{n-1}a_{il}\,x_l^k\right)
+\end{align}
+Hierfür muss im ersten Iterationsschritt ein Näherungsvektor für die Lösung gegeben sein, der gegen den Lösungsvektor $\vec{x}$ konvergiert. In Matrixschreibweise erhält man:
+\begin{align}
+\vec{x}^{\,k+1}=\vec{x}^{\,k}+D^{-1}\left(\vec{b}-A\vec{x}^{\,k}\right)
+\end{align}
+Man nutzt zur Berechnung der Lösung also immer die vorher berechneten Zeilen aus. Das Verfahren konvergiert, wenn der Spektralradius von $H<1$ ist, was für unsere Matrix erfüllt ist.  
+
+\subsection{Differentialgleichung}
+\begin{align}
+GLEICHUNG
+\label{eqn:dgl}
+\end{align}
+\subsection{Randbedingungen}
+Bei der zu bearbeitenden Aufgabe tauchen zwei verschiedene Randbedingungen auf:
+\begin{itemize}
+\item Dirichlet Randbedingungen und
+\item Neumann Randbedingungen
+\end{itemize}
+Die Dirichlet-Randbedingung geben einen festen Wert für die Funktion $f$ in \ref{eqn:dgl} auf dem Rand des betrachteten Gebietes vor. In unserem Fall werden sowohl für $f$ als auch $u$ konstante Werte auf dem Rand des Objektes angegeben. Die Neumann Randbedingung legt einen Wert für $\frac{\partial f}{\partial \vec{\mu}}$ auf dem Rand fest, wobei $\vec{\mu}$ der nach außen gerichtete Normalenvektor auf dem Rand ist. Die Aufgabe gibt für $\frac{\partial u}{\partial \vec{\mu}}$ den Wert $0$ auf der unteren Kante vor. Sie besagt, dass von dem Rand keine Wärmeleitung nach außen stattfindet, und die Wärme von der Kante über das Objekt abfließt. 
 \end{document}
