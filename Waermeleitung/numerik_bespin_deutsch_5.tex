@@ -50,12 +50,23 @@ Hierfür muss im ersten Iterationsschritt ein Näherungsvektor für die Lösung 
 \end{align}
 Man nutzt zur Berechnung der Lösung also immer die vorher berechneten Zeilen aus. Das Verfahren konvergiert, wenn der Spektralradius von $H<1$ ist, was für unsere Matrix erfüllt ist.  
 
+\subsection{Diskretisierung von $\Delta$}
+Zur Diskretisierung des Laplace-Operators $\Delta$ ist es zunächst nötig, das betrachtete Gebiet zu diskretisieren. Hierfür wird ein isotropes Gitter mit festem Gitterabstand $a$ in alle Richtungen gewählt. Mit Hilfe des Einheitsvektors in $\mu$-Richtung können von jedem Punkt $x$ ausgehend mit $x\pm a\vec{\mu}$ die Nachbarpunkte erreicht werden.
+
+Der Laplace-Operator bzw. allgemein jede Differentiation der Funktion wird nun an diesen Gitterpunkten numerisch approximiert. Dazu wird der Differenzenquotient verwendet. Man erhält dann für die zweifache Ableitung in $x_{\mu}$-Richtung:
+\begin{align}
+\frac{\partial^2f}{\partial x_{\mu}^2}=\frac{f_{x+a\vec{\mu}}-2 f_x+f_{x-a\vec{\mu}}}{a^2}
+\label{eqn:diffquotient}
+\end{align}
+Dieses Verfahren ist besonders für die Neumann Randbedingung wie in  \ref{randbedingungen} interessant, denn man erkennt, dass man das betrachtete Gebiet über den Rand fortsetzen kann. Dies geschieht gerade mit $f_{x+a\vec{\mu}}=f_{x-a\vec{\mu}}$, denn dann verschwindet die erste Ableitung (als Differenzenquotient wie in \ref{eqn:diffquotient} ausgedrückt), wie die Randbedingung fordert.
+
 \subsection{Differentialgleichung}
 \begin{align}
 GLEICHUNG
 \label{eqn:dgl}
 \end{align}
 \subsection{Randbedingungen}
+\label{randbedingungen}
 Bei der zu bearbeitenden Aufgabe tauchen zwei verschiedene Randbedingungen auf:
 \begin{itemize}
 \item Dirichlet Randbedingungen und
