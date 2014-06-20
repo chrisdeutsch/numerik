@@ -48,7 +48,6 @@ Hierfür muss im ersten Iterationsschritt ein Näherungsvektor für die Lösung 
 \begin{align}
 \vec{x}^{\,k+1}=\vec{x}^{\,k}+D^{-1}\left(\vec{b}-A\vec{x}^{\,k}\right)
 \end{align}
-Man nutzt zur Berechnung der Lösung also immer die vorher berechneten Zeilen aus. Das Verfahren konvergiert, wenn der Spektralradius von $H<1$ ist, was für unsere Matrix erfüllt ist.  
 
 \subsection{Diskretisierung von $\Delta$}
 Zur Diskretisierung des Laplace-Operators $\Delta$ ist es zunächst nötig, das betrachtete Gebiet zu diskretisieren. Hierfür wird ein isotropes Gitter mit festem Gitterabstand $a$ in alle Richtungen gewählt. Mit Hilfe des Einheitsvektors in $\mu$-Richtung können von jedem Punkt $x$ ausgehend mit $x\pm a\vec{\mu}$ die Nachbarpunkte erreicht werden.

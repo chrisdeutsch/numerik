@@ -10,7 +10,7 @@ set tic scale 0
 set palette defined (0 "white", 0.01 "blue", 0.243 "red")
 set cbrange [0.215:*]
 set cblabel "Temperaturverteilung"
-set cbtics ("$0$" 0.2, "$0.22$" 0.22, "$0.24$" 0.24)
+set cbtics ("$0.22$" 0.22, "$0.24$" 0.24)
 
 set xrange [*:*]
 set yrange [*:*]
