@@ -57,12 +57,6 @@ Mit diesen Ergebnissen ergibt sich der Laplace-Operator für den $2$-dimensional
 \label{eqn:diskret_laplace}
 \end{align}
 
-\begin{figure}[htbp!]
-\centering
-\includegraphics[height=5cm]{./figures/grid.eps}
-\caption{Diskretisierung des Objektes}
-\end{figure}
-
 \subsubsection{Randbedingungen}
 \label{randbedingungen}
 Im Allgemeinen ist die parabolische partielle Differentialgleichung (\ref{eqn:dgl}) nicht eindeutig lösbar. Man erhält jedoch eine eindeutige Lösung, sofern man eine Randbedingung für das Gebiet angibt. Die Typen der Randbedingungen in der Aufgabe klassifiziert man wie folgt:
@@ -110,9 +104,14 @@ x_i^{(k+1)} = \frac{1}{a_{ii}}\left( b_i - \sum^{i-1}_{l=1} a_{il} x_l^{(k+1)} -
 \subsection{Implementation}
 Wir benutzen die Struktur der dünnen Matrix um Rechenzeit sowie Arbeitsspeicher zu sparen. Dafür wurde in \texttt{numerik\_bespin\_deutsch\_sparse\_matrix} eine Datenstruktur für eine dünne Matrix angelegt, sowie eine Funktion zur Lösung eines Gleichungssystems mit einer dünnen Koeffizientenmatrix mit dem Gauß-Seidel-Verfahren. Dabei besteht die Datenstruktur im wesentlich aus einem Array einfach verketteter Listen (Zeilen der Matrix), in welchen die von Null verschiedenen Matrixelemente (Spalten der Matrix) gespeichert werden.
 
+\begin{figure}
+\centering
+\includegraphics[height=5cm]{./figures/grid.eps}
+\caption{Diskretisierung des Objektes}
+\end{figure}
 
 \subsection{Physikalische Ergebnisse}
-In den folgenden Abbildungen sind jeweils die Lösungen des Problems dargestellt. Geplottet wurde der Wert der Temperaturverteilung an dem jeweiligen Gitterpunkt, wobei die rote Färbung einem höheren, die blaue einem niedrigeren Temperaturwert entspricht. Bis auf den Gitterabstand $a=0,01$ ist die Diskretisierung noch deutlich erkennbar.
+In den folgenden Abbildungen sind jeweils die Lösungen des Problems dargestellt. Geplottet wurde der Wert der Temperaturverteilung an dem jeweiligen Gitterpunkt, wobei die rote Färbung einem höheren, die blaue einem niedrigeren Temperaturwert entspricht. Bis auf den Gitterabstand $a=\num{0,01}$ ist die Diskretisierung noch deutlich erkennbar.
 Die Temperaturverteilung zeigt ein realistisches Bild für das gegebene Problem.
 \begin{figure}[htbp!]
 \begin{minipage}[c]{0.5\linewidth}
@@ -120,7 +119,7 @@ Die Temperaturverteilung zeigt ein realistisches Bild für das gegebene Problem.
 \vspace{-40pt}
 \scalebox{0.85}{\input{./figures/heatmap_a_25}}
 \vspace{-40pt}
-\caption{Temperaturverteilung für $a=0,25$}
+\caption{Temperaturverteilung für $a=\num{0,25}$}
 \label{fig:a_25}
 \end{minipage}
 \begin{minipage}[c]{0.5\linewidth}
@@ -128,7 +127,7 @@ Die Temperaturverteilung zeigt ein realistisches Bild für das gegebene Problem.
 \vspace{-40pt}
 \scalebox{0.85}{\input{./figures/heatmap_a_20}}
 \vspace{-40pt}
-\caption{Temperaturverteilung für $a=0,2$}
+\caption{Temperaturverteilung für $a=\num{0,2}$}
 \label{fig:a_20}
 \end{minipage}
 \begin{minipage}[c]{0.5\linewidth}
@@ -136,7 +135,7 @@ Die Temperaturverteilung zeigt ein realistisches Bild für das gegebene Problem.
 \vspace{-40pt}
 \scalebox{0.85}{\input{./figures/heatmap_a_10}}
 \vspace{-40pt}
-\caption{Temperaturverteilung für $a=0,1$}
+\caption{Temperaturverteilung für $a=\num{0,1}$}
 \label{fig:a_10}
 \end{minipage}
 \begin{minipage}[c]{0.5\linewidth}
@@ -144,26 +143,26 @@ Die Temperaturverteilung zeigt ein realistisches Bild für das gegebene Problem.
 \vspace{-40pt}
 \scalebox{0.85}{\input{./figures/heatmap_a_1}}
 \vspace{-40pt}
-\caption{Temperaturverteilung für $a=0,01$}
+\caption{Temperaturverteilung für $a=\num{0,01}$}
 \label{fig:a_1}
 \end{minipage}
 \end{figure}
-Auffällig ist, dass mit sinkendem Gitterabstand die maximale Temperatur sinkt. Außerdem sieht man besonders beim Übergang von $a=0,1$ zu $a=0,01$ gut, dass der Bereich mittlerer Temperaturen kleiner wird, da die rot gefärbte Fläche größer und die Ränder schmäler werden.
+Auffällig ist, dass mit sinkendem Gitterabstand die maximale Temperatur sinkt. Außerdem sieht man besonders beim Übergang von $a=\num{0,1}$ zu $a=\num{0,01}$ gut, dass der Bereich mittlerer Temperaturen kleiner wird, da die rot gefärbte Fläche größer und die Ränder schmäler werden.
 
 In Abbildung \ref{fig:a_1} sind die weißen Flächen deutlich breiter als bei den anderen Darstellungen, was in der Diskretisierung begründet ist. Es wird ein Quadrat mit Kantenlänge $a$ um jeden Gitterpunkt gelegt, was dazu führt, dass bei großem Gitterabstand die Quadrate eine größere Kantenlänge haben und von ihrem zugeordneten Punkt ausgehend in das ausgenommene (=weiße) Gebiet "`hineinragen"'. Dieser Effekt tritt eigentlich in allen Abbildungen auf, ist aber aufgrund der nah beieinander liegenden $a$ in Abbildungen \ref{fig:a_25}, \ref{fig:a_20}, \ref{fig:a_10} schwerer zu erkennen.
 \par
-Es war weiterhin Aufgabe, ein weiteres Programm zu schreiben, was die Symmetrie des betrachteten Objektes ausnutzt. In Tabelle \ref{tab:zeiten} sind für verschiedene Gitterabstände die Laufzeiten der beiden Programme auf den Rechnern des CIP-Pools eingetragen. Man erkennt deutlich, dass das Programm, welches die Symmetrie des Bauteils ausnutzt, für alle hinreichend kleinen Gitterabstände etwa die Hälfte der Laufzeit des anderen Programms benötigt. Für den Gitterabstand $a=0,25$ sind die Laufzeiten nicht genau festzulegen, da sie im Bereich von einstelligen Millisekunden liegen.
+Es war weiterhin Aufgabe, ein weiteres Programm zu schreiben, was die Symmetrie des betrachteten Objektes ausnutzt. In Tabelle \ref{tab:zeiten} sind für verschiedene Gitterabstände die Laufzeiten der beiden Programme auf den Rechnern des CIP-Pools eingetragen. Man erkennt deutlich, dass das Programm, welches die Symmetrie des Bauteils ausnutzt, für alle hinreichend kleinen Gitterabstände etwa die Hälfte der Laufzeit des anderen Programms benötigt. Für den Gitterabstand $a=\num{0,25}$ sind die Laufzeiten nicht genau festzulegen, da sie im Bereich von einstelligen Millisekunden liegen.
 \begin{table}
 \centering
 \begin{tabular}{l c c}
 \toprule
-Gitterabstand $a$ & Zeit ohne Symmetrienutzung $/$\si{\milli\second} & Zeit mit Symmetrienutzung $/$\si{\milli\second}\\\midrule
-$0,25$ & \multicolumn{2}{c}{$<10$} \\
-$0,2$  & $11$    & -\footnotemark \\
-$0,1$  & $41$    & $24$ \\
-$0,05$ & $285$   & $150$ \\
-$0,02$ & $12500$ & $6300$ \\
-$0,01$ & $49000$ & $24000$ \\
+Gitterabstand $a$ & Zeit ohne Symmetrienutzung & Zeit mit Symmetrienutzung \\\midrule
+$\num{0,25}$ & \multicolumn{2}{c}{$<\num{10}$\,\si{\milli\second}}\\
+$\num{0,2}$  & $\num{11}$\,\si{\milli\second}    & -\footnotemark \\
+$\num{0,1}$  & $\num{41}$\,\si{\milli\second}    & $\num{24}$\,\si{\milli\second} \\
+$\num{0,05}$ & $\num{285}$\,\si{\milli\second}   & $\num{150}$\,\si{\milli\second} \\
+$\num{0,02}$ & $\num{12,5}$\,\si{\second}        & $\num{6,3}$\,\si{\second} \\
+$\num{0,01}$ & $\num{49,0}$\,\si{\second}        & $\num{24,0}$\,\si{\second} \\
 \bottomrule
 \end{tabular}
 \caption{Vergleich der Laufzeiten der beiden Programme}
