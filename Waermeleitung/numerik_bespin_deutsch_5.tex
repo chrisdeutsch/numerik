@@ -107,6 +107,10 @@ Der Unterschied des Gauß-Seidel-Verfahrens gegenüber der Jacobi-Methode ist, d
 x_i^{(k+1)} = \frac{1}{a_{ii}}\left( b_i - \sum^{i-1}_{l=1} a_{il} x_l^{(k+1)} - \sum^{n}_{l=i+1} a_{il} x_l^{(k)} \right) 
 \end{align}
 
+\subsection{Implementation}
+Wir benutzen die Struktur der dünnen Matrix um Rechenzeit sowie Arbeitsspeicher zu sparen. Dafür wurde in \texttt{numerik\_bespin\_deutsch\_sparse\_matrix} eine Datenstruktur für eine dünne Matrix angelegt, sowie eine Funktion zur Lösung eines Gleichungssystems mit einer dünnen Koeffizientenmatrix mit dem Gauß-Seidel-Verfahren. Dabei besteht die Datenstruktur im wesentlich aus einem Array einfach verketteter Listen (Zeilen der Matrix), in welchen die von Null verschiedenen Matrixelemente (Spalten der Matrix) gespeichert werden.
+
+
 \subsection{Physikalische Ergebnisse}
 In den folgenden Abbildungen sind jeweils die Lösungen des Problems dargestellt. Geplottet wurde der Wert der Temperaturverteilung an dem jeweiligen Gitterpunkt, wobei die rote Färbung einem höheren, die blaue einem niedrigeren Temperaturwert entspricht. Bis auf den Gitterabstand $a=0,01$ ist die Diskretisierung noch deutlich erkennbar.
 Die Temperaturverteilung zeigt ein realistisches Bild für das gegebene Problem.
