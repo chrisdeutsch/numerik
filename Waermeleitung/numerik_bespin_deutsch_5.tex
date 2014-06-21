@@ -37,13 +37,19 @@ Zur Bearbeitung der Aufgabe muss das betrachtete, zusammenhängende Gebiet in di
 
 Zur Diskretisierung des Laplace-Operators ist es notwendig, die zweiten Ableitung nach der Ortskoordinate zu berechnen. Dies geschieht mit Hilfe des zentralen Differenzenquotient:
 \begin{align}
-\frac{\partial u(\vec{x})}{\partial x_{\mu}}=\frac{u(\vec{x}+\frac{a}{2}\vec{\mu}) - u(x-\frac{a}{2}\vec{\mu})}{a}
+\frac{\partial u(\vec{x})}{\partial x_{\mu}}=\frac{u(\vec{x}+\frac{a}{2}\,\vec{\mu}) - u(\vec{x}-\frac{a}{2}\,\vec{\mu})}{a}
 \label{eqn:diffquotient1}
 \end{align}
 
 Die zweite Ableitung kann nun durch die zweifache Anwendung von (\ref{eqn:diffquotient1}) an den Gitterpunkten genähert werden:
 \begin{align}
-\frac{\partial^2 u(\vec{x})}{\partial x_{\mu}^2}=\frac{u(\vec{x}+a\vec{\mu})-2 u(\vec{x})+u(x-a\vec{\mu})}{a^2}
+\frac{\partial^2 u(\vec{x})}{\partial x_{\mu}^2}=\frac{u(\vec{x}+a\,\vec{\mu})-2 u(\vec{x})+u(\vec{x}-a\,\vec{\mu})}{a^2}
+\label{eqn:diffquotient2}
+\end{align}
+
+Mit diesen Ergebnissen ergibt sich der Laplace-Operator für den $2$-dimensionalen Fall mit den Einheitsvektoren $\vec{1}$ und $\vec{2}$ durch:
+\begin{align}
+\Delta u(\vec{x})=\frac{1}{a^2}\left(u(\vec{x}+a\,\vec{1}) + u(\vec{x}-a\,\vec{1}) + u(\vec{x}+a\,\vec{2})+u(\vec{x}-a\,\vec{2}) -4 u(\vec{x})\right)
 \label{eqn:diffquotient2}
 \end{align}
 
@@ -56,7 +62,8 @@ Man erhält durch die Diskretisierung also ein Gleichungssystem mit einer dünn 
 \includegraphics[height=5cm]{./figures/grid.eps}
 \end{figure}
 
-\subsubsection{Differentialgleichung}
+\subsubsection{Diskretisierung der Differentialgleichung}
+
 
 \subsubsection{Randbedingungen}
 \label{randbedingungen}
