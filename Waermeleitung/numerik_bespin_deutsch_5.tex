@@ -108,8 +108,10 @@ Wir benutzen die Struktur der dünnen Matrix um Rechenzeit sowie Arbeitsspeicher
 \centering
 \includegraphics[height=5cm]{./figures/grid.eps}
 \caption{Diskretisierung des Objektes}
-\label{fig:diskretisierung}
+\label{geometrie}
 \end{figure}
+
+Die Diskretisierung wurde in \texttt{numerik\_bespin\_deutsch\_poisson} durchgeführt. Dabei wird die Geometrie wie in Abb. \ref{geometrie} angedeutet in diskrete Punkte zerlegt.
 
 \subsection{Physikalische Ergebnisse}
 In den folgenden Abbildungen sind jeweils die Lösungen des Problems dargestellt. Geplottet wurde der Wert der Temperaturverteilung an dem jeweiligen Gitterpunkt, wobei die rote Färbung einem höheren, die blaue einem niedrigeren Temperaturwert entspricht. Bis auf den Gitterabstand $a=\num{0,01}$ ist die Diskretisierung noch deutlich erkennbar.
@@ -149,7 +151,7 @@ Auffällig ist, dass mit sinkendem Gitterabstand die maximale Temperatur sinkt, 
 \end{minipage}
 \end{figure}
 
-In Abbildung \ref{fig:a_1} sind die weißen Flächen deutlich breiter als bei den anderen Darstellungen, was in der Diskretisierung begründet ist. Es wird ein Quadrat mit Kantenlänge $a$ um jeden Gitterpunkt gelegt, was dazu führt, dass bei großem Gitterabstand die Quadrate eine größere Kantenlänge haben und von ihrem zugeordneten Punkt ausgehend in das ausgenommene (=weiße) Gebiet "`hineinragen"'. Dieser Effekt tritt eigentlich in allen Abbildungen auf, ist aber aufgrund der nah beieinander liegenden $a$ in Abbildungen \ref{fig:a_25}, \ref{fig:a_20}, \ref{fig:a_10} schwerer zu erkennen.
+In Abbildung \ref{fig:a_1} sind die weißen Flächen deutlich breiter als bei den anderen Abbildungen, was in der Darstellungsart begründet ist. Es wird ein Quadrat mit Kantenlänge $a$ um jeden Gitterpunkt gezeichnet, was dazu führt, dass bei großem Gitterabstand die Quadrate eine größere Kantenlänge haben und von ihrem zugeordneten Punkt ausgehend in das ausgenommene (=weiße) Gebiet "`hineinragen"'. Dieser Effekt tritt eigentlich in allen Abbildungen auf, ist aber aufgrund der nah beieinander liegenden $a$ in Abbildungen \ref{fig:a_25}, \ref{fig:a_20}, \ref{fig:a_10} schwerer zu erkennen.
 \par
 Es war weiterhin Aufgabe, ein weiteres Programm zu schreiben, was die Symmetrie des betrachteten Objektes ausnutzt. In Tabelle \ref{tab:zeiten} sind für verschiedene Gitterabstände die Laufzeiten der beiden Programme auf den Rechnern des CIP-Pools eingetragen. Man erkennt deutlich, dass das Programm, welches die Symmetrie des Bauteils ausnutzt, für alle hinreichend kleinen Gitterabstände etwa die Hälfte der Laufzeit des anderen Programms benötigt. Für den Gitterabstand $a=\num{0,25}$ sind die Laufzeiten nicht genau festzulegen, da sie im Bereich von einstelligen Millisekunden liegen.
 \begin{table}
