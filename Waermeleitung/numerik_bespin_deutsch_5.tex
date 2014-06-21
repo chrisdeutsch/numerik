@@ -41,7 +41,7 @@ Zur Bearbeitung der Aufgabe muss das betrachtete, zusammenhängende Gebiet in di
 
 Zur Diskretisierung des Laplace-Operators ist es notwendig, die zweite Ableitung nach der Ortskoordinate zu berechnen. Dies geschieht mit Hilfe des zentralen Differenzenquotienten:
 \begin{align}
-\frac{\partial u(\vec{x})}{\partial x_{\mu}}=\frac{u(\vec{x}+\frac{a}{2}\,\vec{\mu}) - u(\vec{x}-\frac{a}{2}\,\vec{\mu})}{a}
+\frac{\partial u(\vec{x})}{\partial x_{\mu}}\approx\frac{u(\vec{x}+\frac{a}{2}\,\vec{\mu}) - u(\vec{x}-\frac{a}{2}\,\vec{\mu})}{a}
 \label{eqn:diffquotient1}
 \end{align}
 
@@ -53,7 +53,7 @@ Die zweite Ableitung kann nun durch die zweifache Anwendung von (\ref{eqn:diffqu
 
 Mit diesen Ergebnissen ergibt sich der Laplace-Operator für den $2$-dimensionalen Fall mit den Einheitsvektoren $\vec{1}$ und $\vec{2}$ durch:
 \begin{align}
-\Delta u(\vec{x})=\frac{1}{a^2}\left(u(\vec{x}+a\,\vec{1}) + u(\vec{x}-a\,\vec{1}) + u(\vec{x}+a\,\vec{2})+u(\vec{x}-a\,\vec{2}) -4 u(\vec{x})\right)
+\Delta u(\vec{x})\approx\frac{1}{a^2}\left(u(\vec{x}+a\,\vec{1}) + u(\vec{x}-a\,\vec{1}) + u(\vec{x}+a\,\vec{2})+u(\vec{x}-a\,\vec{2}) -4 u(\vec{x})\right)
 \label{eqn:diskret_laplace}
 \end{align}
 
@@ -73,8 +73,7 @@ Im Allgemeinen ist die parabolische partielle Differentialgleichung (\ref{eqn:dg
 Die Dirichlet-Randbedingungen geben einen festen Wert für die Funktion $u$ auf dem Rand des betrachteten Gebietes vor. In unserem Fall wird der Rand mit Ausnahme der Unterkante des Objektes auf $u = \num{0.22}$ gesetzt. 
 Im Gegensatz dazu legt die Neumann-Randbedingung den Wert der partiellen Ableitung $\frac{\partial u}{\partial \vec{\mu}}$ fest, wobei $\vec{\mu}$ der nach außen gerichtete Normalenvektor des betrachteten Randstückes ist. In der Aufgabe wird der Wert für $\frac{\partial u}{\partial \vec{\mu}}$ der unteren Kante auf $\num{0}$ gesetzt. Dies besagt, dass von dem Rand keine Wärmeleitung nach außen stattfindet und die Wärme von der Kante über das Objekt abfließt.
 
-Dieses Verfahren ist besonders für die Neumann Randbedingung wie in  \ref{randbedingungen} interessant, denn man erkennt, dass man das betrachtete Gebiet in diesem speziellen Fall über den Rand fortsetzen kann. Dies geschieht gerade mit $u(\vec{x}+\frac{a}{2}\,\vec{\mu})=u(\vec{x}-\frac{a}{2}\,\vec{\mu})$, denn dann verschwindet die erste Ableitung (als Differenzenquotient wie in (\ref{eqn:diffquotient1}) ausgedrückt), wie die Randbedingung fordert.
-
+Die Realisierung der Neumann-Randbedingung lässt sich durch die Diskretisierung wie in (\ref{eqn:diffquotient1}) durchführen, indem man $u(\vec{x}+\frac{a}{2}\,\vec{\mu})=u(\vec{x}-\frac{a}{2}\,\vec{\mu})$ setzt, denn dann verschwindet die Ableitung gerade, wie die Randbedingung fordert.
 
 
 \subsubsection{Diskretisierung der Differentialgleichung}
@@ -104,66 +103,41 @@ Wobei $D$=$B$ hier einer Diagonalmatrix mit Einträgen $(a_{00}, ... ,a_{n-1,n-1
 \subsection{Physikalische Ergebnisse}
 In den folgenden Abbildungen sind jeweils die Lösungen des Problems dargestellt. Geplottet wurde der Wert der Temperaturverteilung an dem jeweiligen Gitterpunkt, wobei die rote Färbung einem höheren, die blaue einem niedrigeren Temperaturwert entspricht. Bis auf den Gitterabstand $a=0,01$ ist die Diskretisierung noch deutlich erkennbar.
 Die Temperaturverteilung zeigt ein realistisches Bild für das gegebene Problem.
-
 \begin{figure}[htbp!]
-\begin{minipage}[c]{0.5\textwidth}
+\begin{minipage}[c]{0.5\linewidth}
 \centering
-\vspace{-60pt}
-\scalebox{0.9}{\input{./figures/heatmap_a_1}}
 \vspace{-40pt}
-\caption{Temperaturverteilung für $a=0,01$}
-\label{fig:a_1}
-\vspace{-20pt}
-\scalebox{0.9}{\input{./figures/heatmap_a_10}}
-\vspace{-40pt}
-\caption{Temperaturverteilung für $a=0,1$}
-\label{fig:a_10}
-\end{minipage}
-\begin{minipage}[c]{0.5\textwidth}
-\centering
-\vspace{-60pt}
-\scalebox{0.9}{\input{./figures/heatmap_a_20}}
-\vspace{-40pt}
-\caption{Temperaturverteilung für $a=0,2$}
-\label{fig:a_20}
-\vspace{-20pt}
-\scalebox{0.9}{\input{./figures/heatmap_a_25}}
+\scalebox{0.85}{\input{./figures/heatmap_a_25}}
 \vspace{-40pt}
 \caption{Temperaturverteilung für $a=0,25$}
 \label{fig:a_25}
 \end{minipage}
+\begin{minipage}[c]{0.5\linewidth}
+\centering
+\vspace{-40pt}
+\scalebox{0.85}{\input{./figures/heatmap_a_20}}
+\vspace{-40pt}
+\caption{Temperaturverteilung für $a=0,2$}
+\label{fig:a_20}
+\end{minipage}
+\begin{minipage}[c]{0.5\linewidth}
+\centering
+\vspace{-40pt}
+\scalebox{0.85}{\input{./figures/heatmap_a_10}}
+\vspace{-40pt}
+\caption{Temperaturverteilung für $a=0,1$}
+\label{fig:a_10}
+\end{minipage}
+\begin{minipage}[c]{0.5\linewidth}
+\centering
+\vspace{-40pt}
+\scalebox{0.85}{\input{./figures/heatmap_a_1}}
+\vspace{-40pt}
+\caption{Temperaturverteilung für $a=0,01$}
+\label{fig:a_1}
+\end{minipage}
 \end{figure}
-
-%\begin{figure}[htbp!]
-%\centering
-%\vspace{-20pt}
-%\include{./figures/heatmap_a_1}
-%\vspace{-40pt}
-%\caption{Temperaturverteilung für $a=0,01$}
-%\end{figure}
-%\begin{figure}[htbp!]
-%\centering
-%\vspace{-20pt}
-%\include{./figures/heatmap_a_10}
-%\vspace{-40pt}
-%\caption{Temperaturverteilung für $a=0,1$}
-%\end{figure}
-%\begin{figure}[htbp!]
-%\centering
-%\vspace{-20pt}
-%\include{./figures/heatmap_a_20}
-%\vspace{-40pt}
-%\caption{Temperaturverteilung für $a=0,2$}
-%\end{figure}
-%\begin{figure}[htbp!]
-%\centering
-%\vspace{-20pt}
-%\include{./figures/heatmap_a_25}
-%\vspace{-40pt}
-%\caption{Temperaturverteilung für $a=0,25$}
-%\end{figure}
-
 Auffällig ist, dass mit sinkendem Gitterabstand die maximale Temperatur sinkt. Außerdem sieht man besonders beim Übergang von $a=0,1$  zu $a=0,01$ gut, dass der Bereich mittlerer Temperaturen kleiner wird, da die rot gefärbte Fläche größer und die Ränder schmäler werden.
 
-In Abbildung \ref{fig:a_1} sind die weißen Flächen deutlich breiter als bei den anderen Darstellungen, was in der Diskretisierung begründet ist. Es wird ein Quadrat mit Kantenlänge $a$ um jeden Gitterpunkt gelegt, was dazu führt, dass bei großem Gitterabstand die Quadrate eine größere Kantenlänge haben und von ihrem zugeordneten Punkt ausgehend in das ausgenommene (=weiße) Gebiet "`hineinragen"'. Dieser Effekt tritt eigentlich in allen Abbildungen auf, ist aber aufgrund der nah beieinander liegenden $a$ in Abbildungen \ref{fig:a_10}, \ref{fig:a_20}, \ref{fig:a_25} schwerer zu erkennen.
+In Abbildung \ref{fig:a_1} sind die weißen Flächen deutlich breiter als bei den anderen Darstellungen, was in der Diskretisierung begründet ist. Es wird ein Quadrat mit Kantenlänge $a$ um jeden Gitterpunkt gelegt, was dazu führt, dass bei großem Gitterabstand die Quadrate eine größere Kantenlänge haben und von ihrem zugeordneten Punkt ausgehend in das ausgenommene (=weiße) Gebiet "`hineinragen"'. Dieser Effekt tritt eigentlich in allen Abbildungen auf, ist aber aufgrund der nah beieinander liegenden $a$ in Abbildungen \ref{fig:a_25}, \ref{fig:a_20}, \ref{fig:a_10} schwerer zu erkennen.
 \end{document}
