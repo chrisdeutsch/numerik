@@ -31,7 +31,7 @@ Grundlage für Wärmeaustauschvorgänge, wie die hier zu behandelnde Wärmeleitu
 \end{align}
 Dabei beschreibt $f(\vec{x,t})$ die Wärmequellen und -senken und $a$ die Temperaturleitfähigkeit, die bei der Bearbeitung der Aufgabe gleich $1$ gesetzt wird. Da wir bei der Aufgabe den stationären Fall betrachten, ist die zeitliche Ableitung konstant und $u$ und $f$ reduzieren sich auf Funktionen, die nur vom Ort $x$ abhängen:
 \begin{align}
--\Delta u(x)=f(x)
+\Delta u(x)=-f(x)
 \label{eqn:dgl}
 \end{align}
 
@@ -57,6 +57,7 @@ Mit diesen Ergebnissen ergibt sich der Laplace-Operator für den $2$-dimensional
 \label{eqn:diffquotient2}
 \end{align}
 
+------
 Verschieben: Dieses Verfahren ist besonders für die Neumann Randbedingung wie in  \ref{randbedingungen} interessant, denn man erkennt, dass man das betrachtete Gebiet in diesem speziellen Fall über den Rand fortsetzen kann. Dies geschieht gerade mit $f_{x+a\vec{\mu}}=f_{x-a\vec{\mu}}$, denn dann verschwindet die erste Ableitung (als Differenzenquotient wie in \ref{eqn:diffquotient2} ausgedrückt), wie die Randbedingung fordert.
 
 Man erhält durch die Diskretisierung also ein Gleichungssystem mit einer dünn besetzten Matrix, deren Einträge die Gitterpunkte repräsentieren. Die Lösung solcher Systeme (insbesondere für dünn besetzte Matrizen) wird im nachfolgenden Abschnitt \ref{sec:gauss-seidel} erläutert.
@@ -67,17 +68,17 @@ Man erhält durch die Diskretisierung also ein Gleichungssystem mit einer dünn 
 \caption{Diskretisierung des Objektes}
 \end{figure}
 
-\subsubsection{Diskretisierung der Differentialgleichung}
-
-
 \subsubsection{Randbedingungen}
 \label{randbedingungen}
-Bei der zu bearbeitenden Aufgabe tauchen zwei verschiedene Randbedingungen auf:
+Im Allgemeinen ist die parabolische partielle Differentialgleichung (\ref{dgl}) nicht eindeutig lösbar. Man erhält jedoch eine eindeutige Lösung, sofern man eine Randbedingung für das Gebiet angibt. Die Typen der Randbedingungen in der Aufgabe klassifiziert man wie folgt:
 \begin{itemize}
-\item Dirichlet Randbedingungen und
-\item Neumann Randbedingungen
+\item Dirichlet-Randbedingungen
+\item Neumann-Randbedingungen
 \end{itemize}
-Die Dirichlet-Randbedingung geben einen festen Wert für die Funktion $u$ in (FEHLENDE REFERENZ) auf dem Rand des betrachteten Gebietes vor. In unserem Fall werden sowohl für $f$ als auch $u$ konstante Werte auf dem Rand des Objektes angegeben. Die Neumann Randbedingung legt einen Wert für $\frac{\partial u}{\partial \vec{\mu}}$ auf dem Rand fest, wobei $\vec{\mu}$ der nach außen gerichtete Normalenvektor auf dem Rand ist. Die Aufgabe gibt für $\frac{\partial u}{\partial \vec{\mu}}$ den Wert $0$ auf der unteren Kante vor. Sie besagt, dass von dem Rand keine Wärmeleitung nach außen stattfindet, und die Wärme von der Kante über das Objekt abfließt.
+Die Dirichlet-Randbedingungen geben einen festen Wert für die Funktion $u$ auf dem Rand des betrachteten Gebietes vor. In unserem Fall wird der Rand mit Ausnahme der Unterkante des Objektes auf $u = \num{0.22}$ gesetzt. 
+Im Gegensatz dazu legt die Neumann-Randbedingung den Wert der partiellen Ableitung $\frac{\partial u}{\partial \vec{\mu}}$ fest, wobei $\vec{\mu}$ der nach außen gerichtete Normalenvektor des betrachteten Randstückes ist. In der Aufgabe wird der Wert für $\frac{\partial u}{\partial \vec{\mu}}$ der unteren Kante auf $\num{0}$ gesetzt. Dies besagt, dass von dem Rand keine Wärmeleitung nach außen stattfindet und die Wärme von der Kante über das Objekt abfließt.
+
+\subsubsection{Diskretisierung der Differentialgleichung}
 
 \subsubsection{Gauß-Seidel Verfahren}
 \label{sec:gauss-seidel}
@@ -98,15 +99,6 @@ Hierfür muss im ersten Iterationsschritt ein Näherungsvektor für die Lösung 
 \vec{x}^{\,k+1}=\vec{x}^{\,k}+D^{-1}\left(\vec{b}-A\vec{x}^{\,k}\right)
 \end{align}
 Wobei $D$=$B$ hier einer Diagonalmatrix mit Einträgen $(a_{00}, ... ,a_{n-1,n-1})$ entspricht.
-
-\subsubsection{Randbedingungen}
-\label{randbedingungen}
-Bei der zu bearbeitenden Aufgabe tauchen zwei verschiedene Randbedingungen auf:
-\begin{itemize}
-\item Dirichlet Randbedingungen und
-\item Neumann Randbedingungen
-\end{itemize}
-Die Dirichlet-Randbedingung geben einen festen Wert für die Funktion $u$ in \ref{eqn:dgl} auf dem Rand des betrachteten Gebietes vor. In unserem Fall werden sowohl für $u$ als auch $f$ konstante Werte auf dem Rand des Objektes angegeben. Die Neumann Randbedingung legt einen Wert für $\frac{\partial u}{\partial \vec{\mu}}$ auf dem Rand fest, wobei $\vec{\mu}$ der nach außen gerichtete Normalenvektor auf dem Rand ist. Die Aufgabe gibt für $\frac{\partial u}{\partial \vec{\mu}}$ den Wert $0$ auf der unteren Kante vor. Sie besagt, dass von dem Rand keine Wärmeleitung nach außen stattfindet, und die Wärme von der Kante über das Objekt abfließt. 
 
 \subsection{Physikalische Ergebnisse}
 In den folgenden Abbildungen sind jeweils die Lösungen des Problems dargestellt. Geplottet wurde der Wert der Temperaturverteilung an dem jeweiligen Gitterpunkt, wobei die rote Färbung einem höheren, die blaue einem niedrigeren Temperaturwert entspricht. Bis auf den Gitterabstand $a=0,01$ ist die Diskretisierung noch deutlich erkennbar.
