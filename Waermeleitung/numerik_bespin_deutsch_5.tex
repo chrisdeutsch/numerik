@@ -78,7 +78,7 @@ Aus (\ref{eqn:dgl}) und der Diskretisierung des Laplace-Operators folgt für jed
 \label{eqn:dgldiskret}
 \end{align}
 Diese Gleichung wird jetzt für jeden Punkt $\vec{x}$ des Gitters mit Ausnahme der Punkte mit Dirichlet-Randbedingung aufgestellt. Dabei muss stets beachtet werden, ob einer der Nachbarpunkte von $\vec{x}$ aufgrund der Randbedingung einen vorgegebenen Wert für $u$ hat. Sollte dies der Fall sein, kann der Zahlenwert auf die rechte Seite der Gleichung gebracht werden.
-Man erhält dadurch ein Gleichungssystem mit so vielen Gleichungen wie Gitterpunkten. Da jeder Gitterpunkt nur $4$ Nachbarn hat, sind die meisten Einträge der Koeffizientenmatrix gleich $0$, nur auf der Hauptdiagonalen und auf $4$ Nebendiagonalen finden sich Einträge. Die Lösung solcher Systeme (insbesondere für dünn besetzte Matrizen) wird im nachfolgenden Abschnitt \ref{sec:gauss-seidel} erläutert.
+Man erhält dadurch ein Gleichungssystem mit so vielen Gleichungen wie Gitterpunkten. Da jeder Gitterpunkt nur $4$ Nachbarn hat, sind die meisten Einträge der Koeffizientenmatrix gleich $0$, die Elemente auf der Hauptdiagonalen sind nach (\ref{eqn:dgldiskret}) alle gleich $4$. Die Lösung solcher Systeme (insbesondere für dünn besetzte Matrizen) wird im nachfolgenden Abschnitt \ref{sec:gauss-seidel} erläutert.
 
 \subsubsection{Gauß-Seidel-Verfahren}
 \label{sec:gauss-seidel}
@@ -108,11 +108,12 @@ Wir benutzen die Struktur der dünnen Matrix um Rechenzeit sowie Arbeitsspeicher
 \centering
 \includegraphics[height=5cm]{./figures/grid.eps}
 \caption{Diskretisierung des Objektes}
+\label{fig:diskretisierung}
 \end{figure}
 
 \subsection{Physikalische Ergebnisse}
 In den folgenden Abbildungen sind jeweils die Lösungen des Problems dargestellt. Geplottet wurde der Wert der Temperaturverteilung an dem jeweiligen Gitterpunkt, wobei die rote Färbung einem höheren, die blaue einem niedrigeren Temperaturwert entspricht. Bis auf den Gitterabstand $a=\num{0,01}$ ist die Diskretisierung noch deutlich erkennbar.
-Die Temperaturverteilung zeigt ein realistisches Bild für das gegebene Problem.
+Auffällig ist, dass mit sinkendem Gitterabstand die maximale Temperatur sinkt, die Temperaturverteilung zeigt aber für alle Gitterabstände ein realistisches Bild für das gegebene Problem.
 \begin{figure}[htbp!]
 \begin{minipage}[c]{0.5\linewidth}
 \centering
@@ -147,7 +148,6 @@ Die Temperaturverteilung zeigt ein realistisches Bild für das gegebene Problem.
 \label{fig:a_1}
 \end{minipage}
 \end{figure}
-Auffällig ist, dass mit sinkendem Gitterabstand die maximale Temperatur sinkt. Außerdem sieht man besonders beim Übergang von $a=\num{0,1}$ zu $a=\num{0,01}$ gut, dass der Bereich mittlerer Temperaturen kleiner wird, da die rot gefärbte Fläche größer und die Ränder schmäler werden.
 
 In Abbildung \ref{fig:a_1} sind die weißen Flächen deutlich breiter als bei den anderen Darstellungen, was in der Diskretisierung begründet ist. Es wird ein Quadrat mit Kantenlänge $a$ um jeden Gitterpunkt gelegt, was dazu führt, dass bei großem Gitterabstand die Quadrate eine größere Kantenlänge haben und von ihrem zugeordneten Punkt ausgehend in das ausgenommene (=weiße) Gebiet "`hineinragen"'. Dieser Effekt tritt eigentlich in allen Abbildungen auf, ist aber aufgrund der nah beieinander liegenden $a$ in Abbildungen \ref{fig:a_25}, \ref{fig:a_20}, \ref{fig:a_10} schwerer zu erkennen.
 \par
