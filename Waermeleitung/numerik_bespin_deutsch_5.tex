@@ -31,8 +31,9 @@ Grundlage für Wärmeaustauschvorgänge, wie die hier zu behandelnde Wärmeleitu
 \end{align}
 Dabei beschreibt $f(x)$ die Wärmequellen und -senken und $a$ die Temperaturleitfähigkeit, die bei der Bearbeitung der Aufgabe gleich $1$ gesetzt wird. Da wir bei der Aufgabe den stationären Fall betrachten, ist die zeitliche Ableitung konstant und $u$ und $f$ reduzieren sich auf Funktionen, die nur vom Ort $x$ abhängen.
 
-\subsection{Diskretisierung von $\Delta$}
-Zur Lösung des Problems muss das betrachtete, zusammenhängende Gebiet in diskrete Teilstücke zerlegt werden, um das Problem numerisch zu lösen. Weiterhin müssen die Operatoren auf dem Gebiet auch entsprechend angepasst werden. Dieses Verfahren nennt sich Diskretisierung. 
+\subsection{Numerische Methoden}
+\subsubsection{Diskretisierung von $\Delta$}
+Zur Bearbeitung der Aufgabe muss das betrachtete, zusammenhängende Gebiet in diskrete Teilstücke zerlegt werden, um das Problem numerisch zu lösen. Weiterhin müssen die Operatoren auf dem Gebiet auch entsprechend angepasst werden. Dieses Verfahren nennt sich Diskretisierung. 
 Hierfür wird ein isotropes Gitter mit festem Gitterabstand $a$ in alle Richtungen gewählt. Mit Hilfe des Einheitsvektors in $\mu$-Richtung können von jedem Punkt $x$ ausgehend mit $x\pm a\vec{\mu}$ die Nachbarpunkte erreicht werden.
 
 Der Laplace-Operator bzw. allgemein jede Differentiation der Funktion wird nun an diesen Gitterpunkten numerisch approximiert. Dazu wird der Differenzenquotient verwendet. Man erhält dann für die zweifache Ableitung in $x_{\mu}$-Richtung:
@@ -40,10 +41,16 @@ Der Laplace-Operator bzw. allgemein jede Differentiation der Funktion wird nun a
 \frac{\partial^2f}{\partial x_{\mu}^2}=\frac{f_{x+a\vec{\mu}}-2 f_x+f_{x-a\vec{\mu}}}{a^2}
 \label{eqn:diffquotient}
 \end{align}
-Dieses Verfahren ist besonders für die Neumann Randbedingung wie in  \ref{randbedingungen} interessant, denn man erkennt, dass man das betrachtete Gebiet über den Rand fortsetzen kann. Dies geschieht gerade mit $f_{x+a\vec{\mu}}=f_{x-a\vec{\mu}}$, denn dann verschwindet die erste Ableitung (als Differenzenquotient wie in \ref{eqn:diffquotient} ausgedrückt), wie die Randbedingung fordert.
-Man erhält durch die Diskretisierung also ein Gleichungssystem mit einer dünn besetzten Matrix, deren Einträge die Gitterpunkte repräsentieren. Die Lösung solcher Systeme (insbesondere für dünn besetzte Matrizen) wird im nachfolgenden Abschnitt \ref{sec:gauss-seidel} erläutert.  
+Dieses Verfahren ist besonders für die Neumann Randbedingung wie in  \ref{randbedingungen} interessant, denn man erkennt, dass man das betrachtete Gebiet in diesem speziellen Fall über den Rand fortsetzen kann. Dies geschieht gerade mit $f_{x+a\vec{\mu}}=f_{x-a\vec{\mu}}$, denn dann verschwindet die erste Ableitung (als Differenzenquotient wie in \ref{eqn:diffquotient} ausgedrückt), wie die Randbedingung fordert.
 
-\subsection{Gauß-Seidel Verfahren}
+Man erhält durch die Diskretisierung also ein Gleichungssystem mit einer dünn besetzten Matrix, deren Einträge die Gitterpunkte repräsentieren. Die Lösung solcher Systeme (insbesondere für dünn besetzte Matrizen) wird im nachfolgenden Abschnitt \ref{sec:gauss-seidel} erläutert.
+
+\begin{figure}[htbp!]
+\centering
+\includegraphics[height=5cm]{./figures/grid.eps}
+\end{figure}
+
+\subsubsection{Gauß-Seidel Verfahren}
 \label{sec:gauss-seidel}
 Zur Lösung des Gleichungssystems nutzen wir das für große, dünne Matrizen gut geeignete Iterationsverfahren nach \emph{Gauß-Seidel}. Dazu wird das Gleichungssystem $A\vec{x}=\vec{b}$ in Fixpunktform geschrieben:
 \begin{align}
@@ -51,7 +58,7 @@ Zur Lösung des Gleichungssystems nutzen wir das für große, dünne Matrizen gu
 \end{align}
 Hierbei ist $H=1-B^{-1}A$ und $\vec{c}=B^{-1}\vec{b}$, wobei $B$ so gewählt wird, dass $B^{-1}\approx A^{-1}$. Weiterhin soll $B$ leicht zu invertieren sein. Nimmt man an, dass die Diagonalelemente von A $\not=0$ sind, kann man das Gleichungssystem zeilenweise lösen. Dazu betrachtet man die $i$-te Zeile
 \begin{align}
-a_{i0}\,x_0+\dots+a_{i,n-1}\,x_{n-1}=b_i
+a_{i0}\,x_0+...+a_{i,n-1}\,x_{n-1}=b_i
 \end{align}
 und löst sie nach $x_i$ auf. Man erhält dann:
 \begin{align}
@@ -61,13 +68,15 @@ Hierfür muss im ersten Iterationsschritt ein Näherungsvektor für die Lösung 
 \begin{align}
 \vec{x}^{\,k+1}=\vec{x}^{\,k}+D^{-1}\left(\vec{b}-A\vec{x}^{\,k}\right)
 \end{align}
+Wobei $D$=$B$ hier einer Diagonalmatrix mit Einträgen $(a_{00}, ... ,a_{n-1,n-1})$ entspricht.
 
-\subsection{Differentialgleichung}
+\subsubsection{Differentialgleichung}
 \begin{align}
 GLEICHUNG
 \label{eqn:dgl}
 \end{align}
-\subsection{Randbedingungen}
+
+\subsubsection{Randbedingungen}
 \label{randbedingungen}
 Bei der zu bearbeitenden Aufgabe tauchen zwei verschiedene Randbedingungen auf:
 \begin{itemize}
@@ -77,30 +86,62 @@ Bei der zu bearbeitenden Aufgabe tauchen zwei verschiedene Randbedingungen auf:
 Die Dirichlet-Randbedingung geben einen festen Wert für die Funktion $u$ in \ref{eqn:dgl} auf dem Rand des betrachteten Gebietes vor. In unserem Fall werden sowohl für $f$ als auch $u$ konstante Werte auf dem Rand des Objektes angegeben. Die Neumann Randbedingung legt einen Wert für $\frac{\partial u}{\partial \vec{\mu}}$ auf dem Rand fest, wobei $\vec{\mu}$ der nach außen gerichtete Normalenvektor auf dem Rand ist. Die Aufgabe gibt für $\frac{\partial u}{\partial \vec{\mu}}$ den Wert $0$ auf der unteren Kante vor. Sie besagt, dass von dem Rand keine Wärmeleitung nach außen stattfindet, und die Wärme von der Kante über das Objekt abfließt. 
 
 \subsection{Physikalische Ergebnisse}
-In den folgenden Abbildungen sind jeweils die Lösungen des Problems dargestellt. Geplottet wurde der Wert der Temperaturverteilung an dem jeweiligen Gitterpunkt, wobei die rote Färbung einem höheren, die blaue einem niedrigeren Temperaturwert entspricht. Bis auf für den Gitterabstand $a=0,01$ ist die Diskretisierung noch deutlich erkennbar.
-\begin{figure}
+In den folgenden Abbildungen sind jeweils die Lösungen des Problems dargestellt. Geplottet wurde der Wert der Temperaturverteilung an dem jeweiligen Gitterpunkt, wobei die rote Färbung einem höheren, die blaue einem niedrigeren Temperaturwert entspricht. Bis auf den Gitterabstand $a=0,01$ ist die Diskretisierung noch deutlich erkennbar.
+Die Temperaturverteilung zeigt ein realistisches Bild für das gegebene Problem.
+
+\begin{figure}[htbp!]
+\begin{minipage}[c]{0.5\textwidth}
 \centering
-\include{./figures/heatmap_a_1}
+\vspace{-60pt}
+\scalebox{0.9}{\input{./figures/heatmap_a_1}}
 \vspace{-40pt}
 \caption{Temperaturverteilung für $a=0,01$}
-\end{figure}
-\begin{figure}
-\centering
-\include{./figures/heatmap_a_10}
+\vspace{-20pt}
+\scalebox{0.9}{\input{./figures/heatmap_a_10}}
 \vspace{-40pt}
 \caption{Temperaturverteilung für $a=0,1$}
-\end{figure}
-\begin{figure}
+\end{minipage}
+\begin{minipage}[c]{0.5\textwidth}
 \centering
-\include{./figures/heatmap_a_20}
+\vspace{-60pt}
+\scalebox{0.9}{\input{./figures/heatmap_a_20}}
 \vspace{-40pt}
 \caption{Temperaturverteilung für $a=0,2$}
-\end{figure}
-\begin{figure}
-\centering
-\include{./figures/heatmap_a_25}
+\vspace{-20pt}
+\scalebox{0.9}{\input{./figures/heatmap_a_25}}
 \vspace{-40pt}
 \caption{Temperaturverteilung für $a=0,25$}
+\end{minipage}
 \end{figure}
+
+%\begin{figure}[htbp!]
+%\centering
+%\vspace{-20pt}
+%\include{./figures/heatmap_a_1}
+%\vspace{-40pt}
+%\caption{Temperaturverteilung für $a=0,01$}
+%\end{figure}
+%\begin{figure}[htbp!]
+%\centering
+%\vspace{-20pt}
+%\include{./figures/heatmap_a_10}
+%\vspace{-40pt}
+%\caption{Temperaturverteilung für $a=0,1$}
+%\end{figure}
+%\begin{figure}[htbp!]
+%\centering
+%\vspace{-20pt}
+%\include{./figures/heatmap_a_20}
+%\vspace{-40pt}
+%\caption{Temperaturverteilung für $a=0,2$}
+%\end{figure}
+%\begin{figure}[htbp!]
+%\centering
+%\vspace{-20pt}
+%\include{./figures/heatmap_a_25}
+%\vspace{-40pt}
+%\caption{Temperaturverteilung für $a=0,25$}
+%\end{figure}
+
 Auffällig ist, dass mit sinkendem Gitterabstand die maximale Temperatur sinkt. Außerdem sieht man besonders beim Übergang von $a=0,1$  zu $a=0,01$ gut, dass der Bereich mittlerer Temperaturen kleiner wird, da die rot gefärbte Fläche größer und die Ränder schmäler werden.
 \end{document}
