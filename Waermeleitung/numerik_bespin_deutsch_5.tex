@@ -25,11 +25,15 @@
 \section{Wärmeleitung}
 
 \subsection{Physikalischer Hintergrund}
-Grundlage für Wärmeaustauschvorgänge, wie die hier zu behandelnde Wärmeleitung, bildet das \emph{Fourier'sche Gesetz}. Es besagt, dass die Wärmestromdichte $\dot{\vec{q}}$ durch ein Flächenstück proportional zum negativen Temperaturgradienten auf der Oberfläche ist. Aus der Energieerhaltung folgt, dass diese Änderung der Energie gleich der aus Quellen zugeflossenen und über die Fläche abfließenden Energie ist. Wir erhalten dann für die Temperatur $u(x)$ am Ort $x$ auf dem Flächenstück:
+Grundlage für Wärmeaustauschvorgänge, wie die hier zu behandelnde Wärmeleitung, bildet das \emph{Fourier'sche Gesetz}. Es besagt, dass die Wärmestromdichte $\dot{\vec{q}}$ durch ein Flächenstück proportional zum negativen Temperaturgradienten und der zu diesem Gradienten senkrechten Fläche, durch die Wärmeleitung stattfindet, ist. Aus der Energieerhaltung folgt, dass diese Änderung der Energie zu jeder Zeit gleich der aus Quellen zugeflossenen und über die Fläche abfließenden Energie ist. Wir erhalten dann für die Temperatur $u(\vec{x},t)$ am Ort $\vec{x}$ und zur Zeit $t$ auf dem Flächenstück:
 \begin{align}  
-\frac{\partial}{\partial t}u(\vec{x},t)=f(\vec{x},t)+ a \Delta u(\vec{x},t)
+\frac{\partial}{\partial t}u(\vec{x},t)-a \Delta u(\vec{x},t)=f(\vec{x},t)
 \end{align}
-Dabei beschreibt $f(x)$ die Wärmequellen und -senken und $a$ die Temperaturleitfähigkeit, die bei der Bearbeitung der Aufgabe gleich $1$ gesetzt wird. Da wir bei der Aufgabe den stationären Fall betrachten, ist die zeitliche Ableitung konstant und $u$ und $f$ reduzieren sich auf Funktionen, die nur vom Ort $x$ abhängen.
+Dabei beschreibt $f(\vec{x,t})$ die Wärmequellen und -senken und $a$ die Temperaturleitfähigkeit, die bei der Bearbeitung der Aufgabe gleich $1$ gesetzt wird. Da wir bei der Aufgabe den stationären Fall betrachten, ist die zeitliche Ableitung konstant und $u$ und $f$ reduzieren sich auf Funktionen, die nur vom Ort $x$ abhängen:
+\begin{align}
+-\Delta u(x)=f(x)
+\label{eqn:dgl}
+\end{align}
 
 \subsection{Numerische Methoden}
 \subsubsection{Diskretisierung von $\Delta$}
@@ -48,6 +52,7 @@ Man erhält durch die Diskretisierung also ein Gleichungssystem mit einer dünn 
 \begin{figure}[htbp!]
 \centering
 \includegraphics[height=5cm]{./figures/grid.eps}
+\caption{Diskretisierung des Objektes}
 \end{figure}
 
 \subsubsection{Gauß-Seidel Verfahren}
@@ -70,12 +75,6 @@ Hierfür muss im ersten Iterationsschritt ein Näherungsvektor für die Lösung 
 \end{align}
 Wobei $D$=$B$ hier einer Diagonalmatrix mit Einträgen $(a_{00}, ... ,a_{n-1,n-1})$ entspricht.
 
-\subsubsection{Differentialgleichung}
-\begin{align}
-GLEICHUNG
-\label{eqn:dgl}
-\end{align}
-
 \subsubsection{Randbedingungen}
 \label{randbedingungen}
 Bei der zu bearbeitenden Aufgabe tauchen zwei verschiedene Randbedingungen auf:
@@ -83,7 +82,7 @@ Bei der zu bearbeitenden Aufgabe tauchen zwei verschiedene Randbedingungen auf:
 \item Dirichlet Randbedingungen und
 \item Neumann Randbedingungen
 \end{itemize}
-Die Dirichlet-Randbedingung geben einen festen Wert für die Funktion $u$ in \ref{eqn:dgl} auf dem Rand des betrachteten Gebietes vor. In unserem Fall werden sowohl für $f$ als auch $u$ konstante Werte auf dem Rand des Objektes angegeben. Die Neumann Randbedingung legt einen Wert für $\frac{\partial u}{\partial \vec{\mu}}$ auf dem Rand fest, wobei $\vec{\mu}$ der nach außen gerichtete Normalenvektor auf dem Rand ist. Die Aufgabe gibt für $\frac{\partial u}{\partial \vec{\mu}}$ den Wert $0$ auf der unteren Kante vor. Sie besagt, dass von dem Rand keine Wärmeleitung nach außen stattfindet, und die Wärme von der Kante über das Objekt abfließt. 
+Die Dirichlet-Randbedingung geben einen festen Wert für die Funktion $u$ in \ref{eqn:dgl} auf dem Rand des betrachteten Gebietes vor. In unserem Fall werden sowohl für $u$ als auch $f$ konstante Werte auf dem Rand des Objektes angegeben. Die Neumann Randbedingung legt einen Wert für $\frac{\partial u}{\partial \vec{\mu}}$ auf dem Rand fest, wobei $\vec{\mu}$ der nach außen gerichtete Normalenvektor auf dem Rand ist. Die Aufgabe gibt für $\frac{\partial u}{\partial \vec{\mu}}$ den Wert $0$ auf der unteren Kante vor. Sie besagt, dass von dem Rand keine Wärmeleitung nach außen stattfindet, und die Wärme von der Kante über das Objekt abfließt. 
 
 \subsection{Physikalische Ergebnisse}
 In den folgenden Abbildungen sind jeweils die Lösungen des Problems dargestellt. Geplottet wurde der Wert der Temperaturverteilung an dem jeweiligen Gitterpunkt, wobei die rote Färbung einem höheren, die blaue einem niedrigeren Temperaturwert entspricht. Bis auf den Gitterabstand $a=0,01$ ist die Diskretisierung noch deutlich erkennbar.
