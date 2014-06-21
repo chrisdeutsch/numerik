@@ -78,13 +78,13 @@ Dieses Verfahren ist besonders für die Neumann Randbedingung wie in  \ref{randb
 
 
 \subsubsection{Diskretisierung der Differentialgleichung}
-Aus (\ref{dgl}) und der Diskretisierung des Laplace-Operators folgt für jeden Gitterpunkt eine Gleichung:
+Aus (\ref{dgl}) und der Diskretisierung des Laplace-Operators folgt für jeden Gitterpunkt $\vec{x}$ eine Gleichung:
 \begin{align}
 4 u(\vec{x}) - u(\vec{x}+a\,\vec{1}) - u(\vec{x}-a\,\vec{1}) - u(\vec{x}+a\,\vec{2}) - u(\vec{x}-a\,\vec{2}) = a^2 f(\vec{x})
 \label{eqn:diffquotient2}
 \end{align}
-
-Man erhält durch die Diskretisierung also ein Gleichungssystem mit einer dünn besetzten Matrix, deren Einträge die Gitterpunkte repräsentieren. Die Lösung solcher Systeme (insbesondere für dünn besetzte Matrizen) wird im nachfolgenden Abschnitt \ref{sec:gauss-seidel} erläutert.
+Diese Gleichung wird jetzt für jeden Punkt $\vec{x}$ des Gitters mit Ausnahme der Punkte mit Dirichlet-Randbedingung aufgestellt. Dabei muss stets beachtet werden, ob einer der Nachbarpunkte von $\vec{x}$ aufgrund der Randbedingung festgelegtes $u$ hat. Sollte dies der Fall sein, kann der Zahlenwert auf die rechte Seite der Gleichung gebracht werden.
+Man erhält durch diese Diskretisierung also ein Gleichungssystem mit einer dünn besetzten Koeffizientenmatrix, deren Einträge die Gitterpunkte repräsentieren. Die Lösung solcher Systeme (insbesondere für dünn besetzte Matrizen) wird im nachfolgenden Abschnitt \ref{sec:gauss-seidel} erläutert.
 
 \subsubsection{Gauß-Seidel Verfahren}
 \label{sec:gauss-seidel}
