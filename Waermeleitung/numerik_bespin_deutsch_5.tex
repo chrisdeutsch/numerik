@@ -37,20 +37,18 @@ Dabei beschreibt $f(\vec{x,t})$ die Wärmequellen und -senken und $a$ die Temper
 
 \subsection{Numerische Methoden}
 \subsubsection{Diskretisierung des Laplace-Operators}
-Zur Bearbeitung der Aufgabe muss das betrachtete, zusammenhängende Gebiet in diskrete Teilstücke zerlegt werden, um das Problem numerisch zu lösen. Dabei müssen die verwendeten Operatoren ebenfalls diskretisiert werden. Hierfür wird ein isotropes Gitter mit festem Gitterabstand $a$ in alle Richtungen gewählt. Mit Hilfe des Einheitsvektors in $\mu$-Richtung können von jedem Punkt $\vec{x}$ ausgehend mit $\vec{x} \pm a\vec{\mu}$ die Nachbarpunkte eines Gitterpunktes erreichen.
+Zur Bearbeitung der Aufgabe muss das betrachtete, zusammenhängende Gebiet in diskrete Teilstücke zerlegt werden, um das Problem numerisch zu lösen. Dabei müssen die verwendeten Operatoren ebenfalls diskretisiert werden. Hierfür wird ein isotropes Gitter mit festem Gitterabstand $a$ in alle Richtungen gewählt. Mit Hilfe des Einheitsvektors in $\mu$-Richtung können von jedem Punkt $\vec{x}$ ausgehend mit $\vec{x} \pm a\vec{\mu}$ die Nachbarpunkte eines Gitterpunktes erreicht werden.
 
 Zur Diskretisierung des Laplace-Operators ist es notwendig, die zweite Ableitung nach der Ortskoordinate zu berechnen. Dies geschieht mit Hilfe des zentralen Differenzenquotienten:
 \begin{align}
 \frac{\partial u(\vec{x})}{\partial x_{\mu}}\approx\frac{u(\vec{x}+\frac{a}{2}\,\vec{\mu}) - u(\vec{x}-\frac{a}{2}\,\vec{\mu})}{a}
 \label{eqn:diffquotient1}
 \end{align}
-
 Die zweite Ableitung kann nun durch die zweifache Anwendung von (\ref{eqn:diffquotient1}) an den Gitterpunkten genähert werden:
 \begin{align}
 \frac{\partial^2 u(\vec{x})}{\partial x_{\mu}^2}\approx\frac{u(\vec{x}+a\,\vec{\mu})-2 u(\vec{x})+u(\vec{x}-a\,\vec{\mu})}{a^2}
 \label{eqn:diffquotient2}
 \end{align}
-
 Mit diesen Ergebnissen ergibt sich der Laplace-Operator für den $2$-dimensionalen Fall mit den Einheitsvektoren $\vec{1}$ und $\vec{2}$ durch:
 \begin{align}
 \Delta u(\vec{x})\approx\frac{1}{a^2}\left(u(\vec{x}+a\,\vec{1}) + u(\vec{x}-a\,\vec{1}) + u(\vec{x}+a\,\vec{2})+u(\vec{x}-a\,\vec{2}) -4 u(\vec{x})\right)
@@ -102,7 +100,7 @@ x_i^{(k+1)} = \frac{1}{a_{ii}}\left( b_i - \sum^{i-1}_{l=1} a_{il} x_l^{(k+1)} -
 \end{align}
 
 \subsection{Implementation}
-Wir benutzen die Struktur der dünnen Matrix um Rechenzeit sowie Arbeitsspeicher zu sparen. Dafür wurde in \texttt{numerik\_bespin\_deutsch\_sparse\_matrix} eine Datenstruktur für eine dünne Matrix angelegt, sowie eine Funktion zur Lösung eines Gleichungssystems mit einer dünnen Koeffizientenmatrix mit dem Gauß-Seidel-Verfahren. Dabei besteht die Datenstruktur im wesentlich aus einem Array einfach verketteter Listen (Zeilen der Matrix), in welchen die von Null verschiedenen Matrixelemente (Spalten der Matrix) gespeichert werden.
+Wir benutzen die Struktur der dünnen Matrix um Rechenzeit sowie Arbeitsspeicher zu sparen. Dafür wurde in \texttt{numerik\_bespin\_deutsch\_sparse\_matrix} eine Datenstruktur für eine dünne Matrix angelegt, sowie eine Funktion zur Lösung eines Gleichungssystems mit einer dünnen Koeffizientenmatrix mit dem Gauß-Seidel-Verfahren. Dabei besteht die Datenstruktur im Wesentlichen aus einem Array einfach verketteter Listen (Zeilen der Matrix), in welchen die von Null verschiedenen Matrixelemente (Spalten der Matrix) gespeichert werden.
 
 \begin{figure}
 \centering
@@ -150,7 +148,6 @@ Auffällig ist, dass mit sinkendem Gitterabstand die maximale Temperatur sinkt, 
 \label{fig:a_1}
 \end{minipage}
 \end{figure}
-
 In Abbildung \ref{fig:a_1} sind die weißen Flächen deutlich breiter als bei den anderen Abbildungen, was in der Darstellungsart begründet ist. Es wird ein Quadrat mit Kantenlänge $a$ um jeden Gitterpunkt gezeichnet, was dazu führt, dass bei großem Gitterabstand die Quadrate eine größere Kantenlänge haben und von ihrem zugeordneten Punkt ausgehend in das ausgenommene (=weiße) Gebiet "`hineinragen"'. Dieser Effekt tritt eigentlich in allen Abbildungen auf, ist aber aufgrund der nah beieinander liegenden $a$ in Abbildungen \ref{fig:a_25}, \ref{fig:a_20}, \ref{fig:a_10} schwerer zu erkennen.
 \par
 Es war weiterhin Aufgabe, ein weiteres Programm zu schreiben, was die Symmetrie des betrachteten Objektes ausnutzt. In Tabelle \ref{tab:zeiten} sind für verschiedene Gitterabstände die Laufzeiten der beiden Programme auf den Rechnern des CIP-Pools eingetragen. Man erkennt deutlich, dass das Programm, welches die Symmetrie des Bauteils ausnutzt, für alle hinreichend kleinen Gitterabstände etwa die Hälfte der Laufzeit des anderen Programms benötigt. Für den Gitterabstand $a=\num{0,25}$ sind die Laufzeiten nicht genau festzulegen, da sie im Bereich von einstelligen Millisekunden liegen.
