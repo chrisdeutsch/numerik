@@ -36,16 +36,22 @@ Dabei beschreibt $f(\vec{x,t})$ die Wärmequellen und -senken und $a$ die Temper
 \end{align}
 
 \subsection{Numerische Methoden}
-\subsubsection{Diskretisierung von $\Delta$}
-Zur Bearbeitung der Aufgabe muss das betrachtete, zusammenhängende Gebiet in diskrete Teilstücke zerlegt werden, um das Problem numerisch zu lösen. Weiterhin müssen die Operatoren auf dem Gebiet auch entsprechend angepasst werden. Dieses Verfahren nennt sich Diskretisierung. 
-Hierfür wird ein isotropes Gitter mit festem Gitterabstand $a$ in alle Richtungen gewählt. Mit Hilfe des Einheitsvektors in $\mu$-Richtung können von jedem Punkt $x$ ausgehend mit $x\pm a\vec{\mu}$ die Nachbarpunkte erreicht werden.
+\subsubsection{Diskretisierung des Laplace-Operators}
+Zur Bearbeitung der Aufgabe muss das betrachtete, zusammenhängende Gebiet in diskrete Teilstücke zerlegt werden, um das Problem numerisch zu lösen, dabei müssen die verwendeten Operatoren ebenfalls diskretisiert werden. Hierfür wird ein isotropes Gitter mit festem Gitterabstand $a$ in alle Richtungen gewählt. Mit Hilfe des Einheitsvektors in $\mu$-Richtung können von jedem Punkt $\vec{x}$ ausgehend mit $\vec{x} \pm a\vec{\mu}$ die Nachbarpunkte eines Gitterpunktes erreichen.
 
-Der Laplace-Operator bzw. allgemein jede Differentiation der Funktion wird nun an diesen Gitterpunkten numerisch approximiert. Dazu wird der Differenzenquotient verwendet. Man erhält dann für die zweifache Ableitung in $x_{\mu}$-Richtung:
+Zur Diskretisierung des Laplace-Operators ist es notwendig, die zweiten Ableitung nach der Ortskoordinate zu berechnen. Dies geschieht mit Hilfe des zentralen Differenzenquotient:
 \begin{align}
-\frac{\partial^2f}{\partial x_{\mu}^2}=\frac{f_{x+a\vec{\mu}}-2 f_x+f_{x-a\vec{\mu}}}{a^2}
-\label{eqn:diffquotient}
+\frac{\partial u(\vec{x})}{\partial x_{\mu}}=\frac{u(\vec{x}+\frac{a}{2}\vec{\mu}) - u(x-\frac{a}{2}\vec{\mu})}{a}
+\label{eqn:diffquotient1}
 \end{align}
-Dieses Verfahren ist besonders für die Neumann Randbedingung wie in  \ref{randbedingungen} interessant, denn man erkennt, dass man das betrachtete Gebiet in diesem speziellen Fall über den Rand fortsetzen kann. Dies geschieht gerade mit $f_{x+a\vec{\mu}}=f_{x-a\vec{\mu}}$, denn dann verschwindet die erste Ableitung (als Differenzenquotient wie in \ref{eqn:diffquotient} ausgedrückt), wie die Randbedingung fordert.
+
+Die zweite Ableitung kann nun durch die zweifache Anwendung von (\ref{eqn:diffquotient1}) an den Gitterpunkten genähert werden:
+\begin{align}
+\frac{\partial^2 u(\vec{x})}{\partial x_{\mu}^2}=\frac{u(\vec{x}+a\vec{\mu})-2 u(\vec{x})+u(x-a\vec{\mu})}{a^2}
+\label{eqn:diffquotient2}
+\end{align}
+
+Verschieben: Dieses Verfahren ist besonders für die Neumann Randbedingung wie in  \ref{randbedingungen} interessant, denn man erkennt, dass man das betrachtete Gebiet in diesem speziellen Fall über den Rand fortsetzen kann. Dies geschieht gerade mit $f_{x+a\vec{\mu}}=f_{x-a\vec{\mu}}$, denn dann verschwindet die erste Ableitung (als Differenzenquotient wie in \ref{eqn:diffquotient2} ausgedrückt), wie die Randbedingung fordert.
 
 Man erhält durch die Diskretisierung also ein Gleichungssystem mit einer dünn besetzten Matrix, deren Einträge die Gitterpunkte repräsentieren. Die Lösung solcher Systeme (insbesondere für dünn besetzte Matrizen) wird im nachfolgenden Abschnitt \ref{sec:gauss-seidel} erläutert.
 
@@ -54,6 +60,17 @@ Man erhält durch die Diskretisierung also ein Gleichungssystem mit einer dünn 
 \includegraphics[height=5cm]{./figures/grid.eps}
 \caption{Diskretisierung des Objektes}
 \end{figure}
+
+\subsubsection{Differentialgleichung}
+
+\subsubsection{Randbedingungen}
+\label{randbedingungen}
+Bei der zu bearbeitenden Aufgabe tauchen zwei verschiedene Randbedingungen auf:
+\begin{itemize}
+\item Dirichlet Randbedingungen und
+\item Neumann Randbedingungen
+\end{itemize}
+Die Dirichlet-Randbedingung geben einen festen Wert für die Funktion $u$ in (FEHLENDE REFERENZ) auf dem Rand des betrachteten Gebietes vor. In unserem Fall werden sowohl für $f$ als auch $u$ konstante Werte auf dem Rand des Objektes angegeben. Die Neumann Randbedingung legt einen Wert für $\frac{\partial u}{\partial \vec{\mu}}$ auf dem Rand fest, wobei $\vec{\mu}$ der nach außen gerichtete Normalenvektor auf dem Rand ist. Die Aufgabe gibt für $\frac{\partial u}{\partial \vec{\mu}}$ den Wert $0$ auf der unteren Kante vor. Sie besagt, dass von dem Rand keine Wärmeleitung nach außen stattfindet, und die Wärme von der Kante über das Objekt abfließt.
 
 \subsubsection{Gauß-Seidel Verfahren}
 \label{sec:gauss-seidel}
