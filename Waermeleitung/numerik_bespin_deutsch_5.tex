@@ -10,10 +10,10 @@
 \usepackage{graphicx}
 \usepackage[outdir=./figures/]{epstopdf}
 \usepackage{capt-of}
-\usepackage{multirow}
 \usepackage[colorlinks]{hyperref}
 \usepackage[section]{placeins}
 \usepackage{booktabs}
+\usepackage{multicol}
 
 \author{Christian Bespin \and Christopher Deutsch}
 \title{Übungsblatt 5: Numerische Methoden der Physik}
@@ -102,7 +102,7 @@ x_i^{(k+1)} = \frac{1}{a_{ii}}\left( b_i - \sum^{n}_{\substack{l=1 \\ l \neq i}}
 \end{align}
 durch Umformung von (\ref{gls}) nach $x_i$. Insbesondere wird deutlich, dass kein Element der Hauptdiagonalen verschwinden darf. Aufgrund von Gl. (\ref{eqn:dgldiskret}) ist auf der Hauptdiagonalen unserer Gleichungen stets eine $\num{4}$ und damit die Iterationsvorschrift anwendbar.
 
-Der Unterschied des Gauß-Seidel-Verfahrens gegenüber der Jacobi-Methode ist, dass vorangegangene Iterationsschritte der Koordinaten $x_1, \dots , x_{i-1}$ bereits bei der Iteration der Koordinate $x_i$ verwendet wird. Damit nimmt Gl. (\ref{iterationsvorschrift}) die folgende Form an:
+Der Unterschied des Gauß-Seidel-Verfahrens gegenüber der Jacobi-Methode ist, dass vorangegangene Iterationsschritte der Koordinaten $x_1, \dots , x_{i-1}$ bereits bei der Iteration der Koordinate $x_i$ verwendet werden. Damit nimmt Gl. (\ref{iterationsvorschrift}) die folgende Form an:
 \begin{align}
 x_i^{(k+1)} = \frac{1}{a_{ii}}\left( b_i - \sum^{i-1}_{l=1} a_{il} x_l^{(k+1)} - \sum^{n}_{l=i+1} a_{il} x_l^{(k)} \right) 
 \end{align}
@@ -151,4 +151,23 @@ Die Temperaturverteilung zeigt ein realistisches Bild für das gegebene Problem.
 Auffällig ist, dass mit sinkendem Gitterabstand die maximale Temperatur sinkt. Außerdem sieht man besonders beim Übergang von $a=0,1$ zu $a=0,01$ gut, dass der Bereich mittlerer Temperaturen kleiner wird, da die rot gefärbte Fläche größer und die Ränder schmäler werden.
 
 In Abbildung \ref{fig:a_1} sind die weißen Flächen deutlich breiter als bei den anderen Darstellungen, was in der Diskretisierung begründet ist. Es wird ein Quadrat mit Kantenlänge $a$ um jeden Gitterpunkt gelegt, was dazu führt, dass bei großem Gitterabstand die Quadrate eine größere Kantenlänge haben und von ihrem zugeordneten Punkt ausgehend in das ausgenommene (=weiße) Gebiet "`hineinragen"'. Dieser Effekt tritt eigentlich in allen Abbildungen auf, ist aber aufgrund der nah beieinander liegenden $a$ in Abbildungen \ref{fig:a_25}, \ref{fig:a_20}, \ref{fig:a_10} schwerer zu erkennen.
+\par
+Es war weiterhin Aufgabe, ein weiteres Programm zu schreiben, was die Symmetrie des betrachteten Objektes ausnutzt. In Tabelle \ref{tab:zeiten} sind für verschiedene Gitterabstände die Laufzeiten der beiden Programme auf den Rechnern des CIP-Pools eingetragen. Man erkennt deutlich, dass das Programm, welches die Symmetrie des Bauteils ausnutzt, für alle hinreichend kleinen Gitterabstände etwa die Hälfte der Laufzeit des anderen Programms benötigt. Für den Gitterabstand $a=0,25$ sind die Laufzeiten nicht genau festzulegen, da sie im Bereich von einstelligen Millisekunden liegen.
+\begin{table}
+\centering
+\begin{tabular}{l c c}
+\toprule
+Gitterabstand $a$ & Zeit ohne Symmetrienutzung $/$\si{\milli\second} & Zeit mit Symmetrienutzung $/$\si{\milli\second}\\\midrule
+$0,25$ & \multicolumn{2}{c}{$<10$} \\
+$0,2$  & $11$    & -\footnotemark \\
+$0,1$  & $41$    & $24$ \\
+$0,05$ & $285$   & $150$ \\
+$0,02$ & $12500$ & $6300$ \\
+$0,01$ & $49000$ & $24000$ \\
+\bottomrule
+\end{tabular}
+\caption{Vergleich der Laufzeiten der beiden Programme}
+\label{tab:zeiten}
+\end{table}
+\footnotetext{Das Programm kann diesen Gitterabstand nicht verarbeiten; nur solche $a$, die Teiler von $50$ sind.}
 \end{document}
