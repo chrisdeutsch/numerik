@@ -25,13 +25,13 @@
 \section{Wärmeleitung}
 
 \subsection{Physikalischer Hintergrund}
-Grundlage für Wärmeaustauschvorgänge, wie die hier zu behandelnde Wärmeleitung, bildet das \emph{Fourier'sche Gesetz}. Es besagt, dass die Wärmestromdichte $\dot{\vec{q}}$ durch ein Flächenstück proportional zum negativen Temperaturgradienten und der zu diesem Gradienten senkrechten Fläche, durch die Wärmeleitung stattfindet, ist. Aus der Energieerhaltung folgt, dass diese Änderung der Energie zu jeder Zeit gleich der aus Quellen zugeflossenen und über die Fläche abfließenden Energie ist. Wir erhalten dann für die Temperatur $u(\vec{x},t)$ am Ort $\vec{x}$ und zur Zeit $t$ auf dem Flächenstück:
+Grundlage für Wärmeaustauschvorgänge, wie die hier zu behandelnde Wärmeleitung, bildet das \emph{Fourier'sche Gesetz}. Es besagt, dass die Wärmestromdichte $\dot{\vec{q}}$ durch ein Flächenstück proportional zum negativen Temperaturgradienten und der zu diesem Gradienten senkrechten Fläche, durch die Wärmeleitung stattfindet, ist. Aus der Energieerhaltung folgt, dass diese Änderung der Energie zu jeder Zeit gleich der aus Quellen zugeflossenen und über die Fläche abfließenden Energie ist. Man erhält dann für die Temperatur $u(\vec{x},t)$ am Ort $\vec{x}$ und zur Zeit $t$ im Körper:
 \begin{align}  
 \frac{\partial}{\partial t}u(\vec{x},t)-a \Delta u(\vec{x},t)=f(\vec{x},t)
 \end{align}
-Dabei beschreibt $f(\vec{x,t})$ die Wärmequellen und -senken und $a$ die Temperaturleitfähigkeit, die bei der Bearbeitung der Aufgabe gleich $1$ gesetzt wird. Da wir bei der Aufgabe den stationären Fall betrachten, ist die zeitliche Ableitung konstant und $u$ und $f$ reduzieren sich auf Funktionen, die nur vom Ort $x$ abhängen:
+Dabei beschreibt $f(\vec{x,t})$ die Wärmequellen und -senken und $a$ die Temperaturleitfähigkeit, die bei der Bearbeitung der Aufgabe gleich $1$ gesetzt wird. Da wir bei der Aufgabe den zweidimensionalen, stationären Fall betrachten, ist die zeitliche Ableitung konstant und $u$ und $f$ reduzieren sich auf Funktionen, die nur vom Ort $\vec{x}$ abhängen:
 \begin{align}
--\Delta u(x)=f(x)
+\Delta u(\vec{x})=-f(\vec{x})
 \label{eqn:dgl}
 \end{align}
 
@@ -39,7 +39,7 @@ Dabei beschreibt $f(\vec{x,t})$ die Wärmequellen und -senken und $a$ die Temper
 \subsubsection{Diskretisierung des Laplace-Operators}
 Zur Bearbeitung der Aufgabe muss das betrachtete, zusammenhängende Gebiet in diskrete Teilstücke zerlegt werden, um das Problem numerisch zu lösen, dabei müssen die verwendeten Operatoren ebenfalls diskretisiert werden. Hierfür wird ein isotropes Gitter mit festem Gitterabstand $a$ in alle Richtungen gewählt. Mit Hilfe des Einheitsvektors in $\mu$-Richtung können von jedem Punkt $\vec{x}$ ausgehend mit $\vec{x} \pm a\vec{\mu}$ die Nachbarpunkte eines Gitterpunktes erreichen.
 
-Zur Diskretisierung des Laplace-Operators ist es notwendig, die zweiten Ableitung nach der Ortskoordinate zu berechnen. Dies geschieht mit Hilfe des zentralen Differenzenquotient:
+Zur Diskretisierung des Laplace-Operators ist es notwendig, die zweite Ableitung nach der Ortskoordinate zu berechnen. Dies geschieht mit Hilfe des zentralen Differenzenquotienten:
 \begin{align}
 \frac{\partial u(\vec{x})}{\partial x_{\mu}}=\frac{u(\vec{x}+\frac{a}{2}\,\vec{\mu}) - u(\vec{x}-\frac{a}{2}\,\vec{\mu})}{a}
 \label{eqn:diffquotient1}
