@@ -96,10 +96,12 @@ Die Temperaturverteilung zeigt ein realistisches Bild für das gegebene Problem.
 \scalebox{0.9}{\input{./figures/heatmap_a_1}}
 \vspace{-40pt}
 \caption{Temperaturverteilung für $a=0,01$}
+\label{fig:a_1}
 \vspace{-20pt}
 \scalebox{0.9}{\input{./figures/heatmap_a_10}}
 \vspace{-40pt}
 \caption{Temperaturverteilung für $a=0,1$}
+\label{fig:a_10}
 \end{minipage}
 \begin{minipage}[c]{0.5\textwidth}
 \centering
@@ -107,10 +109,12 @@ Die Temperaturverteilung zeigt ein realistisches Bild für das gegebene Problem.
 \scalebox{0.9}{\input{./figures/heatmap_a_20}}
 \vspace{-40pt}
 \caption{Temperaturverteilung für $a=0,2$}
+\label{fig:a_20}
 \vspace{-20pt}
 \scalebox{0.9}{\input{./figures/heatmap_a_25}}
 \vspace{-40pt}
 \caption{Temperaturverteilung für $a=0,25$}
+\label{fig:a_25}
 \end{minipage}
 \end{figure}
 
@@ -144,4 +148,6 @@ Die Temperaturverteilung zeigt ein realistisches Bild für das gegebene Problem.
 %\end{figure}
 
 Auffällig ist, dass mit sinkendem Gitterabstand die maximale Temperatur sinkt. Außerdem sieht man besonders beim Übergang von $a=0,1$  zu $a=0,01$ gut, dass der Bereich mittlerer Temperaturen kleiner wird, da die rot gefärbte Fläche größer und die Ränder schmäler werden.
+
+In Abbildung \ref{fig:a_1} sind die weißen Flächen deutlich breiter als bei den anderen Darstellungen, was in der Diskretisierung begründet ist. Es wird ein Quadrat mit Kantenlänge $a$ um jeden Gitterpunkt gelegt, was dazu führt, dass bei großem Gitterabstand die Quadrate eine größere Kantenlänge haben und von ihrem zugeordneten Punkt ausgehend in das ausgenommene (=weiße) Gebiet "`hineinragen"'. Dieser Effekt tritt eigentlich in allen Abbildungen auf, ist aber aufgrund der nah beieinander liegenden $a$ in Abbildungen \ref{fig:a_10}, \ref{fig:a_20}, \ref{fig:a_25} schwerer zu erkennen.
 \end{document}
