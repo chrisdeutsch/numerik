@@ -80,30 +80,31 @@ Die Realisierung der Neumann-Randbedingung lässt sich durch die Diskretisierung
 Aus (\ref{dgl}) und der Diskretisierung des Laplace-Operators folgt für jeden Gitterpunkt $\vec{x}$ eine Gleichung:
 \begin{align}
 4 u(\vec{x}) - u(\vec{x}+a\,\vec{1}) - u(\vec{x}-a\,\vec{1}) - u(\vec{x}+a\,\vec{2}) - u(\vec{x}-a\,\vec{2}) = a^2 f(\vec{x})
-\label{eqn:diffquotient2}
+\label{eqn:dgldiskret}
 \end{align}
 Diese Gleichung wird jetzt für jeden Punkt $\vec{x}$ des Gitters mit Ausnahme der Punkte mit Dirichlet-Randbedingung aufgestellt. Dabei muss stets beachtet werden, ob einer der Nachbarpunkte von $\vec{x}$ aufgrund der Randbedingung festgelegtes $u$ hat. Sollte dies der Fall sein, kann der Zahlenwert auf die rechte Seite der Gleichung gebracht werden.
 Man erhält durch diese Diskretisierung also ein Gleichungssystem mit einer dünn besetzten Koeffizientenmatrix, deren Einträge die Gitterpunkte repräsentieren. Die Lösung solcher Systeme (insbesondere für dünn besetzte Matrizen) wird im nachfolgenden Abschnitt \ref{sec:gauss-seidel} erläutert.
 
-\subsubsection{Gauß-Seidel Verfahren}
+\subsubsection{Gauß-Seidel-Verfahren}
 \label{sec:gauss-seidel}
-Zur Lösung des Gleichungssystems nutzen wir das für große, dünne Matrizen gut geeignete Iterationsverfahren nach \emph{Gauß-Seidel}. Dazu wird das Gleichungssystem $A\vec{x}=\vec{b}$ in Fixpunktform geschrieben:
+Zur Lösung des Gleichungssystems nutzen wir das für große, dünne Matrizen gut geeignete Iterationsverfahren nach \emph{Gauß-Seidel}. Dieses basiert auf dem Jacobi-Verfahren, welches hier kurz erklärt werden soll.
+
+Zunächst wird für iterative Methoden ein Startwert benötigt, welcher ein Schätzwert $\vec{x}^{(0)}$ für die Lösung sein sollte. Mit der $i$-ten Gleichung des Gleichungssystems:
 \begin{align}
-\vec{x}^{\,k+1}=H\vec{x}^{\,k}+\vec{c}
+\label{gls}
+a_{i1} x_{1} + \dots + a_{ii} x_{i} + \dots + a_{in} x_{n} = b_i
 \end{align}
-Hierbei ist $H=1-B^{-1}A$ und $\vec{c}=B^{-1}\vec{b}$, wobei $B$ so gewählt wird, dass $B^{-1}\approx A^{-1}$. Weiterhin soll $B$ leicht zu invertieren sein. Nimmt man an, dass die Diagonalelemente von A $\not=0$ sind, kann man das Gleichungssystem zeilenweise lösen. Dazu betrachtet man die $i$-te Zeile
+folgt für die Iterationsvorschrift für die $i$-ten Koordinate:
 \begin{align}
-a_{i0}\,x_0+...+a_{i,n-1}\,x_{n-1}=b_i
+\label{iterationsvorschrift}
+x_i^{(k+1)} = \frac{1}{a_{ii}}\left( b_i - \sum^{n}_{\substack{l=1 \\ l \neq i}} a_{il} x_l^{(k)} \right) 
 \end{align}
-und löst sie nach $x_i$ auf. Man erhält dann:
+durch Umformung von (\ref{gls}) nach $x_i$. Insbesondere wird deutlich, dass kein Element der Hauptdiagonalen verschwinden darf. Aufgrund von Gl. (\ref{eqn:dgldiskret}) ist auf der Hauptdiagonalen unserer Gleichungen stets eine $\num{4}$ und damit die Iterationsvorschrift anwendbar.
+
+Der Unterschied des Gauß-Seidel-Verfahrens gegenüber der Jacobi-Methode ist, dass vorangegangene Iterationsschritte der Koordinaten $x_1, \dots , x_{i-1}$ bereits bei der Iteration der Koordinate $x_i$ verwendet wird. Damit nimmt Gl. (\ref{iterationsvorschrift}) die folgende Form an:
 \begin{align}
-x_i^{k+1}=x^k_i+\frac{1}{a_{ii}}\left( b_i-\sum_{l=0}^{i-1}a_{il}\,x_l^{k+1} - \sum_{l=i}^{n-1}a_{il}\,x_l^k\right)
+x_i^{(k+1)} = \frac{1}{a_{ii}}\left( b_i - \sum^{i-1}_{l=1} a_{il} x_l^{(k+1)} - \sum^{n}_{l=i+1} a_{il} x_l^{(k)} \right) 
 \end{align}
-Hierfür muss im ersten Iterationsschritt ein Näherungsvektor für die Lösung gegeben sein, der gegen den Lösungsvektor $\vec{x}$ konvergiert. In Matrixschreibweise erhält man:
-\begin{align}
-\vec{x}^{\,k+1}=\vec{x}^{\,k}+D^{-1}\left(\vec{b}-A\vec{x}^{\,k}\right)
-\end{align}
-Wobei $D$=$B$ hier einer Diagonalmatrix mit Einträgen $(a_{00}, ... ,a_{n-1,n-1})$ entspricht.
 
 \subsection{Physikalische Ergebnisse}
 In den folgenden Abbildungen sind jeweils die Lösungen des Problems dargestellt. Geplottet wurde der Wert der Temperaturverteilung an dem jeweiligen Gitterpunkt, wobei die rote Färbung einem höheren, die blaue einem niedrigeren Temperaturwert entspricht. Bis auf den Gitterabstand $a=0,01$ ist die Diskretisierung noch deutlich erkennbar.
