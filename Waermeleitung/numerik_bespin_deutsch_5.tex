@@ -27,11 +27,24 @@
 \subsection{Physikalischer Hintergrund}
 Grundlage für Wärmeaustauschvorgänge, wie die hier zu behandelnde Wärmeleitung, bildet das \emph{Fourier'sche Gesetz}. Es besagt, dass die Wärmestromdichte $\dot{\vec{q}}$ durch ein Flächenstück proportional zum negativen Temperaturgradienten auf der Oberfläche ist. Aus der Energieerhaltung folgt, dass diese Änderung der Energie gleich der aus Quellen zugeflossenen und über die Fläche abfließenden Energie ist. Wir erhalten dann für die Temperatur $u(x)$ am Ort $x$ auf dem Flächenstück:
 \begin{align}  
-\frac{\partial}{\partial t}u(x,t)=f(x,t)+ a \Delta u(x,t)
+\frac{\partial}{\partial t}u(\vec{x},t)=f(\vec{x},t)+ a \Delta u(\vec{x},t)
 \end{align}
 Dabei beschreibt $f(x)$ die Wärmequellen und -senken und $a$ die Temperaturleitfähigkeit, die bei der Bearbeitung der Aufgabe gleich $1$ gesetzt wird. Da wir bei der Aufgabe den stationären Fall betrachten, ist die zeitliche Ableitung konstant und $u$ und $f$ reduzieren sich auf Funktionen, die nur vom Ort $x$ abhängen.
 
+\subsection{Diskretisierung von $\Delta$}
+Zur Lösung des Problems muss das betrachtete, zusammenhängende Gebiet in diskrete Teilstücke zerlegt werden, um das Problem numerisch zu lösen. Weiterhin müssen die Operatoren auf dem Gebiet auch entsprechend angepasst werden. Dieses Verfahren nennt sich Diskretisierung. 
+Hierfür wird ein isotropes Gitter mit festem Gitterabstand $a$ in alle Richtungen gewählt. Mit Hilfe des Einheitsvektors in $\mu$-Richtung können von jedem Punkt $x$ ausgehend mit $x\pm a\vec{\mu}$ die Nachbarpunkte erreicht werden.
+
+Der Laplace-Operator bzw. allgemein jede Differentiation der Funktion wird nun an diesen Gitterpunkten numerisch approximiert. Dazu wird der Differenzenquotient verwendet. Man erhält dann für die zweifache Ableitung in $x_{\mu}$-Richtung:
+\begin{align}
+\frac{\partial^2f}{\partial x_{\mu}^2}=\frac{f_{x+a\vec{\mu}}-2 f_x+f_{x-a\vec{\mu}}}{a^2}
+\label{eqn:diffquotient}
+\end{align}
+Dieses Verfahren ist besonders für die Neumann Randbedingung wie in  \ref{randbedingungen} interessant, denn man erkennt, dass man das betrachtete Gebiet über den Rand fortsetzen kann. Dies geschieht gerade mit $f_{x+a\vec{\mu}}=f_{x-a\vec{\mu}}$, denn dann verschwindet die erste Ableitung (als Differenzenquotient wie in \ref{eqn:diffquotient} ausgedrückt), wie die Randbedingung fordert.
+Man erhält durch die Diskretisierung also ein Gleichungssystem mit einer dünn besetzten Matrix, deren Einträge die Gitterpunkte repräsentieren. Die Lösung solcher Systeme (insbesondere für dünn besetzte Matrizen) wird im nachfolgenden Abschnitt \ref{sec:gauss-seidel} erläutert.  
+
 \subsection{Gauß-Seidel Verfahren}
+\label{sec:gauss-seidel}
 Zur Lösung des Gleichungssystems nutzen wir das für große, dünne Matrizen gut geeignete Iterationsverfahren nach \emph{Gauß-Seidel}. Dazu wird das Gleichungssystem $A\vec{x}=\vec{b}$ in Fixpunktform geschrieben:
 \begin{align}
 \vec{x}^{\,k+1}=H\vec{x}^{\,k}+\vec{c}
@@ -49,16 +62,6 @@ Hierfür muss im ersten Iterationsschritt ein Näherungsvektor für die Lösung 
 \vec{x}^{\,k+1}=\vec{x}^{\,k}+D^{-1}\left(\vec{b}-A\vec{x}^{\,k}\right)
 \end{align}
 
-\subsection{Diskretisierung von $\Delta$}
-Zur Diskretisierung des Laplace-Operators $\Delta$ ist es zunächst nötig, das betrachtete Gebiet zu diskretisieren. Hierfür wird ein isotropes Gitter mit festem Gitterabstand $a$ in alle Richtungen gewählt. Mit Hilfe des Einheitsvektors in $\mu$-Richtung können von jedem Punkt $x$ ausgehend mit $x\pm a\vec{\mu}$ die Nachbarpunkte erreicht werden.
-
-Der Laplace-Operator bzw. allgemein jede Differentiation der Funktion wird nun an diesen Gitterpunkten numerisch approximiert. Dazu wird der Differenzenquotient verwendet. Man erhält dann für die zweifache Ableitung in $x_{\mu}$-Richtung:
-\begin{align}
-\frac{\partial^2f}{\partial x_{\mu}^2}=\frac{f_{x+a\vec{\mu}}-2 f_x+f_{x-a\vec{\mu}}}{a^2}
-\label{eqn:diffquotient}
-\end{align}
-Dieses Verfahren ist besonders für die Neumann Randbedingung wie in  \ref{randbedingungen} interessant, denn man erkennt, dass man das betrachtete Gebiet über den Rand fortsetzen kann. Dies geschieht gerade mit $f_{x+a\vec{\mu}}=f_{x-a\vec{\mu}}$, denn dann verschwindet die erste Ableitung (als Differenzenquotient wie in \ref{eqn:diffquotient} ausgedrückt), wie die Randbedingung fordert.
-
 \subsection{Differentialgleichung}
 \begin{align}
 GLEICHUNG
@@ -71,22 +74,33 @@ Bei der zu bearbeitenden Aufgabe tauchen zwei verschiedene Randbedingungen auf:
 \item Dirichlet Randbedingungen und
 \item Neumann Randbedingungen
 \end{itemize}
-Die Dirichlet-Randbedingung geben einen festen Wert für die Funktion $f$ in \ref{eqn:dgl} auf dem Rand des betrachteten Gebietes vor. In unserem Fall werden sowohl für $f$ als auch $u$ konstante Werte auf dem Rand des Objektes angegeben. Die Neumann Randbedingung legt einen Wert für $\frac{\partial f}{\partial \vec{\mu}}$ auf dem Rand fest, wobei $\vec{\mu}$ der nach außen gerichtete Normalenvektor auf dem Rand ist. Die Aufgabe gibt für $\frac{\partial u}{\partial \vec{\mu}}$ den Wert $0$ auf der unteren Kante vor. Sie besagt, dass von dem Rand keine Wärmeleitung nach außen stattfindet, und die Wärme von der Kante über das Objekt abfließt. 
+Die Dirichlet-Randbedingung geben einen festen Wert für die Funktion $u$ in \ref{eqn:dgl} auf dem Rand des betrachteten Gebietes vor. In unserem Fall werden sowohl für $f$ als auch $u$ konstante Werte auf dem Rand des Objektes angegeben. Die Neumann Randbedingung legt einen Wert für $\frac{\partial u}{\partial \vec{\mu}}$ auf dem Rand fest, wobei $\vec{\mu}$ der nach außen gerichtete Normalenvektor auf dem Rand ist. Die Aufgabe gibt für $\frac{\partial u}{\partial \vec{\mu}}$ den Wert $0$ auf der unteren Kante vor. Sie besagt, dass von dem Rand keine Wärmeleitung nach außen stattfindet, und die Wärme von der Kante über das Objekt abfließt. 
 
+\subsection{Physikalische Ergebnisse}
+In den folgenden Abbildungen sind jeweils die Lösungen des Problems dargestellt. Geplottet wurde der Wert der Temperaturverteilung an dem jeweiligen Gitterpunkt, wobei die rote Färbung einem höheren, die blaue einem niedrigeren Temperaturwert entspricht. Bis auf für den Gitterabstand $a=0,01$ ist die Diskretisierung noch deutlich erkennbar.
 \begin{figure}
 \centering
 \include{./figures/heatmap_a_1}
+\vspace{-40pt}
+\caption{Temperaturverteilung für $a=0,01$}
 \end{figure}
 \begin{figure}
 \centering
 \include{./figures/heatmap_a_10}
+\vspace{-40pt}
+\caption{Temperaturverteilung für $a=0,1$}
 \end{figure}
 \begin{figure}
 \centering
 \include{./figures/heatmap_a_20}
+\vspace{-40pt}
+\caption{Temperaturverteilung für $a=0,2$}
 \end{figure}
 \begin{figure}
 \centering
 \include{./figures/heatmap_a_25}
+\vspace{-40pt}
+\caption{Temperaturverteilung für $a=0,25$}
 \end{figure}
+Auffällig ist, dass mit sinkendem Gitterabstand die maximale Temperatur sinkt. Außerdem sieht man besonders beim Übergang von $a=0,1$  zu $a=0,01$ gut, dass der Bereich mittlerer Temperaturen kleiner wird, da die rot gefärbte Fläche größer und die Ränder schmäler werden.
 \end{document}
