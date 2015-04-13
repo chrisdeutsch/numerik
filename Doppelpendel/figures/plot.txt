@@ -1,0 +1,71 @@
+set terminal epslatex size 20cm,18cm color colortext
+
+set output './figures/trajektorie5.tex'
+
+# Parameter
+m1 = 1.0
+m2 = 1.0
+L1 = 1.0
+L2 = 1.0
+
+set size 1.0, 1.0
+set multiplot
+
+
+# Trajektorie #
+
+set origin 0.0, 0.5
+set title 'Trajektorie'
+set key
+
+set size 0.5, 0.5
+set size ratio -1
+
+set autoscale
+
+set xlabel 'Position $x$ [$\si{\metre}$]'
+set ylabel 'Position $y$ [$\si{\metre}$]'
+
+plot "./figures/numerik_deutsch_ode.txt" using 8:9 with lines lt 1 linecolor rgb "#e41a1c" t'$m_1$',\
+     "./figures/numerik_deutsch_ode.txt" using 10:11 with lines lt 2 linecolor rgb "#4daf4a" t'$m_2$'
+
+set size noratio
+
+
+# Phasenraum #
+set origin 0.5, 0.5
+set title 'Phasenraum'
+set size 0.5, 0.5
+
+set key
+unset xrange
+unset yrange
+
+set autoscale
+
+set xlabel 'Auslenkung $\theta$ [$\si{\radian}$]'
+set ylabel 'verallgemeinerter Impuls $p_{\theta}$ [$\si{\kilogram\metre\squared\per\second}$]'
+
+plot "./figures/numerik_deutsch_ode.txt" using 2:6 with lines lt 1 linecolor rgb "#e41a1c" t'$\theta_1$',\
+     "./figures/numerik_deutsch_ode.txt" using 4:7 with lines lt 2 linecolor rgb "#4daf4a" t'$\theta_2$'
+
+
+# Fouriertransformation #
+set origin 0.0, 0.0
+set size 1.0, 0.5
+
+set title 'Leistungsspektrum von $\theta$'
+set key
+unset xrange
+unset yrange
+
+set logscale y
+
+set autoscale
+
+set xlabel 'Kreisfrequenz $\omega$ [$\si{\radian\per\second}$]'
+set ylabel 'Fourierkoeffizient $|g_k|$ [$\si{\radian}$]'
+
+plot [0:40] "./figures/numerik_deutsch_power_spectrum.txt" using 2:3 with lines t'$\theta_1$' lt 1 linecolor rgb "#e41a1c", \
+     "./figures/numerik_deutsch_power_spectrum.txt" using 2:4 with lines t'$\theta_2$' lt 2 linecolor rgb "#4daf4a"
+unset multiplot
